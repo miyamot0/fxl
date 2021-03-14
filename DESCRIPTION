@@ -4,6 +4,8 @@ Title: Faux Excel Charting in R
 Version: 0.1.0
 Author: Shawn Gilroy <sgilroy1@lsu.edu>
 Maintainer: Shawn Gilroy <sgilroy1@lsu.edu>
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
 Description: Blah blah blah
     Blah blah blah
 License: MIT

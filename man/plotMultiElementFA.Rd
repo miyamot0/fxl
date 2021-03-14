@@ -18,25 +18,25 @@ plotMultiElementFA(
 )
 }
 \arguments{
-\item{data}{data frame of assessment information}
+\item{data}{data.frame of assessment information}
 
-\item{grouping}{column name, for grouping, referring to FA condition}
+\item{grouping}{character(1) column name, for grouping, referring to FA condition}
 
-\item{session}{column name, for session numbering (should be distinct)}
+\item{session}{character(1) column name, for session numbering (should be distinct)}
 
-\item{response}{column name, for response to chart}
+\item{response}{character(1) column name, for response to chart}
 
-\item{title}{plot title}
+\item{title}{character(1) plot title}
 
-\item{ylab}{plot axis title}
+\item{ylab}{character(1) plot axis title}
 
-\item{xlab}{plot axis title}
+\item{xlab}{character(1) plot axis title}
 
-\item{ylims}{override ylims}
+\item{ylims}{numeric(n) override ylims}
 
-\item{legend.horizonal}{override legend aes}
+\item{legend.horizonal}{logical(1) override legend aes}
 
-\item{legend.position}{override legend aes}
+\item{legend.position}{character(1) override legend aes}
 }
 \value{
 
