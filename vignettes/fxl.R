@@ -1,27 +1,4 @@
----
-title: "Faux Excel (fxl) Charting in R"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Faux Excel (fxl) Charting in R}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
----
-
-# Introduction and Rationale
-
-Single-case research uses the visualization of empirical data to infer the effects of environmental manipulations on observed behavior. Rather than perform quantitative tests, data are presented visually using a variety of shared conventions. For instance, data are typically grouped qualitatively by phase or condition and these are separated by visual partitions (i.e., phase change lines). 
-
-The construction of phase change lines in spreadsheet software remains tedious and subsequent modifications often require human interaction to edit and adjust. Various scripts and macros exist to streamline these efforts, but the available options are at best incomplete or insecure (most users disable macros by default). It is for these reason that the _fxl_ package was designed.
-
-The _fxl_ package was designed to support transparent, replicable, and efficently-drawn figure in single-case research design. In addition to be easily archived, effortlessly drawn, and automated, the R ecosystem supports the drawing of publication-quality figures that exceed traditional tools (e.g., Microsoft Excel). For instance, the figures output by _fxl_ can be lossless by default using a variety of vector-based drawing formats.
-
-## Functional Analysis; Gilroy et al. (2019)
-
-The _fxl_ package includes tools specific to the charting of functional analyses. Briefly, a variety of conventions exist regarding the markers and colors associated with specific environmental manipulations. Methods included in the _plotMultiElementFA_ function detect conditions and apply such styles in an automated manner.
-
-For convenience, an analog function analysis published Gilroy et al. (2019) is illustrated below (doi: [https://doi.org/10.1080/17518423.2019.1646342](https://doi.org/10.1080/17518423.2019.1646342)):
-
-```{r, fig.width=8, fig.height=6}
+## ---- fig.width=8, fig.height=6-----------------------------------------------
 
 library(fxl)
 
@@ -35,15 +12,8 @@ plotMultiElementFA(Gilroyetal2019,
  ylims    = c(0, 4),
  legend.position = 'topright')
 
-```
 
-## Annotated Reversal Design; Gilroy et al. (2019)
-
-The _fxl_ package supports annotating figures (i.e., drawing labels, text) when conventions such as legends are inefficient in terms of communicating ecological modification. In these situations, a variety of behavior analytic conventions are applied by directly drawing upon a panel. This approach, an annotated reversal figure, is supported with the _plotAnnotatedReversal_ function. 
-
-For convenience, an annotated reversal (treatment evaluation) published in Gilroy et al. (2019) is illustrated below (doi: [https://doi.org/10.1080/17518423.2019.1646342](https://doi.org/10.1080/17518423.2019.1646342)):
-
-```{r, fig.width=10, fig.height=8}
+## ---- fig.width=10, fig.height=8----------------------------------------------
 
 conditionLabel <- data.frame(
   Panel = rep("Attention", 11),
@@ -222,15 +192,8 @@ plotAnnotatedReversal(data     = Gilroyetal2019Tx,
                       alines   = annotatePhaseLines,
                       abracks  = annotateBrackets)
 
-```
 
-## Multiple Baseline; Gilroy et al. (2015)
-
-One of the most irritating aspects of single-case design is the plotting of condition changes. Specifically, across-panel drawing is an rare practice and rarely any software has been designed to support such practices. The _fxl_ package includes methods that enable pixel-perfect drawing of phase/condition changes using straightforward conventions. Briefly, data are loaded into a data frame by panel (e.g., name), session number, condition (e.g., baseline), and phase number (e.g., 1, 2). Constructed in this way, R can look to see who changes in phases can be drawn and the linked together.
-
-For convenience, a multiple baseline design published in Gilroy et al. (2015) is illustrated below (doi: [http://dx.doi.org/10.1016/j.rasd.2015.04.004](http://dx.doi.org/10.1016/j.rasd.2015.04.004)):
-
-```{r, fig.width=8, fig.height=6}
+## ---- fig.width=8, fig.height=6-----------------------------------------------
 
 # Specify location, text, and aesthetics of condition labels
 conditionLabels <- data.frame(
@@ -307,15 +270,8 @@ plotMultipleBaseline(data     = Gilroyetal2015,
                      clabs    = conditionLabels,
                      plabs    = panelLabels)
 
-```
 
-## Concurrent Reversal Designs; Gilroy et al. (2021)
-
-In addition to multiple-baseline designs, single-case research may perform individual reversal designs across participants. In these cases, control is demonstrated both within- and across-participants and this warrants a slightly different charting strategy (despite keeping the same graphing conventions as the multiple baseline). However, the data supplied to _fxl_ methods remains largely the same.
-
-As an example of this, a collection of reversal designs published in Gilroy et al. (2021) are illustrated below (doi: [https://doi.org/10.1002/jaba.826](https://doi.org/10.1002/jaba.826)):
-
-```{r, fig.width=8, fig.height=6, error=TRUE}
+## ---- fig.width=8, fig.height=6, error=TRUE-----------------------------------
 
 # Specify location, text, and aesthetics of condition labels
 conditionLabel <- data.frame(
@@ -389,4 +345,4 @@ plotConcurrentReversals(data     = Gilroyetal2021,
                         plabs    = panelLabel,
                         llabs    = legendParams)
 
-```
+

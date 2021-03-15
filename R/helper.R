@@ -51,8 +51,6 @@ getFAMarkerColor = function(condition) {
   return (color)
 }
 
-
-
 #' cnvrt.coords (Modified)
 #'
 #' A hacked-up, pared-down, reconstitution of helper methods to draw
