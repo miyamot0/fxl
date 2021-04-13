@@ -22,5 +22,5 @@ Features include:
 ------
 Publication-quality annotations and flexibility
 
-![alt text](https://github.com/miyamot0/fxl/blob/Main/man/figure/AnnotatedFig.tiff?raw=true)
+![alt text](https://github.com/miyamot0/fxl/blob/main/man/figures/AnnotatedFig.tiff?raw=true)
 
