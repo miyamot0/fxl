@@ -23,7 +23,7 @@ Features include:
 Publication-quality annotations and flexibility
 
 Annotated, Hybrid Designs (MBD + Individual Reversals)
-![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/annotatedfigure.svg?raw=true)
+![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/annotatedfigure2.svg?raw=true)
 
 Concurrent Reversal Designs (Across Participants)
 ![Gilroy et al 2021](https://github.com/miyamot0/fxl/blob/main/man/figures/concurrentfigure.svg?raw=true)
