@@ -32,40 +32,40 @@ library(dplyr)
 #' @export
 print.fxl <- function(coreFrame) {
 
-  facets       = NULL
-  n.facets     = 1
-  lookup       = FALSE
+  facets = NULL
+  n.facets = 1
+  lookup = FALSE
 
   if ("facet" %in% names(coreFrame$aes)) {
-    facets     = unique(coreFrame$data[[as.character(coreFrame$aes['facet'])]])
-    n.facets   = length(facets)
-    lookup     = TRUE
+    facets = unique(coreFrame$data[[as.character(coreFrame$aes['facet'])]])
+    n.facets = length(facets)
+    lookup = TRUE
   }
 
-  has.legend   = !is.null(coreFrame[["legendpars"]])
+  has.legend = !is.null(coreFrame[["legendpars"]])
 
-  n.rows       = n.facets
-  n.cols       = 1
+  n.rows = n.facets
+  n.cols = 1
 
-  plotTops     = list()
-  plotBots     = list()
-  indexNum     = list()
+  plotTops = list()
+  plotBots = list()
+  indexNum = list()
 
   reqFinalDraw = FALSE
 
-  par(mfrow    = c(n.rows, n.cols),
-      family   = "serif",
-      omi      = coreFrame[["dims"]][["omi"]],
-      mai      = coreFrame[["dims"]][["mai"]],
-      xaxs     = "r",
-      yaxs     = "r",
-      xpd      = NA)
+  par(mfrow = c(n.rows, n.cols),
+      family = "serif",
+      omi = coreFrame[["dims"]][["omi"]],
+      mai = coreFrame[["dims"]][["mai"]],
+      xaxs = "r",
+      yaxs = "r",
+      xpd = NA)
 
   ## Print placeholders
   #for (n in facets) {
   for (n in 1:n.facets) {
 
-    currentFacet   = NA
+    currentFacet = NA
 
     if (lookup) {
       currentFacet = facets[n]
@@ -94,20 +94,20 @@ print.fxl <- function(coreFrame) {
     coreFrame$dims[["min.local.y"]] <- min.local.y
 
     plot(NULL,
-         xlim       = c(min.local.x, max.local.x),
-         ylim       = c(min.local.y, max.local.y),
-         ylab       = "",
-         xlab       = "",
+         xlim = c(min.local.x, max.local.x),
+         ylim = c(min.local.y, max.local.y),
+         ylab = "",
+         xlab = "",
          frame.plot = FALSE,
-         las        = 1,
-         xaxt       = 'n',
-         yaxt       = 'n')
+         las = 1,
+         xaxt = 'n',
+         yaxt = 'n')
 
     box(bty = "l")
 
     axis(1,
          labels = (n == n.facets),
-         at     = seq(coreFrame$dims[["global.min.x"]],
+         at = seq(coreFrame$dims[["global.min.x"]],
                       coreFrame$dims[["global.max.x"]],
                       by = coreFrame$dims[['xdelta']]))
 
@@ -131,21 +131,21 @@ print.fxl <- function(coreFrame) {
 
         currentLayer <- coreFrame$layers[[i]]
 
-        if (currentLayer$type == "point")       draw_points(coreFrame, currentLayer, currentFacet)
-        if (currentLayer$type == "line")        draw_lines(coreFrame, currentLayer, currentFacet)
+        if (currentLayer$type == "point") draw_points(coreFrame, currentLayer, currentFacet)
+        if (currentLayer$type == "line") draw_lines(coreFrame, currentLayer, currentFacet)
         if (currentLayer$type == "phase_label") draw_label_phase(coreFrame, currentLayer, currentFacet)
         if (currentLayer$type == "facet_label") draw_label_facet(coreFrame, currentLayer, currentFacet)
         if (currentLayer$type == "phase_lines") draw_scr_plines(coreFrame, currentLayer, currentFacet)
-        if (currentLayer$type == "arrows")      draw_arrows(coreFrame, currentLayer, currentFacet)
-        if (currentLayer$type == "brackets")    draw_brackets(coreFrame, currentLayer, currentFacet)
+        if (currentLayer$type == "arrows") draw_arrows(coreFrame, currentLayer, currentFacet)
+        if (currentLayer$type == "brackets") draw_brackets(coreFrame, currentLayer, currentFacet)
 
         if (currentLayer$type == "mbd_phase_lines") {
 
           plines <- names(currentLayer$lines)
 
-          for(pname in plines) {
+          for (pname in plines) {
 
-            if (!(pname %in% names(indexNum)))  indexNum[[pname]] <- 1
+            if (!(pname %in% names(indexNum))) indexNum[[pname]] <- 1
 
             currentLayer$lines[[pname]][[n]][["topDraw"]] <- cnvrt.coords(
               currentLayer$lines[[pname]][[n]][["x1"]],
@@ -153,21 +153,21 @@ print.fxl <- function(coreFrame) {
 
             currentLayer$lines[[pname]][[n]][["botDraw"]] <- cnvrt.coords(
               currentLayer$lines[[pname]][[n]][["x2"]],
-              -((max.local.y - min.local.y) * 0.04))
+              - ((max.local.y - min.local.y) * 0.04))
 
             tmp.point.top.dev <- cnvrt.coords(
               currentLayer$lines[[pname]][[n]][["topDraw"]]$dev,
-              input='dev')
+              input = 'dev')
 
             tmp.point.bot.dev <- cnvrt.coords(
               currentLayer$lines[[pname]][[n]][["botDraw"]]$dev,
-              input='dev')
+              input = 'dev')
 
             segments(tmp.point.top.dev$usr$x,
                      tmp.point.top.dev$usr$y,
                      tmp.point.bot.dev$usr$x,
                      tmp.point.bot.dev$usr$y,
-                     col='black')
+                     col = 'black')
 
             currentLayer$lines[[pname]][[n]][["topDraw"]] <- cnvrt.coords(
               currentLayer$lines[[pname]][[n]][["x1"]],
@@ -206,33 +206,33 @@ print.fxl <- function(coreFrame) {
         pts.pre <- plotTops[[n.phaseLines[pl]]][[plfacet - 1]]
         pbs.pre <- plotBots[[n.phaseLines[pl]]][[plfacet - 1]]
 
-        pts     <- plotTops[[n.phaseLines[pl]]][[plfacet]]
-        pbs     <- plotBots[[n.phaseLines[pl]]][[plfacet]]
+        pts <- plotTops[[n.phaseLines[pl]]][[plfacet]]
+        pbs <- plotBots[[n.phaseLines[pl]]][[plfacet]]
 
-        tmp.point.top.pre.dev <- cnvrt.coords( pts.pre$dev, input='dev' )
-        tmp.point.bot.pre.dev <- cnvrt.coords( pbs.pre$dev, input='dev' )
+        tmp.point.top.pre.dev <- cnvrt.coords(pts.pre$dev, input = 'dev')
+        tmp.point.bot.pre.dev <- cnvrt.coords(pbs.pre$dev, input = 'dev')
 
-        tmp.point.top.dev     <- cnvrt.coords( pts$dev, input='dev' )
-        tmp.point.bot.dev     <- cnvrt.coords( pbs$dev, input='dev' )
+        tmp.point.top.dev <- cnvrt.coords(pts$dev, input = 'dev')
+        tmp.point.bot.dev <- cnvrt.coords(pbs$dev, input = 'dev')
 
         segments(tmp.point.bot.pre.dev$usr$x, tmp.point.bot.pre.dev$usr$y,
                  tmp.point.bot.pre.dev$usr$x, (tmp.point.bot.pre.dev$usr$y + tmp.point.top.dev$usr$y) / 2,
-                 col='black')
+                 col = 'black')
 
         segments(tmp.point.bot.pre.dev$usr$x, (tmp.point.bot.pre.dev$usr$y + tmp.point.top.dev$usr$y) / 2,
-                 tmp.point.top.dev$usr$x,     (tmp.point.bot.pre.dev$usr$y + tmp.point.top.dev$usr$y) / 2,
-                 col='black')
+                 tmp.point.top.dev$usr$x, (tmp.point.bot.pre.dev$usr$y + tmp.point.top.dev$usr$y) / 2,
+                 col = 'black')
 
-        segments(tmp.point.top.dev$usr$x,     (tmp.point.bot.pre.dev$usr$y + tmp.point.top.dev$usr$y) / 2,
-                 tmp.point.top.dev$usr$x,     tmp.point.top.dev$usr$y,
-                 col='black')
+        segments(tmp.point.top.dev$usr$x, (tmp.point.bot.pre.dev$usr$y + tmp.point.top.dev$usr$y) / 2,
+                 tmp.point.top.dev$usr$x, tmp.point.top.dev$usr$y,
+                 col = 'black')
       }
     }
   }
 
-  mtext(coreFrame$labs[["title"]], side=3, outer=TRUE, line=0)
-  mtext(coreFrame$labs[["ylab"]],  side=2, outer=TRUE)
-  mtext(coreFrame$labs[["xlab"]],  side=1, outer=TRUE)
+  mtext(coreFrame$labs[["title"]], side = 3, outer = TRUE, line = 0)
+  mtext(coreFrame$labs[["ylab"]], side = 2, outer = TRUE)
+  mtext(coreFrame$labs[["xlab"]], side = 1, outer = TRUE)
 }
 
 
@@ -259,7 +259,7 @@ scr_plot <- function(data, aesthetics,
   coreFrame = list()
 
   # Mappings
-  coreFrame[["aes"]]  <- enexpr(aesthetics)
+  coreFrame[["aes"]] <- enexpr(aesthetics)
 
   # Stored data
   coreFrame[["data"]] <- data
@@ -270,10 +270,10 @@ scr_plot <- function(data, aesthetics,
     global.min.x = min(data[[as.character(coreFrame$aes['x'])]]),
     global.max.y = max(data[[as.character(coreFrame$aes['y'])]]),
     global.min.y = min(data[[as.character(coreFrame$aes['y'])]]),
-    mai          = mai,
-    omi          = omi,
-    xdelta       = 1,
-    ydelta       = 1
+    mai = mai,
+    omi = omi,
+    xdelta = 1,
+    ydelta = 1
   )
 
   # Layers for drawing
@@ -281,8 +281,8 @@ scr_plot <- function(data, aesthetics,
 
   # Labels
   coreFrame[["labs"]] <- list(
-    xlab  = as.character(coreFrame$aes['x']),
-    ylab  = as.character(coreFrame$aes['y']),
+    xlab = as.character(coreFrame$aes['x']),
+    ylab = as.character(coreFrame$aes['y']),
     title = ""
   )
 
@@ -316,15 +316,15 @@ scr_arrows <- function(coreFrame, arrows = NULL, facet = NULL,
                        length = 0.25, angle = 30, code = 2,
                        lwd = 1, lty = 1) {
   newlayer <- list()
-  newlayer[[ "type"   ]] = "arrows"
-  newlayer[[ "facet"  ]] = facet
-  newlayer[[ "arrows" ]] = arrows
-  newlayer[[ "color"  ]] = color
-  newlayer[[ "length" ]] = length
-  newlayer[[ "angle"  ]] = angle
-  newlayer[[ "code"   ]] = code
-  newlayer[[ "lwd"   ]] = lwd
-  newlayer[[ "lty"   ]] = lty
+  newlayer[["type"]] = "arrows"
+  newlayer[["facet"]] = facet
+  newlayer[["arrows"]] = arrows
+  newlayer[["color"]] = color
+  newlayer[["length"]] = length
+  newlayer[["angle"]] = angle
+  newlayer[["code"]] = code
+  newlayer[["lwd"]] = lwd
+  newlayer[["lty"]] = lty
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -356,15 +356,15 @@ scr_brackets <- function(coreFrame, brackets = NULL,
                          lwd = 1, lty = 1) {
 
   newlayer <- list()
-  newlayer[[ "type"     ]] = "brackets"
-  newlayer[[ "facet"    ]] = facet
-  newlayer[[ "brackets" ]] = brackets
-  newlayer[[ "color"    ]] = color
-  newlayer[[ "length"   ]] = length
-  newlayer[[ "angle"    ]] = angle
-  newlayer[[ "code"     ]] = code
-  newlayer[[ "lwd"     ]] = lwd
-  newlayer[[ "lty"     ]] = lty
+  newlayer[["type"]] = "brackets"
+  newlayer[["facet"]] = facet
+  newlayer[["brackets"]] = brackets
+  newlayer[["color"]] = color
+  newlayer[["length"]] = length
+  newlayer[["angle"]] = angle
+  newlayer[["code"]] = code
+  newlayer[["lwd"]] = lwd
+  newlayer[["lty"]] = lty
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -387,15 +387,15 @@ scr_brackets <- function(coreFrame, brackets = NULL,
 scr_points <- function(coreFrame, pch = 21, color = 'black', fill = 'black', cex = 1, mapping) {
 
   newlayer <- list()
-  newlayer[["type"]]          <- "point"
-  newlayer[["pch"]]           <- pch
-  newlayer[["color"]]         <- color
-  newlayer[["fill"]]          <- fill
-  newlayer[["cex"]]           <- cex
-  newlayer[["aesthetics"]]    <- NA
+  newlayer[["type"]] <- "point"
+  newlayer[["pch"]] <- pch
+  newlayer[["color"]] <- color
+  newlayer[["fill"]] <- fill
+  newlayer[["cex"]] <- cex
+  newlayer[["aesthetics"]] <- NA
 
   if (!missing(mapping)) {
-    newlayer[["aesthetics"]]  <- enexpr(mapping)
+    newlayer[["aesthetics"]] <- enexpr(mapping)
   }
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
@@ -418,14 +418,14 @@ scr_points <- function(coreFrame, pch = 21, color = 'black', fill = 'black', cex
 scr_lines <- function(coreFrame, lty = 1, color = 'black', size = 1, mapping) {
 
   newlayer <- list()
-  newlayer[["type"]]          <- "line"
-  newlayer[["lty"]]           <- lty
-  newlayer[["color"]]         <- color
-  newlayer[["size"]]          <- size
-  newlayer[["aesthetics"]]    <- NA
+  newlayer[["type"]] <- "line"
+  newlayer[["lty"]] <- lty
+  newlayer[["color"]] <- color
+  newlayer[["size"]] <- size
+  newlayer[["aesthetics"]] <- NA
 
   if (!missing(mapping)) {
-    newlayer[["aesthetics"]]  <- enexpr(mapping)
+    newlayer[["aesthetics"]] <- enexpr(mapping)
   }
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
@@ -449,15 +449,15 @@ scr_lines <- function(coreFrame, lty = 1, color = 'black', size = 1, mapping) {
 #' @return
 #' @export
 scr_label_phase <- function(coreFrame, color = 'black',
-                            cex = 1,   adj = 0.5,
+                            cex = 1, adj = 0.5,
                             facet = NULL, labels = NULL) {
 
   newlayer <- list()
-  newlayer[["type"]]   <- "phase_label"
-  newlayer[["color"]]  <- color
-  newlayer[["cex"]]    <- cex
-  newlayer[["adj"]]    <- adj
-  newlayer[["facet"]]  <- facet
+  newlayer[["type"]] <- "phase_label"
+  newlayer[["color"]] <- color
+  newlayer[["cex"]] <- cex
+  newlayer[["adj"]] <- adj
+  newlayer[["facet"]] <- facet
   newlayer[["labels"]] <- labels
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
@@ -478,14 +478,14 @@ scr_label_phase <- function(coreFrame, color = 'black',
 #' @return
 #' @export
 scr_label_facet <- function(coreFrame, color = 'black',
-                            cex = 1,   adj = 0.5,
+                            cex = 1, adj = 0.5,
                             labels = NULL) {
 
   newlayer <- list()
-  newlayer[["type"]]   <- "facet_label"
-  newlayer[["color"]]  <- color
-  newlayer[["cex"]]    <- cex
-  newlayer[["adj"]]    <- adj
+  newlayer[["type"]] <- "facet_label"
+  newlayer[["color"]] <- color
+  newlayer[["cex"]] <- cex
+  newlayer[["adj"]] <- adj
   newlayer[["labels"]] <- labels
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
@@ -507,11 +507,11 @@ scr_label_facet <- function(coreFrame, color = 'black',
 #' @export
 scr_plines <- function(coreFrame, lines = NULL, lwd = 1, lty = 1, col = 'black') {
   newlayer <- list()
-  newlayer[["type"]]   <- "phase_lines"
-  newlayer[["lines"]]  <- lines
-  newlayer[["lwd"]]    <- lwd
-  newlayer[["lty"]]    <- lty
-  newlayer[["col"]]    <- col
+  newlayer[["type"]] <- "phase_lines"
+  newlayer[["lines"]] <- lines
+  newlayer[["lwd"]] <- lwd
+  newlayer[["lty"]] <- lty
+  newlayer[["col"]] <- col
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -529,8 +529,8 @@ scr_plines <- function(coreFrame, lines = NULL, lwd = 1, lty = 1, col = 'black')
 #' @export
 scr_plines_mbd <- function(coreFrame, lines = NULL) {
   newlayer <- list()
-  newlayer[["type"]]   <- "mbd_phase_lines"
-  newlayer[["lines"]]  <- lines
+  newlayer[["type"]] <- "mbd_phase_lines"
+  newlayer[["lines"]] <- lines
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -607,7 +607,7 @@ scr_xoverride <- function(coreFrame, var, xdelta = 1) {
 scr_yoverride <- function(coreFrame, var, ydelta = 1) {
 
   # Check if a vector and not multi-facet list
-  if(is.vector(var) & !is.list(var)) {
+  if (is.vector(var) & !is.list(var)) {
     coreFrame$dims[["global.min.y"]] = {{ var[1] }}
     coreFrame$dims[["global.max.y"]] = {{ var[2] }}
   } else {
@@ -674,20 +674,20 @@ scr_legend <- function(coreFrame,
 
   coreFrame$legendpars <- list()
 
-  coreFrame$legendpars[["panel"]]    = panel
-  coreFrame$legendpars[["legend"]]   = legend
-  coreFrame$legendpars[["col"]]      = text.col
-  coreFrame$legendpars[["bg"]]       = col
+  coreFrame$legendpars[["panel"]] = panel
+  coreFrame$legendpars[["legend"]] = legend
+  coreFrame$legendpars[["col"]] = text.col
+  coreFrame$legendpars[["bg"]] = col
 
-  coreFrame$legendpars[["lty"]]      = lty
-  coreFrame$legendpars[["pch"]]      = pch
+  coreFrame$legendpars[["lty"]] = lty
+  coreFrame$legendpars[["pch"]] = pch
 
-  coreFrame$legendpars[["bty"]]      = bty
-  coreFrame$legendpars[["box.lty"]]  = box.lty
-  coreFrame$legendpars[["cex"]]      = cex
-  coreFrame$legendpars[["horiz"]]    = horiz
+  coreFrame$legendpars[["bty"]] = bty
+  coreFrame$legendpars[["box.lty"]] = box.lty
+  coreFrame$legendpars[["cex"]] = cex
+  coreFrame$legendpars[["horiz"]] = horiz
   coreFrame$legendpars[["position"]] = position
-  coreFrame$legendpars[["pt.cex"]]   = pt.cex
+  coreFrame$legendpars[["pt.cex"]] = pt.cex
   coreFrame$legendpars[["text.col"]] = text.col
 
   coreFrame
@@ -708,33 +708,33 @@ scr_legend <- function(coreFrame,
 #'
 #' @return
 #' @export
-scr_save  <- function(coreFrame, units = "in",
-                      name   = "test.tiff",
+scr_save <- function(coreFrame, units = "in",
+                      name = "test.tiff",
                       format = "tiff",
-                      width  = 8,
+                      width = 8,
                       height = 4,
-                      res    = 600) {
+                      res = 600) {
 
   if (format == "tiff") {
     tiff(name,
-         units  = units,
-         width  = width,
+         units = units,
+         width = width,
          height = height,
-         res    = res)
+         res = res)
   } else if (format == "png") {
     png(name,
-        units  = units,
-        width  = width,
+        units = units,
+        width = width,
         height = height,
-        res    = res)
+        res = res)
   } else if (format == "svg") {
     svg(name,
-        width  = width,
+        width = width,
         height = height)
   } else {
     pdf(name,
-        units  = units,
-        width  = width,
+        units = units,
+        width = width,
         height = height)
   }
 
