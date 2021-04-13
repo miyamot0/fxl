@@ -729,7 +729,6 @@ scr_save  <- function(coreFrame, units = "in",
         res    = res)
   } else if (format == "svg") {
     svg(name,
-        units  = units,
         width  = width,
         height = height)
   } else {
