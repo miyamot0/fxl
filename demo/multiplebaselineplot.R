@@ -64,3 +64,10 @@ scr_plot(data, aesthetics = list(x     = Session,
   scr_xlabel("Session") %>%
   scr_ylabel("Percent Accuracy") %>%
   scr_title("Rates of Acquisition across Participants")
+
+# %>%
+#   scr_save(name = "multiplebaselinefigure.svg",
+#            format = "svg",
+#            units = "in",
+#            height = 6,
+#            width = 9)

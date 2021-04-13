@@ -266,8 +266,10 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                    y0 = 1.25,
                    y1 = 0.5
                  )
-               )) %>%
-  scr_save(name = "annotedfigure.png",
-           format = "svg",
-           units = "in",
-           height = 6)
+               ))
+# %>%
+#   scr_save(name = "annotatedfigure.svg",
+#            format = "svg",
+#            units = "in",
+#            height = 6,
+#            width = 9)

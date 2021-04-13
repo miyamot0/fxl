@@ -112,3 +112,10 @@ scr_plot(data, aesthetics = list(x     = Session,
             text.col = "black",
             horiz = F,
             box.lty = 0)
+
+# %>%
+#   scr_save(name = "concurrentfigure.svg",
+#            format = "svg",
+#            units = "in",
+#            height = 6,
+#            width = 9)
