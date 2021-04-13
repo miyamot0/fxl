@@ -24,3 +24,4 @@ Publication-quality annotations and flexibility
 
 ![alt text](https://github.com/miyamot0/fxl/blob/main/man/figures/annotatedfigure.png?raw=true)
 
+<img alt="Gilroy et al 2019" src="https://github.com/miyamot0/fxl/blob/main/man/figures/annotatedfigure.png">
