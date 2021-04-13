@@ -63,6 +63,7 @@ The fxl package uses a number of open source projects to work properly:
 The fxl package must be installed manually at this time, see below: 
 
 library(devtools)
+
 install_github("miyamot0/fxl")
 
 ### Development
