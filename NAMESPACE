@@ -1,1 +1,6 @@
+importFrom("grDevices", "dev.off", "tiff", "xy.coords")
+importFrom("graphics", "arrows", "axis", "box", "legend", "lines",
+           "mtext", "par", "plot", "points", "segments", "text")
+importFrom("utils", "data")
+
 exportPattern("^[[:alpha:]]+")

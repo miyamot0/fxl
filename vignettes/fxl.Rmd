@@ -1,6 +1,6 @@
 ---
 title: "Faux Excel (fxl) Charting in R"
-output: pdf_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Faux Excel (fxl) Charting in R}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,7 +21,7 @@ The _fxl_ package includes tools specific to the charting of functional analyses
 
 For convenience, an analog function analysis published Gilroy et al. (2019) is illustrated below (doi: [https://doi.org/10.1080/17518423.2019.1646342](https://doi.org/10.1080/17518423.2019.1646342)):
 
-```{r, fig.width=8, fig.height=6, warning=FALSE}
+```{r, fig.width=8, fig.height=6, warning=FALSE, eval=FALSE}
 
 library(fxl)
 
@@ -43,7 +43,7 @@ The _fxl_ package supports annotating figures (i.e., drawing labels, text) when 
 
 For convenience, an annotated reversal (treatment evaluation) published in Gilroy et al. (2019) is illustrated below (doi: [https://doi.org/10.1080/17518423.2019.1646342](https://doi.org/10.1080/17518423.2019.1646342)):
 
-```{r, fig.width=10, fig.height=8, warning=FALSE}
+```{r, fig.width=10, fig.height=8, warning=FALSE, eval=FALSE}
 
 conditionLabel <- data.frame(
   Panel = rep("Attention", 11),
@@ -230,7 +230,7 @@ One of the most irritating aspects of single-case design is the plotting of cond
 
 For convenience, a multiple baseline design published in Gilroy et al. (2015) is illustrated below (doi: [http://dx.doi.org/10.1016/j.rasd.2015.04.004](http://dx.doi.org/10.1016/j.rasd.2015.04.004)):
 
-```{r, fig.width=8, fig.height=6, warning=FALSE}
+```{r, fig.width=8, fig.height=6, warning=FALSE, eval=FALSE}
 
 # Specify location, text, and aesthetics of condition labels
 conditionLabels <- data.frame(
@@ -315,7 +315,7 @@ In addition to multiple-baseline designs, single-case research may perform indiv
 
 As an example of this, a collection of reversal designs published in Gilroy et al. (2021) are illustrated below (doi: [https://doi.org/10.1002/jaba.826](https://doi.org/10.1002/jaba.826)):
 
-```{r, fig.width=8, fig.height=6, error=TRUE, warning=FALSE}
+```{r, fig.width=8, fig.height=6, error=TRUE, warning=FALSE, eval=FALSE}
 
 # Specify location, text, and aesthetics of condition labels
 conditionLabel <- data.frame(
