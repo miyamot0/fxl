@@ -22,15 +22,5 @@ Features include:
 ------
 Publication-quality annotations and flexibility
 
-[[/man/figures/AnnotatedFig.tiff]]
-
-[[man/figures/AnnotatedFig.tiff]]
-
-<img 
-  src="man/figures/AnnotatedFig.tiff"
-  raw=true
-  alt="Annotated Figure"
-  style="margin-right: 10px;"
->
-
+![alt text](https://github.com/miyamot0/fxl/blob/Main/man/figure/AnnotatedFig.tiff?raw=true)
 
