@@ -26,6 +26,11 @@ Publication-quality annotations and flexibility
 
 [[man/figures/AnnotatedFig.tiff]]
 
-<img src="man/figures/AnnotatedFig.tiff">
+<img 
+  src="man/figures/AnnotatedFig.tiff"
+  raw=true
+  alt="Annotated Figure"
+  style="margin-right: 10px;"
+>
 
 
