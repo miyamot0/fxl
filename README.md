@@ -11,46 +11,70 @@ Features include:
  - Functional programming style (modeled after ggplot)
 
 ### Version
+
 ------
+
 1.0.0 (beta)
 
 ### Changelog
+
 ------
+
 * 1.0.0 - Initial submission to CRAN
 
 ### Features/Usage
+
 ------
+
 Publication-quality annotations and flexibility
 
-Annotated, Hybrid Designs (MBD + Individual Reversals)
+*Annotated, Hybrid Designs (MBD + Individual Reversals)*
+
+The figure below is from a single-subject evaluation conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) and drawn in *fxl* (originally drawn in R, later rolled into the package). This figure was drawn using a combination of multiple baseline logic with an added reversal condition to demonstrate the effect of functional communication training (in an operant behavioral economic evaluation).
+
 ![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/annotatedfigure2.svg?raw=true)
 
-Concurrent Reversal Designs (Across Participants)
+*Concurrent Reversal Designs (Across Participants)*
+
+The figure below is from a single-subject evaluation conducted by [Gilroy et al. (2021)](https://doi.org/10.1002/jaba.826) and drawn in *fxl* (also drawn in R and later rolled into the package). This figure was drawn using a combination of individual reversals, visualized in a way similar to multiple baseline figures (with condition changes reflected across all participants) to evaluate how degrees of demand elasticity influenced rates of behavior.
+
 ![Gilroy et al 2021](https://github.com/miyamot0/fxl/blob/main/man/figures/concurrentfigure.svg?raw=true)
 
-Multiple Baseline Designs
+*Multiple Baseline Designs*
+
+The respective figure is drawn from a single-subject evaluation conducted by [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004). These data were previously illustrated using spreadsheet software and are now drawn in *fxl*. This figure was drawn using a multiple baseline design, whereby control is illustrated through a sequential introduction of independent variables, and changes in relational responding (i.e., deictics) were observed. 
+
 ![Gilroy et al 2015](https://github.com/miyamot0/fxl/blob/main/man/figures/multiplebaselinefigure.svg?raw=true)
 
-Multi-element Designs/Functional Analyses 
+*Multi-element Designs/Functional Analyses*
+
+The last example is constructed from a functional analysis of severe behavior conducted in a study by [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004). As with the other 2015 work, these data were previously illustrated using spreadsheet software and are now drawn in *fxl*. This figure was drawn using a multielement design, whereby the differential effects of contingencies are evaluated with respect to rates of behavior. 
+
 ![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/fafigure.svg?raw=true)
 
 ### Referenced Works (F/OSS software)
+
 The fxl package uses a number of open source projects to work properly:
+
 * TeachingDemos - Artistic 2.0 Licensed. Copyright 1994-2017 ALGLIB Project. [Site](https://cran.r-project.org/web/packages/TeachingDemos/index.html)
 
 ### Installation
+
 The fxl package must be installed manually at this time, see below: 
 
 library(devtools)
 install_github("miyamot0/fxl")
 
 ### Development
+
 Want to contribute? Great! Emails or PM's (worthwhile ones) are welcome.
 
 ### Todos
+
 * Condensing methods
+
 * Individually-keyed styles
 
 ### License
-----
+
 fxl - Copyright 2021, Shawn P. Gilroy. GPL-Version 2+
