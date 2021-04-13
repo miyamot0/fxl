@@ -33,3 +33,24 @@ Multiple Baseline Designs
 
 Multi-element Designs/Functional Analyses 
 ![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/fafigure.svg?raw=true)
+
+### Referenced Works (F/OSS software)
+The fxl package uses a number of open source projects to work properly:
+* TeachingDemos - Artistic 2.0 Licensed. Copyright 1994-2017 ALGLIB Project. [Site](https://cran.r-project.org/web/packages/TeachingDemos/index.html)
+
+### Installation
+The fxl package must be installed manually at this time, see below: 
+
+library(devtools)
+install_github("miyamot0/fxl")
+
+### Development
+Want to contribute? Great! Emails or PM's (worthwhile ones) are welcome.
+
+### Todos
+* Condensing methods
+* Individually-keyed styles
+
+### License
+----
+fxl - Copyright 2021, Shawn P. Gilroy. GPL-Version 2+
