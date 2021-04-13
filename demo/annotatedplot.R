@@ -267,3 +267,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                    y1 = 0.5
                  )
                ))
+#%>%
+#  scr_save(name = "annotedfigure.png",
+#           height = 6,
+#           res = 300)

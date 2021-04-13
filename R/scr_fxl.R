@@ -710,15 +710,36 @@ scr_legend <- function(coreFrame,
 #' @export
 scr_save  <- function(coreFrame, units = "in",
                       name   = "test.tiff",
+                      format = "tiff",
                       width  = 8,
                       height = 4,
                       res    = 600) {
 
-  tiff(name,
-       units  = units,
-       width  = width,
-       height = height,
-       res    = res)
+  if (format == "tiff") {
+    tiff(name,
+         units  = units,
+         width  = width,
+         height = height,
+         res    = res)
+  } else if (format == "png") {
+    png(name,
+        units  = units,
+        width  = width,
+        height = height,
+        res    = res)
+  } else if (format == "svg") {
+    svg(name,
+        units  = units,
+        width  = width,
+        height = height)
+  } else {
+    pdf(name,
+        units  = units,
+        width  = width,
+        height = height)
+  }
+
+  print.fxl(coreFrame)
 
   dev.off()
 }
