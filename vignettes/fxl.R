@@ -1,4 +1,4 @@
-## ---- fig.width=8, fig.height=6-----------------------------------------------
+## ---- fig.width=8, fig.height=6, warning=FALSE--------------------------------
 
 library(fxl)
 
@@ -13,7 +13,7 @@ plotMultiElementFA(Gilroyetal2019,
  legend.position = 'topright')
 
 
-## ---- fig.width=10, fig.height=8----------------------------------------------
+## ---- fig.width=10, fig.height=8, warning=FALSE-------------------------------
 
 conditionLabel <- data.frame(
   Panel = rep("Attention", 11),
@@ -193,7 +193,7 @@ plotAnnotatedReversal(data     = Gilroyetal2019Tx,
                       abracks  = annotateBrackets)
 
 
-## ---- fig.width=8, fig.height=6-----------------------------------------------
+## ---- fig.width=8, fig.height=6, warning=FALSE--------------------------------
 
 # Specify location, text, and aesthetics of condition labels
 conditionLabels <- data.frame(
@@ -271,17 +271,17 @@ plotMultipleBaseline(data     = Gilroyetal2015,
                      plabs    = panelLabels)
 
 
-## ---- fig.width=8, fig.height=6, error=TRUE-----------------------------------
+## ---- fig.width=8, fig.height=6, error=TRUE, warning=FALSE--------------------
 
 # Specify location, text, and aesthetics of condition labels
 conditionLabel <- data.frame(
   Panel = rep("John", 6),         # Only on top row (for andrew)
   X     = c(2.5,                  # Positioned between phase change lines
-            6,
+            6.1,
             9,
-            12,
+            12.25,
             15,
-            18),
+            18.25),
   Y     = rep(19, 6),             # Positioned near top of (John's) panel
   Cex   = rep(1.25, 6),           # Slightly oversized for clarity
   Text  = c("Baseline",           # Content of phase labels
