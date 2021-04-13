@@ -21,4 +21,4 @@ Features include:
 ### Features/Usage
 ------
 Publication-quality annotations and flexibility
-![Alt text](man/figures/AnnotatedFig.tiff?raw=true "Session Designer")
+![Alt text](https://github.com/miyamot0/fxl/blob/Main/man/figures/AnnotatedFig.tiff?raw=true "Session Designer")
