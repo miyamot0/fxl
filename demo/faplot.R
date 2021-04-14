@@ -1,26 +1,28 @@
+# Shawn Gilroy, 2021 GPLv2+
+
 library(dplyr)
 library(fxl)
 
 data = Gilroyetal2019
 
-scr_plot(data, aesthetics = list(x     = Session,
-                                        y     = CTB,
-                                        p     = Condition),
+scr_plot(data, aesthetics = list(x = Session,
+                                        y = CTB,
+                                        p = Condition),
         mai = c(0.5, 0.5, 0.1, 0.5),
         omi = c(0.25, 0.25, 0.25, 0.25)) %>%
   scr_lines(size = 1) %>%
   scr_points(cex = 2,
              pch = list(
-               "Toy Play"  = 16,
+               "Toy Play" = 16,
                "Attention" = 22,
-               "Demand"    = 24,
-               "Tangible"  = 8
+               "Demand" = 24,
+               "Tangible" = 8
              ),
              fill = list(
-               "Toy Play"  = 'black',
+               "Toy Play" = 'black',
                "Attention" = 'white',
-               "Demand"    = 'white',
-               "Tangible"  = 'black'
+               "Demand" = 'white',
+               "Tangible" = 'black'
              )) %>%
   scr_xlabel("Session") %>%
   scr_ylabel("Combined Target Behavior (Per Minute)") %>%
@@ -31,7 +33,7 @@ scr_plot(data, aesthetics = list(x     = Session,
                        "Attention",
                        "Demand",
                        "Tangible"),
-            col    = c('black',
+            col = c('black',
                        'white',
                        'white',
                        'black'),

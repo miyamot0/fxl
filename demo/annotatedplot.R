@@ -1,16 +1,18 @@
+# Shawn Gilroy, 2021 GPLv2+
+
 library(dplyr)
 library(fxl)
 
 currentData = Gilroyetal2019Tx %>%
   mutate(Condition = paste0(Condition, PhaseNum)) %>%
   rename(Function = Participant,
-         AFCR     = FCR,
-         EFCR     = FCR2) %>%
+         AFCR = FCR,
+         EFCR = FCR2) %>%
   select(-c(PhaseNum, LineOff))
 
-scr_plot(currentData, aesthetics = list(x     = Session,
-                                       y     = CTB,
-                                       p     = Condition,
+scr_plot(currentData, aesthetics = list(x = Session,
+                                       y = CTB,
+                                       p = Condition,
                                        facet = Function),
         mai = c(0.5, 0.5, 0.1, 0.5),
         omi = c(0.25, 0.25, 0.25, 0.25)) %>%
@@ -30,7 +32,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                             y = AFCR),
              cex = 1,
              pch = 20,
-             fill = 'black')%>%
+             fill = 'black') %>%
   scr_points(mapping = list(x = Session,
                             y = EFCR),
              cex = 0.75,
@@ -40,11 +42,11 @@ scr_plot(currentData, aesthetics = list(x     = Session,
     "A" = list(
       "Attention" = list(x1 = 13.5, y1 = 3.15,
                          x2 = 13.5, y2 = 0),
-      "Demand"    = list(x1 = 20, y1 = 3,
+      "Demand" = list(x1 = 20, y1 = 3,
                          x2 = 20, y2 = 0)
     )
   )) %>%
-  scr_plines( # solid ones
+  scr_plines(# solid ones
     lty = 1,
     lines = list(
     "Attention" = list(
@@ -72,7 +74,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
       )
     )
   )) %>%
-  scr_plines( # dashed ones
+  scr_plines(# dashed ones
     lty = 3,
     lines = list(
       "Attention" = list(
@@ -96,23 +98,23 @@ scr_plot(currentData, aesthetics = list(x     = Session,
         )
       )
     )) %>%
-    scr_label_facet(cex   = 1.25,
-                    adj   = 1,
+    scr_label_facet(cex = 1.25,
+                    adj = 1,
                     labels = list(
                       "Attention" = list(x = 100,
                                          y = 3.25),
-                      "Demand"    = list(x = 100,
+                      "Demand" = list(x = 100,
                                          y = 3.25)
                     )) %>%
     scr_label_phase(facet = "Attention",
-                    cex   = 0.6,
-                    adj   = 0.5,
+                    cex = 0.6,
+                    adj = 0.5,
                     labels = list(
-                      "Baseline"     = list(x = 14,
+                      "Baseline" = list(x = 14,
                                             y = 3.5),
-                      "FCR-A + EXT"  = list(x = 19,
+                      "FCR-A + EXT" = list(x = 19,
                                             y = 3),
-                      "FCR-A + EXT"  = list(x = 32,
+                      "FCR-A + EXT" = list(x = 32,
                                             y = 3),
                       "Parent Implementation" =
                                        list(x = 68.5,
@@ -133,25 +135,25 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                       )
                     )) %>%
   scr_label_phase(facet = "Attention",
-                  cex   = 0.6,
-                  adj   = 0.5,
+                  cex = 0.6,
+                  adj = 0.5,
                   labels = list(
-                    "5s"             = list(x = 39,
+                    "5s" = list(x = 39,
                                             y = 2.4),
-                    "Schedule Thinning"  = list(x = 54,
+                    "Schedule Thinning" = list(x = 54,
                                             y = 2.4),
-                    "300s"           = list(x = 75,
+                    "300s" = list(x = 75,
                                             y = 2.4))) %>%
     scr_label_phase(facet = "Demand",
-                    cex   = 0.6,
-                    adj   = 0.5,
+                    cex = 0.6,
+                    adj = 0.5,
                     labels = list(
-                      "FCR-E + EXT"  = list(x = 30,
+                      "FCR-E + EXT" = list(x = 30,
                                             y = 3.45),
-                      "FCR-A P = 0.1"  = list(x = 36,
+                      "FCR-A P = 0.1" = list(x = 36,
                                             y = 2,
                                             srt = 90),
-                      "FCR-A/E + EXT"  = list(x = 47,
+                      "FCR-A/E + EXT" = list(x = 47,
                                               y = 3.35),
                       "Parent Implementation" =
                         list(x = 58.5,
@@ -166,14 +168,14 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                         y = 2)
                     )) %>%
     scr_label_phase(facet = "Demand",
-                    cex   = 0.6,
-                    adj   = 0.5,
+                    cex = 0.6,
+                    adj = 0.5,
                     labels = list(
-                      "1"              = list(x = 30,
+                      "1" = list(x = 30,
                                               y = 1.375),
-                      "Demand Fading"  = list(x = 56,
+                      "Demand Fading" = list(x = 56,
                                               y = 1.375),
-                      "6"              = list(x = 71.5,
+                      "6" = list(x = 71.5,
                                               y = 1.375))) %>%
     scr_arrows(facet = "Attention",
                length = 0.1,
