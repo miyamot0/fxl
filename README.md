@@ -68,7 +68,7 @@ install_github("miyamot0/fxl")
 
 ### Development
 
-Want to contribute? Great! Emails or PM's (worthwhile ones) are welcome.
+Want to contribute? Great! Emails or PR's (worthwhile ones) are welcome.
 
 ### Todos
 
