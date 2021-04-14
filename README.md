@@ -56,7 +56,7 @@ The last example is constructed from a functional analysis of severe behavior co
 
 The fxl package uses a number of open source projects to work properly:
 
-* TeachingDemos - Artistic 2.0 Licensed. Copyright 1994-2017 ALGLIB Project. [Site](https://cran.r-project.org/web/packages/TeachingDemos/index.html)
+* TeachingDemos - Artistic 2.0 Licensed. [Site](https://cran.r-project.org/web/packages/TeachingDemos/index.html)
 
 ### Installation
 
