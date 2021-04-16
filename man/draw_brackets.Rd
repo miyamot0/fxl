@@ -19,3 +19,6 @@ draw_brackets(coreFrame, currentLayer, n)
 \description{
 drawing function
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

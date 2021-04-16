@@ -53,3 +53,6 @@ scr_legend(
 \description{
 Information for drawing legend onto plots
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

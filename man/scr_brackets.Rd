@@ -41,3 +41,6 @@ scr_brackets(
 \description{
 Add a layer with brackets on plot
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/scr_fxl.R
 \name{scr_label_facet}
 \alias{scr_label_facet}
-\title{Title}
+\title{scr_label_facet}
 \usage{
 scr_label_facet(coreFrame, color = "black", cex = 1, adj = 0.5, labels = NULL)
 }
@@ -21,5 +21,8 @@ scr_label_facet(coreFrame, color = "black", cex = 1, adj = 0.5, labels = NULL)
 
 }
 \description{
-Title
+scr_label_facet
+}
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
 }

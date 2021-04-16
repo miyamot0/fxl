@@ -2,7 +2,7 @@
 % Please edit documentation in R/scr_fxl.R
 \name{scr_plines_mbd}
 \alias{scr_plines_mbd}
-\title{Title}
+\title{scr_plines_mbd}
 \usage{
 scr_plines_mbd(coreFrame, lines = NULL)
 }
@@ -15,5 +15,8 @@ scr_plines_mbd(coreFrame, lines = NULL)
 
 }
 \description{
-Title
+scr_plines_mbd
+}
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
 }

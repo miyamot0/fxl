@@ -8,6 +8,7 @@ scr_save(
   coreFrame,
   units = "in",
   name = "test.tiff",
+  format = "tiff",
   width = 8,
   height = 4,
   res = 600
@@ -31,4 +32,7 @@ scr_save(
 }
 \description{
 Function for outputting fxl object at preset size (certain journal are opinionated on size, format, and density)
+}
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
 }

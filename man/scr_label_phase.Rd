@@ -32,3 +32,6 @@ scr_label_phase(
 \description{
 labels to be drawn on plots (typically for phases/conditions, but not necessarily)
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

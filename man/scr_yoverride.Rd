@@ -19,3 +19,6 @@ scr_yoverride(coreFrame, var, ydelta = 1)
 \description{
 Override the y axis (or axes) limits
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

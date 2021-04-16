@@ -15,3 +15,6 @@ draw_legend(coreFrame)
 \description{
 drawing function
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

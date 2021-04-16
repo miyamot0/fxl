@@ -32,3 +32,6 @@ scr_points(
 \description{
 scr_points
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

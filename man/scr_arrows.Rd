@@ -41,3 +41,6 @@ scr_arrows(
 \description{
 Add a layer with arrows on plot
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

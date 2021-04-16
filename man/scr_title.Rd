@@ -17,3 +17,6 @@ scr_title(coreFrame, var)
 \description{
 Override the title
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

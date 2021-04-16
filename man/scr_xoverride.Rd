@@ -19,3 +19,6 @@ scr_xoverride(coreFrame, var, xdelta = 1)
 \description{
 Override the x axis limits
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

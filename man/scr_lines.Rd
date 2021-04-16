@@ -23,3 +23,6 @@ scr_lines(coreFrame, lty = 1, color = "black", size = 1, mapping)
 \description{
 scr_lines
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

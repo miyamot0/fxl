@@ -17,3 +17,6 @@ scr_xlabel(coreFrame, var)
 \description{
 Override the x axis label
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

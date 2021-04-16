@@ -17,3 +17,6 @@ scr_ylabel(coreFrame, var)
 \description{
 Override the y axis label
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

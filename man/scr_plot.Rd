@@ -26,3 +26,6 @@ scr_plot(
 \description{
 Core object for establishing fxl object and layers
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}

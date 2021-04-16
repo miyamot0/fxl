@@ -2,7 +2,7 @@
 % Please edit documentation in R/scr_fxl.R
 \name{scr_plines}
 \alias{scr_plines}
-\title{Title}
+\title{scr_plines}
 \usage{
 scr_plines(coreFrame, lines = NULL, lwd = 1, lty = 1, col = "black")
 }
@@ -21,5 +21,8 @@ scr_plines(coreFrame, lines = NULL, lwd = 1, lty = 1, col = "black")
 
 }
 \description{
-Title
+scr_plines
+}
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
 }

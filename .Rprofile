@@ -1,1 +1,3 @@
-source("renv/activate.R")
+options(PACKAGE_MAINFOLDER="D:/Box Sync/fxl")
+
+# source("renv/activate.R")

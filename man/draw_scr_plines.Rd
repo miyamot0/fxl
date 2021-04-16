@@ -19,3 +19,6 @@ draw_scr_plines(coreFrame, currentLayer, n)
 \description{
 drawing function
 }
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
+}
