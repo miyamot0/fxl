@@ -1,72 +1,87 @@
 # Shawn Gilroy, 2021 GPLv2+
+#
+# demo/multiplebaselineplot.R
+#
+# This file illustrates how to construct a basic, no frills multiple baseline plot
+#
 
-library(dplyr)
-library(fxl)
+library(dplyr) # included for infix logic
+library(fxl)   # core plotting methods
+
+# Data frame from prior study, relevant columns include:
+#
+# Participant: name of participant
+# Session:     session number of data
+# Condition:   condition where data emerged from
+# Responding:  measurement of behavior
 
 data = Gilroyetal2015
 
-scr_plot(data, aesthetics = list(x = Session,
-                                y = Responding,
-                                p = Condition,
-                                facet = Participant),
-        mai = c(0.375, 0.375, 0.1, 0.1),
-        omi = c(0.25, 0.25, 0.25, 0.25)) %>%
-  scr_xoverride(c(1, 27)) %>%
-  scr_yoverride(c(0, 109), ydelta = 10) %>%
-  scr_points(cex = 2) %>%
-  scr_lines(size = 1) %>%
-  scr_label_phase(facet = "Andrew",
-                 cex = 1.25,
-                 adj = 0.5,
-                 labels = list(
-                   "Baseline" = list(x = 2.5,
+# Initial setup, sets core aesthetics (what data to show where)
+scr_plot(data, aesthetics = list(x     = Session,
+                                 y     = Responding,
+                                 p     = Condition,
+                                 facet = Participant),
+        mai = c(0.375, 0.375, 0.1,  0.1),
+        omi = c(0.25,  0.25,  0.25, 0.25)) %>%
+  scr_xoverride(c(1, 27)) %>%        # manually override x-axis (make extra room for labels)
+  scr_yoverride(c(0, 109),           # manually override y-axis and tick interval (tick every 10 units)
+                ydelta = 10) %>%
+  scr_points(cex = 2) %>%            # plot points, using x/y from aesthetics
+  scr_lines(size = 1) %>%            # plot lines, using x/y from aesthetics
+  scr_label_phase(facet = "Andrew",  # plot labels on specific facet
+                  cex = 1.25,
+                  adj = 0.5,
+                  labels = list(     # list of labels to draw (will use assigned key for label)
+                   "Baseline"       = list(x = 2.5,
                                            y = 107),
-                   "Treatment" = list(x = 9,
+                   "Treatment"      = list(x = 9,
                                            y = 107),
-                   "Maintenance" = list(x = 19,
+                   "Maintenance"    = list(x = 19,
                                            y = 107),
                    "Generalization" = list(x = 26,
                                            y = 107))) %>%
-  scr_label_facet(cex = 1.5,
+  scr_label_facet(cex = 1.5,         # plot labels across facets (not within a single facet)
                   adj = 1,
-                  labels = list(
-                    "Andrew" = list(x = 27,
+                  labels = list(     # list of labels to draw (will use assigned key for label)
+                    "Andrew"  = list(x = 27,
                                      y = 10),
-                    "Brian" = list(x = 27,
+                    "Brian"   = list(x = 27,
                                      y = 10),
                     "Charles" = list(x = 27,
-                                     y = 10)
-                  )) %>%
-  scr_plines_mbd(lines = list(
-    "A" = list(
-      "Andrew" = list(x1 = 4.5, y1 = 100,
-                       x2 = 4.5, y2 = 0),
-      "Brian" = list(x1 = 11.5, y1 = 100,
+                                     y = 10))) %>%
+  scr_plines_mbd(lines = list(       # plot linked phase lines (note: drawn from top through bottom)
+    "A" = list(                      # list of phase lines to draw (where to draw lines across each participant)
+      "Andrew"  = list(x1 = 4.5,  y1 = 100,
+                       x2 = 4.5,  y2 = 0),
+      "Brian"   = list(x1 = 11.5, y1 = 100,
                        x2 = 11.5, y2 = 0),
       "Charles" = list(x1 = 18.5, y1 = 100,
                        x2 = 18.5, y2 = 0)
     ),
     "B" = list(
-      "Andrew" = list(x1 = 13.5, y1 = 100,
+      "Andrew"  = list(x1 = 13.5, y1 = 100,
                        x2 = 13.5, y2 = 0),
-      "Brian" = list(x1 = 20.5, y1 = 100,
+      "Brian"   = list(x1 = 20.5, y1 = 100,
                        x2 = 20.5, y2 = 0),
       "Charles" = list(x1 = 23.5, y1 = 100,
                        x2 = 23.5, y2 = 0)
     ),
     "C" = list(
-      "Andrew" = list(x1 = 23.5, y1 = 100,
+      "Andrew"  = list(x1 = 23.5, y1 = 100,
                        x2 = 23.5, y2 = 0),
-      "Brian" = list(x1 = 23.5, y1 = 100,
+      "Brian"   = list(x1 = 23.5, y1 = 100,
                        x2 = 23.5, y2 = 0),
       "Charles" = list(x1 = 23.5, y1 = 100,
                        x2 = 23.5, y2 = 0)
     )
   )) %>%
-  scr_xlabel("Session") %>%
-  scr_ylabel("Percent Accuracy") %>%
+  scr_xlabel("Session") %>%          # Override x-axis label (bottom only shown by default)
+  scr_ylabel("Percent Accuracy") %>% # Override y-axis label (centered, leftmost label)
   scr_title("Rates of Acquisition across Participants")
 
+# Optional Save
+#
 # %>%
 #   scr_save(name = "multiplebaselinefigure.svg",
 #            format = "svg",
