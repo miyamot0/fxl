@@ -12,45 +12,47 @@ library(fxl)   # core plotting methods
 
 currentData = Gilroyetal2019Tx %>%
   mutate(Condition = paste0(Condition, PhaseNum)) %>%
-  rename(Function = Participant,
-         AFCR = FCR,
-         EFCR = FCR2) %>%
+  rename(Function  = Participant,
+         AFCR      = FCR,
+         EFCR      = FCR2) %>%
   select(-c(PhaseNum, LineOff))
 
-scr_plot(currentData, aesthetics = list(x = Session,
-                                       y = CTB,
-                                       p = Condition,
-                                       facet = Function),
-        mai = c(0.375, 0.375, 0.1, 0.1),
-        omi = c(0.25, 0.25, 0.25, 0.25)) %>%
+scr_plot(currentData, aesthetics = list(x     = Session,
+                                        y     = CTB,
+                                        p     = Condition,
+                                        facet = Function),
+        mai = c(0.375, 0.375, 0.1,  0),
+        omi = c(0.25,  0.25,  0.25, 0.05)) %>%
   scr_yoverride(c(0, 3)) %>%
-  scr_xoverride(c(0, 100), xdelta = 10) %>%
+  scr_xoverride(c(0, 100),
+                xdelta = 10) %>%
   scr_lines(size = 1) %>%
   scr_lines(mapping = list(x = Session,
                            y = AFCR),
             size = 1,
-            lty = 2) %>%
+            lty  = 2) %>%
   scr_lines(mapping = list(x = Session,
                            y = EFCR),
             size = 1,
-            lty = 3) %>%
-  scr_points(fill = 'white', pch = 21) %>%
+            lty  = 3) %>%
+  scr_points(fill = 'white',
+             pch  = 21) %>%
   scr_points(mapping = list(x = Session,
                             y = AFCR),
-             cex = 1,
-             pch = 20,
+             cex  = 1,
+             pch  = 20,
              fill = 'black') %>%
   scr_points(mapping = list(x = Session,
                             y = EFCR),
-             cex = 0.75,
-             pch = 24,
+             cex  = 0.75,
+             pch  = 24,
              fill = 'black') %>%
   scr_plines_mbd(lines = list(
     "A" = list(
       "Attention" = list(x1 = 13.5, y1 = 3.15,
                          x2 = 13.5, y2 = 0),
-      "Demand" = list(x1 = 20, y1 = 3,
-                         x2 = 20, y2 = 0)
+      "Demand"    = list(x1 = 20,   y1 = 3,
+                         x2 = 20,   y2 = 0)
     )
   )) %>%
   scr_plines(# solid ones
@@ -110,61 +112,54 @@ scr_plot(currentData, aesthetics = list(x = Session,
                     labels = list(
                       "Attention" = list(x = 100,
                                          y = 3.15),
-                      "Demand" = list(x = 100,
-                                      y = 3.15)
+                      "Demand"    = list(x = 100,
+                                         y = 3.15)
                     )) %>%
     scr_label_phase(facet = "Attention",
                     cex = 0.6,
                     adj = 0.5,
                     labels = list(
-                      "Baseline" = list(x = 14,
-                                            y = 3.5),
+                      "Baseline"    = list(x = 14,
+                                           y = 3.5),
                       "FCR-A + EXT" = list(x = 19,
-                                            y = 3),
+                                           y = 3),
                       "FCR-A + EXT" = list(x = 32,
-                                            y = 3),
+                                           y = 3),
                       "Parent Implementation" =
                                        list(x = 68.5,
                                             y = 3),
-                      "Generalization" = list(x = 82,
-                                            y = 3),
-                      "Problem Behavior" = list(
-                        x = 7,
-                        y = 1.8
-                      ),
-                      "FCR-A" = list(
-                        x = 20,
-                        y = 2.5
-                      ),
-                      "Add FCR\nOptions" = list(
-                        x = 31,
-                        y = 2.5
-                      )
+                      "Generalization"   = list(x = 82,
+                                                y = 3),
+                      "Problem Behavior" = list(x = 7,
+                                                y = 1.8),
+                      "FCR-A" = list(x = 20,
+                                     y = 2.5),
+                      "Add FCR\nOptions" = list(x = 31,
+                                                y = 2.5)
                     )) %>%
   scr_label_phase(facet = "Attention",
                   cex = 0.6,
                   adj = 0.5,
                   labels = list(
                     "5s" = list(x = 39,
-                                            y = 2.4),
+                                y = 2.4),
                     "Schedule Thinning" = list(x = 54,
-                                            y = 2.4),
+                                               y = 2.4),
                     "300s" = list(x = 75,
-                                            y = 2.4))) %>%
+                                  y = 2.4))) %>%
     scr_label_phase(facet = "Demand",
                     cex = 0.6,
                     adj = 0.5,
                     labels = list(
                       "FCR-E + EXT" = list(x = 30,
-                                            y = 3.45),
+                                           y = 3.45),
                       "FCR-A P = 0.1" = list(x = 36,
-                                            y = 2,
-                                            srt = 90),
+                                             y = 2,
+                                             srt = 90),
                       "FCR-A/E + EXT" = list(x = 47,
-                                              y = 3.35),
-                      "Parent Implementation" =
-                        list(x = 58.5,
-                             y = 3),
+                                             y = 3.35),
+                      "Parent Implementation" = list(x = 58.5,
+                                                     y = 3),
                       "Generalization" = list(x = 78,
                                               y = 3),
                       "FCR-E" = list(
