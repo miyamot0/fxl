@@ -55,7 +55,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                          x2 = 20,   y2 = 0)
     )
   )) %>%
-  scr_plines(# solid ones
+  scr_plines(
     lty = 1,
     lines = list(
     "Attention" = list(
@@ -266,7 +266,21 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                    y0 = 1.25,
                    y1 = 0.5
                  )
-               ))
+               )) %>%
+  scr_guide_line(col    = 'red',
+                 lty    = 3,
+                 facet  = "Attention",
+                 coords = list(
+                   "A"  = list(x0 = 14,   x1 = 25.5,
+                               y0 = 0.1,  y1 = 0.1),
+                   "B"  = list(x0 = 26.5, x1 = 100,
+                               y0 = 0.1,  y1 = 0.1))) %>%
+  scr_guide_line(col    = 'red',
+                 lty    = 3,
+                 facet  = "Demand",
+                 coords = list(
+                   "A"  = list(x0 = 20,   x1 = 100,
+                               y0 = 0.1,  y1 = 0.1)))
 
 #%>%
 #   scr_save(name = "annotatedfigure2.svg",

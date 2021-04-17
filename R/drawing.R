@@ -103,6 +103,34 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
   }
 }
 
+#' draw_guide_line
+#'
+#' @param coreFrame fxl object
+#' @param currentLayer layer to be drawn
+#' @param n name of facet
+#'
+#' @return
+#' @export
+draw_guide_line <- function(coreFrame,  currentLayer, n) {
+
+  if (is.na(n) | currentLayer$facet == n) {
+
+    for (gindex in 1:length(currentLayer$coords)) {
+      currentCoords = currentLayer$coords[[gindex]]
+
+      segments(
+        x0    = currentCoords$x0,
+        x1    = currentCoords$x1,
+        y0    = currentCoords$y0,
+        y1    = currentCoords$y1,
+        lty   = currentLayer[["lty"]],
+        lwd   = currentLayer[["lwd"]],
+        col   = currentLayer[["col"]]
+      )
+    }
+  }
+}
+
 #' draw_lines
 #'
 #' drawing function
