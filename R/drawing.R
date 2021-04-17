@@ -273,11 +273,12 @@ draw_label_facet <- function(coreFrame, currentLayer, n) {
   currentLabel = currentLayer$labels[[as.character(n)]]
 
   if (!is.null(currentLabel)) {
-    text(x = currentLabel[["x"]],
-         y = currentLabel[["y"]],
-         cex = currentLayer[["cex"]],
-         adj = currentLayer[["adj"]],
-         labels = names(currentLayer$labels)[n])
+
+    text(x      = currentLabel[[ "x"   ]],
+         y      = currentLabel[[ "y"   ]],
+         cex    = currentLayer[[ "cex" ]],
+         adj    = currentLayer[[ "adj" ]],
+         labels = n)
   }
 }
 

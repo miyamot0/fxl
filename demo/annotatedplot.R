@@ -109,9 +109,9 @@ scr_plot(currentData, aesthetics = list(x = Session,
                     adj = 1,
                     labels = list(
                       "Attention" = list(x = 100,
-                                         y = 3.25),
+                                         y = 3.15),
                       "Demand" = list(x = 100,
-                                         y = 3.25)
+                                      y = 3.15)
                     )) %>%
     scr_label_phase(facet = "Attention",
                     cex = 0.6,
