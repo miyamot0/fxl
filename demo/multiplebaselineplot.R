@@ -22,8 +22,8 @@ scr_plot(data, aesthetics = list(x     = Session,
                                  y     = Responding,
                                  p     = Condition,
                                  facet = Participant),
-        mai = c(0.375, 0.375, 0.1,  0.1),
-        omi = c(0.25,  0.25,  0.25, 0.25)) %>%
+        mai = c(0.375, 0.375, 0.1,  0.0),
+        omi = c(0.25,  0.25,  0.25, 0.1)) %>%
   scr_xoverride(c(1, 27)) %>%        # manually override x-axis (make extra room for labels)
   scr_yoverride(c(0, 109),           # manually override y-axis and tick interval (tick every 10 units)
                 ydelta = 10) %>%

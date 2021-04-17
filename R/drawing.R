@@ -67,6 +67,11 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
     for (bindex in 1:length(currentLayer$brackets)) {
       currentBracket = currentLayer$brackets[[bindex]]
 
+      l.lty = as.numeric(currentLayer[["lty"]])
+
+      if ("lty" %in% names(currentBracket))
+        l.lty = currentBracket$lty
+
       segments(
         x0          = as.numeric(   currentBracket[[ "x0"     ]]),
         x1          = as.numeric(   currentBracket[[ "x1"     ]]),
@@ -74,7 +79,7 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
         y1          = as.numeric(   currentBracket[[ "y0"     ]]),
 
         col         = as.character( currentLayer[[   "color"  ]]),
-        lty         = as.numeric(   currentLayer[[   "lty"    ]]),
+        lty         = l.lty,
         lwd         = as.numeric(   currentLayer[[   "lwd"    ]]))
 
       arrows(x0     = as.numeric(   currentBracket[[ "x0"     ]]),
@@ -86,7 +91,7 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
              angle  = as.numeric(   currentLayer[[   "angle"  ]]),
              code   = as.numeric(   currentLayer[[   "code"   ]]),
              col    = as.character( currentLayer[[   "color"  ]]),
-             lty    = as.numeric(   currentLayer[[   "lty"    ]]),
+             lty    = l.lty,
              lwd    = as.numeric(   currentLayer[[   "lwd"    ]]))
 
       arrows(x0     = as.numeric(   currentBracket[[ "x1"     ]]),
@@ -97,8 +102,49 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
              angle  = as.numeric(   currentLayer[[   "angle"  ]]),
              code   = as.numeric(   currentLayer[[   "code"   ]]),
              col    = as.character( currentLayer[[   "color"  ]]),
-             lty    = as.numeric(   currentLayer[[   "lty"    ]]),
+             lty    = l.lty,
              lwd    = as.numeric(   currentLayer[[   "lwd"    ]]))
+    }
+  }
+}
+
+#' draw_guide_line
+#'
+#' @param coreFrame fxl object
+#' @param currentLayer layer to be drawn
+#' @param n name of facet
+#'
+#' @return
+#' @export
+draw_guide_line <- function(coreFrame,  currentLayer, n) {
+
+  if (is.na(n) | currentLayer$facet == n) {
+
+    for (gindex in 1:length(currentLayer$coords)) {
+      currentCoords = currentLayer$coords[[gindex]]
+
+      l.col = as.character( currentLayer[["col"]])
+      l.lty = as.numeric(   currentLayer[["lty"]])
+      l.lwd = as.numeric(   currentLayer[["lwd"]])
+
+      if ("col" %in% names(currentCoords))
+        l.col = currentCoords$col
+
+      if ("lty" %in% names(currentCoords))
+        l.lty = currentCoords$lty
+
+      if ("lwd" %in% names(currentCoords))
+        l.lwd = currentCoords$lwd
+
+      segments(
+        x0    = currentCoords$x0,
+        x1    = currentCoords$x1,
+        y0    = currentCoords$y0,
+        y1    = currentCoords$y1,
+        lty   = l.lty,
+        lwd   = l.lwd,
+        col   = l.col
+      )
     }
   }
 }
@@ -286,6 +332,8 @@ draw_scr_plines <- function(coreFrame, currentLayer, n) {
   if (as.character(n) %in% names(currentLayer$lines)) {
     for (name in names(currentLayer$lines[[n]])) {
 
+      l.lty = currentLayer[["lty"]]
+
       tempY1 = ifelse(currentLayer$lines[[n]][[name]][['y1']] == 0,
                       - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
@@ -296,13 +344,14 @@ draw_scr_plines <- function(coreFrame, currentLayer, n) {
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
                       currentLayer$lines[[n]][[name]][['y2']])
 
+      if ("lty" %in% names(currentLayer$lines[[n]][[name]]))
+        l.lty = currentLayer$lines[[n]][[name]]$lty
+
       lines(
         c(currentLayer$lines[[n]][[name]][['x1']],
           currentLayer$lines[[n]][[name]][['x2']]),
         c(tempY1, tempY2),
-        lty = currentLayer[["lty"]],
-        col = currentLayer[["col"]],
-        lwd = currentLayer[["lwd"]]
+        lty = l.lty
       )
     }
   }

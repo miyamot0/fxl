@@ -136,37 +136,6 @@ scr_brackets <- function(coreFrame, brackets = NULL, facet = NULL,
   coreFrame
 }
 
-#' scr_points
-#'
-#' @param coreFrame fxl object
-#' @param pch from base
-#' @param color from base
-#' @param fill from base
-#' @param cex from base
-#' @param mapping (optional) if overriding draw (i.e., different response)
-#'
-#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
-#'
-#' @return
-#' @export
-scr_points <- function(coreFrame, pch = 21, color = 'black',
-                       fill = 'black', cex = 1, mapping) {
-
-  newlayer = list()
-  newlayer[[ "type"       ]] <- "point"
-  newlayer[[ "pch"        ]] <- pch
-  newlayer[[ "color"      ]] <- color
-  newlayer[[ "fill"       ]] <- fill
-  newlayer[[ "cex"        ]] <- cex
-  newlayer[[ "aesthetics" ]] <- NA
-
-  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
-
-  coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
-
-  coreFrame
-}
-
 #' scr_lines
 #'
 #' @param coreFrame fxl object
@@ -256,6 +225,36 @@ scr_label_facet <- function(coreFrame, color = 'black',
   coreFrame
 }
 
+#' scr_guide_line
+#'
+#' This is an annotation illustrating an aim/reduction line
+#'
+#' @param coreFrame fxl object
+#' @param coords start and finish coords for aim line
+#' @param color from base
+#' @param lty line type
+#' @param lwd line width
+#'
+#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
+#'
+#' @return
+#' @export
+scr_guide_line <- function(coreFrame, coords, facet = NA,
+                           color = 'red', lty = 1, lwd = 1) {
+
+  newlayer = list()
+  newlayer[[ "type"   ]] <- "guide_line"
+  newlayer[[ "coords" ]] <- coords
+  newlayer[[ "col"    ]] <- color
+  newlayer[[ "facet"  ]] <- facet
+  newlayer[[ "lty"    ]] <- lty
+  newlayer[[ "lwd"    ]] <- lwd
+
+  coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
+
+  coreFrame
+}
+
 #' scr_plines
 #'
 #' @param coreFrame fxl object
@@ -303,6 +302,37 @@ scr_plines_mbd <- function(coreFrame, lines = NULL) {
   coreFrame
 }
 
+#' scr_points
+#'
+#' @param coreFrame fxl object
+#' @param pch from base
+#' @param color from base
+#' @param fill from base
+#' @param cex from base
+#' @param mapping (optional) if overriding draw (i.e., different response)
+#'
+#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
+#'
+#' @return
+#' @export
+scr_points <- function(coreFrame, pch = 21, color = 'black',
+                       fill = 'black', cex = 1, mapping) {
+
+  newlayer = list()
+  newlayer[[ "type"       ]] <- "point"
+  newlayer[[ "pch"        ]] <- pch
+  newlayer[[ "color"      ]] <- color
+  newlayer[[ "fill"       ]] <- fill
+  newlayer[[ "cex"        ]] <- cex
+  newlayer[[ "aesthetics" ]] <- NA
+
+  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
+
+  coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
+
+  coreFrame
+}
+
 #' xlabel
 #'
 #' Override the x axis label
@@ -317,24 +347,6 @@ scr_plines_mbd <- function(coreFrame, lines = NULL) {
 scr_xlabel <- function(coreFrame, var) {
 
   coreFrame$labs[["xlab"]] = {{ var }}
-
-  coreFrame
-}
-
-#' ylabel
-#'
-#' Override the y axis label
-#'
-#' @param coreFrame fxl object
-#' @param var string
-#'
-#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
-#'
-#' @return
-#' @export
-scr_ylabel <- function(coreFrame, var) {
-
-  coreFrame$labs[["ylab"]] = {{ var }}
 
   coreFrame
 }
@@ -356,6 +368,24 @@ scr_xoverride <- function(coreFrame, var, xdelta = 1) {
   coreFrame$dims[[ "global.min.x" ]] = {{ var[1] }}
   coreFrame$dims[[ "global.max.x" ]] = {{ var[2] }}
   coreFrame$dims[[ "xdelta"       ]] = xdelta
+
+  coreFrame
+}
+
+#' ylabel
+#'
+#' Override the y axis label
+#'
+#' @param coreFrame fxl object
+#' @param var string
+#'
+#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
+#'
+#' @return
+#' @export
+scr_ylabel <- function(coreFrame, var) {
+
+  coreFrame$labs[["ylab"]] = {{ var }}
 
   coreFrame
 }
@@ -619,6 +649,7 @@ print.fxl <- function(coreFrame, ...) {
         if (currentLayer$type == "phase_lines") draw_scr_plines(coreFrame,  currentLayer, currentFacet)
         if (currentLayer$type == "arrows")      draw_arrows(coreFrame,      currentLayer, currentFacet)
         if (currentLayer$type == "brackets")    draw_brackets(coreFrame,    currentLayer, currentFacet)
+        if (currentLayer$type == "guide_line")  draw_guide_line(coreFrame,  currentLayer, currentFacet)
 
         if (currentLayer$type == "mbd_phase_lines") {
 
