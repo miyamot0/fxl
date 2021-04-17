@@ -2,7 +2,8 @@
 #
 # demo/concurrentplot.R
 #
-# This file illustrates how to construct a basic, no frills multiple baseline plot
+# This file illustrates how to construct a collection of reversals that are
+# illustrated across participants using shared phase change lines
 #
 
 library(dplyr) # included for infix logic

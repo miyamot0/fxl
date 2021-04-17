@@ -2,7 +2,7 @@
 #
 # demo/faplot.R
 #
-# This file illustrates how to construct a basic, no frills multiple baseline plot
+# This file illustrates how to construct a basic, no frills visual of a functional analysis
 #
 
 library(dplyr) # included for infix logic

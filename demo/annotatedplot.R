@@ -1,7 +1,14 @@
 # Shawn Gilroy, 2021 GPLv2+
+#
+# demo/concurrentplot.R
+#
+# This file illustrates how to construct a complicated figure, without a legend, and instead
+# describing features using annotations. This is particularly useful for emulating existing
+# conventions (e.g., labeled series with arrows, brackets for schedule thinning/demand fading)
+#
 
-library(dplyr)
-library(fxl)
+library(dplyr) # included for infix logic
+library(fxl)   # core plotting methods
 
 currentData = Gilroyetal2019Tx %>%
   mutate(Condition = paste0(Condition, PhaseNum)) %>%
