@@ -37,42 +37,27 @@ scr_plot <- function(data, aesthetics,
                      mai = c(0.375, 0.375, 0.25, 0.25),
                      omi = c(0.25, 0.25, 0.25, 0.25)) {
 
-  # Primary plotting object
-  coreFrame = list()
-
-  # Mappings
-  coreFrame[["aes"]] <- enexpr(aesthetics)
-
-  # Stored data
-  coreFrame[["data"]] <- data
-
-  # Global dimensions
-  coreFrame[["dims"]] <- list(
+  coreFrame = list()                             # Primary plotting object
+  coreFrame[[ "layers" ]] <- list()              # Layers for drawing
+  coreFrame[[ "aes"    ]]  <- enexpr(aesthetics) # Mappings
+  coreFrame[[ "data"   ]] <- data                # Stored data
+  coreFrame[[ "dims"   ]] <- list(               # Global dimensions
     global.max.x = max(data[[as.character(coreFrame$aes['x'])]]),
     global.min.x = min(data[[as.character(coreFrame$aes['x'])]]),
     global.max.y = max(data[[as.character(coreFrame$aes['y'])]]),
     global.min.y = min(data[[as.character(coreFrame$aes['y'])]]),
-    mai = mai,
-    omi = omi,
-    xdelta = 1,
-    ydelta = 1
-  )
+    mai          = mai,
+    omi          = omi,
+    xdelta       = 1,                            # General defaults, for now
+    ydelta       = 1)
 
-  # Layers for drawing
-  coreFrame[["layers"]] <- list()
+  coreFrame[[ "labs"   ]] <- list(               # Presumed labels, blank title by default
+    xlab         = as.character(coreFrame$aes['x']),
+    ylab         = as.character(coreFrame$aes['y']),
+    title        = "")
 
-  # Labels
-  coreFrame[["labs"]] <- list(
-    xlab = as.character(coreFrame$aes['x']),
-    ylab = as.character(coreFrame$aes['y']),
-    title = ""
-  )
+  class(coreFrame) <- c("fxl")                   # Apply a class name (to override print)
 
-  # Apply a class name (to override print)
-  #class(coreFrame) = 'fxl'
-  class(coreFrame) <- c("fxl")
-
-  # Return
   coreFrame
 }
 
@@ -95,19 +80,18 @@ scr_plot <- function(data, aesthetics,
 #' @return
 #' @export
 scr_arrows <- function(coreFrame, arrows = NULL, facet = NULL,
-                       color = 'black',
-                       length = 0.25, angle = 30, code = 2,
-                       lwd = 1, lty = 1) {
-  newlayer <- list()
-  newlayer[["type"]] = "arrows"
-  newlayer[["facet"]] = facet
-  newlayer[["arrows"]] = arrows
-  newlayer[["color"]] = color
-  newlayer[["length"]] = length
-  newlayer[["angle"]] = angle
-  newlayer[["code"]] = code
-  newlayer[["lwd"]] = lwd
-  newlayer[["lty"]] = lty
+                       color = 'black', length = 0.25, angle = 30,
+                       code = 2, lwd = 1, lty = 1) {
+  newlayer = list()
+  newlayer[[ "type"   ]] = "arrows"
+  newlayer[[ "facet"  ]] = facet
+  newlayer[[ "arrows" ]] = arrows
+  newlayer[[ "color"  ]] = color
+  newlayer[[ "length" ]] = length
+  newlayer[[ "angle"  ]] = angle
+  newlayer[[ "code"   ]] = code
+  newlayer[[ "lwd"    ]] = lwd
+  newlayer[[ "lty"    ]] = lty
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -132,22 +116,20 @@ scr_arrows <- function(coreFrame, arrows = NULL, facet = NULL,
 #'
 #' @return
 #' @export
-scr_brackets <- function(coreFrame, brackets = NULL,
-                         facet = NULL,
-                         color = 'black',
-                         length = 0.25, angle = 30, code = 2,
-                         lwd = 1, lty = 1) {
+scr_brackets <- function(coreFrame, brackets = NULL, facet = NULL,
+                         color = 'black', length = 0.25,
+                         angle = 30, code = 2, lwd = 1, lty = 1) {
 
-  newlayer <- list()
-  newlayer[["type"]] = "brackets"
-  newlayer[["facet"]] = facet
-  newlayer[["brackets"]] = brackets
-  newlayer[["color"]] = color
-  newlayer[["length"]] = length
-  newlayer[["angle"]] = angle
-  newlayer[["code"]] = code
-  newlayer[["lwd"]] = lwd
-  newlayer[["lty"]] = lty
+  newlayer = list()
+  newlayer[[ "type"     ]] = "brackets"
+  newlayer[[ "facet"    ]] = facet
+  newlayer[[ "brackets" ]] = brackets
+  newlayer[[ "color"    ]] = color
+  newlayer[[ "length"   ]] = length
+  newlayer[[ "angle"    ]] = angle
+  newlayer[[ "code"     ]] = code
+  newlayer[[ "lwd"      ]] = lwd
+  newlayer[[ "lty"      ]] = lty
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -167,19 +149,18 @@ scr_brackets <- function(coreFrame, brackets = NULL,
 #'
 #' @return
 #' @export
-scr_points <- function(coreFrame, pch = 21, color = 'black', fill = 'black', cex = 1, mapping) {
+scr_points <- function(coreFrame, pch = 21, color = 'black',
+                       fill = 'black', cex = 1, mapping) {
 
-  newlayer <- list()
-  newlayer[["type"]] <- "point"
-  newlayer[["pch"]] <- pch
-  newlayer[["color"]] <- color
-  newlayer[["fill"]] <- fill
-  newlayer[["cex"]] <- cex
-  newlayer[["aesthetics"]] <- NA
+  newlayer = list()
+  newlayer[[ "type"       ]] <- "point"
+  newlayer[[ "pch"        ]] <- pch
+  newlayer[[ "color"      ]] <- color
+  newlayer[[ "fill"       ]] <- fill
+  newlayer[[ "cex"        ]] <- cex
+  newlayer[[ "aesthetics" ]] <- NA
 
-  if (!missing(mapping)) {
-    newlayer[["aesthetics"]] <- enexpr(mapping)
-  }
+  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -198,18 +179,17 @@ scr_points <- function(coreFrame, pch = 21, color = 'black', fill = 'black', cex
 #'
 #' @return
 #' @export
-scr_lines <- function(coreFrame, lty = 1, color = 'black', size = 1, mapping) {
+scr_lines <- function(coreFrame, lty = 1, color = 'black',
+                      size = 1, mapping) {
 
-  newlayer <- list()
-  newlayer[["type"]] <- "line"
-  newlayer[["lty"]] <- lty
-  newlayer[["color"]] <- color
-  newlayer[["size"]] <- size
-  newlayer[["aesthetics"]] <- NA
+  newlayer = list()
+  newlayer[[ "type"       ]] <- "line"
+  newlayer[[ "lty"        ]] <- lty
+  newlayer[[ "color"      ]] <- color
+  newlayer[[ "size"       ]] <- size
+  newlayer[[ "aesthetics" ]] <- NA
 
-  if (!missing(mapping)) {
-    newlayer[["aesthetics"]] <- enexpr(mapping)
-  }
+  if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -235,13 +215,13 @@ scr_label_phase <- function(coreFrame, color = 'black',
                             cex = 1, adj = 0.5,
                             facet = NULL, labels = NULL) {
 
-  newlayer <- list()
-  newlayer[["type"]] <- "phase_label"
-  newlayer[["color"]] <- color
-  newlayer[["cex"]] <- cex
-  newlayer[["adj"]] <- adj
-  newlayer[["facet"]] <- facet
-  newlayer[["labels"]] <- labels
+  newlayer = list()
+  newlayer[[ "type"   ]] <- "phase_label"
+  newlayer[[ "color"  ]] <- color
+  newlayer[[ "cex"    ]] <- cex
+  newlayer[[ "adj"    ]] <- adj
+  newlayer[[ "facet"  ]] <- facet
+  newlayer[[ "labels" ]] <- labels
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -264,12 +244,12 @@ scr_label_facet <- function(coreFrame, color = 'black',
                             cex = 1, adj = 0.5,
                             labels = NULL) {
 
-  newlayer <- list()
-  newlayer[["type"]] <- "facet_label"
-  newlayer[["color"]] <- color
-  newlayer[["cex"]] <- cex
-  newlayer[["adj"]] <- adj
-  newlayer[["labels"]] <- labels
+  newlayer = list()
+  newlayer[[ "type"   ]] <- "facet_label"
+  newlayer[[ "color"  ]] <- color
+  newlayer[[ "cex"    ]] <- cex
+  newlayer[[ "adj"    ]] <- adj
+  newlayer[[ "labels" ]] <- labels
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -288,13 +268,15 @@ scr_label_facet <- function(coreFrame, color = 'black',
 #'
 #' @return
 #' @export
-scr_plines <- function(coreFrame, lines = NULL, lwd = 1, lty = 1, col = 'black') {
-  newlayer <- list()
-  newlayer[["type"]] <- "phase_lines"
-  newlayer[["lines"]] <- lines
-  newlayer[["lwd"]] <- lwd
-  newlayer[["lty"]] <- lty
-  newlayer[["col"]] <- col
+scr_plines <- function(coreFrame, lines = NULL,
+                       lwd = 1, lty = 1, col = 'black') {
+
+  newlayer = list()
+  newlayer[[ "type"  ]] <- "phase_lines"
+  newlayer[[ "lines" ]] <- lines
+  newlayer[[ "lwd"   ]] <- lwd
+  newlayer[[ "lty"   ]] <- lty
+  newlayer[[ "col"   ]] <- col
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -311,9 +293,10 @@ scr_plines <- function(coreFrame, lines = NULL, lwd = 1, lty = 1, col = 'black')
 #' @return
 #' @export
 scr_plines_mbd <- function(coreFrame, lines = NULL) {
-  newlayer <- list()
-  newlayer[["type"]] <- "mbd_phase_lines"
-  newlayer[["lines"]] <- lines
+
+  newlayer = list()
+  newlayer[[ "type"  ]] <- "mbd_phase_lines"
+  newlayer[[ "lines" ]] <- lines
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
 
@@ -332,6 +315,7 @@ scr_plines_mbd <- function(coreFrame, lines = NULL) {
 #' @return
 #' @export
 scr_xlabel <- function(coreFrame, var) {
+
   coreFrame$labs[["xlab"]] = {{ var }}
 
   coreFrame
@@ -349,6 +333,7 @@ scr_xlabel <- function(coreFrame, var) {
 #' @return
 #' @export
 scr_ylabel <- function(coreFrame, var) {
+
   coreFrame$labs[["ylab"]] = {{ var }}
 
   coreFrame
@@ -367,10 +352,10 @@ scr_ylabel <- function(coreFrame, var) {
 #' @return
 #' @export
 scr_xoverride <- function(coreFrame, var, xdelta = 1) {
-  coreFrame$dims[["global.min.x"]] = {{ var[1] }}
-  coreFrame$dims[["global.max.x"]] = {{ var[2] }}
 
-  coreFrame$dims[['xdelta']] = xdelta
+  coreFrame$dims[[ "global.min.x" ]] = {{ var[1] }}
+  coreFrame$dims[[ "global.max.x" ]] = {{ var[2] }}
+  coreFrame$dims[[ "xdelta"       ]] = xdelta
 
   coreFrame
 }
@@ -391,13 +376,15 @@ scr_yoverride <- function(coreFrame, var, ydelta = 1) {
 
   # Check if a vector and not multi-facet list
   if (is.vector(var) & !is.list(var)) {
-    coreFrame$dims[["global.min.y"]] = {{ var[1] }}
-    coreFrame$dims[["global.max.y"]] = {{ var[2] }}
+    coreFrame$dims[[ "global.min.y" ]] = {{ var[1] }}
+    coreFrame$dims[[ "global.max.y" ]] = {{ var[2] }}
+
   } else {
-    coreFrame$dims[['local.dims']] = var
+    coreFrame$dims[[ "local.dims"   ]] = var
+
   }
 
-  coreFrame$dims[['ydelta']] = ydelta
+  coreFrame$dims[["ydelta"]] = ydelta
 
   coreFrame
 }
@@ -414,6 +401,7 @@ scr_yoverride <- function(coreFrame, var, ydelta = 1) {
 #' @return
 #' @export
 scr_title <- function(coreFrame, var) {
+
   coreFrame$labs[["title"]] = {{ var }}
 
   coreFrame
@@ -441,37 +429,26 @@ scr_title <- function(coreFrame, var) {
 #'
 #' @return
 #' @export
-scr_legend <- function(coreFrame,
-                       panel = NA,
-                       legend,
-                       col,
-                       lty,
-                       pch,
-                       box.lty = 0,
-                       bty = "n",
-                       cex = 1,
-                       horiz = FALSE,
-                       position = "topright",
-                       pt.cex = 1,
+scr_legend <- function(coreFrame, panel = NA, legend,
+                       col, lty, pch, box.lty = 0,
+                       bty = "n", cex = 1, horiz = FALSE,
+                       position = "topright", pt.cex = 1,
                        text.col = "black") {
 
-  coreFrame$legendpars <- list()
-
-  coreFrame$legendpars[["panel"]] = panel
-  coreFrame$legendpars[["legend"]] = legend
-  coreFrame$legendpars[["col"]] = text.col
-  coreFrame$legendpars[["bg"]] = col
-
-  coreFrame$legendpars[["lty"]] = lty
-  coreFrame$legendpars[["pch"]] = pch
-
-  coreFrame$legendpars[["bty"]] = bty
-  coreFrame$legendpars[["box.lty"]] = box.lty
-  coreFrame$legendpars[["cex"]] = cex
-  coreFrame$legendpars[["horiz"]] = horiz
-  coreFrame$legendpars[["position"]] = position
-  coreFrame$legendpars[["pt.cex"]] = pt.cex
-  coreFrame$legendpars[["text.col"]] = text.col
+  coreFrame$legendpars = list()
+  coreFrame$legendpars[[ "panel"    ]] = panel
+  coreFrame$legendpars[[ "legend"   ]] = legend
+  coreFrame$legendpars[[ "col"      ]] = text.col
+  coreFrame$legendpars[[ "bg"       ]] = col
+  coreFrame$legendpars[[ "lty"      ]] = lty
+  coreFrame$legendpars[[ "pch"      ]] = pch
+  coreFrame$legendpars[[ "bty"      ]] = bty
+  coreFrame$legendpars[[ "box.lty"  ]] = box.lty
+  coreFrame$legendpars[[ "cex"      ]] = cex
+  coreFrame$legendpars[[ "horiz"    ]] = horiz
+  coreFrame$legendpars[[ "position" ]] = position
+  coreFrame$legendpars[[ "pt.cex"   ]] = pt.cex
+  coreFrame$legendpars[[ "text.col" ]] = text.col
 
   coreFrame
 }
@@ -523,6 +500,8 @@ scr_save <- function(coreFrame, units = "in",
   print.fxl(coreFrame)
 
   dev.off()
+
+  coreFrame
 }
 
 ### OVERRIDES ###
