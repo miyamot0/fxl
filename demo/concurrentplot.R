@@ -68,9 +68,9 @@ scr_plot(data, aesthetics = list(x = Session,
                     "John"    = list(x = 25,
                                      y = 5),
                     "Anthony" = list(x = 25,
-                                     y = 10),
+                                     y = 12),
                     "Charles" = list(x = 25,
-                                     y = 21)
+                                     y = 25)
                   )) %>%
   scr_plines_mbd(lines = list(                          # plot linked phase lines (note: drawn from top through bottom)
     "A" = list(                                         # list of phase lines to draw (where to draw lines across each participant)
