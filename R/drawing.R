@@ -286,15 +286,15 @@ draw_scr_plines <- function(coreFrame, currentLayer, n) {
   if (as.character(n) %in% names(currentLayer$lines)) {
     for (name in names(currentLayer$lines[[n]])) {
 
-      tempY1 <- ifelse(currentLayer$lines[[n]][[name]][['y1']] == 0,
-                       - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
-                            as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
-                       currentLayer$lines[[n]][[name]][['y1']])
+      tempY1 = ifelse(currentLayer$lines[[n]][[name]][['y1']] == 0,
+                      - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
+                          as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
+                      currentLayer$lines[[n]][[name]][['y1']])
 
-      tempY2 <- ifelse(currentLayer$lines[[n]][[name]][['y2']] == 0,
-                       - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
-                            as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
-                       currentLayer$lines[[n]][[name]][['y2']])
+      tempY2 = ifelse(currentLayer$lines[[n]][[name]][['y2']] == 0,
+                      - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
+                          as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
+                      currentLayer$lines[[n]][[name]][['y2']])
 
       lines(
         c(currentLayer$lines[[n]][[name]][['x1']],
@@ -321,16 +321,17 @@ draw_scr_plines <- function(coreFrame, currentLayer, n) {
 draw_legend <- function(coreFrame) {
   legend(
     coreFrame$legendpars[["position"]],
-    legend = as.character(coreFrame$legendpars[["legend"]]),
-    text.col = as.character(coreFrame$legendpars[["text.col"]]),
-    lty = as.numeric(coreFrame$legendpars[["lty"]]),
-    box.lty = as.numeric(coreFrame$legendpars[["box.lty"]]),
-    pch = as.numeric(coreFrame$legendpars[["pch"]]),
-    bty = as.character(coreFrame$legendpars[["bty"]]),
-    pt.cex = as.numeric(coreFrame$legendpars[["pt.cex"]]),
-    cex = as.numeric(coreFrame$legendpars[["cex"]]),
-    col = as.character(coreFrame$legendpars[["col"]]),
-  #pt.bg    = as.character(coreFrame$legendpars[["col"]]),
-    horiz = as.logical(coreFrame$legendpars[["horiz"]])
+
+    legend    = as.character( coreFrame$legendpars[[ "legend"   ]]),
+    text.col  = as.character( coreFrame$legendpars[[ "text.col" ]]),
+    lty       = as.numeric(   coreFrame$legendpars[[ "lty"      ]]),
+    box.lty   = as.numeric(   coreFrame$legendpars[[ "box.lty"  ]]),
+    pch       = as.numeric(   coreFrame$legendpars[[ "pch"      ]]),
+    bty       = as.character( coreFrame$legendpars[[ "bty"      ]]),
+    pt.cex    = as.numeric(   coreFrame$legendpars[[ "pt.cex"   ]]),
+    cex       = as.numeric(   coreFrame$legendpars[[ "cex"      ]]),
+    col       = as.character( coreFrame$legendpars[[ "col"      ]]),
+    #pt.bg    = as.character( coreFrame$legendpars[[ "col"      ]]),
+    horiz     = as.logical(   coreFrame$legendpars[[ "horiz"    ]])
   )
 }
