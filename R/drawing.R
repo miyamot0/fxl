@@ -31,20 +31,20 @@
 #' @export
 draw_arrows <- function(coreFrame, currentLayer, n) {
   if (currentLayer$facet == as.character(n)) {
-
     for (aindex in 1:length(currentLayer$arrows)) {
-      currentArrow = currentLayer$arrows[[aindex]]
+      currentArrow  = currentLayer$arrows[[aindex]]
 
-      arrows(x0 = as.numeric(currentArrow[["x0"]]),
-             x1 = as.numeric(currentArrow[["x1"]]),
-             y0 = as.numeric(currentArrow[["y0"]]),
-             y1 = as.numeric(currentArrow[["y1"]]),
-             length = as.numeric(currentLayer[["length"]]),
-             angle = as.numeric(currentLayer[["angle"]]),
-             code = as.numeric(currentLayer[["code"]]),
-             col = as.character(currentLayer[["color"]]),
-             lty = as.numeric(currentLayer[["lty"]]),
-             lwd = as.numeric(currentLayer[["lwd"]]))
+      arrows(x0     = as.numeric(   currentArrow[[ "x0"     ]]),
+             x1     = as.numeric(   currentArrow[[ "x1"     ]]),
+             y0     = as.numeric(   currentArrow[[ "y0"     ]]),
+             y1     = as.numeric(   currentArrow[[ "y1"     ]]),
+
+             length = as.numeric(   currentLayer[[ "length" ]]),
+             angle  = as.numeric(   currentLayer[[ "angle"  ]]),
+             code   = as.numeric(   currentLayer[[ "code"   ]]),
+             col    = as.character( currentLayer[[ "color"  ]]),
+             lty    = as.numeric(   currentLayer[[ "lty"    ]]),
+             lwd    = as.numeric(   currentLayer[[ "lwd"    ]]))
     }
   }
 }
@@ -68,40 +68,40 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
       currentBracket = currentLayer$brackets[[bindex]]
 
       segments(
-        x0 = as.numeric(currentBracket[["x0"]]),
-        x1 = as.numeric(currentBracket[["x1"]]),
-        y0 = as.numeric(currentBracket[["y0"]]),
-        y1 = as.numeric(currentBracket[["y0"]]),
-        col = as.character(currentLayer[["color"]]),
-        lty = as.numeric(currentLayer[["lty"]]),
-        lwd = as.numeric(currentLayer[["lwd"]])
-      )
+        x0          = as.numeric(   currentBracket[[ "x0"     ]]),
+        x1          = as.numeric(   currentBracket[[ "x1"     ]]),
+        y0          = as.numeric(   currentBracket[[ "y0"     ]]),
+        y1          = as.numeric(   currentBracket[[ "y0"     ]]),
 
-      arrows(x0 = as.numeric(currentBracket[["x0"]]),
-             x1 = as.numeric(currentBracket[["x0"]]),
-             y0 = as.numeric(currentBracket[["y0"]]),
-             y1 = as.numeric(currentBracket[["y1"]]),
-             length = as.numeric(currentLayer[["length"]]),
-             angle = as.numeric(currentLayer[["angle"]]),
-             code = as.numeric(currentLayer[["code"]]),
-             col = as.character(currentLayer[["color"]]),
-             lty = as.numeric(currentLayer[["lty"]]),
-             lwd = as.numeric(currentLayer[["lwd"]]))
+        col         = as.character( currentLayer[[   "color"  ]]),
+        lty         = as.numeric(   currentLayer[[   "lty"    ]]),
+        lwd         = as.numeric(   currentLayer[[   "lwd"    ]]))
 
-      arrows(x0 = as.numeric(currentBracket[["x1"]]),
-             x1 = as.numeric(currentBracket[["x1"]]),
-             y0 = as.numeric(currentBracket[["y0"]]),
-             y1 = as.numeric(currentBracket[["y1"]]),
-             length = as.numeric(currentLayer[["length"]]),
-             angle = as.numeric(currentLayer[["angle"]]),
-             code = as.numeric(currentLayer[["code"]]),
-             col = as.character(currentLayer[["color"]]),
-             lty = as.numeric(currentLayer[["lty"]]),
-             lwd = as.numeric(currentLayer[["lwd"]]))
+      arrows(x0     = as.numeric(   currentBracket[[ "x0"     ]]),
+             x1     = as.numeric(   currentBracket[[ "x0"     ]]),
+             y0     = as.numeric(   currentBracket[[ "y0"     ]]),
+             y1     = as.numeric(   currentBracket[[ "y1"     ]]),
+
+             length = as.numeric(   currentLayer[[   "length" ]]),
+             angle  = as.numeric(   currentLayer[[   "angle"  ]]),
+             code   = as.numeric(   currentLayer[[   "code"   ]]),
+             col    = as.character( currentLayer[[   "color"  ]]),
+             lty    = as.numeric(   currentLayer[[   "lty"    ]]),
+             lwd    = as.numeric(   currentLayer[[   "lwd"    ]]))
+
+      arrows(x0     = as.numeric(   currentBracket[[ "x1"     ]]),
+             x1     = as.numeric(   currentBracket[[ "x1"     ]]),
+             y0     = as.numeric(   currentBracket[[ "y0"     ]]),
+             y1     = as.numeric(   currentBracket[[ "y1"     ]]),
+             length = as.numeric(   currentLayer[[   "length" ]]),
+             angle  = as.numeric(   currentLayer[[   "angle"  ]]),
+             code   = as.numeric(   currentLayer[[   "code"   ]]),
+             col    = as.character( currentLayer[[   "color"  ]]),
+             lty    = as.numeric(   currentLayer[[   "lty"    ]]),
+             lwd    = as.numeric(   currentLayer[[   "lwd"    ]]))
     }
   }
 }
-
 
 #' draw_lines
 #'
@@ -116,20 +116,18 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
 #' @return
 #' @export
 draw_lines <- function(coreFrame, currentLayer, n) {
-  if (is.na(n)) {
-    currentData <- coreFrame$data
-  } else {
-    currentData <- coreFrame$data[which(
-      coreFrame$data[, as.character(coreFrame$aes['facet'])] == n),]
-  }
+  if (is.na(n)) currentData = coreFrame$data
+  else currentData = coreFrame$data[
+    which(coreFrame$data[, as.character(coreFrame$aes['facet'])] == n),]
 
   for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
 
-    currentData.slice <- currentData[which(currentData[, as.character(coreFrame$aes['p'])] == p),]
+    currentData.slice <- currentData[
+      which(currentData[, as.character(coreFrame$aes['p'])] == p),]
 
     localAesthetics = list(
-      "x" = as.character(coreFrame$aes['x']),
-      "y" = as.character(coreFrame$aes['y'])
+      "x"   = as.character(coreFrame$aes['x']),
+      "y"   = as.character(coreFrame$aes['y'])
     )
 
     if (!is.na(currentLayer['aesthetics'])) {
@@ -142,9 +140,9 @@ draw_lines <- function(coreFrame, currentLayer, n) {
     lines(
       currentData.slice[, as.character(localAesthetics['x'])],
       currentData.slice[, as.character(localAesthetics['y'])],
-      lty = currentLayer$lty,
-      col = currentLayer$color,
-      lwd = currentLayer$size
+      lty   = currentLayer$lty,
+      col   = currentLayer$color,
+      lwd   = currentLayer$size
     )
   }
 }
@@ -164,19 +162,19 @@ draw_lines <- function(coreFrame, currentLayer, n) {
 draw_label_phase <- function(coreFrame, currentLayer, n) {
   if (currentLayer$facet == n) {
     for (lindex in 1:length(currentLayer$labels)) {
-      label = names(currentLayer$labels)[lindex]
-
+      label        = names(currentLayer$labels)[lindex]
       currentLabel = currentLayer$labels[[lindex]]
 
-      srt = ifelse("srt" %in% names(currentLabel),
-                   currentLabel[["srt"]],
-                   0)
+      srt          = ifelse("srt" %in% names(currentLabel),
+                            currentLabel[["srt"]],
+                            0)
 
-      text(x = currentLabel[["x"]],
-           y = currentLabel[["y"]],
-           cex = currentLayer[["cex"]],
-           adj = currentLayer[["adj"]],
-           srt = srt,
+      text(x      = currentLabel[[ "x"   ]],
+           y      = currentLabel[[ "y"   ]],
+
+           cex    = currentLayer[[ "cex" ]],
+           adj    = currentLayer[[ "adj" ]],
+           srt    = srt,
            labels = label)
     }
   }
@@ -196,12 +194,9 @@ draw_label_phase <- function(coreFrame, currentLayer, n) {
 #' @export
 draw_points <- function(coreFrame, currentLayer, n) {
 
-  if (is.na(n)) {
-    currentData <- coreFrame$data
-  } else {
-    currentData <- coreFrame$data[which(
-      coreFrame$data[, as.character(coreFrame$aes['facet'])] == n),]
-  }
+  if (is.na(n))  currentData   = coreFrame$data
+  else           currentData   = coreFrame$data[which(
+    coreFrame$data[, as.character(coreFrame$aes['facet'])] == n),]
 
   localAesthetics = list(
     "x" = as.character(coreFrame$aes['x']),
@@ -220,8 +215,8 @@ draw_points <- function(coreFrame, currentLayer, n) {
     currentData.slice <- currentData[which(currentData[, as.character(coreFrame$aes['p'])] == p),]
 
     localAesthetics = list(
-      "x" = as.character(coreFrame$aes['x']),
-      "y" = as.character(coreFrame$aes['y'])
+      "x"   = as.character(coreFrame$aes['x']),
+      "y"   = as.character(coreFrame$aes['y'])
     )
 
     if (!is.na(currentLayer['aesthetics'])) {
@@ -233,26 +228,20 @@ draw_points <- function(coreFrame, currentLayer, n) {
 
     pch = 1
 
-    if (is.list(currentLayer$pch)) {
-      pch = currentLayer$pch[[p]]
-    } else {
-      pch = currentLayer$pch
-    }
+    if (is.list(currentLayer$pch))  pch = currentLayer$pch[[p]]
+    else                            pch = currentLayer$pch
 
     fill = 'black'
 
-    if (is.list(currentLayer$fill)) {
-      fill = currentLayer$fill[[p]]
-    } else {
-      fill = currentLayer$fill
-    }
+    if (is.list(currentLayer$fill)) fill = currentLayer$fill[[p]]
+    else                            fill = currentLayer$fill
 
     points(
       currentData.slice[, as.character(localAesthetics['x'])],
       currentData.slice[, as.character(localAesthetics['y'])],
       pch = pch,
       cex = currentLayer$cex,
-      bg = fill
+      bg  = fill
     )
   }
 }
@@ -273,7 +262,6 @@ draw_label_facet <- function(coreFrame, currentLayer, n) {
   currentLabel = currentLayer$labels[[as.character(n)]]
 
   if (!is.null(currentLabel)) {
-
     text(x      = currentLabel[[ "x"   ]],
          y      = currentLabel[[ "y"   ]],
          cex    = currentLayer[[ "cex" ]],
