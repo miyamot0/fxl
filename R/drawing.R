@@ -286,6 +286,8 @@ draw_scr_plines <- function(coreFrame, currentLayer, n) {
   if (as.character(n) %in% names(currentLayer$lines)) {
     for (name in names(currentLayer$lines[[n]])) {
 
+      l.lty = currentLayer[["lty"]]
+
       tempY1 = ifelse(currentLayer$lines[[n]][[name]][['y1']] == 0,
                       - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
@@ -296,13 +298,14 @@ draw_scr_plines <- function(coreFrame, currentLayer, n) {
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
                       currentLayer$lines[[n]][[name]][['y2']])
 
+      if ("lty" %in% names(currentLayer$lines[[n]][[name]]))
+        l.lty = currentLayer$lines[[n]][[name]]$lty
+
       lines(
         c(currentLayer$lines[[n]][[name]][['x1']],
           currentLayer$lines[[n]][[name]][['x2']]),
         c(tempY1, tempY2),
-        lty = currentLayer[["lty"]],
-        col = currentLayer[["col"]],
-        lwd = currentLayer[["lwd"]]
+        lty = l.lty
       )
     }
   }

@@ -66,6 +66,16 @@ scr_plot(currentData, aesthetics = list(x     = Session,
       "B" = list(
         x1 = 26.5, y1 = 3,
         x2 = 26.5, y2 = 0
+      ),
+      "C" = list(
+        x1 = 60.5, y1 = 3,
+        x2 = 60.5, y2 = 0,
+        lty = 3
+      ),
+      "D" = list(
+        x1 = 76.5, y1 = 3,
+        x2 = 76.5, y2 = 0,
+        lty = 3
       )
     ),
     "Demand" = list(
@@ -80,33 +90,19 @@ scr_plot(currentData, aesthetics = list(x     = Session,
       "C" = list(
         x1 = 41.5, y1 = 3,
         x2 = 41.5, y2 = 0
+      ),
+      "D" = list(
+        x1 = 50.5, y1 = 3,
+        x2 = 50.5, y2 = 0,
+        lty = 3
+      ),
+      "E" = list(
+        x1 = 72.5, y1 = 3,
+        x2 = 72.5, y2 = 0,
+        lty = 3
       )
     )
   )) %>%
-  scr_plines(# dashed ones
-    lty = 3,
-    lines = list(
-      "Attention" = list(
-        "A" = list(
-          x1 = 60.5, y1 = 3,
-          x2 = 60.5, y2 = 0
-        ),
-        "B" = list(
-          x1 = 76.5, y1 = 3,
-          x2 = 76.5, y2 = 0
-        )
-      ),
-      "Demand" = list(
-        "A" = list(
-          x1 = 50.5, y1 = 3,
-          x2 = 50.5, y2 = 0
-        ),
-        "B" = list(
-          x1 = 72.5, y1 = 3,
-          x2 = 72.5, y2 = 0
-        )
-      )
-    )) %>%
     scr_label_facet(cex = 1.25,
                     adj = 1,
                     labels = list(
