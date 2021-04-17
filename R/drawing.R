@@ -69,8 +69,8 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
 
       l.lty = as.numeric(currentLayer[["lty"]])
 
-      if ("lty" %in% names(currentLayer$brackets[[bindex]]))
-        l.lty = currentLayer$brackets[[bindex]]$lty
+      if ("lty" %in% names(currentBracket))
+        l.lty = currentBracket$lty
 
       segments(
         x0          = as.numeric(   currentBracket[[ "x0"     ]]),
@@ -123,14 +123,27 @@ draw_guide_line <- function(coreFrame,  currentLayer, n) {
     for (gindex in 1:length(currentLayer$coords)) {
       currentCoords = currentLayer$coords[[gindex]]
 
+      l.col = as.character( currentLayer[["col"]])
+      l.lty = as.numeric(   currentLayer[["lty"]])
+      l.lwd = as.numeric(   currentLayer[["lwd"]])
+
+      if ("col" %in% names(currentCoords))
+        l.col = currentCoords$col
+
+      if ("lty" %in% names(currentCoords))
+        l.lty = currentCoords$lty
+
+      if ("lwd" %in% names(currentCoords))
+        l.lwd = currentCoords$lwd
+
       segments(
         x0    = currentCoords$x0,
         x1    = currentCoords$x1,
         y0    = currentCoords$y0,
         y1    = currentCoords$y1,
-        lty   = currentLayer[["lty"]],
-        lwd   = currentLayer[["lwd"]],
-        col   = currentLayer[["col"]]
+        lty   = l.lty,
+        lwd   = l.lwd,
+        col   = l.col
       )
     }
   }

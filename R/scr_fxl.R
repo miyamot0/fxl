@@ -240,7 +240,7 @@ scr_label_facet <- function(coreFrame, color = 'black',
 #' @return
 #' @export
 scr_guide_line <- function(coreFrame, coords, facet = NA,
-                           color = 'red', lty = 3, lwd = 1) {
+                           color = 'red', lty = 1, lwd = 1) {
 
   newlayer = list()
   newlayer[[ "type"   ]] <- "guide_line"
