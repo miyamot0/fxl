@@ -21,7 +21,7 @@ scr_plot(currentData, aesthetics = list(x = Session,
                                        y = CTB,
                                        p = Condition,
                                        facet = Function),
-        mai = c(0.5, 0.5, 0.1, 0.5),
+        mai = c(0.375, 0.375, 0.1, 0.1),
         omi = c(0.25, 0.25, 0.25, 0.25)) %>%
   scr_yoverride(c(0, 3)) %>%
   scr_xoverride(c(0, 100), xdelta = 10) %>%
