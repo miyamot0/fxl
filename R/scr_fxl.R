@@ -519,38 +519,33 @@ scr_save <- function(coreFrame, units = "in",
 #' @export
 print.fxl <- function(coreFrame, ...) {
 
-  facets = NULL
-  n.facets = 1
-  lookup = FALSE
+  # Holders for phase coords
+  plotTops   = list()
+  plotBots   = list()
+  indexNum   = list()
+
+  facets     = NULL
+  n.facets   = 1
+  lookup     = FALSE
+  reqDraw    = FALSE
 
   if ("facet" %in% names(coreFrame$aes)) {
-    facets = unique(coreFrame$data[[as.character(coreFrame$aes['facet'])]])
+    facets   = unique(coreFrame$data[[as.character(coreFrame$aes['facet'])]])
     n.facets = length(facets)
-    lookup = TRUE
+    lookup   = TRUE
   }
 
-  has.legend = !is.null(coreFrame[["legendpars"]])
-
-  n.rows = n.facets
-  n.cols = 1
-
-  plotTops = list()
-  plotBots = list()
-  indexNum = list()
-
-  reqFinalDraw = FALSE
-
-  par(mfrow = c(n.rows, n.cols),
+  par(mfrow  = c(n.facets, 1),                 # Dynamic facet numbers, always a single column?
       family = "serif",
-      omi = coreFrame[["dims"]][["omi"]],
-      mai = coreFrame[["dims"]][["mai"]],
-      xaxs = "r",
-      yaxs = "r",
-      xpd = NA)
+      omi    = coreFrame[["dims"]][["omi"]],
+      mai    = coreFrame[["dims"]][["mai"]],
+      xaxs   = "r",
+      yaxs   = "r",
+      xpd    = NA)
 
-  ## Print placeholders
-  #for (n in facets) {
-  for (n in 1:n.facets) {
+  for (n in 1:n.facets) {                      # Print placeholders
+
+    #currentFacet = ifelse(lookup, facets[n], NA)
 
     currentFacet = NA
 
@@ -605,7 +600,7 @@ print.fxl <- function(coreFrame, ...) {
                   coreFrame$dims[["max.local.y"]],
                   by = coreFrame$dims[['ydelta']]))
 
-    if (has.legend) {
+    if (!is.null(coreFrame[["legendpars"]])) {
       if (lookup) {
         if (coreFrame$legendpars[["panel"]] == currentFacet) draw_legend(coreFrame)
       } else {
@@ -673,14 +668,14 @@ print.fxl <- function(coreFrame, ...) {
             indexNum[[pname]] <- indexNum[[pname]] + 1
           }
 
-          reqFinalDraw = TRUE
+          reqDraw = TRUE
         }
       }
     }
   }
 
   # Note: final overlays, once facets are drawn/coords cached
-  if (reqFinalDraw) {
+  if (reqDraw) {
 
     n.phaseLines <- unique(names(plotBots))
 
