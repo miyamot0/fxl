@@ -39,7 +39,7 @@ scr_plot <- function(data, aesthetics,
 
   coreFrame = list()                             # Primary plotting object
   coreFrame[[ "layers" ]] <- list()              # Layers for drawing
-  coreFrame[[ "aes"    ]]  <- enexpr(aesthetics) # Mappings
+  coreFrame[[ "aes"    ]] <- enexpr(aesthetics)  # Mappings
   coreFrame[[ "data"   ]] <- data                # Stored data
   coreFrame[[ "dims"   ]] <- list(               # Global dimensions
     global.max.x = max(data[[as.character(coreFrame$aes['x'])]]),
@@ -545,39 +545,37 @@ print.fxl <- function(coreFrame, ...) {
 
   for (n in 1:n.facets) {                      # Print placeholders
 
-    #currentFacet = ifelse(lookup, facets[n], NA)
+    # Defaults, per data
+    currentFacet                      = NA
+    coreFrame$dims[["min.local.x"]]   = min(data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE)
+    coreFrame$dims[["max.local.x"]]   = max(data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE)
 
-    currentFacet = NA
+    # Facet override
+    if (lookup) currentFacet          = facets[n]
 
-    if (lookup) {
-      currentFacet = facets[n]
-    }
+    # X overrides
+    if (!is.null(coreFrame$dims[["global.min.x"]]))
+      coreFrame$dims[["min.local.x"]] = coreFrame$dims[["global.min.x"]]
 
-    min.local.x <- ifelse(is.null(coreFrame$dims[["global.min.x"]]),
-                          min(data[[as.character(coreFrame$aes['x'])]]),
-                          coreFrame$dims[["global.min.x"]])
-    max.local.x <- ifelse(is.null(coreFrame$dims[["global.min.x"]]),
-                          max(data[[as.character(coreFrame$aes['x'])]]),
-                          coreFrame$dims[["global.max.x"]])
+    if (!is.null(coreFrame$dims[["global.max.x"]]))
+      coreFrame$dims[["max.local.x"]] = coreFrame$dims[["global.max.x"]]
 
+    # Y overrides
     if (!is.null(coreFrame$dims[["local.dims"]])) {
-      min.local.y <- coreFrame$dims[["local.dims"]][[n]]$y0
-      max.local.y <- coreFrame$dims[["local.dims"]][[n]]$y1
+      coreFrame$dims[["min.local.y"]] = coreFrame$dims[["local.dims"]][[n]]$y0
+      coreFrame$dims[["max.local.y"]] = coreFrame$dims[["local.dims"]][[n]]$y1
     } else {
-      min.local.y <- ifelse(is.null(coreFrame$dims[["global.min.y"]]),
-                            min(data[[as.character(coreFrame$aes['y'])]]),
-                            coreFrame$dims[["global.min.y"]])
-      max.local.y <- ifelse(is.null(coreFrame$dims[["global.min.y"]]),
-                            max(data[[as.character(coreFrame$aes['y'])]]),
-                            coreFrame$dims[["global.max.y"]])
+      coreFrame$dims[["min.local.y"]] = ifelse(is.null(coreFrame$dims[["global.min.y"]]),
+                                               min(data[[as.character(coreFrame$aes['y'])]]),
+                                               coreFrame$dims[["global.min.y"]])
+      coreFrame$dims[["max.local.y"]] = ifelse(is.null(coreFrame$dims[["global.min.y"]]),
+                                               max(data[[as.character(coreFrame$aes['y'])]]),
+                                               coreFrame$dims[["global.max.y"]])
     }
-
-    coreFrame$dims[["max.local.y"]] <- max.local.y
-    coreFrame$dims[["min.local.y"]] <- min.local.y
 
     plot(NULL,
-         xlim = c(min.local.x, max.local.x),
-         ylim = c(min.local.y, max.local.y),
+         xlim = c(coreFrame$dims[["min.local.x"]], coreFrame$dims[["max.local.x"]]),
+         ylim = c(coreFrame$dims[["min.local.y"]], coreFrame$dims[["max.local.y"]]),
          ylab = "",
          xlab = "",
          frame.plot = FALSE,
@@ -589,20 +587,21 @@ print.fxl <- function(coreFrame, ...) {
 
     axis(1,
          labels = (n == n.facets),
-         at = seq(coreFrame$dims[["global.min.x"]],
-                  coreFrame$dims[["global.max.x"]],
-                  by = coreFrame$dims[['xdelta']]))
+         at     = seq(coreFrame$dims[["global.min.x"]],
+                      coreFrame$dims[["global.max.x"]],
+                      by = coreFrame$dims[['xdelta']]))
 
     axis(2,
          labels = TRUE,
-         las = 1,
-         at = seq(coreFrame$dims[["min.local.y"]],
-                  coreFrame$dims[["max.local.y"]],
-                  by = coreFrame$dims[['ydelta']]))
+         las    = 1,
+         at     = seq(coreFrame$dims[["min.local.y"]],
+                      coreFrame$dims[["max.local.y"]],
+                      by = coreFrame$dims[['ydelta']]))
 
     if (!is.null(coreFrame[["legendpars"]])) {
       if (lookup) {
-        if (coreFrame$legendpars[["panel"]] == currentFacet) draw_legend(coreFrame)
+        if (coreFrame$legendpars[["panel"]] == currentFacet)
+          draw_legend(coreFrame)
       } else {
         draw_legend(coreFrame)
       }
@@ -611,15 +610,15 @@ print.fxl <- function(coreFrame, ...) {
     if (length(coreFrame[["layers"]]) > 0) {
       for (i in 1:length(coreFrame[["layers"]])) {
 
-        currentLayer <- coreFrame$layers[[i]]
+        currentLayer = coreFrame$layers[[i]]
 
-        if (currentLayer$type == "point") draw_points(coreFrame, currentLayer, currentFacet)
-        if (currentLayer$type == "line") draw_lines(coreFrame, currentLayer, currentFacet)
+        if (currentLayer$type == "point")       draw_points(coreFrame,      currentLayer, currentFacet)
+        if (currentLayer$type == "line")        draw_lines(coreFrame,       currentLayer, currentFacet)
         if (currentLayer$type == "phase_label") draw_label_phase(coreFrame, currentLayer, currentFacet)
         if (currentLayer$type == "facet_label") draw_label_facet(coreFrame, currentLayer, currentFacet)
-        if (currentLayer$type == "phase_lines") draw_scr_plines(coreFrame, currentLayer, currentFacet)
-        if (currentLayer$type == "arrows") draw_arrows(coreFrame, currentLayer, currentFacet)
-        if (currentLayer$type == "brackets") draw_brackets(coreFrame, currentLayer, currentFacet)
+        if (currentLayer$type == "phase_lines") draw_scr_plines(coreFrame,  currentLayer, currentFacet)
+        if (currentLayer$type == "arrows")      draw_arrows(coreFrame,      currentLayer, currentFacet)
+        if (currentLayer$type == "brackets")    draw_brackets(coreFrame,    currentLayer, currentFacet)
 
         if (currentLayer$type == "mbd_phase_lines") {
 
@@ -631,11 +630,11 @@ print.fxl <- function(coreFrame, ...) {
 
             currentLayer$lines[[pname]][[n]][["topDraw"]] <- cnvrt.coords(
               currentLayer$lines[[pname]][[n]][["x1"]],
-              max.local.y)
+              coreFrame$dims[["max.local.y"]])
 
             currentLayer$lines[[pname]][[n]][["botDraw"]] <- cnvrt.coords(
               currentLayer$lines[[pname]][[n]][["x2"]],
-              - ((max.local.y - min.local.y) * 0.04))
+              - ((coreFrame$dims[["max.local.y"]] - coreFrame$dims[["min.local.y"]]) * 0.04))
 
             tmp.point.top.dev <- cnvrt.coords(
               currentLayer$lines[[pname]][[n]][["topDraw"]]$dev,
@@ -659,11 +658,13 @@ print.fxl <- function(coreFrame, ...) {
               currentLayer$lines[[pname]][[n]][["x2"]],
               currentLayer$lines[[pname]][[n]][["y2"]])$dev
 
-            plotTops[[pname]][[indexNum[[pname]]]] = cnvrt.coords(currentLayer$lines[[pname]][[n]][["x1"]],
-                                                                  currentLayer$lines[[pname]][[n]][["y1"]])
+            plotTops[[pname]][[indexNum[[pname]]]] = cnvrt.coords(
+              currentLayer$lines[[pname]][[n]][["x1"]],
+              currentLayer$lines[[pname]][[n]][["y1"]])
 
-            plotBots[[pname]][[indexNum[[pname]]]] = cnvrt.coords(currentLayer$lines[[pname]][[n]][["x2"]],
-                                                                  currentLayer$lines[[pname]][[n]][["y2"]])
+            plotBots[[pname]][[indexNum[[pname]]]] = cnvrt.coords(
+              currentLayer$lines[[pname]][[n]][["x2"]],
+              currentLayer$lines[[pname]][[n]][["y2"]])
 
             indexNum[[pname]] <- indexNum[[pname]] + 1
           }
@@ -698,14 +699,18 @@ print.fxl <- function(coreFrame, ...) {
         tmp.point.bot.dev <- cnvrt.coords(pbs$dev, input = 'dev')
 
         segments(tmp.point.bot.pre.dev$usr$x, tmp.point.bot.pre.dev$usr$y,
-                 tmp.point.bot.pre.dev$usr$x, (tmp.point.bot.pre.dev$usr$y + tmp.point.top.dev$usr$y) / 2,
+                 tmp.point.bot.pre.dev$usr$x, (tmp.point.bot.pre.dev$usr$y +
+                                                 tmp.point.top.dev$usr$y) / 2,
                  col = 'black')
 
-        segments(tmp.point.bot.pre.dev$usr$x, (tmp.point.bot.pre.dev$usr$y + tmp.point.top.dev$usr$y) / 2,
-                 tmp.point.top.dev$usr$x, (tmp.point.bot.pre.dev$usr$y + tmp.point.top.dev$usr$y) / 2,
+        segments(tmp.point.bot.pre.dev$usr$x, (tmp.point.bot.pre.dev$usr$y +
+                                                 tmp.point.top.dev$usr$y) / 2,
+                 tmp.point.top.dev$usr$x, (tmp.point.bot.pre.dev$usr$y +
+                                             tmp.point.top.dev$usr$y) / 2,
                  col = 'black')
 
-        segments(tmp.point.top.dev$usr$x, (tmp.point.bot.pre.dev$usr$y + tmp.point.top.dev$usr$y) / 2,
+        segments(tmp.point.top.dev$usr$x, (tmp.point.bot.pre.dev$usr$y +
+                                             tmp.point.top.dev$usr$y) / 2,
                  tmp.point.top.dev$usr$x, tmp.point.top.dev$usr$y,
                  col = 'black')
       }
@@ -713,6 +718,6 @@ print.fxl <- function(coreFrame, ...) {
   }
 
   mtext(coreFrame$labs[["title"]], side = 3, outer = TRUE, line = 0)
-  mtext(coreFrame$labs[["ylab"]], side = 2, outer = TRUE)
-  mtext(coreFrame$labs[["xlab"]], side = 1, outer = TRUE)
+  mtext(coreFrame$labs[["ylab"]],  side = 2, outer = TRUE)
+  mtext(coreFrame$labs[["xlab"]],  side = 1, outer = TRUE)
 }
