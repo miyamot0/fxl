@@ -227,17 +227,13 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                    x1 = 26,
                    y0 = 3.3,
                    y1 = 3
-                 )
-               )) %>%
-  scr_brackets(facet = "Attention",
-               length = 0.1,
-               lty = 3,
-               brackets = list(
-                 "A" = list(
+                 ),
+                 "B" = list(
                    x0 = 38,
                    x1 = 76,
                    y0 = 2.25,
-                   y1 = 1.5
+                   y1 = 1.5,
+                   lty = 3
                  )
                )) %>%
   scr_brackets(facet = "Demand",
@@ -254,17 +250,13 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                    x1 = 47,
                    y0 = 3.2,
                    y1 = 2.9
-                 )
-               )) %>%
-  scr_brackets(facet = "Demand",
-               length = 0.1,
-               lty = 3,
-               brackets = list(
-                 "A" = list(
+                 ),
+                 "C" = list(
                    x0 = 29,
                    x1 = 72,
                    y0 = 1.25,
-                   y1 = 0.5
+                   y1 = 0.5,
+                   lty = 3
                  )
                )) %>%
   scr_guide_line(col    = 'red',

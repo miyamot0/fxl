@@ -67,6 +67,11 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
     for (bindex in 1:length(currentLayer$brackets)) {
       currentBracket = currentLayer$brackets[[bindex]]
 
+      l.lty = as.numeric(currentLayer[["lty"]])
+
+      if ("lty" %in% names(currentLayer$brackets[[bindex]]))
+        l.lty = currentLayer$brackets[[bindex]]$lty
+
       segments(
         x0          = as.numeric(   currentBracket[[ "x0"     ]]),
         x1          = as.numeric(   currentBracket[[ "x1"     ]]),
@@ -74,7 +79,7 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
         y1          = as.numeric(   currentBracket[[ "y0"     ]]),
 
         col         = as.character( currentLayer[[   "color"  ]]),
-        lty         = as.numeric(   currentLayer[[   "lty"    ]]),
+        lty         = l.lty,
         lwd         = as.numeric(   currentLayer[[   "lwd"    ]]))
 
       arrows(x0     = as.numeric(   currentBracket[[ "x0"     ]]),
@@ -86,7 +91,7 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
              angle  = as.numeric(   currentLayer[[   "angle"  ]]),
              code   = as.numeric(   currentLayer[[   "code"   ]]),
              col    = as.character( currentLayer[[   "color"  ]]),
-             lty    = as.numeric(   currentLayer[[   "lty"    ]]),
+             lty    = l.lty,
              lwd    = as.numeric(   currentLayer[[   "lwd"    ]]))
 
       arrows(x0     = as.numeric(   currentBracket[[ "x1"     ]]),
@@ -97,7 +102,7 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
              angle  = as.numeric(   currentLayer[[   "angle"  ]]),
              code   = as.numeric(   currentLayer[[   "code"   ]]),
              col    = as.character( currentLayer[[   "color"  ]]),
-             lty    = as.numeric(   currentLayer[[   "lty"    ]]),
+             lty    = l.lty,
              lwd    = as.numeric(   currentLayer[[   "lwd"    ]]))
     }
   }
