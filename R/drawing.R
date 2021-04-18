@@ -29,8 +29,8 @@
 #'
 #' @return
 #' @export
-draw_arrows <- function(coreFrame, currentLayer, n) {
-  if (currentLayer$facet == as.character(n)) {
+draw_arrows <- function(coreFrame, currentLayer, facetName) {
+  if (currentLayer$facet == as.character(facetName)) {
     for (aindex in 1:length(currentLayer$arrows)) {
       currentArrow  = currentLayer$arrows[[aindex]]
 
@@ -55,14 +55,14 @@ draw_arrows <- function(coreFrame, currentLayer, n) {
 #'
 #' @param coreFrame fxl object
 #' @param currentLayer layer to be drawn
-#' @param n name of facet
+#' @param facetName name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_brackets <- function(coreFrame, currentLayer, n) {
-  if (currentLayer$facet == as.character(n)) {
+draw_brackets <- function(coreFrame, currentLayer, facetName) {
+  if (currentLayer$facet == as.character(facetName)) {
 
     for (bindex in 1:length(currentLayer$brackets)) {
       currentBracket = currentLayer$brackets[[bindex]]
@@ -112,13 +112,13 @@ draw_brackets <- function(coreFrame, currentLayer, n) {
 #'
 #' @param coreFrame fxl object
 #' @param currentLayer layer to be drawn
-#' @param n name of facet
+#' @param facetName name of facet
 #'
 #' @return
 #' @export
-draw_guide_line <- function(coreFrame,  currentLayer, n) {
+draw_guide_line <- function(coreFrame,  currentLayer, facetName) {
 
-  if (is.na(n) | currentLayer$facet == n) {
+  if (is.na(facetName) | currentLayer$facet == facetName) {
 
     for (gindex in 1:length(currentLayer$coords)) {
       currentCoords = currentLayer$coords[[gindex]]
@@ -155,16 +155,16 @@ draw_guide_line <- function(coreFrame,  currentLayer, n) {
 #'
 #' @param coreFrame fxl object
 #' @param currentLayer layer to be drawn
-#' @param n name of facet
+#' @param facetName name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_lines <- function(coreFrame, currentLayer, n) {
-  if (is.na(n)) currentData = coreFrame$data
+draw_lines <- function(coreFrame, currentLayer, facetName) {
+  if (is.na(facetName)) currentData = coreFrame$data
   else currentData = coreFrame$data[
-    which(coreFrame$data[, as.character(coreFrame$aes['facet'])] == n),]
+    which(coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
 
   for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
 
@@ -199,14 +199,14 @@ draw_lines <- function(coreFrame, currentLayer, n) {
 #'
 #' @param coreFrame fxl object
 #' @param currentLayer layer to be drawn
-#' @param n name of facet
+#' @param facetName name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_label_phase <- function(coreFrame, currentLayer, n) {
-  if (currentLayer$facet == n) {
+draw_label_phase <- function(coreFrame, currentLayer, facetName) {
+  if (currentLayer$facet == facetName) {
     for (lindex in 1:length(currentLayer$labels)) {
       label        = names(currentLayer$labels)[lindex]
       currentLabel = currentLayer$labels[[lindex]]
@@ -232,17 +232,17 @@ draw_label_phase <- function(coreFrame, currentLayer, n) {
 #'
 #' @param coreFrame fxl object
 #' @param currentLayer layer to be drawn
-#' @param n name of facet
+#' @param facetName name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_points <- function(coreFrame, currentLayer, n) {
+draw_points <- function(coreFrame, currentLayer, facetName) {
 
-  if (is.na(n))  currentData   = coreFrame$data
+  if (is.na(facetName))  currentData   = coreFrame$data
   else           currentData   = coreFrame$data[which(
-    coreFrame$data[, as.character(coreFrame$aes['facet'])] == n),]
+    coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
 
   localAesthetics = list(
     "x" = as.character(coreFrame$aes['x']),
@@ -298,21 +298,21 @@ draw_points <- function(coreFrame, currentLayer, n) {
 #'
 #' @param coreFrame fxl object
 #' @param currentLayer layer to be drawn
-#' @param n name of facet
+#' @param facetName name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_label_facet <- function(coreFrame, currentLayer, n) {
-  currentLabel = currentLayer$labels[[as.character(n)]]
+draw_label_facet <- function(coreFrame, currentLayer, facetName) {
+  currentLabel = currentLayer$labels[[as.character(facetName)]]
 
   if (!is.null(currentLabel)) {
     text(x      = currentLabel[[ "x"   ]],
          y      = currentLabel[[ "y"   ]],
          cex    = currentLayer[[ "cex" ]],
          adj    = currentLayer[[ "adj" ]],
-         labels = n)
+         labels = facetName)
   }
 }
 
@@ -322,34 +322,34 @@ draw_label_facet <- function(coreFrame, currentLayer, n) {
 #'
 #' @param coreFrame fxl object
 #' @param currentLayer layer to be drawn
-#' @param n name of facet
+#' @param facetName name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_scr_plines <- function(coreFrame, currentLayer, n) {
-  if (as.character(n) %in% names(currentLayer$lines)) {
-    for (name in names(currentLayer$lines[[n]])) {
+draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
+  if (as.character(facetName) %in% names(currentLayer$lines)) {
+    for (name in names(currentLayer$lines[[facetName]])) {
 
       l.lty = currentLayer[["lty"]]
 
-      tempY1 = ifelse(currentLayer$lines[[n]][[name]][['y1']] == 0,
+      tempY1 = ifelse(currentLayer$lines[[facetName]][[name]][['y1']] == 0,
                       - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
-                      currentLayer$lines[[n]][[name]][['y1']])
+                      currentLayer$lines[[facetName]][[name]][['y1']])
 
-      tempY2 = ifelse(currentLayer$lines[[n]][[name]][['y2']] == 0,
+      tempY2 = ifelse(currentLayer$lines[[facetName]][[name]][['y2']] == 0,
                       - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
-                      currentLayer$lines[[n]][[name]][['y2']])
+                      currentLayer$lines[[facetName]][[name]][['y2']])
 
-      if ("lty" %in% names(currentLayer$lines[[n]][[name]]))
-        l.lty = currentLayer$lines[[n]][[name]]$lty
+      if ("lty" %in% names(currentLayer$lines[[facetName]][[name]]))
+        l.lty = currentLayer$lines[[facetName]][[name]]$lty
 
       lines(
-        c(currentLayer$lines[[n]][[name]][['x1']],
-          currentLayer$lines[[n]][[name]][['x2']]),
+        c(currentLayer$lines[[facetName]][[name]][['x1']],
+          currentLayer$lines[[facetName]][[name]][['x2']]),
         c(tempY1, tempY2),
         lty = l.lty
       )
