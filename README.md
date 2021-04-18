@@ -34,7 +34,7 @@ The figure below is from a single-subject evaluation conducted by [Gilroy et al.
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/annotatedplot.R)
 
-![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/annotatedfigure2.svg?)
+![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/annotatedfigure2.png?raw=true)
 
 *Concurrent Reversal Designs (Across Participants)*
 
