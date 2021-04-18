@@ -330,26 +330,26 @@ draw_label_facet <- function(coreFrame, currentLayer, facetName) {
 #' @export
 draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
   if (as.character(facetName) %in% names(currentLayer$lines)) {
-    for (name in names(currentLayer$lines[[facetName]])) {
+    for (key in names(currentLayer$lines[[facetName]])) {
 
       l.lty = currentLayer[["lty"]]
 
-      tempY1 = ifelse(currentLayer$lines[[facetName]][[name]][['y1']] == 0,
+      tempY1 = ifelse(currentLayer$lines[[facetName]][[key]][['y1']] == 0,
                       - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
-                      currentLayer$lines[[facetName]][[name]][['y1']])
+                      currentLayer$lines[[facetName]][[key]][['y1']])
 
-      tempY2 = ifelse(currentLayer$lines[[facetName]][[name]][['y2']] == 0,
+      tempY2 = ifelse(currentLayer$lines[[facetName]][[key]][['y2']] == 0,
                       - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
-                      currentLayer$lines[[facetName]][[name]][['y2']])
+                      currentLayer$lines[[facetName]][[key]][['y2']])
 
-      if ("lty" %in% names(currentLayer$lines[[facetName]][[name]]))
-        l.lty = currentLayer$lines[[facetName]][[name]]$lty
+      if ("lty" %in% names(currentLayer$lines[[facetName]][[key]]))
+        l.lty = currentLayer$lines[[facetName]][[key]]$lty
 
       lines(
-        c(currentLayer$lines[[facetName]][[name]][['x1']],
-          currentLayer$lines[[facetName]][[name]][['x2']]),
+        c(currentLayer$lines[[facetName]][[key]][['x1']],
+          currentLayer$lines[[facetName]][[key]][['x2']]),
         c(tempY1, tempY2),
         lty = l.lty
       )
