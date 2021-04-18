@@ -32,11 +32,15 @@ Publication-quality annotations and flexibility
 
 The figure below is from a single-subject evaluation conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) and drawn in *fxl* (originally drawn in R, later rolled into the package). This figure was drawn using a combination of multiple baseline logic with an added reversal condition to demonstrate the effect of functional communication training (in an operant behavioral economic evaluation).
 
-![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/annotatedfigure2.svg?raw=true)
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/annotatedplot.R)
+
+![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/annotatedfigure2.png?raw=true)
 
 *Concurrent Reversal Designs (Across Participants)*
 
 The figure below is from a single-subject evaluation conducted by [Gilroy et al. (2021)](https://doi.org/10.1002/jaba.826) and drawn in *fxl* (also drawn in R and later rolled into the package). This figure was drawn using a combination of individual reversals, visualized in a way similar to multiple baseline figures (with condition changes reflected across all participants) to evaluate how degrees of demand elasticity influenced rates of behavior.
+
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/concurrentplot.R)
 
 ![Gilroy et al 2021](https://github.com/miyamot0/fxl/blob/main/man/figures/concurrentfigure.svg?raw=true)
 
@@ -44,11 +48,15 @@ The figure below is from a single-subject evaluation conducted by [Gilroy et al.
 
 The respective figure is drawn from a single-subject evaluation conducted by [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004). These data were previously illustrated using spreadsheet software and are now drawn in *fxl*. This figure was drawn using a multiple baseline design, whereby control is illustrated through a sequential introduction of independent variables, and changes in relational responding (i.e., deictics) were observed. 
 
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/multiplebaselineplot.R)
+
 ![Gilroy et al 2015](https://github.com/miyamot0/fxl/blob/main/man/figures/multiplebaselinefigure.svg?raw=true)
 
 *Multi-element Designs/Functional Analyses*
 
 The last example is constructed from a functional analysis of severe behavior conducted in a study by [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004). As with the other 2015 work, these data were previously illustrated using spreadsheet software and are now drawn in *fxl*. This figure was drawn using a multielement design, whereby the differential effects of contingencies are evaluated with respect to rates of behavior. 
+
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/faplot.R)
 
 ![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/fafigure.svg?raw=true)
 
