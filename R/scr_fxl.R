@@ -42,10 +42,10 @@ scr_plot <- function(data, aesthetics,
   coreFrame[[ "aes"    ]] <- enexpr(aesthetics)  # Mappings
   coreFrame[[ "data"   ]] <- data                # Stored data
   coreFrame[[ "dims"   ]] <- list(               # Global dimensions
-    global.max.x = max(data[[as.character(coreFrame$aes['x'])]]),
-    global.min.x = min(data[[as.character(coreFrame$aes['x'])]]),
-    global.max.y = max(data[[as.character(coreFrame$aes['y'])]]),
-    global.min.y = min(data[[as.character(coreFrame$aes['y'])]]),
+    global.max.x = max(data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE),
+    global.min.x = min(data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE),
+    global.max.y = max(data[[as.character(coreFrame$aes['y'])]], na.rm = TRUE),
+    global.min.y = min(data[[as.character(coreFrame$aes['y'])]], na.rm = TRUE),
     mai          = mai,
     omi          = omi,
     xdelta       = 1,                            # General defaults, for now
