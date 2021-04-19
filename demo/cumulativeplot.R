@@ -10,11 +10,14 @@
 library(dplyr) # included for infix logic
 library(fxl)   # core plotting methods
 
-scr_plot(data = Tigeretal2006, aesthetics = list(x = Session,
-                                             y = Splus,
-                                             facet = Participant),
-         mai = c(0.5, 0.5, 0.1, 0.5),
-         omi = c(0.25, 0.25, 0.25, 0.25)) %>%
+selectionData = Tigeretal2006
+
+scr_plot(data = selectionData, aesthetics = list(x = Session,
+                                                 y = Splus,
+                                                 facet = Participant),
+         mai = c(0.3, 0.25, 0.1, 0.1),
+         omi = c(0.25, 0.25, 0.25, 0)) %>%
+  scr_xoverride(c(15, 55), xdelta = 5) %>%
   scr_yoverride(c(0, 15), ydelta = 3) %>%
   scr_cumsum_lines() %>%
   scr_cumsum_lines(mapping = list(x = Session,
@@ -68,4 +71,7 @@ scr_plot(data = Tigeretal2006, aesthetics = list(x = Session,
                     "S+"    = list(x = 52,
                                    y = 8.5),
                     "Mix"   = list(x = 51.5,
-                                   y = 2.5)))
+                                   y = 2.5))) %>%
+  scr_xlabel("Session") %>%               # Override x-axis label (bottom only shown by default)
+  scr_ylabel("Cumulative Selections") %>% # Override y-axis label (centered, leftmost label)
+  scr_title("Participant Choice of Schedules")
