@@ -166,8 +166,13 @@ draw_lines <- function(coreFrame, currentLayer, facetName) {
   else currentData = coreFrame$data[
     which(coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
 
-  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
+  # In case no phases are included?
+  if (!('p' %in% names(coreFrame$data))) {
+    coreFrame$aes['p'] = 'p'
+    currentData[, 'p'] = '0'
+  }
 
+  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
     currentData.slice <- currentData[
       which(currentData[, as.character(coreFrame$aes['p'])] == p),]
 
@@ -243,6 +248,12 @@ draw_points <- function(coreFrame, currentLayer, facetName) {
   if (is.na(facetName))  currentData   = coreFrame$data
   else           currentData   = coreFrame$data[which(
     coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
+
+  # In case no phases are included?
+  if (!('p' %in% names(coreFrame$data))) {
+    coreFrame$aes['p'] = 'p'
+    currentData[, 'p'] = '0'
+  }
 
   localAesthetics = list(
     "x" = as.character(coreFrame$aes['x']),
