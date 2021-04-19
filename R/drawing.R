@@ -198,7 +198,7 @@ draw_lines <- function(coreFrame, currentLayer, facetName) {
   }
 }
 
-#' draw_cumsum
+#' draw_cumsum_lines
 #'
 #' @param coreFrame fxl object
 #' @param currentLayer layer to be drawn
@@ -207,8 +207,6 @@ draw_lines <- function(coreFrame, currentLayer, facetName) {
 #' @return
 #' @export
 draw_cumsum_lines <- function(coreFrame, currentLayer, facetName) {
-
-  print('in cum sum')
 
   if (is.na(facetName)) currentData = coreFrame$data
   else currentData = coreFrame$data[
@@ -236,10 +234,9 @@ draw_cumsum_lines <- function(coreFrame, currentLayer, facetName) {
       )
     }
 
-    cumsumy <- currentData.slice[, as.character(localAesthetics['y'])]
-    cumsumy[!is.na(currentData.slice[, as.character(localAesthetics['y'])])] <- cumsum(
-      cumsumy[!is.na(currentData.slice[, as.character(localAesthetics['y'])])]
-    )
+    cumsumy = currentData.slice[, as.character(localAesthetics['y'])]
+    cumsumy[is.na(cumsumy)] = 0
+    cumsumy = cumsum(cumsumy)
 
     lines(
       currentData.slice[, as.character(localAesthetics['x'])],
@@ -247,6 +244,79 @@ draw_cumsum_lines <- function(coreFrame, currentLayer, facetName) {
       lty   = currentLayer$lty,
       col   = currentLayer$color,
       lwd   = currentLayer$size
+    )
+  }
+}
+
+#' draw_cumsum_points
+#'
+#' @param coreFrame fxl object
+#' @param currentLayer layer to be drawn
+#' @param facetName name of facet
+#'
+#' @return
+#' @export
+draw_cumsum_points <- function(coreFrame, currentLayer, facetName) {
+  print("draw_cumsum_points")
+
+  if (is.na(facetName))  currentData   = coreFrame$data
+  else           currentData   = coreFrame$data[which(
+    coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
+
+  # In case no phases are included?
+  if (!('p' %in% names(coreFrame$data))) {
+    coreFrame$aes['p'] = 'p'
+    currentData[, 'p'] = '0'
+  }
+
+  localAesthetics = list(
+    "x" = as.character(coreFrame$aes['x']),
+    "y" = as.character(coreFrame$aes['y'])
+  )
+
+  if (!is.na(currentLayer['aesthetics'])) {
+    localAesthetics = list(
+      "x" = as.character(currentLayer$aesthetics['x']),
+      "y" = as.character(currentLayer$aesthetics['y'])
+    )
+  }
+
+  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
+
+    currentData.slice <- currentData[which(currentData[, as.character(coreFrame$aes['p'])] == p),]
+
+    localAesthetics = list(
+      "x"   = as.character(coreFrame$aes['x']),
+      "y"   = as.character(coreFrame$aes['y'])
+    )
+
+    if (!is.na(currentLayer['aesthetics'])) {
+      localAesthetics = list(
+        "x" = as.character(currentLayer$aesthetics['x']),
+        "y" = as.character(currentLayer$aesthetics['y'])
+      )
+    }
+
+    pch = 1
+
+    if (is.list(currentLayer$pch))  pch = currentLayer$pch[[p]]
+    else                            pch = currentLayer$pch
+
+    fill = 'black'
+
+    if (is.list(currentLayer$fill)) fill = currentLayer$fill[[p]]
+    else                            fill = currentLayer$fill
+
+    cumsumy = currentData.slice[, as.character(localAesthetics['y'])]
+    cumsumy[is.na(cumsumy)] = 0
+    cumsumy = cumsum(cumsumy)
+
+    points(
+      currentData.slice[, as.character(localAesthetics['x'])],
+      cumsumy,
+      pch = pch,
+      cex = currentLayer$cex,
+      bg  = fill
     )
   }
 }
