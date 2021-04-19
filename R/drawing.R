@@ -167,7 +167,7 @@ draw_lines <- function(coreFrame, currentLayer, facetName) {
     which(coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
 
   # In case no phases are included?
-  if (!('p' %in% names(coreFrame$data))) {
+  if (!('p' %in% names(coreFrame$aes))) {
     coreFrame$aes['p'] = 'p'
     currentData[, 'p'] = '0'
   }
@@ -213,7 +213,7 @@ draw_cumsum_lines <- function(coreFrame, currentLayer, facetName) {
     which(coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
 
   # In case no phases are included?
-  if (!('p' %in% names(coreFrame$data))) {
+  if (!('p' %in% names(coreFrame$aes))) {
     coreFrame$aes['p'] = 'p'
     currentData[, 'p'] = '0'
   }
@@ -264,7 +264,7 @@ draw_cumsum_points <- function(coreFrame, currentLayer, facetName) {
     coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
 
   # In case no phases are included?
-  if (!('p' %in% names(coreFrame$data))) {
+  if (!('p' %in% names(coreFrame$aes))) {
     coreFrame$aes['p'] = 'p'
     currentData[, 'p'] = '0'
   }
@@ -373,7 +373,7 @@ draw_points <- function(coreFrame, currentLayer, facetName) {
     coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
 
   # In case no phases are included?
-  if (!('p' %in% names(coreFrame$data))) {
+  if (!('p' %in% names(coreFrame$aes))) {
     coreFrame$aes['p'] = 'p'
     currentData[, 'p'] = '0'
   }
