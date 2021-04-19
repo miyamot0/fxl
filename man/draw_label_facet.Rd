@@ -4,14 +4,14 @@
 \alias{draw_label_facet}
 \title{draw_label_facet}
 \usage{
-draw_label_facet(coreFrame, currentLayer, n)
+draw_label_facet(coreFrame, currentLayer, facetName)
 }
 \arguments{
 \item{coreFrame}{fxl object}
 
 \item{currentLayer}{layer to be drawn}
 
-\item{n}{name of facet}
+\item{facetName}{name of facet}
 }
 \value{
 

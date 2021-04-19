@@ -4,14 +4,14 @@
 \alias{draw_points}
 \title{draw_points}
 \usage{
-draw_points(coreFrame, currentLayer, n)
+draw_points(coreFrame, currentLayer, facetName)
 }
 \arguments{
 \item{coreFrame}{fxl object}
 
 \item{currentLayer}{layer to be drawn}
 
-\item{n}{name of facet}
+\item{facetName}{name of facet}
 }
 \value{
 

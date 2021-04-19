@@ -136,6 +136,38 @@ scr_brackets <- function(coreFrame, brackets = NULL, facet = NULL,
   coreFrame
 }
 
+#' scr_cumsum
+#'
+#' Draw lines, but as a cumulative and rolling sum
+#'
+#' @param coreFrame fxl object
+#' @param lty from base
+#' @param color from base
+#' @param size from base
+#' @param mapping from base
+#'
+#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
+#'
+#' @return
+#' @export
+scr_cumsum_lines <- function(coreFrame, lty = 1, color = 'black',
+                       size = 1, mapping) {
+
+  newlayer = list()
+  newlayer[[ "type"       ]] <- "cum_sum_lines"
+  newlayer[[ "lty"        ]] <- lty
+  newlayer[[ "color"      ]] <- color
+  newlayer[[ "size"       ]] <- size
+  newlayer[[ "aesthetics" ]] <- NA
+
+  if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)
+
+  coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
+
+  coreFrame
+
+}
+
 #' scr_lines
 #'
 #' @param coreFrame fxl object
@@ -640,14 +672,15 @@ print.fxl <- function(coreFrame, ...) {
 
         currentLayer = coreFrame$layers[[i]]
 
-        if (currentLayer$type == "point")       draw_points(coreFrame,      currentLayer, currentFacet)
-        if (currentLayer$type == "line")        draw_lines(coreFrame,       currentLayer, currentFacet)
-        if (currentLayer$type == "phase_label") draw_label_phase(coreFrame, currentLayer, currentFacet)
-        if (currentLayer$type == "facet_label") draw_label_facet(coreFrame, currentLayer, currentFacet)
-        if (currentLayer$type == "phase_lines") draw_scr_plines(coreFrame,  currentLayer, currentFacet)
-        if (currentLayer$type == "arrows")      draw_arrows(coreFrame,      currentLayer, currentFacet)
-        if (currentLayer$type == "brackets")    draw_brackets(coreFrame,    currentLayer, currentFacet)
-        if (currentLayer$type == "guide_line")  draw_guide_line(coreFrame,  currentLayer, currentFacet)
+        if (currentLayer$type == "arrows")        draw_arrows(       coreFrame,  currentLayer,  currentFacet)
+        if (currentLayer$type == "brackets")      draw_brackets(     coreFrame,  currentLayer,  currentFacet)
+        if (currentLayer$type == "cum_sum_lines") draw_cumsum_lines( coreFrame,  currentLayer,  currentFacet)
+        if (currentLayer$type == "facet_label")   draw_label_facet(  coreFrame,  currentLayer,  currentFacet)
+        if (currentLayer$type == "guide_line")    draw_guide_line(   coreFrame,  currentLayer,  currentFacet)
+        if (currentLayer$type == "line")          draw_lines(        coreFrame,  currentLayer,  currentFacet)
+        if (currentLayer$type == "phase_label")   draw_label_phase(  coreFrame,  currentLayer,  currentFacet)
+        if (currentLayer$type == "phase_lines")   draw_scr_plines(   coreFrame,  currentLayer,  currentFacet)
+        if (currentLayer$type == "point")         draw_points(       coreFrame,  currentLayer,  currentFacet)
 
         if (currentLayer$type == "mbd_phase_lines") {
 

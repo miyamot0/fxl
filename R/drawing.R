@@ -198,6 +198,59 @@ draw_lines <- function(coreFrame, currentLayer, facetName) {
   }
 }
 
+#' draw_cumsum
+#'
+#' @param coreFrame fxl object
+#' @param currentLayer layer to be drawn
+#' @param facetName name of facet
+#'
+#' @return
+#' @export
+draw_cumsum_lines <- function(coreFrame, currentLayer, facetName) {
+
+  print('in cum sum')
+
+  if (is.na(facetName)) currentData = coreFrame$data
+  else currentData = coreFrame$data[
+    which(coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
+
+  # In case no phases are included?
+  if (!('p' %in% names(coreFrame$data))) {
+    coreFrame$aes['p'] = 'p'
+    currentData[, 'p'] = '0'
+  }
+
+  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
+    currentData.slice <- currentData[
+      which(currentData[, as.character(coreFrame$aes['p'])] == p),]
+
+    localAesthetics = list(
+      "x"   = as.character(coreFrame$aes['x']),
+      "y"   = as.character(coreFrame$aes['y'])
+    )
+
+    if (!is.na(currentLayer['aesthetics'])) {
+      localAesthetics = list(
+        "x" = as.character(currentLayer$aesthetics['x']),
+        "y" = as.character(currentLayer$aesthetics['y'])
+      )
+    }
+
+    cumsumy <- currentData.slice[, as.character(localAesthetics['y'])]
+    cumsumy[!is.na(currentData.slice[, as.character(localAesthetics['y'])])] <- cumsum(
+      cumsumy[!is.na(currentData.slice[, as.character(localAesthetics['y'])])]
+    )
+
+    lines(
+      currentData.slice[, as.character(localAesthetics['x'])],
+      cumsumy,
+      lty   = currentLayer$lty,
+      col   = currentLayer$color,
+      lwd   = currentLayer$size
+    )
+  }
+}
+
 #' draw_label_phase
 #'
 #' drawing function

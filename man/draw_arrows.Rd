@@ -4,7 +4,7 @@
 \alias{draw_arrows}
 \title{draw_arrows}
 \usage{
-draw_arrows(coreFrame, currentLayer, n)
+draw_arrows(coreFrame, currentLayer, facetName)
 }
 \arguments{
 \item{coreFrame}{fxl object}

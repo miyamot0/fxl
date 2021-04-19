@@ -4,14 +4,14 @@
 \alias{draw_lines}
 \title{draw_lines}
 \usage{
-draw_lines(coreFrame, currentLayer, n)
+draw_lines(coreFrame, currentLayer, facetName)
 }
 \arguments{
 \item{coreFrame}{fxl object}
 
 \item{currentLayer}{layer to be drawn}
 
-\item{n}{name of facet}
+\item{facetName}{name of facet}
 }
 \value{
 

@@ -4,14 +4,14 @@
 \alias{draw_guide_line}
 \title{draw_guide_line}
 \usage{
-draw_guide_line(coreFrame, currentLayer, currentFacet)
+draw_guide_line(coreFrame, currentLayer, facetName)
 }
 \arguments{
 \item{coreFrame}{fxl object}
 
 \item{currentLayer}{layer to be drawn}
 
-\item{n}{name of facet}
+\item{facetName}{name of facet}
 }
 \value{
 

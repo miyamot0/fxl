@@ -4,7 +4,7 @@
 \alias{scr_guide_line}
 \title{scr_guide_line}
 \usage{
-scr_guide_line(coreFrame, coords, facet = NA, color = "red", lty = 3, lwd = 1)
+scr_guide_line(coreFrame, coords, facet = NA, color = "red", lty = 1, lwd = 1)
 }
 \arguments{
 \item{coreFrame}{fxl object}
