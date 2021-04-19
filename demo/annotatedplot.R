@@ -23,40 +23,40 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                                         facet = Function),
         mai = c(0.375, 0.375, 0.1,  0),
         omi = c(0.25,  0.25,  0.25, 0.05)) %>%
-  scr_yoverride(c(0, 3)) %>%
-  scr_xoverride(c(0, 100),
+  scr_yoverride(c(0, 3)) %>%                                       # override global y axes
+  scr_xoverride(c(0, 100),                                         # override global x axes (specify tick interval)
                 xdelta = 10) %>%
-  scr_lines(size = 1) %>%
-  scr_lines(mapping = list(x = Session,
-                           y = AFCR),
-            size = 1,
-            lty  = 2) %>%
+  scr_lines(size = 1) %>%                                          # draw main x/y series (lines)
+  scr_lines(mapping = list(x = Session,                            # draw supplemental x/y series (lines)
+                           y = AFCR),                                
+            size = 1,                                              # override size
+            lty  = 2) %>%                                          # override line type
   scr_lines(mapping = list(x = Session,
                            y = EFCR),
             size = 1,
             lty  = 3) %>%
-  scr_points(fill = 'white',
+  scr_points(fill = 'white',                                       # draw main x/y series (points)
              pch  = 21) %>%
-  scr_points(mapping = list(x = Session,
+  scr_points(mapping = list(x = Session,                           # draw supplemental x/y series
                             y = AFCR),
              cex  = 1,
-             pch  = 20,
-             fill = 'black') %>%
+             pch  = 20,                                            # override marker type
+             fill = 'black') %>%                                   # override color fill
   scr_points(mapping = list(x = Session,
                             y = EFCR),
              cex  = 0.75,
              pch  = 24,
              fill = 'black') %>%
-  scr_plines_mbd(lines = list(
-    "A" = list(
+  scr_plines_mbd(lines = list(                                     # specify MBD phase lines
+    "A" = list(                                                    # single line, coming first panel into second
       "Attention" = list(x1 = 13.5, y1 = 3.15,
                          x2 = 13.5, y2 = 0),
       "Demand"    = list(x1 = 20,   y1 = 3,
                          x2 = 20,   y2 = 0)
     )
   )) %>%
-  scr_plines(
-    lty = 1,
+  scr_plines(                                                      # add in simple phase lines
+    lty = 1,                                                       # solid lines globally (change of contingencies)
     lines = list(
     "Attention" = list(
       "A" = list(
@@ -70,7 +70,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
       "C" = list(
         x1 = 60.5, y1 = 3,
         x2 = 60.5, y2 = 0,
-        lty = 3
+        lty = 3                                                    # override linetype, dashed lines for non-contingency changes 
       ),
       "D" = list(
         x1 = 76.5, y1 = 3,
@@ -103,7 +103,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
       )
     )
   )) %>%
-    scr_label_facet(cex = 1.25,
+    scr_label_facet(cex = 1.25,                                    # draw labels for each facet/panel
                     adj = 1,
                     labels = list(
                       "Attention" = list(x = 100,
@@ -111,7 +111,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                       "Demand"    = list(x = 100,
                                          y = 3.15)
                     )) %>%
-    scr_label_phase(facet = "Attention",
+    scr_label_phase(facet = "Attention",                           # Draw labels for phase (specific to a facet/panel)
                     cex = 0.6,
                     adj = 0.5,
                     labels = list(
@@ -133,7 +133,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                       "Add FCR\nOptions" = list(x = 31,
                                                 y = 2.5)
                     )) %>%
-  scr_label_phase(facet = "Attention",
+  scr_label_phase(facet = "Attention",                             # separate call for convenience (goes with bracket)
                   cex = 0.6,
                   adj = 0.5,
                   labels = list(
@@ -165,7 +165,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                         x = 46,
                         y = 2)
                     )) %>%
-    scr_label_phase(facet = "Demand",
+    scr_label_phase(facet = "Demand",                              # separate call for convenience (goes with bracket)
                     cex = 0.6,
                     adj = 0.5,
                     labels = list(
@@ -175,7 +175,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                                               y = 1.375),
                       "6" = list(x = 71.5,
                                               y = 1.375))) %>%
-    scr_arrows(facet = "Attention",
+    scr_arrows(facet = "Attention",                                # draw arrows to go with labels
                length = 0.1,
                arrows = list(
                  "A" = list(
@@ -219,7 +219,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                  y1 = 0.75
                )
              )) %>%
-  scr_brackets(facet = "Attention",
+  scr_brackets(facet = "Attention",                                # draw brackets to go with schedule thinning
                length = 0.1,
                brackets = list(
                  "A" = list(
@@ -259,7 +259,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                    lty = 3
                  )
                )) %>%
-  scr_guide_line(col    = 'red',
+  scr_guide_line(col    = 'red',                                  # draw guide line (90% reduction target here)
                  lty    = 3,
                  facet  = "Attention",
                  coords = list(
