@@ -715,10 +715,11 @@ print.fxl <- function(coreFrame, ...) {
                       by = coreFrame$dims[['ydelta']]))
 
     if (!is.null(coreFrame[["legendpars"]])) {
-      if (lookup & coreFrame$legendpars[["panel"]] == currentFacet)
+      if (lookup & coreFrame$legendpars[["panel"]] == currentFacet) {
         draw_legend(coreFrame)
-      else
+      } else if (lookup & is.na(coreFrame$legendpars[["panel"]])) {
         draw_legend(coreFrame)
+      }
     }
 
     if (length(coreFrame[["layers"]]) > 0) {
