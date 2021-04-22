@@ -34,8 +34,9 @@ library(dplyr)
 #' @return
 #' @export
 scr_plot <- function(data, aesthetics,
-                     mai = c(0.375, 0.375, 0.25, 0.25),
-                     omi = c(0.25, 0.25, 0.25, 0.25)) {
+                     mai  = c(0.375, 0.375, 0.25, 0.25),
+                     omi  = c(0.25, 0.25, 0.25, 0.25),
+                     ncol = 1) {
 
   coreFrame = list()                             # Primary plotting object
   coreFrame[[ "layers" ]] <- list()              # Layers for drawing
@@ -48,6 +49,7 @@ scr_plot <- function(data, aesthetics,
     global.min.y = min(data[[as.character(coreFrame$aes['y'])]], na.rm = TRUE),
     mai          = mai,
     omi          = omi,
+    ncol         = ncol,
     xdelta       = 1,                            # General defaults, for now
     ydelta       = 1)
 
@@ -620,16 +622,20 @@ print.fxl <- function(coreFrame, ...) {
 
   facets     = NULL
   n.facets   = 1
+  n.cols     = 1
   lookup     = FALSE
   reqDraw    = FALSE
 
   if ("facet" %in% names(coreFrame$aes)) {
-    facets   = unique(coreFrame$data[[as.character(coreFrame$aes['facet'])]])
-    n.facets = length(facets)
-    lookup   = TRUE
+    facets         = unique(coreFrame$data[[as.character(coreFrame$aes['facet'])]])
+    n.facets       = length(facets)
+    n.facets.draw  = n.facets
+    n.cols         = coreFrame[["dims"]][["ncol"]]
+    n.facets.draw  = as.integer(n.facets / n.cols)
+    lookup         = TRUE
   }
 
-  par(mfrow  = c(n.facets, 1),                 # Dynamic facet numbers, always a single column?
+  par(mfrow  = c(n.facets.draw, n.cols),                 # Dynamic facet numbers/cols
       family = "serif",
       omi    = coreFrame[["dims"]][["omi"]],
       mai    = coreFrame[["dims"]][["mai"]],
