@@ -429,11 +429,13 @@ scr_xlabel <- function(coreFrame, var) {
 #'
 #' @return
 #' @export
-scr_xoverride <- function(coreFrame, var, xdelta = 1) {
+scr_xoverride <- function(coreFrame, var, xdelta = 1, xticks = NULL, xdraws = NULL) {
 
-  coreFrame$dims[[ "global.min.x" ]] = {{ var[1] }}
-  coreFrame$dims[[ "global.max.x" ]] = {{ var[2] }}
+  coreFrame$dims[[ "global.min.x" ]] = {{var[1]}}
+  coreFrame$dims[[ "global.max.x" ]] = {{var[2]}}
   coreFrame$dims[[ "xdelta"       ]] = xdelta
+  coreFrame$dims[[ "xticks"       ]] = xticks
+  coreFrame$dims[[ "xdraws"       ]] = xdraws
 
   coreFrame
 }
@@ -660,6 +662,22 @@ print.fxl <- function(coreFrame, ...) {
     if (!is.null(coreFrame$dims[["global.max.x"]]))
       coreFrame$dims[["max.local.x"]] = coreFrame$dims[["global.max.x"]]
 
+    # X axes
+
+    x.axis.draw  = (facetIndex == n.facets)
+
+    if (!is.null(coreFrame$dims[["xdraws"]])) {
+      x.axis.draw = currentFacet %in% coreFrame$dims[["xdraws"]]
+    }
+
+    x.axis.ticks = seq(coreFrame$dims[["global.min.x"]],
+                       coreFrame$dims[["global.max.x"]],
+                       by = coreFrame$dims[['xdelta']])
+
+    if (!is.null(coreFrame$dims[["xticks"]])) {
+      x.axis.ticks = as.integer(coreFrame$dims[["xticks"]])
+    }
+
     # Y overrides
     if (!is.null(coreFrame$dims[["local.dims"]])) {
       coreFrame$dims[["min.local.y"]] = coreFrame$dims[["local.dims"]][[facetIndex]]$y0
@@ -686,10 +704,8 @@ print.fxl <- function(coreFrame, ...) {
     box(bty = "l")
 
     axis(1,
-         labels = (facetIndex == n.facets),
-         at     = seq(coreFrame$dims[["global.min.x"]],
-                      coreFrame$dims[["global.max.x"]],
-                      by = coreFrame$dims[['xdelta']]))
+         labels = x.axis.draw,
+         at     = x.axis.ticks)
 
     axis(2,
          labels = TRUE,
