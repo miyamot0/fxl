@@ -809,7 +809,7 @@ print.fxl <- function(coreFrame, ...) {
         pts <- plotTops[[n.phaseLines[pl]]][[plfacet]]
         pbs <- plotBots[[n.phaseLines[pl]]][[plfacet]]
 
-        tmp.point.top.pre.dev <- cnvrt.coords(pts.pre$dev, input = 'dev')
+        #tmp.point.top.pre.dev <- cnvrt.coords(pts.pre$dev, input = 'dev')
         tmp.point.bot.pre.dev <- cnvrt.coords(pbs.pre$dev, input = 'dev')
 
         tmp.point.top.dev <- cnvrt.coords(pts$dev, input = 'dev')
