@@ -257,7 +257,6 @@ draw_cumsum_lines <- function(coreFrame, currentLayer, facetName) {
 #' @return
 #' @export
 draw_cumsum_points <- function(coreFrame, currentLayer, facetName) {
-  print("draw_cumsum_points")
 
   if (is.na(facetName))  currentData   = coreFrame$data
   else           currentData   = coreFrame$data[which(

@@ -641,8 +641,8 @@ print.fxl <- function(coreFrame, ...) {
 
     # Defaults, per data
     currentFacet                      = NA
-    coreFrame$dims[["min.local.x"]]   = min(data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE)
-    coreFrame$dims[["max.local.x"]]   = max(data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE)
+    coreFrame$dims[["min.local.x"]]   = min(coreFrame$data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE)
+    coreFrame$dims[["max.local.x"]]   = max(coreFrame$data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE)
 
     # Facet override
     if (lookup) currentFacet          = facets[facetIndex]
@@ -660,10 +660,10 @@ print.fxl <- function(coreFrame, ...) {
       coreFrame$dims[["max.local.y"]] = coreFrame$dims[["local.dims"]][[facetIndex]]$y1
     } else {
       coreFrame$dims[["min.local.y"]] = ifelse(is.null(coreFrame$dims[["global.min.y"]]),
-                                               min(data[[as.character(coreFrame$aes['y'])]]),
+                                               min(coreFrame$data[[as.character(coreFrame$aes['y'])]]),
                                                coreFrame$dims[["global.min.y"]])
       coreFrame$dims[["max.local.y"]] = ifelse(is.null(coreFrame$dims[["global.min.y"]]),
-                                               max(data[[as.character(coreFrame$aes['y'])]]),
+                                               max(coreFrame$data[[as.character(coreFrame$aes['y'])]]),
                                                coreFrame$dims[["global.max.y"]])
     }
 
