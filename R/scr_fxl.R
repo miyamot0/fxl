@@ -803,7 +803,7 @@ print.fxl <- function(coreFrame, ...) {
 
       for (plfacet in 2:n.facets) {
 
-        pts.pre <- plotTops[[n.phaseLines[pl]]][[plfacet - 1]]
+        #pts.pre <- plotTops[[n.phaseLines[pl]]][[plfacet - 1]]
         pbs.pre <- plotBots[[n.phaseLines[pl]]][[plfacet - 1]]
 
         pts <- plotTops[[n.phaseLines[pl]]][[plfacet]]
