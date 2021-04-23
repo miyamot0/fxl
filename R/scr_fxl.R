@@ -625,15 +625,16 @@ scr_save <- function(coreFrame, units = "in",
 print.fxl <- function(coreFrame, ...) {
 
   # Holders for phase coords
-  plotTops   = list()
-  plotBots   = list()
-  indexNum   = list()
+  plotTops      = list()
+  plotBots      = list()
+  indexNum      = list()
 
-  facets     = NULL
-  n.facets   = 1
-  n.cols     = 1
-  lookup     = FALSE
-  reqDraw    = FALSE
+  facets        = NULL
+  n.facets      = 1
+  n.facets.draw = n.facets
+  n.cols        = 1
+  lookup        = FALSE
+  reqDraw       = FALSE
 
   if ("facet" %in% names(coreFrame$aes)) {
     facets         = unique(coreFrame$data[[as.character(coreFrame$aes['facet'])]])
