@@ -56,7 +56,7 @@ The respective figure is drawn from a single-subject evaluation conducted by [Gi
 
 The respective figure is drawn from a single-subject evaluation conducted by [Lozy et al. (2020)](https://doi.org/10.1002/jaba.677). These data were previously illustrated using spreadsheet software and are now drawn in *fxl*.
 
-[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/concurrentplot.R)
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/cumulativeplot.R)
 
 ![Lozy et al 2020](https://github.com/miyamot0/fxl/blob/main/man/figures/cumulativefigure.svg?raw=true)
 
