@@ -4,7 +4,7 @@
 \alias{scr_xoverride}
 \title{xoverride}
 \usage{
-scr_xoverride(coreFrame, var, xdelta = 1)
+scr_xoverride(coreFrame, var, xdelta = 1, xticks = NULL, xdraws = NULL)
 }
 \arguments{
 \item{coreFrame}{fxl object}
@@ -12,6 +12,10 @@ scr_xoverride(coreFrame, var, xdelta = 1)
 \item{var}{string for title}
 
 \item{xdelta}{skips between ticks (can override)}
+
+\item{xticks}{specify ticks, vector or named list}
+
+\item{xdraws}{which x axes to draw}
 }
 \value{
 

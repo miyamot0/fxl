@@ -4,7 +4,7 @@
 \alias{scr_yoverride}
 \title{yoverride}
 \usage{
-scr_yoverride(coreFrame, var, ydelta = 1)
+scr_yoverride(coreFrame, var, ydelta = 1, ydraws = NULL)
 }
 \arguments{
 \item{coreFrame}{fxl object}
@@ -12,6 +12,8 @@ scr_yoverride(coreFrame, var, ydelta = 1)
 \item{var}{from base}
 
 \item{ydelta}{skips between ticks (can override)}
+
+\item{ydraws}{specify axes manual}
 }
 \value{
 

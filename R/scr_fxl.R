@@ -417,6 +417,7 @@ scr_xlabel <- function(coreFrame, var) {
   coreFrame
 }
 
+
 #' xoverride
 #'
 #' Override the x axis limits
@@ -424,12 +425,15 @@ scr_xlabel <- function(coreFrame, var) {
 #' @param coreFrame fxl object
 #' @param var string for title
 #' @param xdelta skips between ticks (can override)
+#' @param xticks specify ticks, vector or named list
+#' @param xdraws which x axes to draw
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-scr_xoverride <- function(coreFrame, var, xdelta = 1, xticks = NULL, xdraws = NULL) {
+scr_xoverride <- function(coreFrame, var, xdelta = 1,
+                          xticks = NULL,  xdraws = NULL) {
 
   coreFrame$dims[[ "global.min.x" ]] = {{var[1]}}
   coreFrame$dims[[ "global.max.x" ]] = {{var[2]}}
@@ -458,6 +462,7 @@ scr_ylabel <- function(coreFrame, var) {
   coreFrame
 }
 
+
 #' yoverride
 #'
 #' Override the y axis (or axes) limits
@@ -465,24 +470,26 @@ scr_ylabel <- function(coreFrame, var) {
 #' @param coreFrame fxl object
 #' @param var from base
 #' @param ydelta skips between ticks (can override)
+#' @param ydraws specify axes manual
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-scr_yoverride <- function(coreFrame, var, ydelta = 1) {
+scr_yoverride <- function(coreFrame, var, ydelta = 1, ydraws = NULL) {
 
   # Check if a vector and not multi-facet list
   if (is.vector(var) & !is.list(var)) {
-    coreFrame$dims[[ "global.min.y" ]] = {{ var[1] }}
-    coreFrame$dims[[ "global.max.y" ]] = {{ var[2] }}
+    coreFrame$dims[[ "global.min.y" ]] = {{var[1]}}
+    coreFrame$dims[[ "global.max.y" ]] = {{var[2]}}
 
   } else {
     coreFrame$dims[[ "local.dims"   ]] = var
 
   }
 
-  coreFrame$dims[["ydelta"]] = ydelta
+  coreFrame$dims[[ "ydelta" ]] = ydelta
+  coreFrame$dims[[ "ydraws" ]] = ydraws
 
   coreFrame
 }
@@ -674,14 +681,54 @@ print.fxl <- function(coreFrame, ...) {
                        coreFrame$dims[["global.max.x"]],
                        by = coreFrame$dims[['xdelta']])
 
-    if (!is.null(coreFrame$dims[["xticks"]])) {
+    if (!is.null(coreFrame$dims[["xticks"]]) & !is.list(coreFrame$dims[["xticks"]])) {
       x.axis.ticks = as.integer(coreFrame$dims[["xticks"]])
     }
 
-    # Y overrides
+    if (!is.null(coreFrame$dims[["xticks"]]) & is.list(coreFrame$dims[["xticks"]])) {
+      x.axis.ticks = coreFrame$dims[["xticks"]][[currentFacet]]
+
+      coreFrame$dims[["min.local.x"]] = min(as.numeric(coreFrame$dims[["xticks"]][[currentFacet]]))
+      coreFrame$dims[["max.local.x"]] = max(as.numeric(coreFrame$dims[["xticks"]][[currentFacet]]))
+    }
+
+    # Y axes
+
+    y.axis.draw  = TRUE
+
+    if (!is.null(coreFrame$dims[["ydraws"]])) {
+      y.axis.draw = currentFacet %in% coreFrame$dims[["ydraws"]]
+    }
+
+    y.axis.ticks = seq(coreFrame$dims[["global.min.y"]],
+                       coreFrame$dims[["global.max.y"]],
+                       by = coreFrame$dims[['ydelta']])
+
+    # if (!is.null(coreFrame$dims[["yticks"]]) & !is.list(coreFrame$dims[["yticks"]])) {
+    #   y.axis.ticks = as.integer(coreFrame$dims[["yticks"]])
+    #
+    #   coreFrame$dims[["min.local.y"]] = min(as.numeric(coreFrame$dims[["yticks"]]))
+    #   coreFrame$dims[["min.local.y"]] = max(as.numeric(coreFrame$dims[["yticks"]]))
+    #
+    # } else if (!is.null(coreFrame$dims[["yticks"]]) & is.list(coreFrame$dims[["yticks"]])) {
+    #   y.axis.ticks = coreFrame$dims[["yticks"]][[currentFacet]]
+    #
+    #   coreFrame$dims[["min.local.y"]] = min(as.numeric(coreFrame$dims[["yticks"]][[currentFacet]]))
+    #   coreFrame$dims[["min.local.y"]] = max(as.numeric(coreFrame$dims[["yticks"]][[currentFacet]]))
+    #
+    # } else
+
     if (!is.null(coreFrame$dims[["local.dims"]])) {
-      coreFrame$dims[["min.local.y"]] = coreFrame$dims[["local.dims"]][[facetIndex]]$y0
-      coreFrame$dims[["max.local.y"]] = coreFrame$dims[["local.dims"]][[facetIndex]]$y1
+      coreFrame$dims[["min.local.y"]] = coreFrame$dims[["local.dims"]][[currentFacet]]$y0
+      coreFrame$dims[["max.local.y"]] = coreFrame$dims[["local.dims"]][[currentFacet]]$y1
+
+      y.axis.ticks = seq(coreFrame$dims[["min.local.y"]],
+                         coreFrame$dims[["max.local.y"]],
+                         by = coreFrame$dims[['ydelta']])
+
+      if ("yticks" %in% names(coreFrame$dims[["local.dims"]][[currentFacet]]))
+        y.axis.ticks = coreFrame$dims[["local.dims"]][[currentFacet]]$yticks
+
     } else {
       coreFrame$dims[["min.local.y"]] = ifelse(is.null(coreFrame$dims[["global.min.y"]]),
                                                min(coreFrame$data[[as.character(coreFrame$aes['y'])]]),
@@ -689,6 +736,10 @@ print.fxl <- function(coreFrame, ...) {
       coreFrame$dims[["max.local.y"]] = ifelse(is.null(coreFrame$dims[["global.min.y"]]),
                                                max(coreFrame$data[[as.character(coreFrame$aes['y'])]]),
                                                coreFrame$dims[["global.max.y"]])
+
+      y.axis.ticks = seq(coreFrame$dims[["min.local.y"]],
+                         coreFrame$dims[["max.local.y"]],
+                         by = coreFrame$dims[['ydelta']])
     }
 
     plot(NULL,
@@ -708,11 +759,9 @@ print.fxl <- function(coreFrame, ...) {
          at     = x.axis.ticks)
 
     axis(2,
-         labels = TRUE,
+         labels = y.axis.draw,
          las    = 1,
-         at     = seq(coreFrame$dims[["min.local.y"]],
-                      coreFrame$dims[["max.local.y"]],
-                      by = coreFrame$dims[['ydelta']]))
+         at     = y.axis.ticks)
 
     if (!is.null(coreFrame[["legendpars"]])) {
       if (lookup & coreFrame$legendpars[["panel"]] == currentFacet) {

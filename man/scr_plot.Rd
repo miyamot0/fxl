@@ -8,7 +8,8 @@ scr_plot(
   data,
   aesthetics,
   mai = c(0.375, 0.375, 0.25, 0.25),
-  omi = c(0.25, 0.25, 0.25, 0.25)
+  omi = c(0.25, 0.25, 0.25, 0.25),
+  ncol = 1
 )
 }
 \arguments{
