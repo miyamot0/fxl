@@ -1,8 +1,8 @@
 # Shawn Gilroy, 2021 GPLv2+
 #
-# demo/faplot.R
+# demo/faplotintegrity.R
 #
-# This file illustrates how to construct a basic, no frills visual of a functional analysis but with integrity data mapped alongside
+# This file illustrates how to construct a basic, no frills visual of a functional analysis but with integrity data mapped alongside the rates of target behavior.
 #
 
 library(dplyr) # included for infix logic
