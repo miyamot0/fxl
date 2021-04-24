@@ -108,6 +108,83 @@ draw_brackets <- function(coreFrame, currentLayer, facetName) {
   }
 }
 
+#' draw_bar_support
+#'
+#' Draw bars, but on a secondary axis
+#'
+#' @param coreFrame fxl object
+#' @param currentLayer layer to be drawn
+#' @param facetName name of facet
+#'
+#' @return
+#' @export
+draw_bar_support <- function(coreFrame,  currentLayer, facetName) {
+
+  if (is.na(facetName))  currentData   = coreFrame$data
+  else                   currentData   = coreFrame$data[which(
+    coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
+
+  # In case no phases are included?
+  if (!('p' %in% names(coreFrame$aes))) {
+    coreFrame$aes['p'] = 'p'
+    currentData[, 'p'] = '0'
+  }
+
+  localAesthetics = list(
+    "x" = as.character(coreFrame$aes['x']),
+    "y" = as.character(coreFrame$aes['y'])
+  )
+
+  if (!is.na(currentLayer['aesthetics'])) {
+    localAesthetics = list(
+      "x" = as.character(currentLayer$aesthetics['x']),
+      "y" = as.character(currentLayer$aesthetics['y'])
+    )
+  }
+
+  print('in bar support')
+
+  print(coreFrame$data)
+
+  # Add on to "new" plot
+  par(new = TRUE,
+      xaxs   = "r",
+      yaxs   = "r",
+      xpd    = NA)
+
+  plot(1,
+       axes = FALSE,
+       xlim = c(coreFrame$dims[["min.local.x"]],
+                coreFrame$dims[["max.local.x"]]),
+       ylim = c(0,100),
+       xlab = "",
+       ylab = "",
+       frame.plot = FALSE,
+       las = 1,
+       xaxt = 'n',
+       yaxt = 'n')
+
+  box(bty = "U")
+
+  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
+
+    currentData.slice <- currentData[which(currentData[, as.character(coreFrame$aes['p'])] == p),]
+
+    print(currentData.slice)
+
+    points(
+      currentData.slice[, as.character(localAesthetics['x'])],
+      currentData.slice[, as.character(localAesthetics['y'])],
+      pch = 18,
+      bg  = currentLayer$color
+    )
+  }
+
+  axis(side = 4,
+       at = pretty(range(c(0,currentData.slice[, as.character(localAesthetics['y'])]))))
+  mtext("Percentage", side = 4, outer = TRUE)
+}
+
 #' draw_guide_line
 #'
 #' @param coreFrame fxl object

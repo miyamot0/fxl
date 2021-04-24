@@ -138,6 +138,34 @@ scr_brackets <- function(coreFrame, brackets = NULL, facet = NULL,
   coreFrame
 }
 
+#' scr_bar_support
+#'
+#' Adds a supplemental bar to the figure, if relevant to the data
+#'
+#' @param coreFrame fxl object
+#' @param color from base
+#' @param alpha from base
+#' @param mapping (optional) if overriding draw (i.e., different response)
+#'
+#' @return
+#' @export
+scr_bar_support <- function(coreFrame, color = 'gray', alpha = 1,
+                            mapping = NULL) {
+
+  newlayer = list()
+  newlayer[[ "type"       ]] <- "bar_support"
+  newlayer[[ "alpha"      ]] <- alpha
+  newlayer[[ "color"      ]] <- color
+  newlayer[[ "aesthetics" ]] <- NA
+
+  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
+
+  coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
+
+  coreFrame
+
+}
+
 #' scr_cumsum
 #'
 #' Draw lines, but as a cumulative and rolling sum
@@ -779,6 +807,7 @@ print.fxl <- function(coreFrame, ...) {
 
         if (currentLayer$type == "arrows")         draw_arrows(        coreFrame,  currentLayer,  currentFacet)
         if (currentLayer$type == "brackets")       draw_brackets(      coreFrame,  currentLayer,  currentFacet)
+        if (currentLayer$type == "bar_support")    draw_bar_support(   coreFrame,  currentLayer,  currentFacet)
         if (currentLayer$type == "cum_sum_lines")  draw_cumsum_lines(  coreFrame,  currentLayer,  currentFacet)
         if (currentLayer$type == "cum_sum_points") draw_cumsum_points( coreFrame,  currentLayer,  currentFacet)
         if (currentLayer$type == "facet_label")    draw_label_facet(   coreFrame,  currentLayer,  currentFacet)
