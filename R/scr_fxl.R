@@ -149,13 +149,15 @@ scr_brackets <- function(coreFrame, brackets = NULL, facet = NULL,
 #'
 #' @return
 #' @export
-scr_bar_support <- function(coreFrame, color = 'gray', alpha = 1,
-                            mapping = NULL) {
+scr_bar_support <- function(coreFrame, color = rgb(.8,.8,.8, alpha = 0.25),
+                            alpha = 1, mapping = NULL, label = "", width = 0.8) {
 
   newlayer = list()
   newlayer[[ "type"       ]] <- "bar_support"
   newlayer[[ "alpha"      ]] <- alpha
   newlayer[[ "color"      ]] <- color
+  newlayer[[ "label"      ]] <- label
+  newlayer[[ "width"      ]] <- width
   newlayer[[ "aesthetics" ]] <- NA
 
   if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)

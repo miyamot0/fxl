@@ -142,9 +142,18 @@ draw_bar_support <- function(coreFrame,  currentLayer, facetName) {
     )
   }
 
-  print('in bar support')
+  label.y = as.character(localAesthetics['y'])
 
-  print(coreFrame$data)
+  print(currentLayer)
+  print(label.y)
+
+  if (currentLayer$label != "") {
+    label.y = as.character(currentLayer$label)
+
+    print(label.y)
+  }
+
+  opar <- par()
 
   # Add on to "new" plot
   par(new = TRUE,
@@ -152,7 +161,7 @@ draw_bar_support <- function(coreFrame,  currentLayer, facetName) {
       yaxs   = "r",
       xpd    = NA)
 
-  plot(1,
+  plot(NULL,
        axes = FALSE,
        xlim = c(coreFrame$dims[["min.local.x"]],
                 coreFrame$dims[["max.local.x"]]),
@@ -166,23 +175,30 @@ draw_bar_support <- function(coreFrame,  currentLayer, facetName) {
 
   box(bty = "U")
 
+  p.off   = currentLayer$width / 2
+
   for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
 
     currentData.slice <- currentData[which(currentData[, as.character(coreFrame$aes['p'])] == p),]
 
-    print(currentData.slice)
+    for (row in 1:nrow(currentData.slice)) {
 
-    points(
-      currentData.slice[, as.character(localAesthetics['x'])],
-      currentData.slice[, as.character(localAesthetics['y'])],
-      pch = 18,
-      bg  = currentLayer$color
-    )
+      rect(currentData.slice[row, as.character(localAesthetics['x'])] - p.off,
+           0,
+           currentData.slice[row, as.character(localAesthetics['x'])] + p.off,
+           currentData.slice[row, as.character(localAesthetics['y'])],
+           col = currentLayer$color)
+    }
   }
 
   axis(side = 4,
+       las = 1,
        at = pretty(range(c(0,currentData.slice[, as.character(localAesthetics['y'])]))))
-  mtext("Percentage", side = 4, outer = TRUE)
+  mtext(label.y,
+        side = 4,
+        outer = TRUE)
+
+  par(opar)
 }
 
 #' draw_guide_line
