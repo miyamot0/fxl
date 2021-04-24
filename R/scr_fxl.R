@@ -565,7 +565,7 @@ scr_title <- function(coreFrame, var) {
 #' @return
 #' @export
 scr_legend <- function(coreFrame, panel = NA, legend,
-                       col, lty, pch, box.lty = 0,
+                       bg, col, m.col, lty, pch, box.lty = 0,
                        bty = "n", cex = 1, horiz = FALSE,
                        position = "topright", pt.cex = 1,
                        text.col = "black") {
@@ -574,7 +574,8 @@ scr_legend <- function(coreFrame, panel = NA, legend,
   coreFrame$legendpars[[ "panel"    ]] = panel
   coreFrame$legendpars[[ "legend"   ]] = legend
   coreFrame$legendpars[[ "col"      ]] = text.col
-  coreFrame$legendpars[[ "bg"       ]] = col
+  coreFrame$legendpars[[ "bg"       ]] = bg
+  coreFrame$legendpars[[ "pt.col"   ]] = m.col
   coreFrame$legendpars[[ "lty"      ]] = lty
   coreFrame$legendpars[[ "pch"      ]] = pch
   coreFrame$legendpars[[ "bty"      ]] = bty
@@ -799,8 +800,6 @@ print.fxl <- function(coreFrame, ...) {
         draw_legend(coreFrame)
       } else if (lookup & is.na(coreFrame$legendpars[["panel"]])) {
         draw_legend(coreFrame)
-      } else if (!lookup) {
-        draw_legend(coreFrame)
       }
     }
 
@@ -917,6 +916,8 @@ print.fxl <- function(coreFrame, ...) {
       }
     }
   }
+
+  if (!lookup)  draw_legend(coreFrame)
 
   mtext(coreFrame$labs[["title"]], side = 3, outer = TRUE, line = 0)
   mtext(coreFrame$labs[["ylab"]],  side = 2, outer = TRUE)

@@ -588,6 +588,7 @@ draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
 #' @return
 #' @export
 draw_legend <- function(coreFrame) {
+
   legend(
     coreFrame$legendpars[["position"]],
 
@@ -599,7 +600,8 @@ draw_legend <- function(coreFrame) {
     bty       = as.character( coreFrame$legendpars[[ "bty"      ]]),
     pt.cex    = as.numeric(   coreFrame$legendpars[[ "pt.cex"   ]]),
     cex       = as.numeric(   coreFrame$legendpars[[ "cex"      ]]),
-    col       = as.character( coreFrame$legendpars[[ "col"      ]]),
+    bg        = as.character( coreFrame$legendpars[[ "bg"       ]]),
+    col       = as.character( coreFrame$legendpars[[ "pt.col"   ]]),
     #pt.bg    = as.character( coreFrame$legendpars[[ "col"      ]]),
     horiz     = as.logical(   coreFrame$legendpars[[ "horiz"    ]])
   )
