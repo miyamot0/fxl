@@ -799,6 +799,8 @@ print.fxl <- function(coreFrame, ...) {
         draw_legend(coreFrame)
       } else if (lookup & is.na(coreFrame$legendpars[["panel"]])) {
         draw_legend(coreFrame)
+      } else if (!lookup) {
+        draw_legend(coreFrame)
       }
     }
 
