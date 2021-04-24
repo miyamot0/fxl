@@ -138,6 +138,36 @@ scr_brackets <- function(coreFrame, brackets = NULL, facet = NULL,
   coreFrame
 }
 
+#' scr_bar_support
+#'
+#' Adds a supplemental bar to the figure, if relevant to the data
+#'
+#' @param coreFrame fxl object
+#' @param color from base
+#' @param alpha from base
+#' @param mapping (optional) if overriding draw (i.e., different response)
+#'
+#' @return
+#' @export
+scr_bar_support <- function(coreFrame, color = rgb(.8,.8,.8, alpha = 0.25),
+                            alpha = 1, mapping = NULL, label = "", width = 0.8) {
+
+  newlayer = list()
+  newlayer[[ "type"       ]] <- "bar_support"
+  newlayer[[ "alpha"      ]] <- alpha
+  newlayer[[ "color"      ]] <- color
+  newlayer[[ "label"      ]] <- label
+  newlayer[[ "width"      ]] <- width
+  newlayer[[ "aesthetics" ]] <- NA
+
+  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
+
+  coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
+
+  coreFrame
+
+}
+
 #' scr_cumsum
 #'
 #' Draw lines, but as a cumulative and rolling sum
@@ -535,7 +565,7 @@ scr_title <- function(coreFrame, var) {
 #' @return
 #' @export
 scr_legend <- function(coreFrame, panel = NA, legend,
-                       col, lty, pch, box.lty = 0,
+                       bg, col, m.col, lty, pch, box.lty = 0,
                        bty = "n", cex = 1, horiz = FALSE,
                        position = "topright", pt.cex = 1,
                        text.col = "black") {
@@ -544,7 +574,8 @@ scr_legend <- function(coreFrame, panel = NA, legend,
   coreFrame$legendpars[[ "panel"    ]] = panel
   coreFrame$legendpars[[ "legend"   ]] = legend
   coreFrame$legendpars[[ "col"      ]] = text.col
-  coreFrame$legendpars[[ "bg"       ]] = col
+  coreFrame$legendpars[[ "bg"       ]] = bg
+  coreFrame$legendpars[[ "pt.col"   ]] = m.col
   coreFrame$legendpars[[ "lty"      ]] = lty
   coreFrame$legendpars[[ "pch"      ]] = pch
   coreFrame$legendpars[[ "bty"      ]] = bty
@@ -779,6 +810,7 @@ print.fxl <- function(coreFrame, ...) {
 
         if (currentLayer$type == "arrows")         draw_arrows(        coreFrame,  currentLayer,  currentFacet)
         if (currentLayer$type == "brackets")       draw_brackets(      coreFrame,  currentLayer,  currentFacet)
+        if (currentLayer$type == "bar_support")    draw_bar_support(   coreFrame,  currentLayer,  currentFacet)
         if (currentLayer$type == "cum_sum_lines")  draw_cumsum_lines(  coreFrame,  currentLayer,  currentFacet)
         if (currentLayer$type == "cum_sum_points") draw_cumsum_points( coreFrame,  currentLayer,  currentFacet)
         if (currentLayer$type == "facet_label")    draw_label_facet(   coreFrame,  currentLayer,  currentFacet)
@@ -884,6 +916,8 @@ print.fxl <- function(coreFrame, ...) {
       }
     }
   }
+
+  if (!lookup)  draw_legend(coreFrame)
 
   mtext(coreFrame$labs[["title"]], side = 3, outer = TRUE, line = 0)
   mtext(coreFrame$labs[["ylab"]],  side = 2, outer = TRUE)

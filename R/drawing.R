@@ -108,6 +108,93 @@ draw_brackets <- function(coreFrame, currentLayer, facetName) {
   }
 }
 
+#' draw_bar_support
+#'
+#' Draw bars, but on a secondary axis
+#'
+#' @param coreFrame fxl object
+#' @param currentLayer layer to be drawn
+#' @param facetName name of facet
+#'
+#' @return
+#' @export
+draw_bar_support <- function(coreFrame,  currentLayer, facetName) {
+
+  if (is.na(facetName))  currentData   = coreFrame$data
+  else                   currentData   = coreFrame$data[which(
+    coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
+
+  # In case no phases are included?
+  if (!('p' %in% names(coreFrame$aes))) {
+    coreFrame$aes['p'] = 'p'
+    currentData[, 'p'] = '0'
+  }
+
+  localAesthetics = list(
+    "x" = as.character(coreFrame$aes['x']),
+    "y" = as.character(coreFrame$aes['y'])
+  )
+
+  if (!is.na(currentLayer['aesthetics'])) {
+    localAesthetics = list(
+      "x" = as.character(currentLayer$aesthetics['x']),
+      "y" = as.character(currentLayer$aesthetics['y'])
+    )
+  }
+
+  label.y = as.character(localAesthetics['y'])
+
+  if (currentLayer$label != "")  label.y = as.character(currentLayer$label)
+
+  opar <- par()
+
+  # Add on to "new" plot
+  par(new = TRUE,
+      xaxs   = "r",
+      yaxs   = "r",
+      xpd    = NA)
+
+  plot(NULL,
+       axes = FALSE,
+       xlim = c(coreFrame$dims[["min.local.x"]],
+                coreFrame$dims[["max.local.x"]]),
+       ylim = c(0,100),
+       xlab = "",
+       ylab = "",
+       frame.plot = FALSE,
+       las = 1,
+       xaxt = 'n',
+       yaxt = 'n')
+
+  box(bty = "U")
+
+  p.off   = currentLayer$width / 2
+
+  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
+
+    currentData.slice <- currentData[which(currentData[, as.character(coreFrame$aes['p'])] == p),]
+
+    for (row in 1:nrow(currentData.slice)) {
+
+      rect(currentData.slice[row, as.character(localAesthetics['x'])] - p.off,
+           0,
+           currentData.slice[row, as.character(localAesthetics['x'])] + p.off,
+           currentData.slice[row, as.character(localAesthetics['y'])],
+           col = currentLayer$color)
+    }
+  }
+
+  axis(side = 4,
+       las = 1,
+       at = pretty(range(c(0,currentData.slice[, as.character(localAesthetics['y'])]))))
+
+  mtext(label.y,
+        side = 4,
+        outer = TRUE)
+
+  par(opar)
+}
+
 #' draw_guide_line
 #'
 #' @param coreFrame fxl object
@@ -501,6 +588,7 @@ draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
 #' @return
 #' @export
 draw_legend <- function(coreFrame) {
+
   legend(
     coreFrame$legendpars[["position"]],
 
@@ -512,7 +600,8 @@ draw_legend <- function(coreFrame) {
     bty       = as.character( coreFrame$legendpars[[ "bty"      ]]),
     pt.cex    = as.numeric(   coreFrame$legendpars[[ "pt.cex"   ]]),
     cex       = as.numeric(   coreFrame$legendpars[[ "cex"      ]]),
-    col       = as.character( coreFrame$legendpars[[ "col"      ]]),
+    bg        = as.character( coreFrame$legendpars[[ "bg"       ]]),
+    col       = as.character( coreFrame$legendpars[[ "pt.col"   ]]),
     #pt.bg    = as.character( coreFrame$legendpars[[ "col"      ]]),
     horiz     = as.logical(   coreFrame$legendpars[[ "horiz"    ]])
   )
