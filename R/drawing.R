@@ -144,14 +144,7 @@ draw_bar_support <- function(coreFrame,  currentLayer, facetName) {
 
   label.y = as.character(localAesthetics['y'])
 
-  print(currentLayer)
-  print(label.y)
-
-  if (currentLayer$label != "") {
-    label.y = as.character(currentLayer$label)
-
-    print(label.y)
-  }
+  if (currentLayer$label != "")  label.y = as.character(currentLayer$label)
 
   opar <- par()
 
@@ -194,6 +187,7 @@ draw_bar_support <- function(coreFrame,  currentLayer, facetName) {
   axis(side = 4,
        las = 1,
        at = pretty(range(c(0,currentData.slice[, as.character(localAesthetics['y'])]))))
+
   mtext(label.y,
         side = 4,
         outer = TRUE)
