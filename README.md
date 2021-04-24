@@ -68,7 +68,7 @@ The last example is constructed from a functional analysis of severe behavior co
 
 ![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/fafigure.svg?raw=true)
 
-*Multi-element Designs/Functional Analyses but corresponding Integrity*
+*Multi-element Designs/Functional Analyses with corresponding Integrity*
 
 This is the same example as the one above, but with a corresponding bar series to illustrate integrity of sessions. This is often used in parent- or teacher-implemented FA's, when the fidelity of procedures is also a likely factor.
 
