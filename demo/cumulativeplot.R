@@ -156,10 +156,12 @@ scr_plot(data = LozyEtAl2020, aesthetics = list(x = Session,
     scr_ylabel("Cumulative Number of Selections") %>%
     scr_legend(position = "topright",                         # Specify legend location
                panel    = "Eli",
-               legend = c("KM",                               # labels to include (ordered)
-                          "TD"),
-               col    = c('white',                            # color of markers (ordered)
-                          'white'),
+               legend   = c("KM",                               # labels to include (ordered)
+                            "TD"),
+               col      = c('white',                            # color of markers (ordered)
+                            'white'),
+               m.col    = c('black',                            # color of markers (ordered)
+                            'black'),
                lty      = c(1, 1),                            # line types (ordered)
                pch      = c(24, 22),                          # marker types (ordered)
                bty      = "y",                                # remove border

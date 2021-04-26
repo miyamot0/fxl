@@ -22,7 +22,7 @@ scr_plot(data, aesthetics = list(x = Session,
                                  p = Condition),
         mai = c(0.5, 0.5, 0.1, 0.5),
         omi = c(0.25, 0.25, 0.25, 0.25)) %>%
-  scr_yoverride(c(0, 2)) %>%                                # manually override y-axis 
+  scr_yoverride(c(0, 2)) %>%                                # manually override y-axis
   scr_lines(size = 1) %>%                                   # plot lines, using x/y from aesthetics
   scr_points(cex = 2,                                       # plot points, using x/y from aesthetics
              pch = list(                                    # override point marker types (match FA conventions)
@@ -48,6 +48,10 @@ scr_plot(data, aesthetics = list(x = Session,
              col    = c('black',                            # color of markers (ordered)
                         'white',
                         'white',
+                        'black'),
+             m.col  = c('black',                            # color of markers (ordered)
+                        'black',
+                        'black',
                         'black'),
              lty      = c(1, 1, 1, 1),                      # line types (ordered)
              pch      = c(16, 22, 24, 8),                   # marker types (ordered)

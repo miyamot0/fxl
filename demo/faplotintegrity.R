@@ -62,7 +62,10 @@ scr_plot(data, aesthetics = list(x = Session,
                         'white',
                         'black'),
              bg       = "white",
-             m.col    = "black",
+             m.col    = c('black',                            # color of markers (ordered)
+                          'black',
+                          'black',
+                          'black'),
              lty      = c(1, 1, 1, 1),                      # line types (ordered)
              pch      = c(16, 22, 24, 8),                   # marker types (ordered)
              bty      = "o",                                # remove border
