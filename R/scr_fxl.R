@@ -565,7 +565,8 @@ scr_title <- function(coreFrame, var) {
 #' @return
 #' @export
 scr_legend <- function(coreFrame, panel = NA, legend,
-                       bg, col, m.col, lty, pch, box.lty = 0,
+                       bg = NULL, col = NULL, m.col = NULL,
+                       lty, pch, box.lty = 0,
                        bty = "n", cex = 1, horiz = FALSE,
                        position = "topright", pt.cex = 1,
                        text.col = "black") {
