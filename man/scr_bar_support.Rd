@@ -4,7 +4,14 @@
 \alias{scr_bar_support}
 \title{scr_bar_support}
 \usage{
-scr_bar_support(coreFrame, color = "gray", alpha = 1, mapping = NULL)
+scr_bar_support(
+  coreFrame,
+  color = rgb(0.8, 0.8, 0.8, alpha = 0.25),
+  alpha = 1,
+  mapping = NULL,
+  label = "",
+  width = 0.8
+)
 }
 \arguments{
 \item{coreFrame}{fxl object}

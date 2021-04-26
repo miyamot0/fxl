@@ -1,4 +1,8 @@
+#rm(list = ls())
 
+
+library(dplyr) # included for infix logic
+library(fxl)   # core plotting methods
 
 minX = 1
 maxX = 30
@@ -12,7 +16,14 @@ ys2 <- 0.2 + 0.1*xs + rnorm(length(xs), 0, 0.25)
 
 ys2[2] <- 0
 
-plotDF = data.frame(
-  X = xs,
-  Y = ys2
+semiLogData = data.frame(
+  Session   = xs,
+  SkillA    = ys,
+  SkillB    = ys2
 )
+
+scr_plot(semiLogData, aesthetics = list(x     = Session,
+                                        y     = SkillA),
+         omi    = c(0.0, 0.35, 0.2, 0.25),
+         mai    = c(0.0, 0.25, 0.1, 0.25),
+         semilog = TRUE)
