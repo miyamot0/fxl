@@ -658,8 +658,6 @@ scr_save <- function(coreFrame, units = "in",
 #' @export print.fxl
 #' @export
 print.fxlsemilog <- function(coreFrame, ...) {
-  cat("printSemiLog \n")
-
   coreFrame$dims[["min.local.x"]]   = min(coreFrame$data[[
     as.character(coreFrame$aes['x'])]], na.rm = TRUE)
   coreFrame$dims[["max.local.x"]]   = max(coreFrame$data[[
@@ -773,16 +771,14 @@ print.fxlsemilog <- function(coreFrame, ...) {
     for (i in 1:length(coreFrame[["layers"]])) {
 
       currentLayer = coreFrame$layers[[i]]
-
       currentLayer$facet = "hack"
 
-      #if (currentLayer$type == "arrows")         draw_arrows(        coreFrame,  currentLayer,  currentFacet)
-      #if (currentLayer$type == "brackets")       draw_brackets(      coreFrame,  currentLayer,  currentFacet)
-      #if (currentLayer$type == "facet_label")    draw_label_facet(   coreFrame,  currentLayer,  currentFacet)
-      #if (currentLayer$type == "guide_line")     draw_guide_line(    coreFrame,  currentLayer,  currentFacet)
-      if (currentLayer$type == "line")           draw_lines(         coreFrame,  currentLayer,  NA)
-      if (currentLayer$type == "phase_label")    draw_label_phase(   coreFrame,  currentLayer,  "hack")
-      if (currentLayer$type == "point")          draw_points(        coreFrame,  currentLayer,  NA)
+      if (currentLayer$type == "arrows")         draw_arrows(      coreFrame, currentLayer, "hack")
+      if (currentLayer$type == "brackets")       draw_brackets(    coreFrame, currentLayer, "hack")
+      if (currentLayer$type == "guide_line")     draw_guide_line(  coreFrame, currentLayer, "hack")
+      if (currentLayer$type == "line")           draw_lines(       coreFrame, currentLayer, NA)
+      if (currentLayer$type == "phase_label")    draw_label_phase( coreFrame, currentLayer, "hack")
+      if (currentLayer$type == "point")          draw_points(      coreFrame, currentLayer, NA)
     }
   }
 

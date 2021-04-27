@@ -42,12 +42,57 @@ scr_plot(semiLogData, aesthetics = list(x     = Session,
              cex = 2,
              mapping = list(x = Session,
                             y = SkillB)) %>%
-  scr_label_phase(cex = 1.5,
+  scr_label_phase(cex = 1,
                   adj = 0.5,
                   labels = list(
                     "Annotated Labels on Plot" = list(x = 5,
-                                                      y = 150)
+                                                      y = 150),
+                    "Labels for Phase Changes" = list(x = 18,
+                                                      y = 15),
+                    "Logarithmic Plotting, With Zero Visualizations" = list(x = 6,
+                                                                           y = 3,
+                                                                           cex = 1)
                   )) %>%
+  scr_arrows(length = 0.1,
+             arrows = list(
+               "A" = list(
+                 x0 = 5,
+                 x1 = 7,
+                 y0 = 125,
+                 y1 = 50
+               ),
+               "B" = list(
+                 x0 = 18,
+                 x1 = 14,
+                 y0 = 21,
+                 y1 = 55
+               )
+             )) %>%
+  scr_brackets(length = 0.1,
+               brackets = list(
+                 "A" = list(
+                   x0 = 1.5,
+                   x1 = 10.5,
+                   y0 = 2.5,
+                   y1 = 1.5
+                 )
+               )) %>%
+  scr_guide_line(color  = 'black',
+                 lty    = 1,
+                 coords = list(
+                   "A"  = list(x0 = 9.5, x1 = 9.5,
+                               y0 = 10,  y1 = 500),
+                   "B"  = list(x0 = 1,   x1 = 9,
+                               y0 = 8,   y1 = 50,
+                               col = 'green',
+                               lty = 2,
+                               lwd = 3),
+                   "C"  = list(x0 = 10,  x1 = 30,
+                               y0 = 50,  y1 = 150,
+                               col = 'orange',
+                               lty = 2,
+                               lwd = 3))) %>%
+
   scr_legend(position = "topright",               # Specify legend location
              legend = c("Skill A",                # labels to include (ordered)
                         "Skill B"),
@@ -65,6 +110,6 @@ scr_plot(semiLogData, aesthetics = list(x     = Session,
              horiz    = FALSE,                    # list items vertically
              box.lty  = 1)                        # change box size (0 = removed)
 
-
-
-
+# l.col = as.character( currentLayer[["col"]])
+# l.lty = as.numeric(   currentLayer[["lty"]])
+# l.lwd = as.numeric(   currentLayer[["lwd"]])
