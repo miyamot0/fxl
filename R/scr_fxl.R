@@ -61,9 +61,7 @@ scr_plot <- function(data, aesthetics,
 
   class(coreFrame) <- c("fxl")                   # Apply a class name (to override print)
 
-  if (semilog) {
-    class(coreFrame) <- c("fxlsemilog")
-  }
+  if (semilog) class(coreFrame) <- c("fxlsemilog")
 
   coreFrame
 }
@@ -657,149 +655,168 @@ scr_save <- function(coreFrame, units = "in",
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
-#' @export print.fxlsemilog
+#' @export print.fxl
+#' @export
 print.fxlsemilog <- function(coreFrame, ...) {
-  print("printSemiLog")
+  cat("printSemiLog \n")
 
-  #print(coreFrame)
+  coreFrame$dims[["min.local.x"]]   = min(coreFrame$data[[
+    as.character(coreFrame$aes['x'])]], na.rm = TRUE)
+  coreFrame$dims[["max.local.x"]]   = max(coreFrame$data[[
+    as.character(coreFrame$aes['x'])]], na.rm = TRUE)
 
-  #coreFrame$dims[["min.local.x"]]   = min(coreFrame$data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE)
-  #coreFrame$dims[["max.local.x"]]   = max(coreFrame$data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE)
+  # X Overrides
 
-  print("here")
+  if (!is.null(coreFrame$dims[["global.min.x"]]))
+    coreFrame$dims[["min.local.x"]] = coreFrame$dims[["global.min.x"]]
 
-  #print(coreFrame$dims[["min.local.x"]])
+  if (!is.null(coreFrame$dims[["global.max.x"]]))
+    coreFrame$dims[["max.local.x"]] = coreFrame$dims[["global.max.x"]]
 
-  #
-  #
-  # par(family = "serif",
-  #     omi    = coreFrame[["dims"]][["omi"]],
-  #     mai    = coreFrame[["dims"]][["mai"]],
-  #     xaxs   = "r",
-  #     yaxs   = "r",
-  #     xpd    = FALSE)
-  #
-  # # Set layouts
-  # layout(matrix(c(1, 1, 1, 1, 1, 2),
-  #               nrow = 6,
-  #               ncol = 1,
-  #               byrow = TRUE))
-  #
-  # print(c(coreFrame$dims[["min.local.x"]],
-  #         coreFrame$dims[["max.local.x"]]))
-  #
-  # # Top plot
-  # plot(0,
-  #      ylim = c(.1, 1000), # TODO remove hard code
-  #      xlim = c(coreFrame$dims[["min.local.x"]],
-  #               coreFrame$dims[["max.local.x"]]),
-  #      ylab = "",
-  #      xlab = "",
-  #      xaxt = "n",
-  #      yaxt = "n",
-  #      frame.plot = FALSE,
-  #      log = "y",
-  #      las = 1)
+  # X axis
+  x.axis.ticks = seq(coreFrame$dims[["global.min.x"]],
+                     coreFrame$dims[["global.max.x"]],
+                     by = coreFrame$dims[['xdelta']])
 
-  # mtext("TITLE: PLACEHOLDER", #TODO remove hard code
-  #       side = 3,
-  #       outer = TRUE,
-  #       adj = 0.04,
-  #       line = 0)
-  #
-  # breaks  <- as.vector(c(2:10) %o% 10^(-1:3))
-  #
-  # # select the labels to show
-  # show.labels <- c(T, F, F, T, F, F, F, F, T)
-  # labels <- as.character(breaks * show.labels)
-  # labels <- gsub("^0$", "", labels)
-  #
-  # axis(1,
-  #      at     = coreFrame$dims[["min.local.x"]]:coreFrame$dims[["max.local.x"]],
-  #      labels = NA)
-  #
-  # axis(2,
-  #      at     = c(0.1, breaks),
-  #      las    = 1,
-  #      tcl    = par("tcl")*0.33,
-  #      labels = c("0.1", labels))
-  # axis(2,
-  #      at     = c(0.1, as.vector(c(1) %o% 10^(-1:3))),
-  #      las    = 1,
-  #      tcl    = par("tcl"),
-  #      labels = c(0.1, as.vector(c(1) %o% 10^(-1:3))))
-  #
-  # abline(h = c(0.1, breaks),
-  #        lty = 1,
-  #        col = "cadetblue")
-  #
-  # abline(h = c(0.1, as.vector(c(1) %o% 10^(-1:3))),
-  #        lty = 1,
-  #        col = "darkblue")
-  #
-  # abline(h = c(0.1, as.vector(c(5) %o% 10^(-1:3))),
-  #        lty = 3,
-  #        col = "darkblue")
-  #
-  # abline(v   = coreFrame$dims[["min.local.x"]]:coreFrame$dims[["max.local.x"]],
-  #        lty = 1,
-  #        col = "cadetblue")
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  # box(bty = "l")
-  #
-  #
-  # legend(
-  #   "topright",
-  #
-  #   legend    = c("Skill A", "Skill B"),
-  #   #text.col  = as.character( coreFrame$legendpars[[ "text.col" ]]),
-  #   lty       = c(1, 1),
-  #   #box.lty   = as.numeric(   coreFrame$legendpars[[ "box.lty"  ]]),
-  #   pch       = c(21, 21),
-  #   #bty       = as.character( coreFrame$legendpars[[ "bty"      ]]),
-  #   pt.cex    = c(2, 2),
-  #   cex       = 1.5,
-  #   bg        = c("white", "gray"),
-  #   col       = c("black", "black"),
-  #   pt.bg     = c("white", "gray"),
-  #   horiz     = FALSE
-  # )
-  #
-  # par(
-  #   omi    = c(0.2, 0.25, 0.1, 0.25),
-  #   mai    = c(0.4, 0.35, 0.1, 0.25),
-  #   xaxs   = "r",
-  #   yaxs   = "r",
-  #   xpd    = FALSE,
-  #   new    = TRUE)
-  #
-  # plot(NULL,
-  #      ylim = c(0,0),
-  #      xlim = c(coreFrame$dims[["min.local.x"]],
-  #               coreFrame$dims[["max.local.x"]]),
-  #      ylab = "",
-  #      xlab = "",
-  #      xaxt = "n",
-  #      yaxt = "n",
-  #      frame.plot = FALSE,
-  #      las = 1)
+  if (!is.null(coreFrame$dims[["xticks"]]) & !is.list(coreFrame$dims[["xticks"]])) {
+    x.axis.ticks = as.integer(coreFrame$dims[["xticks"]])
+  }
 
+  # Y axis
 
+  coreFrame$dims[["min.local.y"]] = ifelse(is.null(coreFrame$dims[["global.min.y"]]),
+                                           min(coreFrame$data[[as.character(coreFrame$aes['y'])]]),
+                                           coreFrame$dims[["global.min.y"]])
+  coreFrame$dims[["max.local.y"]] = ifelse(is.null(coreFrame$dims[["global.min.y"]]),
+                                           max(coreFrame$data[[as.character(coreFrame$aes['y'])]]),
+                                           coreFrame$dims[["global.max.y"]])
 
-  # mtext(coreFrame$labs[["title"]], side = 3, outer = TRUE, line = 0)
-  # mtext(coreFrame$labs[["ylab"]],  side = 2, outer = TRUE)
-  # mtext(coreFrame$labs[["xlab"]],  side = 1, outer = TRUE)
+  # Hack:
+  coreFrame$dims[["min.local.y"]] = 0.1
+
+  par(family = "serif",
+      omi    = coreFrame[["dims"]][["omi"]],
+      mai    = coreFrame[["dims"]][["mai"]],
+      xaxs   = "r",
+      yaxs   = "r",
+      xpd    = FALSE)
+
+  # Set layouts
+  layout(matrix(c(1, 1, 1, 1, 1, 2),
+                nrow = 6,
+                ncol = 1,
+                byrow = TRUE))
+
+  # Top plot
+  plot(NULL,
+       ylim = c(coreFrame$dims[["min.local.y"]],
+                coreFrame$dims[["max.local.y"]]),
+       xlim = c(coreFrame$dims[["min.local.x"]],
+                coreFrame$dims[["max.local.x"]]),
+       ylab = "",
+       xlab = "",
+       xaxt = "n",
+       yaxt = "n",
+       frame.plot = FALSE,
+       log = "y",
+       las = 1)
+
+  mtext(coreFrame$labs[["title"]],
+        side = 3,
+        outer = TRUE,
+        adj = 0.04,
+        line = 0)
+
+  breaks  <- as.vector(c(2:10) %o% 10^(log10(coreFrame$dims[["min.local.y"]]):log10(coreFrame$dims[["max.local.y"]])))
+
+  labelLogicals <- c(T, F, F, T, F, F, F, F, T)
+  labels <- as.character(breaks * labelLogicals)
+  labels <- gsub("^0$", "", labels)
+
+  axis(1,
+       at     = x.axis.ticks,
+       labels = NA)
+
+  # TODO: remove hard codes
+  axis(2,
+       at     = c(0.1, breaks),
+       las    = 1,
+       tcl    = par("tcl")*0.33,
+       labels = c("0.1", labels))
+  axis(2,
+       at     = c(0.1,
+                  as.vector(c(1) %o% 10^(log10(coreFrame$dims[["min.local.y"]]):log10(coreFrame$dims[["max.local.y"]])))),
+       las    = 1,
+       tcl    = par("tcl"),
+       labels = c(0.1,
+                  as.vector(c(1) %o% 10^(log10(coreFrame$dims[["min.local.y"]]):log10(coreFrame$dims[["max.local.y"]])))))
+
+  abline(h = c(0.1, breaks),
+         lty = 1,
+         col = "cadetblue")
+
+  abline(h = c(0.1,
+               as.vector(c(1) %o% 10^(log10(coreFrame$dims[["min.local.y"]]):log10(coreFrame$dims[["max.local.y"]])))),
+         lty = 1,
+         col = "darkblue")
+
+  abline(h = c(0.1,
+               as.vector(c(5) %o% 10^(log10(coreFrame$dims[["min.local.y"]]):log10(coreFrame$dims[["max.local.y"]])))),
+         lty = 3,
+         col = "darkblue")
+
+  abline(v   = coreFrame$dims[["min.local.x"]]:coreFrame$dims[["max.local.x"]],
+         lty = 1,
+         col = "cadetblue")
+
+  # TODO: Draw in lines then points here
+
+  box(bty = "l")
+
+  # TODO: Remove hard-coded legend
+
+  if (!is.null(coreFrame[["legendpars"]]))  draw_legend(coreFrame)
+
+  par(
+    omi    = c(0.2, 0.25, 0.1, 0.25),
+    mai    = c(0.4, 0.35, 0.1, 0.25),
+    xaxs   = "r",
+    yaxs   = "r",
+    xpd    = FALSE,
+    new    = TRUE)
+
+  plot(NULL,
+       ylim = c(0,0),
+       xlim = c(coreFrame$dims[["min.local.x"]],
+                coreFrame$dims[["max.local.x"]]),
+       ylab = "",
+       xlab = "",
+       xaxt = "n",
+       yaxt = "n",
+       frame.plot = FALSE,
+       las = 1)
+
+  #plotDF.cleaned = plotDF[plotDF$Y == 0, ]
+
+  axis(1,
+       labels = coreFrame$dims[["min.local.x"]]:coreFrame$dims[["max.local.x"]],
+       at     = coreFrame$dims[["min.local.x"]]:coreFrame$dims[["max.local.x"]],
+       pos = 0)
+
+  axis(2,
+       labels = c(0),
+       las    = 1,
+       tcl    = 0,
+       at     = c(0))
+
+  abline(h = 0,
+         lty = 1,
+         col = "black")
+
+  # TODO: Draw in lines/points here
+
+  mtext(coreFrame$labs[["ylab"]],  side = 2, outer = TRUE)
+  mtext(coreFrame$labs[["xlab"]],  side = 1, outer = TRUE)
 }
 
 #' print.fxl
