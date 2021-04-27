@@ -774,12 +774,14 @@ print.fxlsemilog <- function(coreFrame, ...) {
 
       currentLayer = coreFrame$layers[[i]]
 
+      currentLayer$facet = "hack"
+
       #if (currentLayer$type == "arrows")         draw_arrows(        coreFrame,  currentLayer,  currentFacet)
       #if (currentLayer$type == "brackets")       draw_brackets(      coreFrame,  currentLayer,  currentFacet)
       #if (currentLayer$type == "facet_label")    draw_label_facet(   coreFrame,  currentLayer,  currentFacet)
       #if (currentLayer$type == "guide_line")     draw_guide_line(    coreFrame,  currentLayer,  currentFacet)
       if (currentLayer$type == "line")           draw_lines(         coreFrame,  currentLayer,  NA)
-      #if (currentLayer$type == "phase_label")    draw_label_phase(   coreFrame,  currentLayer,  currentFacet)
+      if (currentLayer$type == "phase_label")    draw_label_phase(   coreFrame,  currentLayer,  "hack")
       if (currentLayer$type == "point")          draw_points(        coreFrame,  currentLayer,  NA)
     }
   }
@@ -822,29 +824,10 @@ print.fxlsemilog <- function(coreFrame, ...) {
          lty = 1,
          col = "black")
 
-  if (length(coreFrame[["layers"]]) > 0) {
-    for (i in 1:length(coreFrame[["layers"]])) {
-
-      currentLayer = coreFrame$layers[[i]]
-
-      print(coreFrame$data)
-
-      #if (currentLayer$type == "arrows")         draw_arrows(        coreFrame,  currentLayer,  currentFacet)
-      #if (currentLayer$type == "brackets")       draw_brackets(      coreFrame,  currentLayer,  currentFacet)
-      #if (currentLayer$type == "facet_label")    draw_label_facet(   coreFrame,  currentLayer,  currentFacet)
-      #if (currentLayer$type == "guide_line")     draw_guide_line(    coreFrame,  currentLayer,  currentFacet)
-
-      if (currentLayer$type == "line")           draw_lines(         coreFrame,
-                                                                     currentLayer,  NA, zeroAxis = TRUE)
-
-      #if (currentLayer$type == "phase_label")    draw_label_phase(   coreFrame,  currentLayer,  currentFacet)
-
-      if (currentLayer$type == "point")          draw_points(        coreFrame,
-                                                                     currentLayer,  NA, zeroAxis = TRUE)
-    }
-  }
-
-  # TODO: Draw in lines/points here
+  if (length(coreFrame[["layers"]]) > 0)
+    for (i in 1:length(coreFrame[["layers"]]))
+      if (coreFrame$layers[[i]]$type == "point")
+        draw_points(coreFrame, coreFrame$layers[[i]], NA, zeroAxis = TRUE)
 
   mtext(coreFrame$labs[["ylab"]],  side = 2, outer = TRUE)
   mtext(coreFrame$labs[["xlab"]],  side = 1, outer = TRUE)

@@ -42,6 +42,12 @@ scr_plot(semiLogData, aesthetics = list(x     = Session,
              cex = 2,
              mapping = list(x = Session,
                             y = SkillB)) %>%
+  scr_label_phase(cex = 1.5,
+                  adj = 0.5,
+                  labels = list(
+                    "Annotated Labels on Plot" = list(x = 5,
+                                                      y = 150)
+                  )) %>%
   scr_legend(position = "topright",               # Specify legend location
              legend = c("Skill A",                # labels to include (ordered)
                         "Skill B"),

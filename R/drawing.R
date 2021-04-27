@@ -243,13 +243,12 @@ draw_guide_line <- function(coreFrame,  currentLayer, facetName) {
 #' @param coreFrame fxl object
 #' @param currentLayer layer to be drawn
 #' @param facetName name of facet
-#' @param zeroAxis filter out all but zeros
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_lines <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
+draw_lines <- function(coreFrame, currentLayer, facetName) {
   if (is.na(facetName)) currentData = coreFrame$data
   else currentData = coreFrame$data[
     which(coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
@@ -280,8 +279,6 @@ draw_lines <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
       X = currentData.slice[, as.character(localAesthetics['x'])],
       Y = currentData.slice[, as.character(localAesthetics['y'])]
     )
-
-    if (zeroAxis) plotFrame = plotFrame[plotFrame$Y == 0,]
 
     lines(
       plotFrame$X,
@@ -571,12 +568,12 @@ draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
       l.lty = currentLayer[["lty"]]
 
       tempY1 = ifelse(currentLayer$lines[[facetName]][[key]][['y1']] == 0,
-                      - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
+                      -((as.numeric(coreFrame$dims[["max.local.y"]]) -
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
                       currentLayer$lines[[facetName]][[key]][['y1']])
 
       tempY2 = ifelse(currentLayer$lines[[facetName]][[key]][['y2']] == 0,
-                      - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
+                      -((as.numeric(coreFrame$dims[["max.local.y"]]) -
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
                       currentLayer$lines[[facetName]][[key]][['y2']])
 
