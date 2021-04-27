@@ -737,7 +737,7 @@ print.fxlsemilog <- function(coreFrame, ...) {
        at     = x.axis.ticks,
        labels = NA)
 
-  # TODO: remove hard codes
+  # TODO: remove hard codes?
   axis(2,
        at     = c(0.1, breaks),
        las    = 1,
@@ -769,11 +769,22 @@ print.fxlsemilog <- function(coreFrame, ...) {
          lty = 1,
          col = "cadetblue")
 
-  # TODO: Draw in lines then points here
+  if (length(coreFrame[["layers"]]) > 0) {
+    for (i in 1:length(coreFrame[["layers"]])) {
+
+      currentLayer = coreFrame$layers[[i]]
+
+      #if (currentLayer$type == "arrows")         draw_arrows(        coreFrame,  currentLayer,  currentFacet)
+      #if (currentLayer$type == "brackets")       draw_brackets(      coreFrame,  currentLayer,  currentFacet)
+      #if (currentLayer$type == "facet_label")    draw_label_facet(   coreFrame,  currentLayer,  currentFacet)
+      #if (currentLayer$type == "guide_line")     draw_guide_line(    coreFrame,  currentLayer,  currentFacet)
+      if (currentLayer$type == "line")           draw_lines(         coreFrame,  currentLayer,  NA)
+      #if (currentLayer$type == "phase_label")    draw_label_phase(   coreFrame,  currentLayer,  currentFacet)
+      if (currentLayer$type == "point")          draw_points(        coreFrame,  currentLayer,  NA)
+    }
+  }
 
   box(bty = "l")
-
-  # TODO: Remove hard-coded legend
 
   if (!is.null(coreFrame[["legendpars"]]))  draw_legend(coreFrame)
 
@@ -796,8 +807,6 @@ print.fxlsemilog <- function(coreFrame, ...) {
        frame.plot = FALSE,
        las = 1)
 
-  #plotDF.cleaned = plotDF[plotDF$Y == 0, ]
-
   axis(1,
        labels = coreFrame$dims[["min.local.x"]]:coreFrame$dims[["max.local.x"]],
        at     = coreFrame$dims[["min.local.x"]]:coreFrame$dims[["max.local.x"]],
@@ -812,6 +821,28 @@ print.fxlsemilog <- function(coreFrame, ...) {
   abline(h = 0,
          lty = 1,
          col = "black")
+
+  if (length(coreFrame[["layers"]]) > 0) {
+    for (i in 1:length(coreFrame[["layers"]])) {
+
+      currentLayer = coreFrame$layers[[i]]
+
+      print(coreFrame$data)
+
+      #if (currentLayer$type == "arrows")         draw_arrows(        coreFrame,  currentLayer,  currentFacet)
+      #if (currentLayer$type == "brackets")       draw_brackets(      coreFrame,  currentLayer,  currentFacet)
+      #if (currentLayer$type == "facet_label")    draw_label_facet(   coreFrame,  currentLayer,  currentFacet)
+      #if (currentLayer$type == "guide_line")     draw_guide_line(    coreFrame,  currentLayer,  currentFacet)
+
+      if (currentLayer$type == "line")           draw_lines(         coreFrame,
+                                                                     currentLayer,  NA, zeroAxis = TRUE)
+
+      #if (currentLayer$type == "phase_label")    draw_label_phase(   coreFrame,  currentLayer,  currentFacet)
+
+      if (currentLayer$type == "point")          draw_points(        coreFrame,
+                                                                     currentLayer,  NA, zeroAxis = TRUE)
+    }
+  }
 
   # TODO: Draw in lines/points here
 

@@ -28,21 +28,37 @@ scr_plot(semiLogData, aesthetics = list(x     = Session,
          mai    = c(0.0, 0.25, 0.1, 0.25),
          semilog = TRUE) %>%
   scr_yoverride(c(0.1, 1000)) %>%
-  scr_legend(position = "topright",                         # Specify legend location
-             legend = c("Skill B",                         # labels to include (ordered)
-                        "Skill C"),
-             col    = c('black',                            # color of markers (ordered)
-                        'gray'),
-             m.col  = c('black',                            # color of markers (ordered)
+  scr_title("Semi-log Chart: Hypothetical Case") %>%
+  scr_xlabel("Session") %>%
+  scr_ylabel("Frequency") %>%
+  scr_lines() %>%
+  scr_points(pch = 21,
+             fill = 'black',
+             cex = 2) %>%
+  scr_lines(mapping = list(x = Session,
+                           y = SkillB)) %>%
+  scr_points(pch = 21,
+             fill = 'gray',
+             cex = 2,
+             mapping = list(x = Session,
+                            y = SkillB)) %>%
+  scr_legend(position = "topright",               # Specify legend location
+             legend = c("Skill A",                # labels to include (ordered)
+                        "Skill B"),
+             col    = c('black',                  # color of markers (ordered)
                         'black'),
+             m.col  = c('black',                  # color of markers (ordered)
+                        'gray'),
              bg       = 'white',
-             lty      = c(1, 1),                      # line types (ordered)
-             pch      = c(21, 21),                   # marker types (ordered)
-             bty      = "y",                                # remove border
-             pt.cex   = 2.25,                               # point size scale
-             cex      = 1.5,                               # text size scale
-             text.col = "black",                            # text color
-             horiz    = FALSE,                                  # list items vertically
-             box.lty  = 1)                                  # change box size (0 = removed)
+             lty      = c(1, 1),                  # line types (ordered)
+             pch      = c(21, 21),                # marker types (ordered)
+             bty      = "y",                      # remove border
+             pt.cex   = 2.25,                     # point size scale
+             cex      = 1.5,                      # text size scale
+             text.col = "black",                  # text color
+             horiz    = FALSE,                    # list items vertically
+             box.lty  = 1)                        # change box size (0 = removed)
+
+
 
 
