@@ -637,7 +637,7 @@ scr_save <- function(coreFrame, units = "in",
         height = height)
   }
 
-  print.fxl(coreFrame)
+  print(coreFrame)
 
   dev.off()
 

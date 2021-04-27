@@ -1,8 +1,6 @@
-rm(list = ls())
-
 
 library(dplyr) # included for infix logic
-#library(fxl)   # core plotting methods
+library(fxl)   # core plotting methods
 
 minX = 1
 maxX = 30
@@ -108,8 +106,17 @@ scr_plot(semiLogData, aesthetics = list(x     = Session,
              cex      = 1.5,                      # text size scale
              text.col = "black",                  # text color
              horiz    = FALSE,                    # list items vertically
-             box.lty  = 1)                        # change box size (0 = removed)
+             box.lty  = 1)
 
-# l.col = as.character( currentLayer[["col"]])
-# l.lty = as.numeric(   currentLayer[["lty"]])
-# l.lwd = as.numeric(   currentLayer[["lwd"]])
+  #%>%
+  # scr_save(name = "semilogfigure.svg",
+  #          format = "svg",
+  #          units = "in",
+  #          height = 6,
+  #          width = 9) %>%
+  # scr_save(name = "semilogfigure.png",
+  #          format = "png",
+  #          units = "in",
+  #          height = 6,
+  #          width = 9,
+  #          res = 300)
