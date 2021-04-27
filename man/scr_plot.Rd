@@ -9,7 +9,8 @@ scr_plot(
   aesthetics,
   mai = c(0.375, 0.375, 0.25, 0.25),
   omi = c(0.25, 0.25, 0.25, 0.25),
-  ncol = 1
+  ncol = 1,
+  semilog = FALSE
 )
 }
 \arguments{

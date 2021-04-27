@@ -34,15 +34,16 @@ library(dplyr)
 #' @return
 #' @export
 scr_plot <- function(data, aesthetics,
-                     mai  = c(0.375, 0.375, 0.25, 0.25),
-                     omi  = c(0.25, 0.25, 0.25, 0.25),
-                     ncol = 1) {
+                     mai     = c(0.375, 0.375, 0.25, 0.25),
+                     omi     = c(0.25, 0.25, 0.25, 0.25),
+                     ncol    = 1,
+                     semilog = FALSE) {
 
   coreFrame = list()                             # Primary plotting object
-  coreFrame[[ "layers" ]] <- list()              # Layers for drawing
-  coreFrame[[ "aes"    ]] <- enexpr(aesthetics)  # Mappings
-  coreFrame[[ "data"   ]] <- data                # Stored data
-  coreFrame[[ "dims"   ]] <- list(               # Global dimensions
+  coreFrame[[ "layers"  ]] <- list()              # Layers for drawing
+  coreFrame[[ "aes"     ]] <- enexpr(aesthetics)  # Mappings
+  coreFrame[[ "data"    ]] <- data                # Stored data
+  coreFrame[[ "dims"    ]] <- list(               # Global dimensions
     global.max.x = max(data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE),
     global.min.x = min(data[[as.character(coreFrame$aes['x'])]], na.rm = TRUE),
     global.max.y = max(data[[as.character(coreFrame$aes['y'])]], na.rm = TRUE),
@@ -59,6 +60,8 @@ scr_plot <- function(data, aesthetics,
     title        = "")
 
   class(coreFrame) <- c("fxl")                   # Apply a class name (to override print)
+
+  if (semilog) class(coreFrame) <- c("fxlsemilog")
 
   coreFrame
 }
@@ -634,7 +637,7 @@ scr_save <- function(coreFrame, units = "in",
         height = height)
   }
 
-  print.fxl(coreFrame)
+  print(coreFrame)
 
   dev.off()
 
@@ -642,6 +645,189 @@ scr_save <- function(coreFrame, units = "in",
 }
 
 ### OVERRIDES ###
+
+#' print.fxlsemilog
+#'
+#' Override the final call to print the fxl object. catches the obj and prints out layers in the sequence laid out by the user
+#'
+#' @param coreFrame fxlsemilog object
+#'
+#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
+#'
+#' @return
+#' @export print.fxl
+#' @export
+print.fxlsemilog <- function(coreFrame, ...) {
+  coreFrame$dims[["min.local.x"]]   = min(coreFrame$data[[
+    as.character(coreFrame$aes['x'])]], na.rm = TRUE)
+  coreFrame$dims[["max.local.x"]]   = max(coreFrame$data[[
+    as.character(coreFrame$aes['x'])]], na.rm = TRUE)
+
+  # X Overrides
+
+  if (!is.null(coreFrame$dims[["global.min.x"]]))
+    coreFrame$dims[["min.local.x"]] = coreFrame$dims[["global.min.x"]]
+
+  if (!is.null(coreFrame$dims[["global.max.x"]]))
+    coreFrame$dims[["max.local.x"]] = coreFrame$dims[["global.max.x"]]
+
+  # X axis
+  x.axis.ticks = seq(coreFrame$dims[["global.min.x"]],
+                     coreFrame$dims[["global.max.x"]],
+                     by = coreFrame$dims[['xdelta']])
+
+  if (!is.null(coreFrame$dims[["xticks"]]) & !is.list(coreFrame$dims[["xticks"]])) {
+    x.axis.ticks = as.integer(coreFrame$dims[["xticks"]])
+  }
+
+  # Y axis
+
+  coreFrame$dims[["min.local.y"]] = ifelse(is.null(coreFrame$dims[["global.min.y"]]),
+                                           min(coreFrame$data[[as.character(coreFrame$aes['y'])]]),
+                                           coreFrame$dims[["global.min.y"]])
+  coreFrame$dims[["max.local.y"]] = ifelse(is.null(coreFrame$dims[["global.min.y"]]),
+                                           max(coreFrame$data[[as.character(coreFrame$aes['y'])]]),
+                                           coreFrame$dims[["global.max.y"]])
+
+  # Hack:
+  coreFrame$dims[["min.local.y"]] = 0.1
+
+  par(family = "serif",
+      omi    = coreFrame[["dims"]][["omi"]],
+      mai    = coreFrame[["dims"]][["mai"]],
+      xaxs   = "r",
+      yaxs   = "r",
+      xpd    = FALSE)
+
+  # Set layouts
+  layout(matrix(c(1, 1, 1, 1, 1, 2),
+                nrow = 6,
+                ncol = 1,
+                byrow = TRUE))
+
+  # Top plot
+  plot(NULL,
+       ylim = c(coreFrame$dims[["min.local.y"]],
+                coreFrame$dims[["max.local.y"]]),
+       xlim = c(coreFrame$dims[["min.local.x"]],
+                coreFrame$dims[["max.local.x"]]),
+       ylab = "",
+       xlab = "",
+       xaxt = "n",
+       yaxt = "n",
+       frame.plot = FALSE,
+       log = "y",
+       las = 1)
+
+  mtext(coreFrame$labs[["title"]],
+        side = 3,
+        outer = TRUE,
+        adj = 0.04,
+        line = 0)
+
+  breaks  <- as.vector(c(2:10) %o% 10^(log10(coreFrame$dims[["min.local.y"]]):log10(coreFrame$dims[["max.local.y"]])))
+
+  labelLogicals <- c(T, F, F, T, F, F, F, F, T)
+  labels <- as.character(breaks * labelLogicals)
+  labels <- gsub("^0$", "", labels)
+
+  axis(1,
+       at     = x.axis.ticks,
+       labels = NA)
+
+  # TODO: remove hard codes?
+  axis(2,
+       at     = c(0.1, breaks),
+       las    = 1,
+       tcl    = par("tcl")*0.33,
+       labels = c("0.1", labels))
+  axis(2,
+       at     = c(0.1,
+                  as.vector(c(1) %o% 10^(log10(coreFrame$dims[["min.local.y"]]):log10(coreFrame$dims[["max.local.y"]])))),
+       las    = 1,
+       tcl    = par("tcl"),
+       labels = c(0.1,
+                  as.vector(c(1) %o% 10^(log10(coreFrame$dims[["min.local.y"]]):log10(coreFrame$dims[["max.local.y"]])))))
+
+  abline(h = c(0.1, breaks),
+         lty = 1,
+         col = "cadetblue")
+
+  abline(h = c(0.1,
+               as.vector(c(1) %o% 10^(log10(coreFrame$dims[["min.local.y"]]):log10(coreFrame$dims[["max.local.y"]])))),
+         lty = 1,
+         col = "darkblue")
+
+  abline(h = c(0.1,
+               as.vector(c(5) %o% 10^(log10(coreFrame$dims[["min.local.y"]]):log10(coreFrame$dims[["max.local.y"]])))),
+         lty = 3,
+         col = "darkblue")
+
+  abline(v   = coreFrame$dims[["min.local.x"]]:coreFrame$dims[["max.local.x"]],
+         lty = 1,
+         col = "cadetblue")
+
+  if (length(coreFrame[["layers"]]) > 0) {
+    for (i in 1:length(coreFrame[["layers"]])) {
+
+      currentLayer = coreFrame$layers[[i]]
+      currentLayer$facet = "hack"
+
+      if (currentLayer$type == "arrows")         draw_arrows(      coreFrame, currentLayer, "hack")
+      if (currentLayer$type == "brackets")       draw_brackets(    coreFrame, currentLayer, "hack")
+      if (currentLayer$type == "guide_line")     draw_guide_line(  coreFrame, currentLayer, "hack")
+      if (currentLayer$type == "line")           draw_lines(       coreFrame, currentLayer, NA)
+      if (currentLayer$type == "phase_label")    draw_label_phase( coreFrame, currentLayer, "hack")
+      if (currentLayer$type == "point")          draw_points(      coreFrame, currentLayer, NA)
+    }
+  }
+
+  box(bty = "l")
+
+  if (!is.null(coreFrame[["legendpars"]]))  draw_legend(coreFrame)
+
+  par(
+    omi    = c(0.2, 0.25, 0.1, 0.25),
+    mai    = c(0.4, 0.35, 0.1, 0.25),
+    xaxs   = "r",
+    yaxs   = "r",
+    xpd    = FALSE,
+    new    = TRUE)
+
+  plot(NULL,
+       ylim = c(0,0),
+       xlim = c(coreFrame$dims[["min.local.x"]],
+                coreFrame$dims[["max.local.x"]]),
+       ylab = "",
+       xlab = "",
+       xaxt = "n",
+       yaxt = "n",
+       frame.plot = FALSE,
+       las = 1)
+
+  axis(1,
+       labels = coreFrame$dims[["min.local.x"]]:coreFrame$dims[["max.local.x"]],
+       at     = coreFrame$dims[["min.local.x"]]:coreFrame$dims[["max.local.x"]],
+       pos = 0)
+
+  axis(2,
+       labels = c(0),
+       las    = 1,
+       tcl    = 0,
+       at     = c(0))
+
+  abline(h = 0,
+         lty = 1,
+         col = "black")
+
+  if (length(coreFrame[["layers"]]) > 0)
+    for (i in 1:length(coreFrame[["layers"]]))
+      if (coreFrame$layers[[i]]$type == "point")
+        draw_points(coreFrame, coreFrame$layers[[i]], NA, zeroAxis = TRUE)
+
+  mtext(coreFrame$labs[["ylab"]],  side = 2, outer = TRUE)
+  mtext(coreFrame$labs[["xlab"]],  side = 1, outer = TRUE)
+}
 
 #' print.fxl
 #'
@@ -737,20 +923,6 @@ print.fxl <- function(coreFrame, ...) {
                        coreFrame$dims[["global.max.y"]],
                        by = coreFrame$dims[['ydelta']])
 
-    # if (!is.null(coreFrame$dims[["yticks"]]) & !is.list(coreFrame$dims[["yticks"]])) {
-    #   y.axis.ticks = as.integer(coreFrame$dims[["yticks"]])
-    #
-    #   coreFrame$dims[["min.local.y"]] = min(as.numeric(coreFrame$dims[["yticks"]]))
-    #   coreFrame$dims[["min.local.y"]] = max(as.numeric(coreFrame$dims[["yticks"]]))
-    #
-    # } else if (!is.null(coreFrame$dims[["yticks"]]) & is.list(coreFrame$dims[["yticks"]])) {
-    #   y.axis.ticks = coreFrame$dims[["yticks"]][[currentFacet]]
-    #
-    #   coreFrame$dims[["min.local.y"]] = min(as.numeric(coreFrame$dims[["yticks"]][[currentFacet]]))
-    #   coreFrame$dims[["min.local.y"]] = max(as.numeric(coreFrame$dims[["yticks"]][[currentFacet]]))
-    #
-    # } else
-
     if (!is.null(coreFrame$dims[["local.dims"]])) {
       coreFrame$dims[["min.local.y"]] = coreFrame$dims[["local.dims"]][[currentFacet]]$y0
       coreFrame$dims[["max.local.y"]] = coreFrame$dims[["local.dims"]][[currentFacet]]$y1
@@ -835,7 +1007,7 @@ print.fxl <- function(coreFrame, ...) {
 
             currentLayer$lines[[pname]][[facetIndex]][["botDraw"]] <- cnvrt.coords(
               currentLayer$lines[[pname]][[facetIndex]][["x2"]],
-              - ((coreFrame$dims[["max.local.y"]] - coreFrame$dims[["min.local.y"]]) * 0.04))
+              -((coreFrame$dims[["max.local.y"]] - coreFrame$dims[["min.local.y"]]) * 0.04))
 
             tmp.point.top.dev <- cnvrt.coords(
               currentLayer$lines[[pname]][[facetIndex]][["topDraw"]]$dev,

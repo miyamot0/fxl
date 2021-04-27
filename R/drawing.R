@@ -275,9 +275,14 @@ draw_lines <- function(coreFrame, currentLayer, facetName) {
       )
     }
 
+    plotFrame = data.frame(
+      X = currentData.slice[, as.character(localAesthetics['x'])],
+      Y = currentData.slice[, as.character(localAesthetics['y'])]
+    )
+
     lines(
-      currentData.slice[, as.character(localAesthetics['x'])],
-      currentData.slice[, as.character(localAesthetics['y'])],
+      plotFrame$X,
+      plotFrame$Y,
       lty   = currentLayer$lty,
       col   = currentLayer$color,
       lwd   = currentLayer$size
@@ -447,12 +452,13 @@ draw_label_phase <- function(coreFrame, currentLayer, facetName) {
 #' @param coreFrame fxl object
 #' @param currentLayer layer to be drawn
 #' @param facetName name of facet
+#' @param zeroAxis filter out all but zeros
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_points <- function(coreFrame, currentLayer, facetName) {
+draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
 
   if (is.na(facetName))  currentData   = coreFrame$data
   else           currentData   = coreFrame$data[which(
@@ -502,9 +508,16 @@ draw_points <- function(coreFrame, currentLayer, facetName) {
     if (is.list(currentLayer$fill)) fill = currentLayer$fill[[p]]
     else                            fill = currentLayer$fill
 
+    plotFrame = data.frame(
+      X = currentData.slice[, as.character(localAesthetics['x'])],
+      Y = currentData.slice[, as.character(localAesthetics['y'])]
+    )
+
+    if (zeroAxis) plotFrame = plotFrame[plotFrame$Y == 0,]
+
     points(
-      currentData.slice[, as.character(localAesthetics['x'])],
-      currentData.slice[, as.character(localAesthetics['y'])],
+      plotFrame$X,
+      plotFrame$Y,
       pch = pch,
       cex = currentLayer$cex,
       bg  = fill
@@ -555,12 +568,12 @@ draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
       l.lty = currentLayer[["lty"]]
 
       tempY1 = ifelse(currentLayer$lines[[facetName]][[key]][['y1']] == 0,
-                      - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
+                      -((as.numeric(coreFrame$dims[["max.local.y"]]) -
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
                       currentLayer$lines[[facetName]][[key]][['y1']])
 
       tempY2 = ifelse(currentLayer$lines[[facetName]][[key]][['y2']] == 0,
-                      - ((as.numeric(coreFrame$dims[["max.local.y"]]) -
+                      -((as.numeric(coreFrame$dims[["max.local.y"]]) -
                           as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
                       currentLayer$lines[[facetName]][[key]][['y2']])
 
@@ -601,8 +614,8 @@ draw_legend <- function(coreFrame) {
     pt.cex    = as.numeric(   coreFrame$legendpars[[ "pt.cex"   ]]),
     cex       = as.numeric(   coreFrame$legendpars[[ "cex"      ]]),
     bg        = as.character( coreFrame$legendpars[[ "bg"       ]]),
-    col       = as.character( coreFrame$legendpars[[ "pt.col"   ]]),
-    #pt.bg    = as.character( coreFrame$legendpars[[ "col"      ]]),
+    col       = as.character( coreFrame$legendpars[[ "col"      ]]),
+    pt.bg     = as.character( coreFrame$legendpars[[ "pt.col"   ]]),
     horiz     = as.logical(   coreFrame$legendpars[[ "horiz"    ]])
   )
 }

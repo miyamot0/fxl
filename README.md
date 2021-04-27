@@ -52,6 +52,14 @@ The respective figure is drawn from a single-subject evaluation conducted by [Gi
 
 ![Gilroy et al 2015](https://github.com/miyamot0/fxl/blob/main/man/figures/multiplebaselinefigure.svg?raw=true)
 
+*Semi-logarithmic (Celeration) Charting with Annotations*
+
+Although I've never used on in practice (behavior observed at rates ~1000x/day are pretty uncommon), _fxl_ supports plotting in log-linear space. This is often down when changes across orders of magnitude are more easily understood in terms of relative change. This is demonstrated with a toy simulation of data that occurs at low (0-2x/session) and high rates (~100-200x/session).
+
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/semilogplot.R)
+
+![Example Data](https://github.com/miyamot0/fxl/blob/main/man/figures/semilogfigure.svg?raw=true)
+
 *Concurrent Choice/Initial Link Selections*
 
 The respective figure is drawn from a single-subject evaluation conducted by [Lozy et al. (2020)](https://doi.org/10.1002/jaba.677). These data were previously illustrated using spreadsheet software and are now drawn in *fxl*.
