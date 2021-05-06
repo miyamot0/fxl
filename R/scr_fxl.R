@@ -608,12 +608,13 @@ scr_legend <- function(coreFrame, panel = NA, legend,
 #'
 #' @return
 #' @export
-scr_save <- function(coreFrame, units = "in",
-                      name = "test.tiff",
-                      format = "tiff",
-                      width = 8,
-                      height = 4,
-                      res = 600) {
+scr_save <- function(coreFrame,
+                     units = "in",
+                     name = "test.tiff",
+                     format = "tiff",
+                     width = 8,
+                     height = 4,
+                     res = 600) {
 
   if (format == "tiff") {
     tiff(name,
@@ -889,7 +890,6 @@ print.fxl <- function(coreFrame, ...) {
       coreFrame$dims[["max.local.x"]] = coreFrame$dims[["global.max.x"]]
 
     # X axes
-
     x.axis.draw  = (facetIndex == n.facets)
 
     if (!is.null(coreFrame$dims[["xdraws"]])) {
@@ -1090,7 +1090,7 @@ print.fxl <- function(coreFrame, ...) {
     }
   }
 
-  if (!lookup)  draw_legend(coreFrame)
+  if (!lookup & !is.null(coreFrame[["legendpars"]]))  draw_legend(coreFrame)
 
   mtext(coreFrame$labs[["title"]], side = 3, outer = TRUE, line = 0)
   mtext(coreFrame$labs[["ylab"]],  side = 2, outer = TRUE)
