@@ -11,7 +11,6 @@ xs  <- 1:30
 ys  <- 0 + 5*xs + rnorm(length(xs), 0, 2)
 
 ys2 <- 0.2 + 0.1*xs + rnorm(length(xs), 0, 0.25)
-
 ys2[2] <- 0
 
 semiLogData = data.frame(
