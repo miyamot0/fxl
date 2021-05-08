@@ -508,6 +508,16 @@ draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
     if (is.list(currentLayer$fill)) fill = currentLayer$fill[[p]]
     else                            fill = currentLayer$fill
 
+    col = 'black'
+
+    if (is.list(currentLayer$color)) col = currentLayer$color[[p]]
+    else                             col = currentLayer$color
+
+    cex = 1
+
+    if (is.list(currentLayer$cex)) cex = currentLayer$cex[[p]]
+    else                           cex = currentLayer$cex
+
     plotFrame = data.frame(
       X = currentData.slice[, as.character(localAesthetics['x'])],
       Y = currentData.slice[, as.character(localAesthetics['y'])]
@@ -519,8 +529,9 @@ draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
       plotFrame$X,
       plotFrame$Y,
       pch = pch,
-      cex = currentLayer$cex,
-      bg  = fill
+      cex = cex,
+      bg  = fill,
+      col = col
     )
   }
 }

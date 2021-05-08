@@ -57,6 +57,9 @@ scr_plot <- function(data, aesthetics,
   coreFrame[[ "labs"   ]] <- list(               # Presumed labels, blank title by default
     xlab         = as.character(coreFrame$aes['x']),
     ylab         = as.character(coreFrame$aes['y']),
+    outer        = TRUE,
+    outer.x.line = 0,
+    outer.y.line = 0,
     title        = "")
 
   class(coreFrame) <- c("fxl")                   # Apply a class name (to override print)
@@ -443,9 +446,10 @@ scr_points <- function(coreFrame, pch = 21, color = 'black',
 #'
 #' @return
 #' @export
-scr_xlabel <- function(coreFrame, var) {
+scr_xlabel <- function(coreFrame, var, line = 0) {
 
   coreFrame$labs[["xlab"]] = {{ var }}
+  coreFrame$labs[["outer.x.line"]] = line
 
   coreFrame
 }
@@ -488,9 +492,10 @@ scr_xoverride <- function(coreFrame, var, xdelta = 1,
 #'
 #' @return
 #' @export
-scr_ylabel <- function(coreFrame, var) {
+scr_ylabel <- function(coreFrame, var, line = 0) {
 
   coreFrame$labs[["ylab"]] = {{ var }}
+  coreFrame$labs[["outer.y.line"]] = line
 
   coreFrame
 }
@@ -1092,7 +1097,15 @@ print.fxl <- function(coreFrame, ...) {
 
   if (!lookup & !is.null(coreFrame[["legendpars"]]))  draw_legend(coreFrame)
 
-  mtext(coreFrame$labs[["title"]], side = 3, outer = TRUE, line = 0)
-  mtext(coreFrame$labs[["ylab"]],  side = 2, outer = TRUE)
-  mtext(coreFrame$labs[["xlab"]],  side = 1, outer = TRUE)
+  mtext(coreFrame$labs[["title"]],
+        side = 3,
+        outer = coreFrame$labs[["outer"]])
+  mtext(coreFrame$labs[["ylab"]],
+        side = 2,
+        outer = coreFrame$labs[["outer"]],
+        line = coreFrame$labs[["outer.y.line"]])
+  mtext(coreFrame$labs[["xlab"]],
+        side = 1,
+        outer = coreFrame$labs[["outer"]],
+        line = coreFrame$labs[["outer.x.line"]])
 }
