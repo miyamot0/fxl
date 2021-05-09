@@ -973,14 +973,6 @@ print.fxl <- function(coreFrame, ...) {
          las    = 1,
          at     = y.axis.ticks)
 
-    if (!is.null(coreFrame[["legendpars"]])) {
-      if (lookup & coreFrame$legendpars[["panel"]] == currentFacet) {
-        draw_legend(coreFrame)
-      } else if (lookup & is.na(coreFrame$legendpars[["panel"]])) {
-        draw_legend(coreFrame)
-      }
-    }
-
     if (length(coreFrame[["layers"]]) > 0) {
       for (i in 1:length(coreFrame[["layers"]])) {
 
@@ -1049,6 +1041,14 @@ print.fxl <- function(coreFrame, ...) {
 
           reqDraw = TRUE
         }
+      }
+    }
+
+    if (!is.null(coreFrame[["legendpars"]])) {
+      if (lookup & coreFrame$legendpars[["panel"]] == currentFacet) {
+        draw_legend(coreFrame)
+      } else if (lookup & is.na(coreFrame$legendpars[["panel"]])) {
+        draw_legend(coreFrame)
       }
     }
   }
