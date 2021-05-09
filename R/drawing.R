@@ -617,10 +617,36 @@ draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
 #' @export
 draw_legend <- function(coreFrame) {
 
+  if (is.list(coreFrame$legendpars[["position"]])) {
+
+    legend(
+      x = coreFrame$legendpars[["position"]]$x,
+      y = coreFrame$legendpars[["position"]]$y,
+
+      legend    = as.character( coreFrame$legendpars[[ "legend"   ]]),
+      adj       = as.numeric(   coreFrame$legendpars[[ "adj"      ]]),
+      text.col  = as.character( coreFrame$legendpars[[ "text.col" ]]),
+      lty       = as.numeric(   coreFrame$legendpars[[ "lty"      ]]),
+      box.lty   = as.numeric(   coreFrame$legendpars[[ "box.lty"  ]]),
+      pch       = as.numeric(   coreFrame$legendpars[[ "pch"      ]]),
+      border    = as.numeric(   coreFrame$legendpars[[ "border"   ]]),
+      bty       = as.character( coreFrame$legendpars[[ "bty"      ]]),
+      pt.cex    = as.numeric(   coreFrame$legendpars[[ "pt.cex"   ]]),
+      cex       = as.numeric(   coreFrame$legendpars[[ "cex"      ]]),
+      bg        = as.character( coreFrame$legendpars[[ "bg"       ]]),
+      col       = as.character( coreFrame$legendpars[[ "col"      ]]),
+      pt.bg     = as.character( coreFrame$legendpars[[ "pt.bg"    ]]),
+      horiz     = as.logical(   coreFrame$legendpars[[ "horiz"    ]])
+    )
+
+    return(NA)
+  }
+
   legend(
     coreFrame$legendpars[["position"]],
 
     legend    = as.character( coreFrame$legendpars[[ "legend"   ]]),
+    adj       = as.numeric(   coreFrame$legendpars[[ "adj"      ]]),
     text.col  = as.character( coreFrame$legendpars[[ "text.col" ]]),
     lty       = as.numeric(   coreFrame$legendpars[[ "lty"      ]]),
     box.lty   = as.numeric(   coreFrame$legendpars[[ "box.lty"  ]]),

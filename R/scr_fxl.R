@@ -573,18 +573,20 @@ scr_title <- function(coreFrame, var) {
 #' @return
 #' @export
 scr_legend <- function(coreFrame, panel = NA, legend,
-                       bg = NULL, col = NULL, m.col = NULL,
-                       lty, pch, box.lty = 0,
+                       bg = NULL, col = NULL, pt.bg = NULL,
+                       lty, pch, box.lty = 0, adj = c(0, 0.5),
                        bty = "n", cex = 1, horiz = FALSE,
                        position = "topright", pt.cex = 1,
-                       text.col = "black") {
+                       text.col = "black", border = "black") {
 
   coreFrame$legendpars = list()
   coreFrame$legendpars[[ "panel"    ]] = panel
+  coreFrame$legendpars[[ "adj"      ]] = adj
   coreFrame$legendpars[[ "legend"   ]] = legend
-  coreFrame$legendpars[[ "col"      ]] = text.col
+  coreFrame$legendpars[[ "col"      ]] = col
   coreFrame$legendpars[[ "bg"       ]] = bg
-  coreFrame$legendpars[[ "pt.col"   ]] = m.col
+  coreFrame$legendpars[[ "pt.bg"    ]] = pt.bg
+  coreFrame$legendpars[[ "border"   ]] = border
   coreFrame$legendpars[[ "lty"      ]] = lty
   coreFrame$legendpars[[ "pch"      ]] = pch
   coreFrame$legendpars[[ "bty"      ]] = bty
