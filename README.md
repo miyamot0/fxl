@@ -14,13 +14,14 @@ Features include:
 
 ------
 
-1.0.0 (beta)
+0.2.0 (beta)
 
 ### Changelog
 
 ------
 
-* 1.0.0 - Initial submission to CRAN
+* 0.2.0 - Add in various demos (e.g., multiple baseline, annotated reversal, silverman-style)
+* 0.1.0 - Prep for initial submission to CRAN
 
 ### Features/Usage
 
@@ -84,6 +85,14 @@ This is the same example as the one above, but with a corresponding bar series t
 
 ![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/fafigureintegrity.svg?raw=true)
 
+*Silverman-Styled Dot Plots*
+
+Plots designed in the manner often used by Kenneth Silverman are also supported in *fxl*. They plots communicate behavior coding in dotpots, whereby each increment on the ordinate reflects a different individual and each increment on the abscissa a change in unit time. The respective figure is drawn from a randomized controlled trial conducted by [Koffarnus et al. (2011)](https://doi.org/10.1093/alcalc/agr057).
+
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/silvermanplot.R)
+
+![Koffarnus et al 2011](https://github.com/miyamot0/fxl/blob/main/man/figures/silvermanplot.svg?raw=true)
+
 ### Referenced Works (F/OSS software)
 
 The fxl package uses a number of open source projects to work properly:
@@ -106,7 +115,7 @@ Want to contribute? Great! Emails or PR's (worthwhile ones) are welcome.
 
 * Condensing methods
 
-* Individually-keyed styles
+* ~~Individually-keyed styles~~
 
 ### License
 
