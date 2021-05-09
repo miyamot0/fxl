@@ -551,12 +551,16 @@ draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
 draw_label_facet <- function(coreFrame, currentLayer, facetName) {
   currentLabel = currentLayer$labels[[as.character(facetName)]]
 
+  label = facetName
+
+  if ("label" %in% names(currentLabel)) label = currentLabel[["label"]]
+
   if (!is.null(currentLabel)) {
     text(x      = currentLabel[[ "x"   ]],
          y      = currentLabel[[ "y"   ]],
          cex    = currentLayer[[ "cex" ]],
          adj    = currentLayer[[ "adj" ]],
-         labels = facetName)
+         labels = label)
   }
 }
 
