@@ -14,13 +14,14 @@ Features include:
 
 ------
 
-0.2.0 (beta)
+0.3.0 (beta)
 
 ### Changelog
 
 ------
 
-* 0.2.0 - Add in various demos (e.g., multiple baseline, annotated reversal, silverman-style)
+* 0.3.0 - Add in demo for completed silverman-style plot
+* 0.2.0 - Add in various demos (e.g., multiple baseline, annotated reversal)
 * 0.1.0 - Prep for initial submission to CRAN
 
 ### Features/Usage
