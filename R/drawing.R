@@ -508,6 +508,16 @@ draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
     if (is.list(currentLayer$fill)) fill = currentLayer$fill[[p]]
     else                            fill = currentLayer$fill
 
+    col = 'black'
+
+    if (is.list(currentLayer$color)) col = currentLayer$color[[p]]
+    else                             col = currentLayer$color
+
+    cex = 1
+
+    if (is.list(currentLayer$cex)) cex = currentLayer$cex[[p]]
+    else                           cex = currentLayer$cex
+
     plotFrame = data.frame(
       X = currentData.slice[, as.character(localAesthetics['x'])],
       Y = currentData.slice[, as.character(localAesthetics['y'])]
@@ -519,8 +529,9 @@ draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
       plotFrame$X,
       plotFrame$Y,
       pch = pch,
-      cex = currentLayer$cex,
-      bg  = fill
+      cex = cex,
+      bg  = fill,
+      col = col
     )
   }
 }
@@ -540,12 +551,16 @@ draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
 draw_label_facet <- function(coreFrame, currentLayer, facetName) {
   currentLabel = currentLayer$labels[[as.character(facetName)]]
 
+  label = facetName
+
+  if ("label" %in% names(currentLabel)) label = currentLabel[["label"]]
+
   if (!is.null(currentLabel)) {
     text(x      = currentLabel[[ "x"   ]],
          y      = currentLabel[[ "y"   ]],
          cex    = currentLayer[[ "cex" ]],
          adj    = currentLayer[[ "adj" ]],
-         labels = facetName)
+         labels = label)
   }
 }
 
@@ -602,10 +617,36 @@ draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
 #' @export
 draw_legend <- function(coreFrame) {
 
+  if (is.list(coreFrame$legendpars[["position"]])) {
+
+    legend(
+      x = coreFrame$legendpars[["position"]]$x,
+      y = coreFrame$legendpars[["position"]]$y,
+
+      legend    = as.character( coreFrame$legendpars[[ "legend"   ]]),
+      adj       = as.numeric(   coreFrame$legendpars[[ "adj"      ]]),
+      text.col  = as.character( coreFrame$legendpars[[ "text.col" ]]),
+      lty       = as.numeric(   coreFrame$legendpars[[ "lty"      ]]),
+      box.lty   = as.numeric(   coreFrame$legendpars[[ "box.lty"  ]]),
+      pch       = as.numeric(   coreFrame$legendpars[[ "pch"      ]]),
+      border    = as.numeric(   coreFrame$legendpars[[ "border"   ]]),
+      bty       = as.character( coreFrame$legendpars[[ "bty"      ]]),
+      pt.cex    = as.numeric(   coreFrame$legendpars[[ "pt.cex"   ]]),
+      cex       = as.numeric(   coreFrame$legendpars[[ "cex"      ]]),
+      bg        = as.character( coreFrame$legendpars[[ "bg"       ]]),
+      col       = as.character( coreFrame$legendpars[[ "col"      ]]),
+      pt.bg     = as.character( coreFrame$legendpars[[ "pt.bg"    ]]),
+      horiz     = as.logical(   coreFrame$legendpars[[ "horiz"    ]])
+    )
+
+    return(NA)
+  }
+
   legend(
     coreFrame$legendpars[["position"]],
 
     legend    = as.character( coreFrame$legendpars[[ "legend"   ]]),
+    adj       = as.numeric(   coreFrame$legendpars[[ "adj"      ]]),
     text.col  = as.character( coreFrame$legendpars[[ "text.col" ]]),
     lty       = as.numeric(   coreFrame$legendpars[[ "lty"      ]]),
     box.lty   = as.numeric(   coreFrame$legendpars[[ "box.lty"  ]]),

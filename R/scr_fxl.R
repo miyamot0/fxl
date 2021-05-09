@@ -57,6 +57,9 @@ scr_plot <- function(data, aesthetics,
   coreFrame[[ "labs"   ]] <- list(               # Presumed labels, blank title by default
     xlab         = as.character(coreFrame$aes['x']),
     ylab         = as.character(coreFrame$aes['y']),
+    outer        = TRUE,
+    outer.x.line = 0,
+    outer.y.line = 0,
     title        = "")
 
   class(coreFrame) <- c("fxl")                   # Apply a class name (to override print)
@@ -443,9 +446,10 @@ scr_points <- function(coreFrame, pch = 21, color = 'black',
 #'
 #' @return
 #' @export
-scr_xlabel <- function(coreFrame, var) {
+scr_xlabel <- function(coreFrame, var, line = 0) {
 
   coreFrame$labs[["xlab"]] = {{ var }}
+  coreFrame$labs[["outer.x.line"]] = line
 
   coreFrame
 }
@@ -488,9 +492,10 @@ scr_xoverride <- function(coreFrame, var, xdelta = 1,
 #'
 #' @return
 #' @export
-scr_ylabel <- function(coreFrame, var) {
+scr_ylabel <- function(coreFrame, var, line = 0) {
 
   coreFrame$labs[["ylab"]] = {{ var }}
+  coreFrame$labs[["outer.y.line"]] = line
 
   coreFrame
 }
@@ -568,18 +573,20 @@ scr_title <- function(coreFrame, var) {
 #' @return
 #' @export
 scr_legend <- function(coreFrame, panel = NA, legend,
-                       bg = NULL, col = NULL, m.col = NULL,
-                       lty, pch, box.lty = 0,
+                       bg = NULL, col = NULL, pt.bg = NULL,
+                       lty, pch, box.lty = 0, adj = c(0, 0.5),
                        bty = "n", cex = 1, horiz = FALSE,
                        position = "topright", pt.cex = 1,
-                       text.col = "black") {
+                       text.col = "black", border = "black") {
 
   coreFrame$legendpars = list()
   coreFrame$legendpars[[ "panel"    ]] = panel
+  coreFrame$legendpars[[ "adj"      ]] = adj
   coreFrame$legendpars[[ "legend"   ]] = legend
-  coreFrame$legendpars[[ "col"      ]] = text.col
+  coreFrame$legendpars[[ "col"      ]] = col
   coreFrame$legendpars[[ "bg"       ]] = bg
-  coreFrame$legendpars[[ "pt.col"   ]] = m.col
+  coreFrame$legendpars[[ "pt.bg"    ]] = pt.bg
+  coreFrame$legendpars[[ "border"   ]] = border
   coreFrame$legendpars[[ "lty"      ]] = lty
   coreFrame$legendpars[[ "pch"      ]] = pch
   coreFrame$legendpars[[ "bty"      ]] = bty
@@ -968,14 +975,6 @@ print.fxl <- function(coreFrame, ...) {
          las    = 1,
          at     = y.axis.ticks)
 
-    if (!is.null(coreFrame[["legendpars"]])) {
-      if (lookup & coreFrame$legendpars[["panel"]] == currentFacet) {
-        draw_legend(coreFrame)
-      } else if (lookup & is.na(coreFrame$legendpars[["panel"]])) {
-        draw_legend(coreFrame)
-      }
-    }
-
     if (length(coreFrame[["layers"]]) > 0) {
       for (i in 1:length(coreFrame[["layers"]])) {
 
@@ -1046,6 +1045,14 @@ print.fxl <- function(coreFrame, ...) {
         }
       }
     }
+
+    if (!is.null(coreFrame[["legendpars"]])) {
+      if (lookup & coreFrame$legendpars[["panel"]] == currentFacet) {
+        draw_legend(coreFrame)
+      } else if (lookup & is.na(coreFrame$legendpars[["panel"]])) {
+        draw_legend(coreFrame)
+      }
+    }
   }
 
   # Note: final overlays, once facets are drawn/coords cached
@@ -1092,7 +1099,15 @@ print.fxl <- function(coreFrame, ...) {
 
   if (!lookup & !is.null(coreFrame[["legendpars"]]))  draw_legend(coreFrame)
 
-  mtext(coreFrame$labs[["title"]], side = 3, outer = TRUE, line = 0)
-  mtext(coreFrame$labs[["ylab"]],  side = 2, outer = TRUE)
-  mtext(coreFrame$labs[["xlab"]],  side = 1, outer = TRUE)
+  mtext(coreFrame$labs[["title"]],
+        side = 3,
+        outer = coreFrame$labs[["outer"]])
+  mtext(coreFrame$labs[["ylab"]],
+        side = 2,
+        outer = coreFrame$labs[["outer"]],
+        line = coreFrame$labs[["outer.y.line"]])
+  mtext(coreFrame$labs[["xlab"]],
+        side = 1,
+        outer = coreFrame$labs[["outer"]],
+        line = coreFrame$labs[["outer.x.line"]])
 }
