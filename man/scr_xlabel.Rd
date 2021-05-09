@@ -4,7 +4,7 @@
 \alias{scr_xlabel}
 \title{xlabel}
 \usage{
-scr_xlabel(coreFrame, var)
+scr_xlabel(coreFrame, var, line = 0)
 }
 \arguments{
 \item{coreFrame}{fxl object}
