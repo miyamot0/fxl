@@ -46,10 +46,10 @@ scr_plot(data, aesthetics = list(x = Session,
                         "Demand",
                         "Tangible"),
              col    = c('black',                            # color of markers (ordered)
-                        'white',
-                        'white',
+                        'black',
+                        'black',
                         'black'),
-             m.col  = c('black',                            # color of markers (ordered)
+             pt.bg  = c('black',                            # color of markers (ordered)
                         'black',
                         'black',
                         'black'),

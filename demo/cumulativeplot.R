@@ -160,7 +160,7 @@ scr_plot(data = LozyEtAl2020, aesthetics = list(x = Session,
                             "TD"),
                col      = c('white',                            # color of markers (ordered)
                             'white'),
-               m.col    = c('black',                            # color of markers (ordered)
+               pt.bg    = c('black',                            # color of markers (ordered)
                             'black'),
                lty      = c(1, 1),                            # line types (ordered)
                pch      = c(24, 22),                          # marker types (ordered)

@@ -95,7 +95,7 @@ scr_plot(semiLogData, aesthetics = list(x     = Session,
                         "Skill B"),
              col    = c('black',                  # color of markers (ordered)
                         'black'),
-             m.col  = c('black',                  # color of markers (ordered)
+             pt.bg  = c('black',                  # color of markers (ordered)
                         'gray'),
              bg       = 'white',
              lty      = c(1, 1),                  # line types (ordered)
