@@ -1005,6 +1005,13 @@ print.fxl <- function(coreFrame, ...) {
                            tmpX1,
                            currentLayer$lines[[pname]][[facetIndex]][["x2"]])
 
+            tmpY1 = ifelse(is.null(currentLayer$lines[[pname]][[facetIndex]][["y1"]]),
+                           0,
+                           currentLayer$lines[[pname]][[facetIndex]][["y1"]])
+            tmpY2 = ifelse(is.null(currentLayer$lines[[pname]][[facetIndex]][["y2"]]),
+                           0,
+                           currentLayer$lines[[pname]][[facetIndex]][["y2"]])
+
             currentLayer$lines[[pname]][[facetIndex]][["topDraw"]] <- cnvrt.coords(
               tmpX1,
               coreFrame$dims[["max.local.y"]])
@@ -1029,19 +1036,19 @@ print.fxl <- function(coreFrame, ...) {
 
             currentLayer$lines[[pname]][[facetIndex]][["topDraw"]] <- cnvrt.coords(
               tmpX1,
-              currentLayer$lines[[pname]][[facetIndex]][["y1"]])$dev
+              tmpY2)$dev
 
             currentLayer$lines[[pname]][[facetIndex]][["botDraw"]] <- cnvrt.coords(
               tmpX2,
-              currentLayer$lines[[pname]][[facetIndex]][["y2"]])$dev
+              tmpY2)$dev
 
             plotTops[[pname]][[indexNum[[pname]]]] = cnvrt.coords(
               tmpX1,
-              currentLayer$lines[[pname]][[facetIndex]][["y1"]])
+              tmpY1)
 
             plotBots[[pname]][[indexNum[[pname]]]] = cnvrt.coords(
               tmpX2,
-              currentLayer$lines[[pname]][[facetIndex]][["y2"]])
+              tmpY2)
 
             indexNum[[pname]] <- indexNum[[pname]] + 1
           }
