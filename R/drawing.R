@@ -581,6 +581,10 @@ draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
     for (key in names(currentLayer$lines[[facetName]])) {
 
       l.lty = currentLayer[["lty"]]
+      l.x1  = currentLayer$lines[[facetName]][[key]][['x1']]
+      l.x2  = ifelse(is.null(currentLayer$lines[[facetName]][[key]][['x2']]),
+                     l.x1,
+                     currentLayer$lines[[facetName]][[key]][['x2']])
 
       tempY1 = ifelse(currentLayer$lines[[facetName]][[key]][['y1']] == 0,
                       -((as.numeric(coreFrame$dims[["max.local.y"]]) -
@@ -596,8 +600,7 @@ draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
         l.lty = currentLayer$lines[[facetName]][[key]]$lty
 
       lines(
-        c(currentLayer$lines[[facetName]][[key]][['x1']],
-          currentLayer$lines[[facetName]][[key]][['x2']]),
+        c(l.x1, l.x2),
         c(tempY1, tempY2),
         lty = l.lty
       )
