@@ -29,51 +29,46 @@ scr_plot(data, aesthetics = list(x     = Session,
                 ydelta = 10) %>%
   scr_points(cex = 2) %>%            # plot points, using x/y from aesthetics
   scr_lines(size = 1) %>%            # plot lines, using x/y from aesthetics
-  scr_label_phase(facet = "Andrew",  # plot labels on specific facet
-                  cex = 1.25,
-                  adj = 0.5,
+  scr_label_phase(facet  = "Andrew",  # plot labels on specific facet
+                  cex    = 1.25,
+                  adj    = 0.5,
+                  y      = 107,
                   labels = list(     # list of labels to draw (will use assigned key for label)
-                   "Baseline"       = list(x = 2.5,
-                                           y = 107),
-                   "Treatment"      = list(x = 9,
-                                           y = 107),
-                   "Maintenance"    = list(x = 19,
-                                           y = 107),
-                   "Generalization" = list(x = 26,
-                                           y = 107))) %>%
-  scr_label_facet(cex = 1.5,         # plot labels across facets (not within a single facet)
-                  adj = 1,
+                   "Baseline"       = list(x = 2.5),
+                   "Treatment"      = list(x = 9),
+                   "Maintenance"    = list(x = 19),
+                   "Generalization" = list(x = 26))) %>%
+  scr_label_facet(cex    = 1.5,         # plot labels across facets (not within a single facet)
+                  adj    = 1,
+                  y      = 10,
                   labels = list(     # list of labels to draw (will use assigned key for label)
-                    "Andrew"  = list(x = 27,
-                                     y = 10),
-                    "Brian"   = list(x = 27,
-                                     y = 10),
-                    "Charles" = list(x = 27,
-                                     y = 10))) %>%
+                    "Andrew"  = list(x = 27),
+                    "Brian"   = list(x = 27),
+                    "Charles" = list(x = 27))) %>%
   scr_plines_mbd(lines = list(       # plot linked phase lines (note: drawn from top through bottom)
     "A" = list(                      # list of phase lines to draw (where to draw lines across each participant)
-      "Andrew"  = list(x1 = 4.5,  y1 = 100,
-                       x2 = 4.5,  y2 = 0),
-      "Brian"   = list(x1 = 11.5, y1 = 100,
-                       x2 = 11.5, y2 = 0),
-      "Charles" = list(x1 = 18.5, y1 = 100,
-                       x2 = 18.5, y2 = 0)
+      "Andrew"  = list(x1 = 4.5,
+                       y1 = 100),
+      "Brian"   = list(x1 = 11.5,
+                       y1 = 100),
+      "Charles" = list(x1 = 18.5,
+                       y1 = 100)
     ),
     "B" = list(
-      "Andrew"  = list(x1 = 13.5, y1 = 100,
-                       x2 = 13.5, y2 = 0),
-      "Brian"   = list(x1 = 20.5, y1 = 100,
-                       x2 = 20.5, y2 = 0),
-      "Charles" = list(x1 = 23.5, y1 = 100,
-                       x2 = 23.5, y2 = 0)
+      "Andrew"  = list(x1 = 13.5,
+                       y1 = 100),
+      "Brian"   = list(x1 = 20.5,
+                       y1 = 100),
+      "Charles" = list(x1 = 23.5,
+                       y1 = 100)
     ),
     "C" = list(
-      "Andrew"  = list(x1 = 23.5, y1 = 100,
-                       x2 = 23.5, y2 = 0),
-      "Brian"   = list(x1 = 23.5, y1 = 100,
-                       x2 = 23.5, y2 = 0),
-      "Charles" = list(x1 = 23.5, y1 = 100,
-                       x2 = 23.5, y2 = 0)
+      "Andrew"  = list(x1 = 23.5,
+                       y1 = 100),
+      "Brian"   = list(x1 = 23.5,
+                       y1 = 100),
+      "Charles" = list(x1 = 23.5,
+                       y1 = 100)
     )
   )) %>%
   scr_xlabel("Session") %>%          # Override x-axis label (bottom only shown by default)

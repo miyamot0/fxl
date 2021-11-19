@@ -19,7 +19,7 @@ data = Gilroyetal2019
 set.seed(65535)
 data$Integrity = sample(80:100,
                         nrow(data),
-                        replace=TRUE)
+                        replace = TRUE)
 
 # Integrity:    some randomly generated integrity data
 

@@ -574,11 +574,16 @@ draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
 #' @export
 draw_label_facet <- function(coreFrame, currentLayer, facetName) {
   currentLabel = currentLayer$labels[[as.character(facetName)]]
+
   label = facetName
+  customLabel = FALSE
 
-  if ("label" %in% names(currentLabel)) label = currentLabel[["label"]]
+  if ("label" %in% names(currentLabel)) {
+    label       = currentLabel[["label"]]
+    customLabel = TRUE
+  }
 
-  if (label == "" | label == facetName) {
+  if (label == "" | label == facetName | customLabel == TRUE) {
 
     tempX = ifelse(!is.null(currentLabel[[ "x"   ]]),
                    currentLabel[[ "x"   ]],
