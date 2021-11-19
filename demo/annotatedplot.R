@@ -256,20 +256,17 @@ scr_plot(currentData, aesthetics = list(x     = Session,
                  coords = list(
                    "A"  = list(x0 = 14,
                                x1 = 25.5,
-                               y0 = 0.1,
-                               y1 = 0.1),
+                               y0 = 0.1),
                    "B"  = list(x0 = 26.5,
                                x1 = 100,
-                               y0 = 0.1,
-                               y1 = 0.1))) %>%
+                               y0 = 0.1))) %>%
   scr_guide_line(col    = 'red',
                  lty    = 3,
                  facet  = "Demand",
                  coords = list(
                    "A"  = list(x0 = 20,
                                x1 = 100,
-                               y0 = 0.1,
-                               y1 = 0.1)))
+                               y0 = 0.1)))
 
 #%>%
 #   scr_save(name = "annotatedfigure2.svg",
