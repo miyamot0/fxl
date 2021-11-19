@@ -30,12 +30,12 @@ scr_plot(KoffarnusEtAl2011,
                            60,  70, 80, 90, 100, 110,
                            120, 130)) %>%
   scr_xlabel("Consecutive Work Day", line = 3) %>%
-  scr_points(cex = list(                                    # override point marker types (match FA conventions)
+  scr_points(cex = list(
                "0"  = 1,
                "1"  = 1,
                "2"  = 0.5
-             ),                                       # plot points, using x/y from aesthetics
-             pch = list(                                    # override point marker types (match FA conventions)
+             ),
+             pch = list(
                "0"  = 22,
                "1"  = 22,
                "2"  = 22
@@ -53,22 +53,20 @@ scr_plot(KoffarnusEtAl2011,
                "1" = 'black',
                "2" = 'transparent'
              )) %>%
-  scr_label_facet(cex = 1.25,                            # plot labels across facets (not within a single facet)
-                  adj = 0,
+  scr_label_facet(cex    = 1.25,
+                  adj    = 0,
+                  x      = 1,
                   labels = list(                        # list of labels to draw (will use assigned key for label)
-                    "1"       = list(x = 1,
-                                     y = 40.5,
+                    "1"       = list(y = 43.5,
                                      label = "Unpaid Training (n = 39)"),
-                    "2"       = list(x = 1,
-                                     y = 83.5,
+                    "2"       = list(y = 86.5,
                                      label = "Paid Training (n = 42)"),
-                    "3"       = list(x = 1,
-                                     y = 127.5,
+                    "3"       = list(y = 130.5,
                                      label = "Contingent Paid Training (n = 42)")
                   )) %>%
   scr_legend(panel    = "3",
-             position = list(x = 65,
-                             y = 132.5),
+             position = list(x = 60,
+                             y = 136),
              adj      = c(0, 0.5),
              legend   = c("Present: Positive",
                           "Present: Negative",

@@ -20,12 +20,12 @@ scr_plot(data = LozyEtAl2020, aesthetics = list(x = Session,
     scr_xoverride(c(1, 30),
                   xdraws = c("Eva", "Cali", "Ari"),
                   xticks = list(
-                    "Eli"  = c(1, 5, 10, 15),
+                    "Eli"  = c(1, 5,  10, 15),
                     "Ari"  = c(1, 10, 20, 30),
-                    "Al"   = c(1, 5, 10, 15),
-                    "Ry"   = c(1, 5, 10, 15),
-                    "Eva"  = c(1, 5, 10, 15),
-                    "Cali" = c(1, 5, 10, 15)
+                    "Al"   = c(1, 5,  10, 15),
+                    "Ry"   = c(1, 5,  10, 15),
+                    "Eva"  = c(1, 5,  10, 15),
+                    "Cali" = c(1, 5,  10, 15)
                   )) %>%
     scr_yoverride(ydraws = c("Eli", "Al", "Eva"),
                   list(
@@ -46,121 +46,113 @@ scr_plot(data = LozyEtAl2020, aesthetics = list(x = Session,
                                      y = TD)) %>%
     scr_label_facet(cex = 1.5,         # plot labels across facets (not within a single facet)
                     adj = 1,
+                    x   = 15,
+                    y   = 1,
                     labels = list(     # list of labels to draw (will use assigned key for label)
-                      "Eli"   = list(x = 15,
-                                     y = 2),
+                      "Eli"   = list(y = 2),
                       "Ari"   = list(x = 30,
                                      y = 2),
-                      "Al"    = list(x = 15,
-                                     y = 1),
-                      "Cali"  = list(x = 15,
-                                     y = 1),
-                      "Ry"    = list(x = 15,
-                                     y = 1),
-                      "Eva"   = list(x = 15,
-                                     y = 1))) %>%
+                      "Al",
+                      "Cali",
+                      "Ry",
+                      "Eva")) %>%
     scr_plines(                                                      # add in simple phase lines
       lty = 3,
       lines = list(
         "Ari" = list(
           "A" = list(
-            x1 = 11.5, y1 = 15,
-            x2 = 11.5,  y2 = 0
+            x1 = 11.5,
+            y1 = 15
           )
         ),
         "Al" = list(
           "A" = list(
-            x1 = 4.5, y1 = 8,
-            x2 = 4.5, y2 = 0
+            x1 = 4.5,
+            y1 = 8
           )
         ),
         "Cali" = list(
           "A" = list(
-            x1 = 8.5, y1 = 8,
-            x2 = 8.5, y2 = 0
+            x1 = 8.5,
+            y1 = 8
           )
         ),
         "Ry" = list(
           "A" = list(
-            x1 = 9.5, y1 = 8,
-            x2 = 9.5, y2 = 0
+            x1 = 9.5,
+            y1 = 8
           )
         ),
         "Eva" = list(
           "A" = list(
-            x1 = 4.5, y1 = 8,
-            x2 = 4.5, y2 = 0
+            x1 = 4.5,
+            y1 = 8
           ),
           "B" = list(
-            x1 = 8.5, y1 = 8,
-            x2 = 8.5, y2 = 0
+            x1 = 8.5,
+            y1 = 8
           )
         )
       )
     ) %>%
-    scr_label_phase(facet = "Eli",
-                    cex = 1.25,
-                    adj = 0.5,
+    scr_label_phase(facet  = "Eli",
+                    cex    = 1.25,
+                    adj    = 0.5,
+                    x      = 6,
+                    y      = 15,
                     labels = list(
-                      "Choice 1" = list(x = 6,
-                                        y = 15)
+                      "Choice 1"
                       )) %>%
-    scr_label_phase(facet = "Ari",
-                    cex = 1.25,
-                    adj = 0.5,
+    scr_label_phase(facet  = "Ari",
+                    cex    = 1.25,
+                    adj    = 0.5,
+                    y      = 15,
                     labels = list(
-                      "Choice 1" = list(x = 5,
-                                        y = 15),
-                      "Choice 2" = list(x = 20,
-                                        y = 15)
+                      "Choice 1" = list(x = 5),
+                      "Choice 2" = list(x = 20)
                     )) %>%
-    scr_label_phase(facet = "Al",
-                    cex = 1.25,
-                    adj = 0.5,
+    scr_label_phase(facet  = "Al",
+                    cex    = 1.25,
+                    adj    = 0.5,
+                    y      = 8,
                     labels = list(
-                      "Choice 1" = list(x = 2.25,
-                                        y = 8),
-                      "Choice 2" = list(x = 11,
-                                        y = 8)
+                      "Choice 1" = list(x = 2.25),
+                      "Choice 2" = list(x = 11)
                     )) %>%
-    scr_label_phase(facet = "Ry",
-                    cex = 1.25,
-                    adj = 0.5,
+    scr_label_phase(facet  = "Ry",
+                    cex    = 1.25,
+                    adj    = 0.5,
+                    y      = 8,
                     labels = list(
-                      "Choice 1" = list(x = 5,
-                                        y = 8),
-                      "Choice 2" = list(x = 13,
-                                        y = 8)
+                      "Choice 1" = list(x = 5),
+                      "Choice 2" = list(x = 13)
                     )) %>%
-    scr_label_phase(facet = "Eva",
-                    cex = 1.25,
-                    adj = 0.5,
+    scr_label_phase(facet  = "Eva",
+                    cex    = 1.25,
+                    adj    = 0.5,
+                    y      = 8,
                     labels = list(
-                      "Choice 1" = list(x = 2.25,
-                                        y = 8),
-                      "Choice 2" = list(x = 6.5,
-                                        y = 8),
-                      "Choice 3" = list(x = 11,
-                                        y = 8)
+                      "Choice 1" = list(x = 2.25),
+                      "Choice 2" = list(x = 6.5),
+                      "Choice 3" = list(x = 11)
                     )) %>%
-    scr_label_phase(facet = "Cali",
-                    cex = 1.25,
-                    adj = 0.5,
+    scr_label_phase(facet  = "Cali",
+                    cex    = 1.25,
+                    adj    = 0.5,
+                    y      = 8,
                     labels = list(
-                      "Choice 1" = list(x = 4,
-                                        y = 8),
-                      "Choice 2" = list(x = 11,
-                                        y = 8)
+                      "Choice 1" = list(x = 4),
+                      "Choice 2" = list(x = 11)
                     )) %>%
     scr_xlabel("Choice Training Session") %>%                 # Override x-axis label (bottom only shown by default)
     scr_ylabel("Cumulative Number of Selections") %>%
     scr_legend(position = "topright",                         # Specify legend location
                panel    = "Eli",
-               legend   = c("KM",                               # labels to include (ordered)
+               legend   = c("KM",                             # labels to include (ordered)
                             "TD"),
-               col      = c('white',                            # color of markers (ordered)
-                            'white'),
-               pt.bg    = c('black',                            # color of markers (ordered)
+               col      = c('black',                          # color of markers (ordered)
+                            'black'),
+               pt.bg    = c('black',                          # color of markers (ordered)
                             'black'),
                lty      = c(1, 1),                            # line types (ordered)
                pch      = c(24, 22),                          # marker types (ordered)

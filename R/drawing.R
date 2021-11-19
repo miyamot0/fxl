@@ -430,19 +430,30 @@ draw_cumsum_points <- function(coreFrame, currentLayer, facetName) {
 #' @export
 draw_label_phase <- function(coreFrame, currentLayer, facetName) {
   if (currentLayer$facet == facetName) {
+
     for (lindex in 1:length(currentLayer$labels)) {
 
       label        = names(currentLayer$labels)[lindex]
 
       currentLabel = currentLayer$labels[[lindex]]
 
-      tempX = ifelse(!is.null(currentLabel[[ "x"   ]]),
-                     currentLabel[[ "x"   ]],
+      print(currentLabel)
+
+      tempX = ifelse("x" %in% names(currentLabel),
+                     currentLabel[[ "x" ]],
                      currentLayer$x)
 
-      tempY = ifelse(!is.null(currentLabel[[ "y"   ]]),
-                     currentLabel[[ "y"   ]],
+      # tempX = ifelse(!is.null(currentLabel[[ "x"   ]]),
+      #                currentLabel[[ "x"   ]],
+      #                currentLayer$x)
+
+      tempY = ifelse("y" %in% names(currentLabel),
+                     currentLabel[[ "y" ]],
                      currentLayer$y)
+
+      # tempY = ifelse(!is.null(currentLabel[[ "y"   ]]),
+      #                currentLabel[[ "y"   ]],
+      #                currentLayer$y)
 
       srt          = ifelse("srt" %in% names(currentLabel),
                             currentLabel[["srt"]],
@@ -563,11 +574,16 @@ draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
 #' @export
 draw_label_facet <- function(coreFrame, currentLayer, facetName) {
   currentLabel = currentLayer$labels[[as.character(facetName)]]
+
   label = facetName
+  customLabel = FALSE
 
-  if ("label" %in% names(currentLabel)) label = currentLabel[["label"]]
+  if ("label" %in% names(currentLabel)) {
+    label       = currentLabel[["label"]]
+    customLabel = TRUE
+  }
 
-  if (label == "" | label == facetName) {
+  if (label == "" | label == facetName | customLabel == TRUE) {
 
     tempX = ifelse(!is.null(currentLabel[[ "x"   ]]),
                    currentLabel[[ "x"   ]],

@@ -47,8 +47,8 @@ scr_plot(semiLogData, aesthetics = list(x     = Session,
                     "Labels for Phase Changes" = list(x = 18,
                                                       y = 15),
                     "Logarithmic Plotting, With Zero Visualizations" = list(x = 6,
-                                                                           y = 3,
-                                                                           cex = 1)
+                                                                            y = 3,
+                                                                            cex = 1)
                   )) %>%
   scr_arrows(length = 0.1,
              arrows = list(
