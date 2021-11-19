@@ -223,11 +223,15 @@ draw_guide_line <- function(coreFrame,  currentLayer, facetName) {
       if ("lwd" %in% names(currentCoords))
         l.lwd = currentCoords$lwd
 
+      tempY2 = ifelse("y1" %in% names(currentCoords),
+                      currentCoords$y1,
+                      currentCoords$y0)
+
       segments(
         x0    = currentCoords$x0,
         x1    = currentCoords$x1,
         y0    = currentCoords$y0,
-        y1    = currentCoords$y1,
+        y1    = tempY2,
         lty   = l.lty,
         lwd   = l.lwd,
         col   = l.col
