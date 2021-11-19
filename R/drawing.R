@@ -437,23 +437,17 @@ draw_label_phase <- function(coreFrame, currentLayer, facetName) {
 
       currentLabel = currentLayer$labels[[lindex]]
 
-      print(currentLabel)
+      label = ifelse(is.null(label),
+                     currentLabel,
+                     label)
 
       tempX = ifelse("x" %in% names(currentLabel),
                      currentLabel[[ "x" ]],
                      currentLayer$x)
 
-      # tempX = ifelse(!is.null(currentLabel[[ "x"   ]]),
-      #                currentLabel[[ "x"   ]],
-      #                currentLayer$x)
-
       tempY = ifelse("y" %in% names(currentLabel),
                      currentLabel[[ "y" ]],
                      currentLayer$y)
-
-      # tempY = ifelse(!is.null(currentLabel[[ "y"   ]]),
-      #                currentLabel[[ "y"   ]],
-      #                currentLayer$y)
 
       srt          = ifelse("srt" %in% names(currentLabel),
                             currentLabel[["srt"]],
