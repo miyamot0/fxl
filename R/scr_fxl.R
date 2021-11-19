@@ -282,15 +282,22 @@ scr_lines <- function(coreFrame, lty = 1, color = 'black',
 #'
 #' @return
 #' @export
-scr_label_phase <- function(coreFrame, color = 'black',
-                            cex = 1, adj = 0.5,
-                            facet = NULL, labels = NULL) {
+scr_label_phase <- function(coreFrame,
+                            color  = 'black',
+                            cex    = 1,
+                            adj    = 0.5,
+                            x      = NULL,
+                            y      = NULL,
+                            facet  = NULL,
+                            labels = NULL) {
 
   newlayer = list()
   newlayer[[ "type"   ]] <- "phase_label"
   newlayer[[ "color"  ]] <- color
   newlayer[[ "cex"    ]] <- cex
   newlayer[[ "adj"    ]] <- adj
+  newlayer[[ "x"      ]] <- x
+  newlayer[[ "y"      ]] <- y
   newlayer[[ "facet"  ]] <- facet
   newlayer[[ "labels" ]] <- labels
 
