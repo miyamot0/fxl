@@ -1013,34 +1013,39 @@ print.fxl <- function(coreFrame, ...) {
 
           for (pname in plines) {
 
+            # start of index for named list
             if (!(pname %in% names(indexNum))) indexNum[[pname]] <- 1
 
-            tmpX1 = currentLayer$lines[[pname]][[facetIndex]][["x1"]]
-            tmpX2 = ifelse(is.null(currentLayer$lines[[pname]][[facetIndex]][["x2"]]),
+            currentIndex = which(names(currentLayer$lines[[pname]]) == currentFacet)
+
+            if (length(currentIndex) == 0) next
+
+            tmpX1 = currentLayer$lines[[pname]][[currentIndex]][["x1"]]
+            tmpX2 = ifelse(is.null(currentLayer$lines[[pname]][[currentIndex]][["x2"]]),
                            tmpX1,
-                           currentLayer$lines[[pname]][[facetIndex]][["x2"]])
+                           currentLayer$lines[[pname]][[currentIndex]][["x2"]])
 
-            tmpY1 = ifelse(is.null(currentLayer$lines[[pname]][[facetIndex]][["y1"]]),
+            tmpY1 = ifelse(is.null(currentLayer$lines[[pname]][[currentIndex]][["y1"]]),
                            0,
-                           currentLayer$lines[[pname]][[facetIndex]][["y1"]])
-            tmpY2 = ifelse(is.null(currentLayer$lines[[pname]][[facetIndex]][["y2"]]),
+                           currentLayer$lines[[pname]][[currentIndex]][["y1"]])
+            tmpY2 = ifelse(is.null(currentLayer$lines[[pname]][[currentIndex]][["y2"]]),
                            0,
-                           currentLayer$lines[[pname]][[facetIndex]][["y2"]])
+                           currentLayer$lines[[pname]][[currentIndex]][["y2"]])
 
-            currentLayer$lines[[pname]][[facetIndex]][["topDraw"]] <- cnvrt.coords(
+            currentLayer$lines[[pname]][[currentIndex]][["topDraw"]] <- cnvrt.coords(
               tmpX1,
               coreFrame$dims[["max.local.y"]])
 
-            currentLayer$lines[[pname]][[facetIndex]][["botDraw"]] <- cnvrt.coords(
+            currentLayer$lines[[pname]][[currentIndex]][["botDraw"]] <- cnvrt.coords(
               tmpX2,
               -((coreFrame$dims[["max.local.y"]] - coreFrame$dims[["min.local.y"]]) * 0.04))
 
             tmp.point.top.dev <- cnvrt.coords(
-              currentLayer$lines[[pname]][[facetIndex]][["topDraw"]]$dev,
+              currentLayer$lines[[pname]][[currentIndex]][["topDraw"]]$dev,
               input = 'dev')
 
             tmp.point.bot.dev <- cnvrt.coords(
-              currentLayer$lines[[pname]][[facetIndex]][["botDraw"]]$dev,
+              currentLayer$lines[[pname]][[currentIndex]][["botDraw"]]$dev,
               input = 'dev')
 
             segments(tmp.point.top.dev$usr$x,
@@ -1049,11 +1054,11 @@ print.fxl <- function(coreFrame, ...) {
                      tmp.point.bot.dev$usr$y,
                      col = 'black')
 
-            currentLayer$lines[[pname]][[facetIndex]][["topDraw"]] <- cnvrt.coords(
+            currentLayer$lines[[pname]][[currentIndex]][["topDraw"]] <- cnvrt.coords(
               tmpX1,
               tmpY2)$dev
 
-            currentLayer$lines[[pname]][[facetIndex]][["botDraw"]] <- cnvrt.coords(
+            currentLayer$lines[[pname]][[currentIndex]][["botDraw"]] <- cnvrt.coords(
               tmpX2,
               tmpY2)$dev
 
