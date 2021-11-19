@@ -430,19 +430,30 @@ draw_cumsum_points <- function(coreFrame, currentLayer, facetName) {
 #' @export
 draw_label_phase <- function(coreFrame, currentLayer, facetName) {
   if (currentLayer$facet == facetName) {
+
     for (lindex in 1:length(currentLayer$labels)) {
 
       label        = names(currentLayer$labels)[lindex]
 
       currentLabel = currentLayer$labels[[lindex]]
 
-      tempX = ifelse(!is.null(currentLabel[[ "x"   ]]),
-                     currentLabel[[ "x"   ]],
+      print(currentLabel)
+
+      tempX = ifelse("x" %in% names(currentLabel),
+                     currentLabel[[ "x" ]],
                      currentLayer$x)
 
-      tempY = ifelse(!is.null(currentLabel[[ "y"   ]]),
-                     currentLabel[[ "y"   ]],
+      # tempX = ifelse(!is.null(currentLabel[[ "x"   ]]),
+      #                currentLabel[[ "x"   ]],
+      #                currentLayer$x)
+
+      tempY = ifelse("y" %in% names(currentLabel),
+                     currentLabel[[ "y" ]],
                      currentLayer$y)
+
+      # tempY = ifelse(!is.null(currentLabel[[ "y"   ]]),
+      #                currentLabel[[ "y"   ]],
+      #                currentLayer$y)
 
       srt          = ifelse("srt" %in% names(currentLabel),
                             currentLabel[["srt"]],
