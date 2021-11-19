@@ -305,14 +305,20 @@ scr_label_phase <- function(coreFrame, color = 'black',
 #' @param color from base
 #' @param cex from base
 #' @param adj from base
+#' @param x global x position for labels
+#' @param y global y position for labels
 #' @param labels as stated
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-scr_label_facet <- function(coreFrame, color = 'black',
-                            cex = 1, adj = 0.5,
+scr_label_facet <- function(coreFrame,
+                            color  = 'black',
+                            cex    = 1,
+                            adj    = 0.5,
+                            x      = NULL,
+                            y      = NULL,
                             labels = NULL) {
 
   newlayer = list()
@@ -320,6 +326,8 @@ scr_label_facet <- function(coreFrame, color = 'black',
   newlayer[[ "color"  ]] <- color
   newlayer[[ "cex"    ]] <- cex
   newlayer[[ "adj"    ]] <- adj
+  newlayer[[ "x"      ]] <- x
+  newlayer[[ "y"      ]] <- y
   newlayer[[ "labels" ]] <- labels
 
   coreFrame$layers[[(length(coreFrame[["layers"]]) + 1)]] <- newlayer
