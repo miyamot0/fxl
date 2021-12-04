@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/357648823.svg)](https://zenodo.org/badge/latestdoi/357648823)
 
 # Faux XL Charting in R (fxl)
 
