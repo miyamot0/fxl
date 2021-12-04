@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Gilroy"
+  given-names: "Shawn"
+  orcid: "https://orcid.org/0000-0002-1097-8366"
+title: "FXL: Faux XL single-case charting package"
+version: 0.1.0
+doi: 10.5281/zenodo.5758834
+date-released: 2021-12-04
+url: "https://github.com/miyamot0/fxl"
