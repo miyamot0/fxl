@@ -697,7 +697,7 @@ draw_legend <- function(coreFrame) {
     cex       = as.numeric(   coreFrame$legendpars[[ "cex"      ]]),
     bg        = as.character( coreFrame$legendpars[[ "bg"       ]]),
     col       = as.character( coreFrame$legendpars[[ "col"      ]]),
-    pt.bg     = as.character( coreFrame$legendpars[[ "pt.col"   ]]),
+    pt.bg     = as.character( coreFrame$legendpars[[ "pt.bg"    ]]),
     horiz     = as.logical(   coreFrame$legendpars[[ "horiz"    ]])
   )
 }
