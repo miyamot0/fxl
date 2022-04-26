@@ -449,6 +449,10 @@ draw_label_phase <- function(coreFrame, currentLayer, facetName) {
                      currentLabel[[ "y" ]],
                      currentLayer$y)
 
+      fontC = ifelse("font" %in% names(currentLabel),
+                     currentLabel[[ "font" ]],
+                     1)
+
       srt          = ifelse("srt" %in% names(currentLabel),
                             currentLabel[["srt"]],
                             0)
@@ -457,6 +461,7 @@ draw_label_phase <- function(coreFrame, currentLayer, facetName) {
            y      = tempY,
            cex    = currentLayer[[ "cex" ]],
            adj    = currentLayer[[ "adj" ]],
+           font   = fontC,
            srt    = srt,
            labels = label)
     }
@@ -587,10 +592,15 @@ draw_label_facet <- function(coreFrame, currentLayer, facetName) {
                    currentLabel[[ "y"   ]],
                    currentLayer$y)
 
+    fontC = ifelse("font" %in% names(currentLabel),
+                   currentLabel[[ "font" ]],
+                   1)
+
     text(x      = tempX,
          y      = tempY,
          cex    = currentLayer[[ "cex" ]],
          adj    = currentLayer[[ "adj" ]],
+         font   = fontC,
          labels = label)
   }
 }
