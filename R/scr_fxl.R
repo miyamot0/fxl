@@ -482,19 +482,22 @@ scr_xlabel <- function(coreFrame, var, line = 0) {
 #' @param xdelta skips between ticks (can override)
 #' @param xticks specify ticks, vector or named list
 #' @param xdraws which x axes to draw
+#' @param xtickslabs custom x axis labels
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
 scr_xoverride <- function(coreFrame, var, xdelta = 1,
-                          xticks = NULL,  xdraws = NULL) {
+                          xticks = NULL,  xdraws = NULL,
+                          xtickslabs = NULL) {
 
   coreFrame$dims[[ "global.min.x" ]] = {{var[1]}}
   coreFrame$dims[[ "global.max.x" ]] = {{var[2]}}
   coreFrame$dims[[ "xdelta"       ]] = xdelta
   coreFrame$dims[[ "xticks"       ]] = xticks
   coreFrame$dims[[ "xdraws"       ]] = xdraws
+  coreFrame$dims[[ "xticklabs"    ]] = xtickslabs
 
   coreFrame
 }
@@ -985,6 +988,12 @@ print.fxl <- function(coreFrame, ...) {
          yaxt = 'n')
 
     box(bty = "l")
+
+    if (!is.null(coreFrame$dims[["xticklabs"]]) &
+        !is.list(coreFrame$dims[["xticklabs"]]) &
+        x.axis.draw) {
+      x.axis.draw = coreFrame$dims[["xticklabs"]]
+    }
 
     axis(1,
          labels = x.axis.draw,

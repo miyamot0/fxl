@@ -4,7 +4,14 @@
 \alias{scr_xoverride}
 \title{xoverride}
 \usage{
-scr_xoverride(coreFrame, var, xdelta = 1, xticks = NULL, xdraws = NULL)
+scr_xoverride(
+  coreFrame,
+  var,
+  xdelta = 1,
+  xticks = NULL,
+  xdraws = NULL,
+  xtickslabs = NULL
+)
 }
 \arguments{
 \item{coreFrame}{fxl object}
@@ -16,6 +23,8 @@ scr_xoverride(coreFrame, var, xdelta = 1, xticks = NULL, xdraws = NULL)
 \item{xticks}{specify ticks, vector or named list}
 
 \item{xdraws}{which x axes to draw}
+
+\item{xticklabs}{custom x axis labels}
 }
 \value{
 

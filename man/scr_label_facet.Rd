@@ -4,7 +4,15 @@
 \alias{scr_label_facet}
 \title{scr_label_facet}
 \usage{
-scr_label_facet(coreFrame, color = "black", cex = 1, adj = 0.5, labels = NULL)
+scr_label_facet(
+  coreFrame,
+  color = "black",
+  cex = 1,
+  adj = 0.5,
+  x = NULL,
+  y = NULL,
+  labels = NULL
+)
 }
 \arguments{
 \item{coreFrame}{fxl object}
@@ -14,6 +22,10 @@ scr_label_facet(coreFrame, color = "black", cex = 1, adj = 0.5, labels = NULL)
 \item{cex}{from base}
 
 \item{adj}{from base}
+
+\item{x}{global x position for labels}
+
+\item{y}{global y position for labels}
 
 \item{labels}{as stated}
 }

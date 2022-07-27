@@ -9,6 +9,8 @@ scr_label_phase(
   color = "black",
   cex = 1,
   adj = 0.5,
+  x = NULL,
+  y = NULL,
   facet = NULL,
   labels = NULL
 )
