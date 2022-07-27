@@ -37,6 +37,7 @@ scr_plot <- function(data, aesthetics,
                      mai     = c(0.375, 0.375, 0.25, 0.25),
                      omi     = c(0.25, 0.25, 0.25, 0.25),
                      ncol    = 1,
+                     family  = NULL,
                      semilog = FALSE) {
 
   coreFrame = list()                             # Primary plotting object
@@ -61,6 +62,8 @@ scr_plot <- function(data, aesthetics,
     outer.x.line = 0,
     outer.y.line = 0,
     title        = "")
+
+  coreFrame[[ "family" ]] <- family
 
   class(coreFrame) <- c("fxl")                   # Apply a class name (to override print)
 
@@ -886,8 +889,10 @@ print.fxl <- function(coreFrame, ...) {
     lookup         = TRUE
   }
 
+  fontFamily = ifelse(is.null(coreFrame[["family"]]), "serif", coreFrame[["family"]])
+
   par(mfrow  = c(n.facets.draw, n.cols),                 # Dynamic facet numbers/cols
-      family = "serif",
+      family = fontFamily,
       omi    = coreFrame[["dims"]][["omi"]],
       mai    = coreFrame[["dims"]][["mai"]],
       xaxs   = "r",
