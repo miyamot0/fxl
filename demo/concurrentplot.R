@@ -99,16 +99,16 @@ scr_plot(data, aesthetics = list(x = Session,
              position = "topright",
              legend   = c("Responses Observed", "Reinforcers Produced"),
              col      = c("black", "black"),
-             pt.bg    = c("black", "black"),
+             pt_bg    = c("black", "black"),
              lty      = c(1, 2),
              pch      = c(19, 2),
              bg       = c("black", "black"),
              bty      = "n",
-             pt.cex   = 2.25,
+             pt_cex   = 2.25,
              cex      = 1.25,
-             text.col = "black",
+             text_col = "black",
              horiz    = FALSE,
-             box.lty  = 0)
+             box_lty  = 0)
 
 # Optional Save
 #

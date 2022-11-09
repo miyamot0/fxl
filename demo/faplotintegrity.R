@@ -64,18 +64,18 @@ scr_plot(data, aesthetics = list(x = Session,
                         "black",
                         "black"),
              bg       = "white",
-             pt.bg    = c("black",                            # color of markers (ordered)
+             pt_bg    = c("black",                            # color of markers (ordered)
                           "black",
                           "black",
                           "black"),
              lty      = c(1, 1, 1, 1),                      # line types (ordered)
              pch      = c(16, 22, 24, 8),                   # marker types (ordered)
              bty      = "o",                                # remove border
-             pt.cex   = 2.25,                               # point size scale
+             pt_cex   = 2.25,                               # point size scale
              cex      = 1.25,                               # text size scale
-             text.col = "black",                            # text color
+             text_col = "black",                            # text color
              horiz    = FALSE,                                  # list items vertically
-             box.lty  = 1)
+             box_lty  = 1)
 
 # %>%
 #   scr_save(name = "fafigureintegrity.svg",

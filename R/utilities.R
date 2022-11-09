@@ -29,20 +29,20 @@
 #'
 #' @return
 #' @export
-cnvrt.coords <- function(x, y = NULL, input = c('usr', 'plt', 'fig', 'dev', 'tdev')) {
-  #warning('this function is now depricated, use grconvertX instead')
+cnvrt_coords <- function(x, y = NULL, input = c("usr", "plt", "fig", "dev", "tdev")) {
+  #warning("this function is now depricated, use grconvertX instead")
   input <- match.arg(input)
   xy <- xy.coords(x, y, recycle = TRUE)
 
-  cusr <- par('usr')
-  cplt <- par('plt')
-  cfig <- par('fig')
-  cdin <- par('din')
-  comi <- par('omi')
+  cusr <- par("usr")
+  cplt <- par("plt")
+  cfig <- par("fig")
+  cdin <- par("din")
+  comi <- par("omi")
   cdev <- c(comi[2] / cdin[1], (cdin[1] - comi[4]) / cdin[1],
             comi[1] / cdin[2], (cdin[2] - comi[3]) / cdin[2])
 
-  if (input == 'usr') {
+  if (input == "usr") {
     usr <- xy
 
     plt <- list()
@@ -64,7 +64,7 @@ cnvrt.coords <- function(x, y = NULL, input = c('usr', 'plt', 'fig', 'dev', 'tde
     return(list(usr = usr, plt = plt, fig = fig, dev = dev, tdev = tdev))
   }
 
-  if (input == 'plt') {
+  if (input == "plt") {
 
     plt <- xy
 
@@ -87,7 +87,7 @@ cnvrt.coords <- function(x, y = NULL, input = c('usr', 'plt', 'fig', 'dev', 'tde
     return(list(usr = usr, plt = plt, fig = fig, dev = dev, tdev = tdev))
   }
 
-  if (input == 'fig') {
+  if (input == "fig") {
 
     fig <- xy
 
@@ -110,7 +110,7 @@ cnvrt.coords <- function(x, y = NULL, input = c('usr', 'plt', 'fig', 'dev', 'tde
     return(list(usr = usr, plt = plt, fig = fig, dev = dev, tdev = tdev))
   }
 
-  if (input == 'dev') {
+  if (input == "dev") {
     dev <- xy
 
     fig <- list()
@@ -132,7 +132,7 @@ cnvrt.coords <- function(x, y = NULL, input = c('usr', 'plt', 'fig', 'dev', 'tde
     return(list(usr = usr, plt = plt, fig = fig, dev = dev, tdev = tdev))
   }
 
-  if (input == 'tdev') {
+  if (input == "tdev") {
     tdev <- xy
 
     dev <- list()

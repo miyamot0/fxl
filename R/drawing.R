@@ -142,9 +142,9 @@ draw_bar_support <- function(core_frame,  current_layer, facet_name) {
     )
   }
 
-  label.y <- as.character(local_aesthetics["y"])
+  label_y <- as.character(local_aesthetics["y"])
 
-  if (current_layer$label != "")  label.y <- as.character(current_layer$label)
+  if (current_layer$label != "")  label_y <- as.character(current_layer$label)
 
   opar <- par()
 
@@ -188,7 +188,7 @@ draw_bar_support <- function(core_frame,  current_layer, facet_name) {
        las = 1,
        at = pretty(range(c(0, current_data_slice[, as.character(local_aesthetics["y"])]))))
 
-  mtext(label.y,
+  mtext(label_y,
         side = 4,
         outer = TRUE)
 
@@ -253,33 +253,33 @@ draw_guide_line <- function(core_frame,  current_layer, facet_name) {
 #' @return
 #' @export
 draw_lines <- function(core_frame, current_layer, facet_name) {
-  if (is.na(facet_name)) current_data = core_frame$data
-  else current_data = core_frame$data[
+  if (is.na(facet_name)) current_data <- core_frame$data
+  else current_data <- core_frame$data[
     which(core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
 
   # In case no phases are included?
   if (!("p" %in% names(core_frame$aes))) {
-    core_frame$aes["p"] = "p"
-    current_data[, "p"] = "0"
+    core_frame$aes["p"] <- "p"
+    current_data[, "p"] <- "0"
   }
 
   for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
     current_data_slice <- current_data[
       which(current_data[, as.character(core_frame$aes["p"])] == p), ]
 
-    local_aesthetics = list(
+    local_aesthetics <- list(
       "x"   = as.character(core_frame$aes["x"]),
       "y"   = as.character(core_frame$aes["y"])
     )
 
     if (!is.na(current_layer["aesthetics"])) {
-      local_aesthetics = list(
+      local_aesthetics <- list(
         "x" = as.character(current_layer$aesthetics["x"]),
         "y" = as.character(current_layer$aesthetics["y"])
       )
     }
 
-    plot_frame = data.frame(
+    plot_frame <- data.frame(
       X = current_data_slice[, as.character(local_aesthetics["x"])],
       Y = current_data_slice[, as.character(local_aesthetics["y"])]
     )
@@ -475,13 +475,13 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
 #' @param core_frame fxl object
 #' @param current_layer layer to be drawn
 #' @param facet_name name of facet
-#' @param zeroAxis filter out all but zeros
+#' @param zero_axis filter out all but zeros
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_points <- function(core_frame, current_layer, facet_name, zeroAxis = FALSE) {
+draw_points <- function(core_frame, current_layer, facet_name, zero_axis = FALSE) {
 
   if (is.na(facet_name))  current_data   = core_frame$data
   else           current_data   = core_frame$data[which(
@@ -546,7 +546,7 @@ draw_points <- function(core_frame, current_layer, facet_name, zeroAxis = FALSE)
       Y = current_data_slice[, as.character(local_aesthetics["y"])]
     )
 
-    if (zeroAxis) plot_frame = plot_frame[plot_frame$Y == 0, ]
+    if (zero_axis) plot_frame = plot_frame[plot_frame$Y == 0, ]
 
     points(
       plot_frame$X,
@@ -622,26 +622,26 @@ draw_scr_plines <- function(core_frame, current_layer, facet_name) {
     for (key in names(current_layer$lines[[facet_name]])) {
 
       l_lty = current_layer[["lty"]]
-      l_x1  = current_layer$lines[[facet_name]][[key]][['x1']]
-      l_x2  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][['x2']]),
+      l_x1  = current_layer$lines[[facet_name]][[key]][["x1"]]
+      l_x2  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][["x2"]]),
                      l_x1,
-                     current_layer$lines[[facet_name]][[key]][['x2']])
+                     current_layer$lines[[facet_name]][[key]][["x2"]])
 
-      l_y1  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][['y1']]),
+      l_y1  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][["y1"]]),
                      0,
-                     current_layer$lines[[facet_name]][[key]][['y1']])
-      l_y2  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][['y2']]),
+                     current_layer$lines[[facet_name]][[key]][["y1"]])
+      l_y2  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][["y2"]]),
                      0,
-                     current_layer$lines[[facet_name]][[key]][['y2']])
+                     current_layer$lines[[facet_name]][[key]][["y2"]])
 
       temp_y1 = ifelse(l_y1 == 0,
-                      -((as.numeric(core_frame$dims[["max.local.y"]]) -
-                          as.numeric(core_frame$dims[["min.local.y"]])) * 0.04),
-                      current_layer$lines[[facet_name]][[key]][['y1']])
+                      -((as.numeric(core_frame$dims[["max_local_y"]]) -
+                          as.numeric(core_frame$dims[["min_local_y"]])) * 0.04),
+                      current_layer$lines[[facet_name]][[key]][["y1"]])
 
       temp_y2 = ifelse(l_y2 == 0,
-                      -((as.numeric(core_frame$dims[["max.local.y"]]) -
-                          as.numeric(core_frame$dims[["min.local.y"]])) * 0.04),
+                      -((as.numeric(core_frame$dims[["max_local_y"]]) -
+                          as.numeric(core_frame$dims[["min_local_y"]])) * 0.04),
                       l_y2)
 
       if ("lty" %in% names(current_layer$lines[[facet_name]][[key]]))

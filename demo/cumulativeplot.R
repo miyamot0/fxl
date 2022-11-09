@@ -152,16 +152,16 @@ scr_plot(data = LozyEtAl2020, aesthetics = list(x = Session,
                             "TD"),
                col      = c("black",                          # color of markers (ordered)
                             "black"),
-               pt.bg    = c("black",                          # color of markers (ordered)
+               pt_bg    = c("black",                          # color of markers (ordered)
                             "black"),
                lty      = c(1, 1),                            # line types (ordered)
                pch      = c(24, 22),                          # marker types (ordered)
                bty      = "y",                                # remove border
-               pt.cex   = 2.25,                               # point size scale
+               pt_cex   = 2.25,                               # point size scale
                cex      = 1.25,                               # text size scale
-               text.col = "black",                            # text color
+               text_col = "black",                            # text color
                horiz    = FALSE,                                  # list items vertically
-               box.lty  = 1)
+               box_lty  = 1)
 
 #%>%                             # change box size (0 = removed)
   # scr_save(units = "in",

@@ -74,7 +74,7 @@ scr_plot(koffarnus_et_al_mod,
              col      = c("black",
                           "black",
                           "transparent"),
-             pt.bg     = c("white",
+             pt_bg     = c("white",
                            "black",
                            rgb(.8,
                                .8,
@@ -86,9 +86,9 @@ scr_plot(koffarnus_et_al_mod,
                           22),
              bty      = "n",
              cex      = 1.5,
-             pt.cex   = c(1, 1, 0.5),
+             pt_cex   = c(1, 1, 0.5),
              horiz    = TRUE,
-             box.lty  = 0)
+             box_lty  = 0)
 
 #%>%
   # scr_save(name = "silvermanfigure.png",
