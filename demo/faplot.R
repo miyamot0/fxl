@@ -49,7 +49,7 @@ scr_plot(data, aesthetics = list(x = Session,
                         "black",
                         "black",
                         "black"),
-             pt.bg  = c("black",                            # color of markers (ordered)
+             pt_bg  = c("black",                            # color of markers (ordered)
                         "black",
                         "black",
                         "black"),

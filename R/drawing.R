@@ -442,7 +442,7 @@ draw_cumsum_points <- function(core_frame, current_layer, facet_name) {
 draw_label_phase <- function(core_frame, current_layer, facet_name) {
   if (current_layer$facet == facet_name) {
 
-    for (lindex in seq_along(length(current_layer$labels))) {
+    for (lindex in seq_len(length(current_layer$labels))) {
 
       label <- names(current_layer$labels)[lindex]
 
