@@ -1,7 +1,9 @@
 
 <div align="center" style="display: flex; flex-direction: row; column-gap: 15px;">
 
-[![codecov](https://codecov.io/gh/miyamot0/fxl/branch/main/graph/badge.svg?token=V02KN70O3V)](https://codecov.io/gh/miyamot0/fxl)
+<a href="https://codecov.io/gh/miyamot0/fxl" >
+<img src="https://codecov.io/gh/miyamot0/fxl/branch/main/graph/badge.svg?token=V02KN70O3V"/>
+</a>
 
 [![DOI](https://zenodo.org/badge/357648823.svg)](https://zenodo.org/badge/latestdoi/357648823)
 
