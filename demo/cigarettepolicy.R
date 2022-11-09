@@ -2,7 +2,7 @@ library(dplyr)
 library(fxl)
 library(extrafont)
 
-extrafont::choose_font("Open Sans")
+#extrafont::choose_font("Open Sans")
 
 newFrame <- GelinoEtAl2022
 
@@ -33,11 +33,12 @@ scr_plot(newFrame, aesthetics = list(x = Time,
                                      y = Count1,
                                      p = Condition,
                                      facet = Facet),
-         mai = c(0.5, 0.6, 0, 0),
+         mai = c(.75, 0.6, 0, 0.25),
          family = "Open Sans",
          omi = c(0.25, 0.25, 0.5, 0.5)) %>%
   scr_xoverride(c(0.4, 11),
                 xticks = seq_len(11),
+                xrotation = 45,
                 xtickslabs = xticks) %>%
   scr_yoverride(c(-10, 500),
                 yticks = c(0,   50, 100, 150,

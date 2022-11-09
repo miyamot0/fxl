@@ -4,7 +4,14 @@
 \alias{scr_yoverride}
 \title{yoverride}
 \usage{
-scr_yoverride(core_frame, var, ydelta = 1, ydraws = NULL)
+scr_yoverride(
+  core_frame,
+  var,
+  ydelta = 1,
+  yticks = NULL,
+  ydraws = NULL,
+  ytickslabs = NULL
+)
 }
 \arguments{
 \item{core_frame}{fxl object}

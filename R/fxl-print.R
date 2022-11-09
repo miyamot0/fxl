@@ -168,11 +168,21 @@ print.fxl <- function(core_frame, ...) {
       y_axis_draw <- core_frame$dims[["yticklabs"]]
     }
 
-    ## TODO: y axis labs here
+    if (!is.null(core_frame$dims[["xlab.rotation"]])) {
 
-    axis(1,
-         labels = x_axis_draw,
-         at     = x_axis_ticks)
+      x_lab_rotation <- core_frame$dims[["xlab.rotation"]]
+
+      axis(1,
+           labels = x_axis_draw,
+           las = 2,
+           srt = x_lab_rotation,
+           at = x_axis_ticks)
+
+    } else {
+      axis(1,
+           labels = x_axis_draw,
+           at     = x_axis_ticks)
+    }
 
     axis(2,
          labels = y_axis_draw,

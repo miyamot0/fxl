@@ -18,6 +18,7 @@ scr_xoverride <- function(core_frame,
                           xdelta = 1,
                           xticks = NULL,
                           xdraws = NULL,
+                          xrotation = NULL,
                           xtickslabs = NULL) {
 
   core_frame$dims[["global.min.x"]] <- {{var[1]}}
@@ -26,6 +27,7 @@ scr_xoverride <- function(core_frame,
   core_frame$dims[["xticks"]] <- xticks
   core_frame$dims[["xdraws"]] <- xdraws
   core_frame$dims[["xticklabs"]] <- xtickslabs
+  core_frame$dims[["xlab.rotation"]] <- xrotation
 
   core_frame
 }

@@ -10,6 +10,7 @@ scr_xoverride(
   xdelta = 1,
   xticks = NULL,
   xdraws = NULL,
+  xrotation = NULL,
   xtickslabs = NULL
 )
 }
