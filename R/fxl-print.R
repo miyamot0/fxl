@@ -41,11 +41,9 @@ print.fxl <- function(core_frame, ...) {
       family = font_family,
       omi    = core_frame[["dims"]][["omi"]],
       mai    = core_frame[["dims"]][["mai"]],
-      xaxs   = "r",
-      yaxs   = "r",
+      xaxs   = core_frame[["dims"]][["xaxs"]],
+      yaxs   = core_frame[["dims"]][["yaxs"]],
       xpd    = NA)
-
-  print(paste("N Facets", n_facets))
 
   for (facetIndex in 1:n_facets) { # Print placeholders
 
@@ -76,8 +74,9 @@ print.fxl <- function(core_frame, ...) {
       x_axis_draw <-  current_facet %in% core_frame$dims[["xdraws"]]
     }
 
-    x_axis_ticks <- seq(core_frame$dims[["global.min.x"]],
-                        core_frame$dims[["global.max.x"]],
+    # Note: Round UP, so as to scuttle the space near origin over
+    x_axis_ticks <- seq(ceiling(core_frame$dims[["global.min.x"]]),
+                        ceiling(core_frame$dims[["global.max.x"]]),
                         by = core_frame$dims[["xdelta"]])
 
     if (!is.null(core_frame$dims[["xticks"]]) && !is.list(
@@ -89,12 +88,12 @@ print.fxl <- function(core_frame, ...) {
     if (!is.null(core_frame$dims[["xticks"]]) && is.list(
       core_frame$dims[["xticks"]])) {
 
-      x_axis_ticks <- core_frame$dims[["xticks"]][[ current_facet]]
+      x_axis_ticks <- core_frame$dims[["xticks"]][[current_facet]]
 
       core_frame$dims[["min.local.x"]] <- min(
-        as.numeric(core_frame$dims[["xticks"]][[ current_facet]]))
+        as.numeric(core_frame$dims[["xticks"]][[current_facet]]))
       core_frame$dims[["max.local.x"]] <- max(
-        as.numeric(core_frame$dims[["xticks"]][[ current_facet]]))
+        as.numeric(core_frame$dims[["xticks"]][[current_facet]]))
     }
 
     # Y axes
@@ -105,13 +104,13 @@ print.fxl <- function(core_frame, ...) {
       y_axis_draw <-  current_facet %in% core_frame$dims[["ydraws"]]
     }
 
-    y_axis_ticks <- seq(core_frame$dims[["global.min.y"]],
-                        core_frame$dims[["global.max.y"]],
+    y_axis_ticks <- seq(ceiling(core_frame$dims[["global.min.y"]]),
+                        ceiling(core_frame$dims[["global.max.y"]]),
                         by = core_frame$dims[["ydelta"]])
 
     if (!is.null(core_frame$dims[["local.dims"]])) {
-      core_frame$dims[["min.local.y"]] <- core_frame$dims[["local.dims"]][[ current_facet]]$y0
-      core_frame$dims[["max.local.y"]] <- core_frame$dims[["local.dims"]][[ current_facet]]$y1
+      core_frame$dims[["min.local.y"]] <- core_frame$dims[["local.dims"]][[current_facet]]$y0
+      core_frame$dims[["max.local.y"]] <- core_frame$dims[["local.dims"]][[current_facet]]$y1
 
       y_axis_ticks <- seq(core_frame$dims[["min.local.y"]],
                           core_frame$dims[["max.local.y"]],
@@ -136,9 +135,17 @@ print.fxl <- function(core_frame, ...) {
                           by = core_frame$dims[["ydelta"]])
     }
 
+    if (!is.null(core_frame$dims[["yticks"]]) && !is.list(
+      core_frame$dims[["yticks"]])) {
+
+      y_axis_ticks <- as.integer(core_frame$dims[["yticks"]])
+    }
+
     plot(NULL,
-         xlim = c(core_frame$dims[["min.local.x"]], core_frame$dims[["max.local.x"]]),
-         ylim = c(core_frame$dims[["min.local.y"]], core_frame$dims[["max.local.y"]]),
+         xlim = c(core_frame$dims[["min.local.x"]],
+                  core_frame$dims[["max.local.x"]]),
+         ylim = c(core_frame$dims[["min.local.y"]],
+                  core_frame$dims[["max.local.y"]]),
          ylab = "",
          xlab = "",
          frame.plot = FALSE,
@@ -151,8 +158,17 @@ print.fxl <- function(core_frame, ...) {
     if (!is.null(core_frame$dims[["xticklabs"]]) &&
         !is.list(core_frame$dims[["xticklabs"]]) &&
         x_axis_draw) {
+
       x_axis_draw <- core_frame$dims[["xticklabs"]]
     }
+
+    if (!is.null(core_frame$dims[["yticklabs"]]) &&
+        !is.list(core_frame$dims[["yticklabs"]])) {
+
+      y_axis_draw <- core_frame$dims[["yticklabs"]]
+    }
+
+    ## TODO: y axis labs here
 
     axis(1,
          labels = x_axis_draw,
@@ -167,8 +183,6 @@ print.fxl <- function(core_frame, ...) {
       for (i in seq_len(length(core_frame[["layers"]]))) {
 
         current_layer <- core_frame$layers[[i]]
-
-        print(current_layer)
 
         if (current_layer$type == "arrows")
           draw_arrows(core_frame,

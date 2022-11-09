@@ -14,7 +14,9 @@
 scr_yoverride <- function(core_frame,
                           var,
                           ydelta = 1,
-                          ydraws = NULL) {
+                          yticks = NULL,
+                          ydraws = NULL,
+                          ytickslabs = NULL) {
 
   # Check if a vector and not multi-facet list
   if (is.vector(var) && !is.list(var)) {
@@ -23,11 +25,12 @@ scr_yoverride <- function(core_frame,
 
   } else {
     core_frame$dims[["local.dims"]] <- var
-
   }
 
   core_frame$dims[["ydelta"]] <- ydelta
+  core_frame$dims[["yticks"]] <- yticks
   core_frame$dims[["ydraws"]] <- ydraws
+  core_frame$dims[["yticklabs"]] <- ytickslabs
 
   core_frame
 }

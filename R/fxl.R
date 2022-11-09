@@ -57,7 +57,8 @@ scr_plot <- function(data, aesthetics,
     yaxs         = yaxs,
     ncol         = ncol,
     xdelta       = 1,
-    ydelta       = 1)
+    ydelta       = 1
+  )
 
   core_frame[["labs"]] <- list(# Presumed labels, blank title by default
     xlab         = as.character(core_frame$aes["x"]),
@@ -65,7 +66,8 @@ scr_plot <- function(data, aesthetics,
     outer        = TRUE,
     outer.x.line = 0,
     outer.y.line = 0,
-    title        = "")
+    title        = ""
+  )
 
   core_frame[["family"]] <- family
 

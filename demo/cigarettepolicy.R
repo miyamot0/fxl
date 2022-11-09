@@ -4,47 +4,47 @@ library(extrafont)
 
 extrafont::choose_font("Open Sans")
 
-GelinoEtAl2022
+newFrame <- GelinoEtAl2022
 
-xticks <- c("4/13/18",
-           "4/20/18",
-           "4/27/18",
-           "10/26/18",
-           "11/2/18",
-           "4/19/19",
-           "4/26/19",
-           "5/3/19",
-           "11/1/19",
-           "11/8/19",
-           "11/15/19"
+xticks <- c(
+   "4/13/18",
+   "4/20/18",
+   "4/27/18",
+   "10/26/18",
+   "11/2/18",
+   "4/19/19",
+   "4/26/19",
+   "5/3/19",
+   "11/1/19",
+   "11/8/19",
+   "11/15/19"
 )
 
-# need
-# cex.lab
-# cex.main
-# cex.axis
-
-# crt? isn't this already in?
-
-# lend for axis?
-
-# mai up to to shrink?
-# oma up to to shrink?
-
-# xaxs
-
-# xpd to remove ext?
+yticks <- c(
+  "0",   "50",
+  "100", "150",
+  "200", "250",
+  "300", "350",
+  "400", "450",
+  "500"
+)
 
 scr_plot(newFrame, aesthetics = list(x = Time,
                                      y = Count1,
                                      p = Condition,
                                      facet = Facet),
-         mai = c(0.5, 0.5, 0, 0),
+         mai = c(0.5, 0.6, 0, 0),
          family = "Open Sans",
          omi = c(0.25, 0.25, 0.5, 0.5)) %>%
-  scr_xoverride(c(1, 11), xtickslabs = xticks) %>%
-  scr_yoverride(c(0, 500),
-                ydelta = 50) %>%
+  scr_xoverride(c(0.4, 11),
+                xticks = seq_len(11),
+                xtickslabs = xticks) %>%
+  scr_yoverride(c(-10, 500),
+                yticks = c(0,   50, 100, 150,
+                           200, 250, 300, 350,
+                           400, 450, 500),
+                ydelta = 50,
+                ytickslabs = yticks) %>%
   scr_lines() %>%
   scr_points(cex = 2,
              pch = 21,
@@ -78,14 +78,15 @@ scr_plot(newFrame, aesthetics = list(x = Time,
             mapping = list(x = Time,
                            y = yhat,
                            p = Condition),
-            color = "red") %>%
+            lty = 3,
+            color = "black") %>%
   scr_label_phase(facet = "1",
                   cex = 1.25,
                   adj = 0.5,
                   y = 525,
                   labels = list(
                     "Pre-Policy" = list(x = 2),
-                    "Policy Enacted" = list(x = 5)
+                    "Policy Enacted" = list(x = 7)
                   )) %>%
   scr_plines(
     lty = 1,
@@ -93,26 +94,41 @@ scr_plot(newFrame, aesthetics = list(x = Time,
       "1" = list(
         "A" = list(
           x1 = 3.5,
-          y1 = 500
+          y1 = 500,
+          y2 = 1
         )
       )
     )) %>%
   scr_xlabel("Collection Period") %>%
-  scr_ylabel("Butts Collected") %>%
+  scr_ylabel("           Frequency of Butts Collected") %>%
   scr_legend(panel = "1",
              position = "topright",
              legend = c("Location A",
-                          "Location B",
-                          "Location C",
-                          "Location D"),
-             col = c("black", "black", "black", "black"),
-             pt_bg = c("gray", "black", "black", "gray"),
+                        "Location B",
+                        "Location C",
+                        "Location D"),
+             col = c("black",
+                     "black",
+                     "black",
+                     "black"),
+             pt_bg = c("gray",
+                       "black",
+                       "black",
+                       "gray"),
              lty = c(1, 1, 1, 1),
              pch = c(21, 22, 23, 24),
-             bg = c("black", "black", "black", "black"),
+             bg = c("black",
+                    "black",
+                    "black",
+                    "black"),
              bty = "n",
              pt_cex = 2,
              cex = 1.25,
              text_col = "black",
              horiz = FALSE,
-             box_lty = 0)
+             box_lty = 0) %>%
+  scr_save(name = "CigaretteButtPolicyOutcomes.png",
+           format = "png",
+           units = "in",
+           height = 6,
+           width = 9)
