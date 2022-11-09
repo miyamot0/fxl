@@ -5,7 +5,7 @@
 \title{scr_label_phase}
 \usage{
 scr_label_phase(
-  coreFrame,
+  core_frame,
   color = "black",
   cex = 1,
   adj = 0.5,
@@ -16,7 +16,7 @@ scr_label_phase(
 )
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{color}{from base}
 

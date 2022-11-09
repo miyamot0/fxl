@@ -4,10 +4,10 @@
 \alias{scr_ylabel}
 \title{ylabel}
 \usage{
-scr_ylabel(coreFrame, var, line = 0)
+scr_ylabel(core_frame, var, line = 0)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{var}{string}
 }

@@ -4,14 +4,14 @@
 \alias{draw_label_phase}
 \title{draw_label_phase}
 \usage{
-draw_label_phase(coreFrame, currentLayer, facetName)
+draw_label_phase(core_frame, current_layer, facet_name)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
-\item{currentLayer}{layer to be drawn}
+\item{current_layer}{layer to be drawn}
 
-\item{facetName}{name of facet}
+\item{facet_name}{name of facet}
 }
 \value{
 

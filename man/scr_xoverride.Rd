@@ -5,7 +5,7 @@
 \title{xoverride}
 \usage{
 scr_xoverride(
-  coreFrame,
+  core_frame,
   var,
   xdelta = 1,
   xticks = NULL,
@@ -14,7 +14,7 @@ scr_xoverride(
 )
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{var}{string for title}
 
@@ -24,7 +24,7 @@ scr_xoverride(
 
 \item{xdraws}{which x axes to draw}
 
-\item{xticklabs}{custom x axis labels}
+\item{xtickslabs}{custom x axis labels}
 }
 \value{
 

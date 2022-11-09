@@ -4,10 +4,10 @@
 \alias{scr_xlabel}
 \title{xlabel}
 \usage{
-scr_xlabel(coreFrame, var, line = 0)
+scr_xlabel(core_frame, var, line = 0)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{var}{string}
 }

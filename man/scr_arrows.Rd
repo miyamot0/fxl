@@ -5,7 +5,7 @@
 \title{scr_arrows}
 \usage{
 scr_arrows(
-  coreFrame,
+  core_frame,
   arrows = NULL,
   facet = NULL,
   color = "black",
@@ -17,7 +17,7 @@ scr_arrows(
 )
 }
 \arguments{
-\item{coreFrame}{fxl class}
+\item{core_frame}{fxl class}
 
 \item{arrows}{list of keyed entries to be drawn on respective facets}
 

@@ -4,10 +4,10 @@
 \alias{print.fxlsemilog}
 \title{print.fxlsemilog}
 \usage{
-\method{print}{fxlsemilog}(coreFrame, ...)
+\method{print}{fxlsemilog}(core_frame, ...)
 }
 \arguments{
-\item{coreFrame}{fxlsemilog object}
+\item{core_frame}{fxlsemilog object}
 }
 \value{
 

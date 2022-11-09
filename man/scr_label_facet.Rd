@@ -5,7 +5,7 @@
 \title{scr_label_facet}
 \usage{
 scr_label_facet(
-  coreFrame,
+  core_frame,
   color = "black",
   cex = 1,
   adj = 0.5,
@@ -15,7 +15,7 @@ scr_label_facet(
 )
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{color}{from base}
 

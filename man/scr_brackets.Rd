@@ -5,7 +5,7 @@
 \title{scr_brackets}
 \usage{
 scr_brackets(
-  coreFrame,
+  core_frame,
   brackets = NULL,
   facet = NULL,
   color = "black",
@@ -17,7 +17,7 @@ scr_brackets(
 )
 }
 \arguments{
-\item{coreFrame}{fxl class}
+\item{core_frame}{fxl class}
 
 \item{brackets}{list of keyed entries to be drawn on respective facets}
 

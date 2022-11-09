@@ -4,14 +4,14 @@
 \alias{draw_brackets}
 \title{draw_brackets}
 \usage{
-draw_brackets(coreFrame, currentLayer, facetName)
+draw_brackets(core_frame, current_layer, facet_name)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
-\item{currentLayer}{layer to be drawn}
+\item{current_layer}{layer to be drawn}
 
-\item{facetName}{name of facet}
+\item{facet_name}{name of facet}
 }
 \value{
 

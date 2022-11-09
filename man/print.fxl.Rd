@@ -4,10 +4,10 @@
 \alias{print.fxl}
 \title{print.fxl}
 \usage{
-\method{print}{fxl}(coreFrame, ...)
+\method{print}{fxl}(core_frame, ...)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 }
 \value{
 

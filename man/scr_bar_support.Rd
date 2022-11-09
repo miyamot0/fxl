@@ -5,7 +5,7 @@
 \title{scr_bar_support}
 \usage{
 scr_bar_support(
-  coreFrame,
+  core_frame,
   color = rgb(0.8, 0.8, 0.8, alpha = 0.25),
   alpha = 1,
   mapping = NULL,
@@ -14,7 +14,7 @@ scr_bar_support(
 )
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{color}{from base}
 

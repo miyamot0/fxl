@@ -4,10 +4,10 @@
 \alias{scr_plines_mbd}
 \title{scr_plines_mbd}
 \usage{
-scr_plines_mbd(coreFrame, lines = NULL)
+scr_plines_mbd(core_frame, lines = NULL)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{lines}{phase lines to be drawn}
 }

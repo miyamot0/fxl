@@ -4,14 +4,14 @@
 \alias{draw_scr_plines}
 \title{draw_scr_plines}
 \usage{
-draw_scr_plines(coreFrame, currentLayer, facetName)
+draw_scr_plines(core_frame, current_layer, facet_name)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
-\item{currentLayer}{layer to be drawn}
+\item{current_layer}{layer to be drawn}
 
-\item{facetName}{name of facet}
+\item{facet_name}{name of facet}
 }
 \value{
 

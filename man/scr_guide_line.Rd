@@ -4,10 +4,10 @@
 \alias{scr_guide_line}
 \title{scr_guide_line}
 \usage{
-scr_guide_line(coreFrame, coords, facet = NA, color = "red", lty = 1, lwd = 1)
+scr_guide_line(core_frame, coords, facet = NA, color = "red", lty = 1, lwd = 1)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{coords}{start and finish coords for aim line}
 

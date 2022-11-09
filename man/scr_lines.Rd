@@ -4,10 +4,10 @@
 \alias{scr_lines}
 \title{scr_lines}
 \usage{
-scr_lines(coreFrame, lty = 1, color = "black", size = 1, mapping)
+scr_lines(core_frame, lty = 1, color = "black", size = 1, mapping)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{lty}{from base}
 

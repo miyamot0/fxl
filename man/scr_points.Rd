@@ -5,7 +5,7 @@
 \title{scr_points}
 \usage{
 scr_points(
-  coreFrame,
+  core_frame,
   pch = 21,
   color = "black",
   fill = "black",
@@ -14,7 +14,7 @@ scr_points(
 )
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{pch}{from base}
 

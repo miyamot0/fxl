@@ -5,7 +5,7 @@
 \title{scrlegend}
 \usage{
 scr_legend(
-  coreFrame,
+  core_frame,
   panel = NA,
   legend,
   bg = NULL,
@@ -25,7 +25,7 @@ scr_legend(
 )
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{panel}{facet to be drawn on}
 

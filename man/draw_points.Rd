@@ -4,14 +4,14 @@
 \alias{draw_points}
 \title{draw_points}
 \usage{
-draw_points(coreFrame, currentLayer, facetName, zeroAxis = FALSE)
+draw_points(core_frame, current_layer, facet_name, zeroAxis = FALSE)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
-\item{currentLayer}{layer to be drawn}
+\item{current_layer}{layer to be drawn}
 
-\item{facetName}{name of facet}
+\item{facet_name}{name of facet}
 
 \item{zeroAxis}{filter out all but zeros}
 }

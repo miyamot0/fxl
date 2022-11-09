@@ -5,7 +5,7 @@
 \title{scr_cumsum_points}
 \usage{
 scr_cumsum_points(
-  coreFrame,
+  core_frame,
   pch = 21,
   color = "black",
   fill = "black",
@@ -14,7 +14,7 @@ scr_cumsum_points(
 )
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{pch}{from base}
 

@@ -4,10 +4,10 @@
 \alias{scr_title}
 \title{scrtitle}
 \usage{
-scr_title(coreFrame, var)
+scr_title(core_frame, var)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{var}{string}
 }

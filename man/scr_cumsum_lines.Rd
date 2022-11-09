@@ -4,10 +4,10 @@
 \alias{scr_cumsum_lines}
 \title{scr_cumsum}
 \usage{
-scr_cumsum_lines(coreFrame, lty = 1, color = "black", size = 1, mapping)
+scr_cumsum_lines(core_frame, lty = 1, color = "black", size = 1, mapping)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{lty}{from base}
 

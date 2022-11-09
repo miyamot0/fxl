@@ -5,7 +5,7 @@
 \title{scrsave}
 \usage{
 scr_save(
-  coreFrame,
+  core_frame,
   units = "in",
   name = "test.tiff",
   format = "tiff",
@@ -15,7 +15,7 @@ scr_save(
 )
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{units}{from base}
 

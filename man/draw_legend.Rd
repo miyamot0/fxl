@@ -4,10 +4,10 @@
 \alias{draw_legend}
 \title{draw_legend}
 \usage{
-draw_legend(coreFrame)
+draw_legend(core_frame)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 }
 \value{
 

@@ -4,12 +4,12 @@
 \alias{draw_arrows}
 \title{draw_arrows}
 \usage{
-draw_arrows(coreFrame, currentLayer, facetName)
+draw_arrows(core_frame, current_layer, facet_name)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
-\item{currentLayer}{layer to be drawn}
+\item{current_layer}{layer to be drawn}
 
 \item{n}{name of facet}
 }

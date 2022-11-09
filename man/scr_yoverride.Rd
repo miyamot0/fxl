@@ -4,10 +4,10 @@
 \alias{scr_yoverride}
 \title{yoverride}
 \usage{
-scr_yoverride(coreFrame, var, ydelta = 1, ydraws = NULL)
+scr_yoverride(core_frame, var, ydelta = 1, ydraws = NULL)
 }
 \arguments{
-\item{coreFrame}{fxl object}
+\item{core_frame}{fxl object}
 
 \item{var}{from base}
 

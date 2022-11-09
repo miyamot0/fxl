@@ -21,30 +21,30 @@
 #'
 #' drawing function
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
 #' @param n name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_arrows <- function(coreFrame, currentLayer, facetName) {
-  if (currentLayer$facet == as.character(facetName)) {
-    for (aindex in 1:length(currentLayer$arrows)) {
-      currentArrow  = currentLayer$arrows[[aindex]]
+draw_arrows <- function(core_frame, current_layer, facet_name) {
+  if (current_layer$facet == as.character(facet_name)) {
+    for (aindex in seq_along(length(current_layer$arrows))) {
+      current_arrow <- current_layer$arrows[[aindex]]
 
-      arrows(x0     = as.numeric(   currentArrow[[ "x0"     ]]),
-             x1     = as.numeric(   currentArrow[[ "x1"     ]]),
-             y0     = as.numeric(   currentArrow[[ "y0"     ]]),
-             y1     = as.numeric(   currentArrow[[ "y1"     ]]),
+      arrows(x0     = as.numeric(current_arrow[["x0"]]),
+             x1     = as.numeric(current_arrow[["x1"]]),
+             y0     = as.numeric(current_arrow[["y0"]]),
+             y1     = as.numeric(current_arrow[["y1"]]),
 
-             length = as.numeric(   currentLayer[[ "length" ]]),
-             angle  = as.numeric(   currentLayer[[ "angle"  ]]),
-             code   = as.numeric(   currentLayer[[ "code"   ]]),
-             col    = as.character( currentLayer[[ "color"  ]]),
-             lty    = as.numeric(   currentLayer[[ "lty"    ]]),
-             lwd    = as.numeric(   currentLayer[[ "lwd"    ]]))
+             length = as.numeric(current_layer[["length"]]),
+             angle  = as.numeric(current_layer[["angle"]]),
+             code   = as.numeric(current_layer[["code"]]),
+             col    = as.character(current_layer[["color"]]),
+             lty    = as.numeric(current_layer[["lty"]]),
+             lwd    = as.numeric(current_layer[["lwd"]]))
     }
   }
 }
@@ -53,57 +53,57 @@ draw_arrows <- function(coreFrame, currentLayer, facetName) {
 #'
 #' drawing function
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
-#' @param facetName name of facet
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
+#' @param facet_name name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_brackets <- function(coreFrame, currentLayer, facetName) {
-  if (currentLayer$facet == as.character(facetName)) {
+draw_brackets <- function(core_frame, current_layer, facet_name) {
+  if (current_layer$facet == as.character(facet_name)) {
 
-    for (bindex in 1:length(currentLayer$brackets)) {
-      currentBracket = currentLayer$brackets[[bindex]]
+    for (bindex in seq_along(length(current_layer$brackets))) {
+      current_bracket <- current_layer$brackets[[bindex]]
 
-      l.lty = as.numeric(currentLayer[["lty"]])
+      l_lty <- as.numeric(current_layer[["lty"]])
 
-      if ("lty" %in% names(currentBracket))
-        l.lty = currentBracket$lty
+      if ("lty" %in% names(current_bracket))
+        l_lty <- current_bracket$lty
 
       segments(
-        x0          = as.numeric(   currentBracket[[ "x0"     ]]),
-        x1          = as.numeric(   currentBracket[[ "x1"     ]]),
-        y0          = as.numeric(   currentBracket[[ "y0"     ]]),
-        y1          = as.numeric(   currentBracket[[ "y0"     ]]),
+        x0          = as.numeric(current_bracket[["x0"]]),
+        x1          = as.numeric(current_bracket[["x1"]]),
+        y0          = as.numeric(current_bracket[["y0"]]),
+        y1          = as.numeric(current_bracket[["y0"]]),
 
-        col         = as.character( currentLayer[[   "color"  ]]),
-        lty         = l.lty,
-        lwd         = as.numeric(   currentLayer[[   "lwd"    ]]))
+        col         = as.character(current_layer[["color"]]),
+        lty         = l_lty,
+        lwd         = as.numeric(current_layer[["lwd"]]))
 
-      arrows(x0     = as.numeric(   currentBracket[[ "x0"     ]]),
-             x1     = as.numeric(   currentBracket[[ "x0"     ]]),
-             y0     = as.numeric(   currentBracket[[ "y0"     ]]),
-             y1     = as.numeric(   currentBracket[[ "y1"     ]]),
+      arrows(x0     = as.numeric(current_bracket[["x0"]]),
+             x1     = as.numeric(current_bracket[["x0"]]),
+             y0     = as.numeric(current_bracket[["y0"]]),
+             y1     = as.numeric(current_bracket[["y1"]]),
 
-             length = as.numeric(   currentLayer[[   "length" ]]),
-             angle  = as.numeric(   currentLayer[[   "angle"  ]]),
-             code   = as.numeric(   currentLayer[[   "code"   ]]),
-             col    = as.character( currentLayer[[   "color"  ]]),
-             lty    = l.lty,
-             lwd    = as.numeric(   currentLayer[[   "lwd"    ]]))
+             length = as.numeric(current_layer[["length"]]),
+             angle  = as.numeric(current_layer[["angle"]]),
+             code   = as.numeric(current_layer[["code"]]),
+             col    = as.character(current_layer[["color"]]),
+             lty    = l_lty,
+             lwd    = as.numeric(current_layer[["lwd"]]))
 
-      arrows(x0     = as.numeric(   currentBracket[[ "x1"     ]]),
-             x1     = as.numeric(   currentBracket[[ "x1"     ]]),
-             y0     = as.numeric(   currentBracket[[ "y0"     ]]),
-             y1     = as.numeric(   currentBracket[[ "y1"     ]]),
-             length = as.numeric(   currentLayer[[   "length" ]]),
-             angle  = as.numeric(   currentLayer[[   "angle"  ]]),
-             code   = as.numeric(   currentLayer[[   "code"   ]]),
-             col    = as.character( currentLayer[[   "color"  ]]),
-             lty    = l.lty,
-             lwd    = as.numeric(   currentLayer[[   "lwd"    ]]))
+      arrows(x0     = as.numeric(current_bracket[["x1"]]),
+             x1     = as.numeric(current_bracket[["x1"]]),
+             y0     = as.numeric(current_bracket[["y0"]]),
+             y1     = as.numeric(current_bracket[["y1"]]),
+             length = as.numeric(current_layer[["length"]]),
+             angle  = as.numeric(current_layer[["angle"]]),
+             code   = as.numeric(current_layer[["code"]]),
+             col    = as.character(current_layer[["color"]]),
+             lty    = l_lty,
+             lwd    = as.numeric(current_layer[["lwd"]]))
     }
   }
 }
@@ -112,39 +112,39 @@ draw_brackets <- function(coreFrame, currentLayer, facetName) {
 #'
 #' Draw bars, but on a secondary axis
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
-#' @param facetName name of facet
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
+#' @param facet_name name of facet
 #'
 #' @return
 #' @export
-draw_bar_support <- function(coreFrame,  currentLayer, facetName) {
+draw_bar_support <- function(core_frame,  current_layer, facet_name) {
 
-  if (is.na(facetName))  currentData   = coreFrame$data
-  else                   currentData   = coreFrame$data[which(
-    coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
+  if (is.na(facet_name))  current_data   <- core_frame$data
+  else                   current_data   <- core_frame$data[which(
+    core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
 
   # In case no phases are included?
-  if (!('p' %in% names(coreFrame$aes))) {
-    coreFrame$aes['p'] = 'p'
-    currentData[, 'p'] = '0'
+  if (!("p" %in% names(core_frame$aes))) {
+    core_frame$aes["p"] <- "p"
+    current_data[, "p"] <- "0"
   }
 
-  localAesthetics = list(
-    "x" = as.character(coreFrame$aes['x']),
-    "y" = as.character(coreFrame$aes['y'])
+  local_aesthetics <- list(
+    "x" = as.character(core_frame$aes["x"]),
+    "y" = as.character(core_frame$aes["y"])
   )
 
-  if (!is.na(currentLayer['aesthetics'])) {
-    localAesthetics = list(
-      "x" = as.character(currentLayer$aesthetics['x']),
-      "y" = as.character(currentLayer$aesthetics['y'])
+  if (!is.na(current_layer["aesthetics"])) {
+    local_aesthetics <- list(
+      "x" = as.character(current_layer$aesthetics["x"]),
+      "y" = as.character(current_layer$aesthetics["y"])
     )
   }
 
-  label.y = as.character(localAesthetics['y'])
+  label.y <- as.character(local_aesthetics["y"])
 
-  if (currentLayer$label != "")  label.y = as.character(currentLayer$label)
+  if (current_layer$label != "")  label.y <- as.character(current_layer$label)
 
   opar <- par()
 
@@ -156,37 +156,37 @@ draw_bar_support <- function(coreFrame,  currentLayer, facetName) {
 
   plot(NULL,
        axes = FALSE,
-       xlim = c(coreFrame$dims[["min.local.x"]],
-                coreFrame$dims[["max.local.x"]]),
-       ylim = c(0,100),
+       xlim = c(core_frame$dims[["min.local.x"]],
+                core_frame$dims[["max.local.x"]]),
+       ylim = c(0, 100),
        xlab = "",
        ylab = "",
        frame.plot = FALSE,
        las = 1,
-       xaxt = 'n',
-       yaxt = 'n')
+       xaxt = "n",
+       yaxt = "n")
 
   box(bty = "U")
 
-  p.off   = currentLayer$width / 2
+  p_off <- current_layer$width / 2
 
-  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
+  for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
 
-    currentData.slice <- currentData[which(currentData[, as.character(coreFrame$aes['p'])] == p),]
+    current_data_slice <- current_data[which(current_data[, as.character(core_frame$aes["p"])] == p), ]
 
-    for (row in 1:nrow(currentData.slice)) {
+    for (row in seq_len(nrow(current_data_slice))) {
 
-      rect(currentData.slice[row, as.character(localAesthetics['x'])] - p.off,
+      rect(current_data_slice[row, as.character(local_aesthetics["x"])] - p_off,
            0,
-           currentData.slice[row, as.character(localAesthetics['x'])] + p.off,
-           currentData.slice[row, as.character(localAesthetics['y'])],
-           col = currentLayer$color)
+           current_data_slice[row, as.character(local_aesthetics["x"])] + p_off,
+           current_data_slice[row, as.character(local_aesthetics["y"])],
+           col = current_layer$color)
     }
   }
 
   axis(side = 4,
        las = 1,
-       at = pretty(range(c(0,currentData.slice[, as.character(localAesthetics['y'])]))))
+       at = pretty(range(c(0, current_data_slice[, as.character(local_aesthetics["y"])]))))
 
   mtext(label.y,
         side = 4,
@@ -197,44 +197,44 @@ draw_bar_support <- function(coreFrame,  currentLayer, facetName) {
 
 #' draw_guide_line
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
-#' @param facetName name of facet
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
+#' @param facet_name name of facet
 #'
 #' @return
 #' @export
-draw_guide_line <- function(coreFrame,  currentLayer, facetName) {
+draw_guide_line <- function(core_frame,  current_layer, facet_name) {
 
-  if (is.na(facetName) | currentLayer$facet == facetName) {
+  if (is.na(facet_name) | current_layer$facet == facet_name) {
 
-    for (gindex in 1:length(currentLayer$coords)) {
-      currentCoords = currentLayer$coords[[gindex]]
+    for (gindex in 1:length(current_layer$coords)) {
+      current_coords <- current_layer$coords[[gindex]]
 
-      l.col = as.character( currentLayer[["col"]])
-      l.lty = as.numeric(   currentLayer[["lty"]])
-      l.lwd = as.numeric(   currentLayer[["lwd"]])
+      l_col <- as.character(current_layer[["col"]])
+      l_lty <- as.numeric(current_layer[["lty"]])
+      l_lwd <- as.numeric(current_layer[["lwd"]])
 
-      if ("col" %in% names(currentCoords))
-        l.col = currentCoords$col
+      if ("col" %in% names(current_coords))
+        l_col <- current_coords$col
 
-      if ("lty" %in% names(currentCoords))
-        l.lty = currentCoords$lty
+      if ("lty" %in% names(current_coords))
+        l_lty <- current_coords$lty
 
-      if ("lwd" %in% names(currentCoords))
-        l.lwd = currentCoords$lwd
+      if ("lwd" %in% names(current_coords))
+        l_lwd <- current_coords$lwd
 
-      tempY2 = ifelse("y1" %in% names(currentCoords),
-                      currentCoords$y1,
-                      currentCoords$y0)
+      temp_y2 <- ifelse("y1" %in% names(current_coords),
+        current_coords$y1,
+        current_coords$y0)
 
       segments(
-        x0    = currentCoords$x0,
-        x1    = currentCoords$x1,
-        y0    = currentCoords$y0,
-        y1    = tempY2,
-        lty   = l.lty,
-        lwd   = l.lwd,
-        col   = l.col
+        x0  = current_coords$x0,
+        x1  = current_coords$x1,
+        y0  = current_coords$y0,
+        y1  = temp_y2,
+        lty = l_lty,
+        lwd = l_lwd,
+        col = l_col
       )
     }
   }
@@ -244,173 +244,173 @@ draw_guide_line <- function(coreFrame,  currentLayer, facetName) {
 #'
 #' drawing function
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
-#' @param facetName name of facet
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
+#' @param facet_name name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_lines <- function(coreFrame, currentLayer, facetName) {
-  if (is.na(facetName)) currentData = coreFrame$data
-  else currentData = coreFrame$data[
-    which(coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
+draw_lines <- function(core_frame, current_layer, facet_name) {
+  if (is.na(facet_name)) current_data = core_frame$data
+  else current_data = core_frame$data[
+    which(core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
 
   # In case no phases are included?
-  if (!('p' %in% names(coreFrame$aes))) {
-    coreFrame$aes['p'] = 'p'
-    currentData[, 'p'] = '0'
+  if (!("p" %in% names(core_frame$aes))) {
+    core_frame$aes["p"] = "p"
+    current_data[, "p"] = "0"
   }
 
-  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
-    currentData.slice <- currentData[
-      which(currentData[, as.character(coreFrame$aes['p'])] == p),]
+  for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
+    current_data_slice <- current_data[
+      which(current_data[, as.character(core_frame$aes["p"])] == p), ]
 
-    localAesthetics = list(
-      "x"   = as.character(coreFrame$aes['x']),
-      "y"   = as.character(coreFrame$aes['y'])
+    local_aesthetics = list(
+      "x"   = as.character(core_frame$aes["x"]),
+      "y"   = as.character(core_frame$aes["y"])
     )
 
-    if (!is.na(currentLayer['aesthetics'])) {
-      localAesthetics = list(
-        "x" = as.character(currentLayer$aesthetics['x']),
-        "y" = as.character(currentLayer$aesthetics['y'])
+    if (!is.na(current_layer["aesthetics"])) {
+      local_aesthetics = list(
+        "x" = as.character(current_layer$aesthetics["x"]),
+        "y" = as.character(current_layer$aesthetics["y"])
       )
     }
 
-    plotFrame = data.frame(
-      X = currentData.slice[, as.character(localAesthetics['x'])],
-      Y = currentData.slice[, as.character(localAesthetics['y'])]
+    plot_frame = data.frame(
+      X = current_data_slice[, as.character(local_aesthetics["x"])],
+      Y = current_data_slice[, as.character(local_aesthetics["y"])]
     )
 
     lines(
-      plotFrame$X,
-      plotFrame$Y,
-      lty   = currentLayer$lty,
-      col   = currentLayer$color,
-      lwd   = currentLayer$size
+      plot_frame$X,
+      plot_frame$Y,
+      lty   = current_layer$lty,
+      col   = current_layer$color,
+      lwd   = current_layer$size
     )
   }
 }
 
 #' draw_cumsum_lines
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
-#' @param facetName name of facet
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
+#' @param facet_name name of facet
 #'
 #' @return
 #' @export
-draw_cumsum_lines <- function(coreFrame, currentLayer, facetName) {
+draw_cumsum_lines <- function(core_frame, current_layer, facet_name) {
 
-  if (is.na(facetName)) currentData = coreFrame$data
-  else currentData = coreFrame$data[
-    which(coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
+  if (is.na(facet_name)) current_data = core_frame$data
+  else current_data = core_frame$data[
+    which(core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
 
   # In case no phases are included?
-  if (!('p' %in% names(coreFrame$aes))) {
-    coreFrame$aes['p'] = 'p'
-    currentData[, 'p'] = '0'
+  if (!("p" %in% names(core_frame$aes))) {
+    core_frame$aes["p"] = "p"
+    current_data[, "p"] = "0"
   }
 
-  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
-    currentData.slice <- currentData[
-      which(currentData[, as.character(coreFrame$aes['p'])] == p),]
+  for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
+    current_data_slice <- current_data[
+      which(current_data[, as.character(core_frame$aes["p"])] == p), ]
 
-    localAesthetics = list(
-      "x"   = as.character(coreFrame$aes['x']),
-      "y"   = as.character(coreFrame$aes['y'])
+    local_aesthetics = list(
+      "x"   = as.character(core_frame$aes["x"]),
+      "y"   = as.character(core_frame$aes["y"])
     )
 
-    if (!is.na(currentLayer['aesthetics'])) {
-      localAesthetics = list(
-        "x" = as.character(currentLayer$aesthetics['x']),
-        "y" = as.character(currentLayer$aesthetics['y'])
+    if (!is.na(current_layer["aesthetics"])) {
+      local_aesthetics <- list(
+        "x" = as.character(current_layer$aesthetics["x"]),
+        "y" = as.character(current_layer$aesthetics["y"])
       )
     }
 
-    cumsumy = currentData.slice[, as.character(localAesthetics['y'])]
+    cumsumy = current_data_slice[, as.character(local_aesthetics["y"])]
     cumsumy[is.na(cumsumy)] = 0
     cumsumy = cumsum(cumsumy)
 
     lines(
-      currentData.slice[, as.character(localAesthetics['x'])],
+      current_data_slice[, as.character(local_aesthetics["x"])],
       cumsumy,
-      lty   = currentLayer$lty,
-      col   = currentLayer$color,
-      lwd   = currentLayer$size
+      lty   = current_layer$lty,
+      col   = current_layer$color,
+      lwd   = current_layer$size
     )
   }
 }
 
 #' draw_cumsum_points
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
-#' @param facetName name of facet
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
+#' @param facet_name name of facet
 #'
 #' @return
 #' @export
-draw_cumsum_points <- function(coreFrame, currentLayer, facetName) {
+draw_cumsum_points <- function(core_frame, current_layer, facet_name) {
 
-  if (is.na(facetName))  currentData   = coreFrame$data
-  else           currentData   = coreFrame$data[which(
-    coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
+  if (is.na(facet_name))  current_data   = core_frame$data
+  else           current_data   = core_frame$data[which(
+    core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
 
   # In case no phases are included?
-  if (!('p' %in% names(coreFrame$aes))) {
-    coreFrame$aes['p'] = 'p'
-    currentData[, 'p'] = '0'
+  if (!("p" %in% names(core_frame$aes))) {
+    core_frame$aes["p"] = "p"
+    current_data[, "p"] = "0"
   }
 
-  localAesthetics = list(
-    "x" = as.character(coreFrame$aes['x']),
-    "y" = as.character(coreFrame$aes['y'])
+  local_aesthetics = list(
+    "x" = as.character(core_frame$aes["x"]),
+    "y" = as.character(core_frame$aes["y"])
   )
 
-  if (!is.na(currentLayer['aesthetics'])) {
-    localAesthetics = list(
-      "x" = as.character(currentLayer$aesthetics['x']),
-      "y" = as.character(currentLayer$aesthetics['y'])
+  if (!is.na(current_layer["aesthetics"])) {
+    local_aesthetics = list(
+      "x" = as.character(current_layer$aesthetics["x"]),
+      "y" = as.character(current_layer$aesthetics["y"])
     )
   }
 
-  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
+  for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
 
-    currentData.slice <- currentData[which(currentData[, as.character(coreFrame$aes['p'])] == p),]
+    current_data_slice <- current_data[which(current_data[, as.character(core_frame$aes["p"])] == p), ]
 
-    localAesthetics = list(
-      "x"   = as.character(coreFrame$aes['x']),
-      "y"   = as.character(coreFrame$aes['y'])
+    local_aesthetics = list(
+      "x"   = as.character(core_frame$aes["x"]),
+      "y"   = as.character(core_frame$aes["y"])
     )
 
-    if (!is.na(currentLayer['aesthetics'])) {
-      localAesthetics = list(
-        "x" = as.character(currentLayer$aesthetics['x']),
-        "y" = as.character(currentLayer$aesthetics['y'])
+    if (!is.na(current_layer["aesthetics"])) {
+      local_aesthetics = list(
+        "x" = as.character(current_layer$aesthetics["x"]),
+        "y" = as.character(current_layer$aesthetics["y"])
       )
     }
 
     pch = 1
 
-    if (is.list(currentLayer$pch))  pch = currentLayer$pch[[p]]
-    else                            pch = currentLayer$pch
+    if (is.list(current_layer$pch))  pch = current_layer$pch[[p]]
+    else                            pch = current_layer$pch
 
-    fill = 'black'
+    fill = "black"
 
-    if (is.list(currentLayer$fill)) fill = currentLayer$fill[[p]]
-    else                            fill = currentLayer$fill
+    if (is.list(current_layer$fill)) fill = current_layer$fill[[p]]
+    else                            fill = current_layer$fill
 
-    cumsumy = currentData.slice[, as.character(localAesthetics['y'])]
+    cumsumy = current_data_slice[, as.character(local_aesthetics["y"])]
     cumsumy[is.na(cumsumy)] = 0
     cumsumy = cumsum(cumsumy)
 
     points(
-      currentData.slice[, as.character(localAesthetics['x'])],
+      current_data_slice[, as.character(local_aesthetics["x"])],
       cumsumy,
       pch = pch,
-      cex = currentLayer$cex,
+      cex = current_layer$cex,
       bg  = fill
     )
   }
@@ -420,48 +420,48 @@ draw_cumsum_points <- function(coreFrame, currentLayer, facetName) {
 #'
 #' drawing function
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
-#' @param facetName name of facet
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
+#' @param facet_name name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_label_phase <- function(coreFrame, currentLayer, facetName) {
-  if (currentLayer$facet == facetName) {
+draw_label_phase <- function(core_frame, current_layer, facet_name) {
+  if (current_layer$facet == facet_name) {
 
-    for (lindex in 1:length(currentLayer$labels)) {
+    for (lindex in 1:length(current_layer$labels)) {
 
-      label        = names(currentLayer$labels)[lindex]
+      label        = names(current_layer$labels)[lindex]
 
-      currentLabel = currentLayer$labels[[lindex]]
+      current_label = current_layer$labels[[lindex]]
 
       label = ifelse(is.null(label),
-                     currentLabel,
+                     current_label,
                      label)
 
-      tempX = ifelse("x" %in% names(currentLabel),
-                     currentLabel[[ "x" ]],
-                     currentLayer$x)
+      temp_x = ifelse("x" %in% names(current_label),
+                     current_label[["x"]],
+                     current_layer$x)
 
-      tempY = ifelse("y" %in% names(currentLabel),
-                     currentLabel[[ "y" ]],
-                     currentLayer$y)
+      temp_y = ifelse("y" %in% names(current_label),
+                     current_label[["y"]],
+                     current_layer$y)
 
-      fontC = ifelse("font" %in% names(currentLabel),
-                     currentLabel[[ "font" ]],
+      font_c = ifelse("font" %in% names(current_label),
+                     current_label[["font"]],
                      1)
 
-      srt          = ifelse("srt" %in% names(currentLabel),
-                            currentLabel[["srt"]],
+      srt          = ifelse("srt" %in% names(current_label),
+                            current_label[["srt"]],
                             0)
 
-      text(x      = tempX,
-           y      = tempY,
-           cex    = currentLayer[[ "cex" ]],
-           adj    = currentLayer[[ "adj" ]],
-           font   = fontC,
+      text(x      = temp_x,
+           y      = temp_y,
+           cex    = current_layer[["cex"]],
+           adj    = current_layer[["adj"]],
+           font   = font_c,
            srt    = srt,
            labels = label)
     }
@@ -472,85 +472,85 @@ draw_label_phase <- function(coreFrame, currentLayer, facetName) {
 #'
 #' drawing function
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
-#' @param facetName name of facet
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
+#' @param facet_name name of facet
 #' @param zeroAxis filter out all but zeros
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
+draw_points <- function(core_frame, current_layer, facet_name, zeroAxis = FALSE) {
 
-  if (is.na(facetName))  currentData   = coreFrame$data
-  else           currentData   = coreFrame$data[which(
-    coreFrame$data[, as.character(coreFrame$aes['facet'])] == facetName),]
+  if (is.na(facet_name))  current_data   = core_frame$data
+  else           current_data   = core_frame$data[which(
+    core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
 
   # In case no phases are included?
-  if (!('p' %in% names(coreFrame$aes))) {
-    coreFrame$aes['p'] = 'p'
-    currentData[, 'p'] = '0'
+  if (!("p" %in% names(core_frame$aes))) {
+    core_frame$aes["p"] = "p"
+    current_data[, "p"] = "0"
   }
 
-  localAesthetics = list(
-    "x" = as.character(coreFrame$aes['x']),
-    "y" = as.character(coreFrame$aes['y'])
+  local_aesthetics = list(
+    "x" = as.character(core_frame$aes["x"]),
+    "y" = as.character(core_frame$aes["y"])
   )
 
-  if (!is.na(currentLayer['aesthetics'])) {
-    localAesthetics = list(
-      "x" = as.character(currentLayer$aesthetics['x']),
-      "y" = as.character(currentLayer$aesthetics['y'])
+  if (!is.na(current_layer["aesthetics"])) {
+    local_aesthetics = list(
+      "x" = as.character(current_layer$aesthetics["x"]),
+      "y" = as.character(current_layer$aesthetics["y"])
     )
   }
 
-  for (p in unique(currentData[, as.character(coreFrame$aes['p'])])) {
+  for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
 
-    currentData.slice <- currentData[which(currentData[, as.character(coreFrame$aes['p'])] == p),]
+    current_data_slice <- current_data[which(current_data[, as.character(core_frame$aes["p"])] == p), ]
 
-    localAesthetics = list(
-      "x"   = as.character(coreFrame$aes['x']),
-      "y"   = as.character(coreFrame$aes['y'])
+    local_aesthetics = list(
+      "x"   = as.character(core_frame$aes["x"]),
+      "y"   = as.character(core_frame$aes["y"])
     )
 
-    if (!is.na(currentLayer['aesthetics'])) {
-      localAesthetics = list(
-        "x" = as.character(currentLayer$aesthetics['x']),
-        "y" = as.character(currentLayer$aesthetics['y'])
+    if (!is.na(current_layer["aesthetics"])) {
+      local_aesthetics = list(
+        "x" = as.character(current_layer$aesthetics["x"]),
+        "y" = as.character(current_layer$aesthetics["y"])
       )
     }
 
     pch = 1
 
-    if (is.list(currentLayer$pch))  pch = currentLayer$pch[[p]]
-    else                            pch = currentLayer$pch
+    if (is.list(current_layer$pch))  pch = current_layer$pch[[p]]
+    else                            pch = current_layer$pch
 
-    fill = 'black'
+    fill = "black"
 
-    if (is.list(currentLayer$fill)) fill = currentLayer$fill[[p]]
-    else                            fill = currentLayer$fill
+    if (is.list(current_layer$fill)) fill = current_layer$fill[[p]]
+    else                            fill = current_layer$fill
 
-    col = 'black'
+    col = "black"
 
-    if (is.list(currentLayer$color)) col = currentLayer$color[[p]]
-    else                             col = currentLayer$color
+    if (is.list(current_layer$color)) col = current_layer$color[[p]]
+    else                             col = current_layer$color
 
     cex = 1
 
-    if (is.list(currentLayer$cex)) cex = currentLayer$cex[[p]]
-    else                           cex = currentLayer$cex
+    if (is.list(current_layer$cex)) cex = current_layer$cex[[p]]
+    else                           cex = current_layer$cex
 
-    plotFrame = data.frame(
-      X = currentData.slice[, as.character(localAesthetics['x'])],
-      Y = currentData.slice[, as.character(localAesthetics['y'])]
+    plot_frame = data.frame(
+      X = current_data_slice[, as.character(local_aesthetics["x"])],
+      Y = current_data_slice[, as.character(local_aesthetics["y"])]
     )
 
-    if (zeroAxis) plotFrame = plotFrame[plotFrame$Y == 0,]
+    if (zeroAxis) plot_frame = plot_frame[plot_frame$Y == 0, ]
 
     points(
-      plotFrame$X,
-      plotFrame$Y,
+      plot_frame$X,
+      plot_frame$Y,
       pch = pch,
       cex = cex,
       bg  = fill,
@@ -563,44 +563,44 @@ draw_points <- function(coreFrame, currentLayer, facetName, zeroAxis = FALSE) {
 #'
 #' drawing function
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
-#' @param facetName name of facet
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
+#' @param facet_name name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_label_facet <- function(coreFrame, currentLayer, facetName) {
-  currentLabel = currentLayer$labels[[as.character(facetName)]]
+draw_label_facet <- function(core_frame, current_layer, facet_name) {
+  current_label = current_layer$labels[[as.character(facet_name)]]
 
-  label = facetName
-  customLabel = FALSE
+  label = facet_name
+  custom_label = FALSE
 
-  if ("label" %in% names(currentLabel)) {
-    label       = currentLabel[["label"]]
-    customLabel = TRUE
+  if ("label" %in% names(current_label)) {
+    label       = current_label[["label"]]
+    custom_label = TRUE
   }
 
-  if (label == "" | label == facetName | customLabel == TRUE) {
+  if (label == "" | label == facet_name | custom_label == TRUE) {
 
-    tempX = ifelse(!is.null(currentLabel[[ "x"   ]]),
-                   currentLabel[[ "x"   ]],
-                   currentLayer$x)
+    temp_x = ifelse(!is.null(current_label[["x"]]),
+                   current_label[["x"]],
+                   current_layer$x)
 
-    tempY = ifelse(!is.null(currentLabel[[ "y"   ]]),
-                   currentLabel[[ "y"   ]],
-                   currentLayer$y)
+    temp_y = ifelse(!is.null(current_label[["y"]]),
+                   current_label[["y"]],
+                   current_layer$y)
 
-    fontC = ifelse("font" %in% names(currentLabel),
-                   currentLabel[[ "font" ]],
+    font_c = ifelse("font" %in% names(current_label),
+                   current_label[["font"]],
                    1)
 
-    text(x      = tempX,
-         y      = tempY,
-         cex    = currentLayer[[ "cex" ]],
-         adj    = currentLayer[[ "adj" ]],
-         font   = fontC,
+    text(x      = temp_x,
+         y      = temp_y,
+         cex    = current_layer[["cex"]],
+         adj    = current_layer[["adj"]],
+         font   = font_c,
          labels = label)
   }
 }
@@ -609,48 +609,48 @@ draw_label_facet <- function(coreFrame, currentLayer, facetName) {
 #'
 #' drawing function
 #'
-#' @param coreFrame fxl object
-#' @param currentLayer layer to be drawn
-#' @param facetName name of facet
+#' @param core_frame fxl object
+#' @param current_layer layer to be drawn
+#' @param facet_name name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
-  if (as.character(facetName) %in% names(currentLayer$lines)) {
-    for (key in names(currentLayer$lines[[facetName]])) {
+draw_scr_plines <- function(core_frame, current_layer, facet_name) {
+  if (as.character(facet_name) %in% names(current_layer$lines)) {
+    for (key in names(current_layer$lines[[facet_name]])) {
 
-      l.lty = currentLayer[["lty"]]
-      l.x1  = currentLayer$lines[[facetName]][[key]][['x1']]
-      l.x2  = ifelse(is.null(currentLayer$lines[[facetName]][[key]][['x2']]),
-                     l.x1,
-                     currentLayer$lines[[facetName]][[key]][['x2']])
+      l_lty = current_layer[["lty"]]
+      l_x1  = current_layer$lines[[facet_name]][[key]][['x1']]
+      l_x2  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][['x2']]),
+                     l_x1,
+                     current_layer$lines[[facet_name]][[key]][['x2']])
 
-      l.y1  = ifelse(is.null(currentLayer$lines[[facetName]][[key]][['y1']]),
+      l_y1  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][['y1']]),
                      0,
-                     currentLayer$lines[[facetName]][[key]][['y1']])
-      l.y2  = ifelse(is.null(currentLayer$lines[[facetName]][[key]][['y2']]),
+                     current_layer$lines[[facet_name]][[key]][['y1']])
+      l_y2  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][['y2']]),
                      0,
-                     currentLayer$lines[[facetName]][[key]][['y2']])
+                     current_layer$lines[[facet_name]][[key]][['y2']])
 
-      tempY1 = ifelse(l.y1 == 0,
-                      -((as.numeric(coreFrame$dims[["max.local.y"]]) -
-                          as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
-                      currentLayer$lines[[facetName]][[key]][['y1']])
+      temp_y1 = ifelse(l_y1 == 0,
+                      -((as.numeric(core_frame$dims[["max.local.y"]]) -
+                          as.numeric(core_frame$dims[["min.local.y"]])) * 0.04),
+                      current_layer$lines[[facet_name]][[key]][['y1']])
 
-      tempY2 = ifelse(l.y2 == 0,
-                      -((as.numeric(coreFrame$dims[["max.local.y"]]) -
-                          as.numeric(coreFrame$dims[["min.local.y"]])) * 0.04),
-                      l.y2)
+      temp_y2 = ifelse(l_y2 == 0,
+                      -((as.numeric(core_frame$dims[["max.local.y"]]) -
+                          as.numeric(core_frame$dims[["min.local.y"]])) * 0.04),
+                      l_y2)
 
-      if ("lty" %in% names(currentLayer$lines[[facetName]][[key]]))
-        l.lty = currentLayer$lines[[facetName]][[key]]$lty
+      if ("lty" %in% names(current_layer$lines[[facet_name]][[key]]))
+        l_lty = current_layer$lines[[facet_name]][[key]]$lty
 
       lines(
-        c(l.x1, l.x2),
-        c(tempY1, tempY2),
-        lty = l.lty
+        c(l_x1, l_x2),
+        c(temp_y1, temp_y2),
+        lty = l_lty
       )
     }
   }
@@ -660,54 +660,54 @@ draw_scr_plines <- function(coreFrame, currentLayer, facetName) {
 #'
 #' drawing function
 #'
-#' @param coreFrame fxl object
+#' @param core_frame fxl object
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @return
 #' @export
-draw_legend <- function(coreFrame) {
+draw_legend <- function(core_frame) {
 
-  if (is.list(coreFrame$legendpars[["position"]])) {
+  if (is.list(core_frame$legendpars[["position"]])) {
 
     legend(
-      x = coreFrame$legendpars[["position"]]$x,
-      y = coreFrame$legendpars[["position"]]$y,
+      x = core_frame$legendpars[["position"]]$x,
+      y = core_frame$legendpars[["position"]]$y,
 
-      legend    = as.character( coreFrame$legendpars[[ "legend"   ]]),
-      adj       = as.numeric(   coreFrame$legendpars[[ "adj"      ]]),
-      text.col  = as.character( coreFrame$legendpars[[ "text.col" ]]),
-      lty       = as.numeric(   coreFrame$legendpars[[ "lty"      ]]),
-      box.lty   = as.numeric(   coreFrame$legendpars[[ "box.lty"  ]]),
-      pch       = as.numeric(   coreFrame$legendpars[[ "pch"      ]]),
-      border    = as.numeric(   coreFrame$legendpars[[ "border"   ]]),
-      bty       = as.character( coreFrame$legendpars[[ "bty"      ]]),
-      pt.cex    = as.numeric(   coreFrame$legendpars[[ "pt.cex"   ]]),
-      cex       = as.numeric(   coreFrame$legendpars[[ "cex"      ]]),
-      bg        = as.character( coreFrame$legendpars[[ "bg"       ]]),
-      col       = as.character( coreFrame$legendpars[[ "col"      ]]),
-      pt.bg     = as.character( coreFrame$legendpars[[ "pt.bg"    ]]),
-      horiz     = as.logical(   coreFrame$legendpars[[ "horiz"    ]])
+      legend    = as.character(core_frame$legendpars[["legend"]]),
+      adj       = as.numeric(core_frame$legendpars[["adj"]]),
+      text.col  = as.character(core_frame$legendpars[["text.col"]]),
+      lty       = as.numeric(core_frame$legendpars[["lty"]]),
+      box.lty   = as.numeric(core_frame$legendpars[["box.lty"]]),
+      pch       = as.numeric(core_frame$legendpars[["pch"]]),
+      border    = as.numeric(core_frame$legendpars[["border"]]),
+      bty       = as.character(core_frame$legendpars[["bty"]]),
+      pt.cex    = as.numeric(core_frame$legendpars[["pt.cex"]]),
+      cex       = as.numeric(core_frame$legendpars[["cex"]]),
+      bg        = as.character(core_frame$legendpars[["bg"]]),
+      col       = as.character(core_frame$legendpars[["col"]]),
+      pt.bg     = as.character(core_frame$legendpars[["pt.bg"]]),
+      horiz     = as.logical(core_frame$legendpars[["horiz"]])
     )
 
     return(NA)
   }
 
   legend(
-    coreFrame$legendpars[["position"]],
+    core_frame$legendpars[["position"]],
 
-    legend    = as.character( coreFrame$legendpars[[ "legend"   ]]),
-    adj       = as.numeric(   coreFrame$legendpars[[ "adj"      ]]),
-    text.col  = as.character( coreFrame$legendpars[[ "text.col" ]]),
-    lty       = as.numeric(   coreFrame$legendpars[[ "lty"      ]]),
-    box.lty   = as.numeric(   coreFrame$legendpars[[ "box.lty"  ]]),
-    pch       = as.numeric(   coreFrame$legendpars[[ "pch"      ]]),
-    bty       = as.character( coreFrame$legendpars[[ "bty"      ]]),
-    pt.cex    = as.numeric(   coreFrame$legendpars[[ "pt.cex"   ]]),
-    cex       = as.numeric(   coreFrame$legendpars[[ "cex"      ]]),
-    bg        = as.character( coreFrame$legendpars[[ "bg"       ]]),
-    col       = as.character( coreFrame$legendpars[[ "col"      ]]),
-    pt.bg     = as.character( coreFrame$legendpars[[ "pt.bg"    ]]),
-    horiz     = as.logical(   coreFrame$legendpars[[ "horiz"    ]])
+    legend    = as.character(core_frame$legendpars[["legend"]]),
+    adj       = as.numeric(core_frame$legendpars[["adj"]]),
+    text.col  = as.character(core_frame$legendpars[["text.col"]]),
+    lty       = as.numeric(core_frame$legendpars[["lty"]]),
+    box.lty   = as.numeric(core_frame$legendpars[["box.lty"]]),
+    pch       = as.numeric(core_frame$legendpars[["pch"]]),
+    bty       = as.character(core_frame$legendpars[["bty"]]),
+    pt.cex    = as.numeric(core_frame$legendpars[["pt.cex"]]),
+    cex       = as.numeric(core_frame$legendpars[["cex"]]),
+    bg        = as.character(core_frame$legendpars[["bg"]]),
+    col       = as.character(core_frame$legendpars[["col"]]),
+    pt.bg     = as.character(core_frame$legendpars[["pt.bg"]]),
+    horiz     = as.logical(core_frame$legendpars[["horiz"]])
   )
 }
