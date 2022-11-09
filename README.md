@@ -1,9 +1,11 @@
 
-<h1 align="center" style="display: flex; flex-direction: row; column-gap: 15px;">
+<div align="center" style="display: flex; flex-direction: row; column-gap: 15px;">
+
 [![codecov](https://codecov.io/gh/miyamot0/fxl/branch/main/graph/badge.svg?token=V02KN70O3V)](https://codecov.io/gh/miyamot0/fxl)
 
 [![DOI](https://zenodo.org/badge/357648823.svg)](https://zenodo.org/badge/latestdoi/357648823)
-</h1>
+
+</div>
 
 # Faux XL Charting in R (fxl)
 
