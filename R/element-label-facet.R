@@ -1,0 +1,36 @@
+
+#' scr_label_facet
+#'
+#' @param core_frame fxl object
+#' @param color from base
+#' @param cex from base
+#' @param adj from base
+#' @param x global x position for labels
+#' @param y global y position for labels
+#' @param labels as stated
+#'
+#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
+#'
+#' @return
+#' @export
+scr_label_facet <- function(core_frame,
+                            color  = "black",
+                            cex    = 1,
+                            adj    = 0.5,
+                            x      = NULL,
+                            y      = NULL,
+                            labels = NULL) {
+
+  newlayer <- list()
+  newlayer[["type"]] <- "facet_label"
+  newlayer[["color"]] <- color
+  newlayer[["cex"]] <- cex
+  newlayer[["adj"]] <- adj
+  newlayer[["x"]] <- x
+  newlayer[["y"]] <- y
+  newlayer[["labels"]] <- labels
+
+  core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
+
+  core_frame
+}
