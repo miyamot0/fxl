@@ -16,7 +16,6 @@
 ## along with fxl  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
 
 library(rlang)
-library(dplyr)
 
 ### EXPORTS ###
 
@@ -24,14 +23,19 @@ library(dplyr)
 #'
 #' Core object for establishing fxl object and layers
 #'
+#' @importFrom rlang enexpr
 #' @param data submitted data (not opinionated on naming)
 #' @param aesthetics references for data in frame
 #' @param mai margins in inches
 #' @param omi outer margins in inches
+#' @param xaxs TODO
+#' @param yaxs TODO
+#' @param ncol TODO
+#' @param family TODO
+#' @param semilog TODO
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_plot <- function(data, aesthetics,
                      mai     = c(0.375, 0.375, 0.25, 0.25),

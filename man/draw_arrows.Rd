@@ -11,10 +11,7 @@ draw_arrows(core_frame, current_layer, facet_name)
 
 \item{current_layer}{layer to be drawn}
 
-\item{n}{name of facet}
-}
-\value{
-
+\item{facet_name}{name of facet}
 }
 \description{
 drawing function

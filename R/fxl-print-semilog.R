@@ -3,56 +3,56 @@
 #' Override the final call to print the fxl object.
 #' catches the obj and prints out layers in the sequence laid out by the user
 #'
-#' @param core_frame fxlsemilog object
+#' @param x fxlsemilog object
+#' @param ... inherits from generic
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
-#' @export print.fxl
+#' @export print.fxlsemilog
 #' @export
-print.fxlsemilog <- function(core_frame, ...) {
-  core_frame$dims[["min.local.x"]] <- min(
-    core_frame$data[[
-      as.character(core_frame$aes["x"])]],
+print.fxlsemilog <- function(x, ...) {
+  x$dims[["min.local.x"]] <- min(
+    x$data[[
+      as.character(x$aes["x"])]],
     na.rm = TRUE)
 
-  core_frame$dims[["max.local.x"]] <- max(
-    core_frame$data[[
-      as.character(core_frame$aes["x"])]],
+  x$dims[["max.local.x"]] <- max(
+    x$data[[
+      as.character(x$aes["x"])]],
     na.rm = TRUE)
 
   # X Overrides
 
-  if (!is.null(core_frame$dims[["global.min.x"]]))
-    core_frame$dims[["min.local.x"]] <- core_frame$dims[["global.min.x"]]
+  if (!is.null(x$dims[["global.min.x"]]))
+    x$dims[["min.local.x"]] <- x$dims[["global.min.x"]]
 
-  if (!is.null(core_frame$dims[["global.max.x"]]))
-    core_frame$dims[["max.local.x"]] <- core_frame$dims[["global.max.x"]]
+  if (!is.null(x$dims[["global.max.x"]]))
+    x$dims[["max.local.x"]] <- x$dims[["global.max.x"]]
 
   # X axis
-  x_axis_ticks <- seq(core_frame$dims[["global.min.x"]],
-                      core_frame$dims[["global.max.x"]],
-                      by = core_frame$dims[["xdelta"]])
+  x_axis_ticks <- seq(x$dims[["global.min.x"]],
+                      x$dims[["global.max.x"]],
+                      by = x$dims[["xdelta"]])
 
-  if (!is.null(core_frame$dims[["xticks"]]) && !is.list(core_frame$dims[["xticks"]])) {
-    x_axis_ticks <- as.integer(core_frame$dims[["xticks"]])
+  if (!is.null(x$dims[["xticks"]]) && !is.list(x$dims[["xticks"]])) {
+    x_axis_ticks <- as.integer(x$dims[["xticks"]])
   }
 
   # Y axis
 
-  core_frame$dims[["min.local.y"]] <- ifelse(is.null(core_frame$dims[["global.min.y"]]),
-                                             min(core_frame$data[[as.character(core_frame$aes["y"])]]),
-                                             core_frame$dims[["global.min.y"]])
-  core_frame$dims[["max.local.y"]] <- ifelse(is.null(core_frame$dims[["global.min.y"]]),
-                                             max(core_frame$data[[as.character(core_frame$aes["y"])]]),
-                                             core_frame$dims[["global.max.y"]])
+  x$dims[["min.local.y"]] <- ifelse(is.null(x$dims[["global.min.y"]]),
+                                             min(x$data[[as.character(x$aes["y"])]]),
+                                             x$dims[["global.min.y"]])
+  x$dims[["max.local.y"]] <- ifelse(is.null(x$dims[["global.min.y"]]),
+                                             max(x$data[[as.character(x$aes["y"])]]),
+                                             x$dims[["global.max.y"]])
 
   # Hack:
-  core_frame$dims[["min.local.y"]] <- 0.1
+  x$dims[["min.local.y"]] <- 0.1
 
   par(family = "serif",
-      omi    = core_frame[["dims"]][["omi"]],
-      mai    = core_frame[["dims"]][["mai"]],
+      omi    = x[["dims"]][["omi"]],
+      mai    = x[["dims"]][["mai"]],
       xaxs   = "r",
       yaxs   = "r",
       xpd    = FALSE)
@@ -65,10 +65,10 @@ print.fxlsemilog <- function(core_frame, ...) {
 
   # Top plot
   plot(NULL,
-       ylim = c(core_frame$dims[["min.local.y"]],
-                core_frame$dims[["max.local.y"]]),
-       xlim = c(core_frame$dims[["min.local.x"]],
-                core_frame$dims[["max.local.x"]]),
+       ylim = c(x$dims[["min.local.y"]],
+                x$dims[["max.local.y"]]),
+       xlim = c(x$dims[["min.local.x"]],
+                x$dims[["max.local.x"]]),
        ylab = "",
        xlab = "",
        xaxt = "n",
@@ -77,13 +77,13 @@ print.fxlsemilog <- function(core_frame, ...) {
        log = "y",
        las = 1)
 
-  mtext(core_frame$labs[["title"]],
+  mtext(x$labs[["title"]],
         side = 3,
         outer = TRUE,
         adj = 0.04,
         line = 0)
 
-  breaks  <- as.vector(c(2:10) %o% 10^(log10(core_frame$dims[["min.local.y"]]):log10(core_frame$dims[["max.local.y"]])))
+  breaks  <- as.vector(c(2:10) %o% 10^(log10(x$dims[["min.local.y"]]):log10(x$dims[["max.local.y"]])))
 
   label_logicals <- c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE)
   labels <- as.character(breaks * label_logicals)
@@ -104,16 +104,16 @@ print.fxlsemilog <- function(core_frame, ...) {
               as.vector(c(1) %o%
                           10^(
                             log10(
-                              core_frame$dims[["min.local.y"]]):log10(
-                                core_frame$dims[["max.local.y"]])))),
+                              x$dims[["min.local.y"]]):log10(
+                                x$dims[["max.local.y"]])))),
        las    = 1,
        tcl    = par("tcl"),
        labels = c(0.1,
                   as.vector(c(1) %o%
                               10^(
                                 log10(
-                                  core_frame$dims[["min.local.y"]]):log10(
-                                    core_frame$dims[["max.local.y"]])))))
+                                  x$dims[["min.local.y"]]):log10(
+                                    x$dims[["max.local.y"]])))))
 
   abline(h = c(0.1, breaks),
          lty = 1,
@@ -123,8 +123,8 @@ print.fxlsemilog <- function(core_frame, ...) {
                as.vector(c(1) %o%
                            10^(
                              log10(
-                               core_frame$dims[["min.local.y"]]):log10(
-                                 core_frame$dims[["max.local.y"]])))),
+                               x$dims[["min.local.y"]]):log10(
+                                 x$dims[["max.local.y"]])))),
          lty = 1,
          col = "darkblue")
 
@@ -132,37 +132,37 @@ print.fxlsemilog <- function(core_frame, ...) {
                as.vector(c(5) %o%
                            10^(
                              log10(
-                               core_frame$dims[["min.local.y"]]):log10(
-                                 core_frame$dims[["max.local.y"]])))),
+                               x$dims[["min.local.y"]]):log10(
+                                 x$dims[["max.local.y"]])))),
          lty = 3,
          col = "darkblue")
 
-  abline(v   = core_frame$dims[["min.local.x"]]:core_frame$dims[["max.local.x"]],
+  abline(v   = x$dims[["min.local.x"]]:x$dims[["max.local.x"]],
          lty = 1,
          col = "cadetblue")
 
-  if (length(core_frame[["layers"]]) > 0) {
-    for (i in seq_len(length(core_frame[["layers"]]))) {
+  if (length(x[["layers"]]) > 0) {
+    for (i in seq_len(length(x[["layers"]]))) {
 
-      current_layer <- core_frame$layers[[i]]
+      current_layer <- x$layers[[i]]
       current_layer$facet <- "hack"
 
-      if (current_layer$type == "arrows")      draw_arrows(core_frame,
+      if (current_layer$type == "arrows")      draw_arrows(x,
                                                            current_layer,
                                                            "hack")
-      if (current_layer$type == "brackets")    draw_brackets(core_frame,
+      if (current_layer$type == "brackets")    draw_brackets(x,
                                                              current_layer,
                                                              "hack")
-      if (current_layer$type == "guide_line")  draw_guide_line(core_frame,
+      if (current_layer$type == "guide_line")  draw_guide_line(x,
                                                                current_layer,
                                                                "hack")
-      if (current_layer$type == "line")        draw_lines(core_frame,
+      if (current_layer$type == "line")        draw_lines(x,
                                                           current_layer,
                                                           NA)
-      if (current_layer$type == "phase_label") draw_label_phase(core_frame,
+      if (current_layer$type == "phase_label") draw_label_phase(x,
                                                                 current_layer,
                                                                 "hack")
-      if (current_layer$type == "point")       draw_points(core_frame,
+      if (current_layer$type == "point")       draw_points(x,
                                                            current_layer,
                                                            NA)
     }
@@ -170,7 +170,7 @@ print.fxlsemilog <- function(core_frame, ...) {
 
   box(bty = "l")
 
-  if (!is.null(core_frame[["legendpars"]]))  draw_legend(core_frame)
+  if (!is.null(x[["legendpars"]]))  draw_legend(x)
 
   par(
     omi    = c(0.2, 0.25, 0.1, 0.25),
@@ -182,8 +182,8 @@ print.fxlsemilog <- function(core_frame, ...) {
 
   plot(NULL,
        ylim = c(0, 0),
-       xlim = c(core_frame$dims[["min.local.x"]],
-                core_frame$dims[["max.local.x"]]),
+       xlim = c(x$dims[["min.local.x"]],
+                x$dims[["max.local.x"]]),
        ylab = "",
        xlab = "",
        xaxt = "n",
@@ -192,8 +192,8 @@ print.fxlsemilog <- function(core_frame, ...) {
        las = 1)
 
   axis(1,
-       labels = core_frame$dims[["min.local.x"]]:core_frame$dims[["max.local.x"]],
-       at     = core_frame$dims[["min.local.x"]]:core_frame$dims[["max.local.x"]],
+       labels = x$dims[["min.local.x"]]:x$dims[["max.local.x"]],
+       at     = x$dims[["min.local.x"]]:x$dims[["max.local.x"]],
        pos = 0)
 
   axis(2,
@@ -206,16 +206,16 @@ print.fxlsemilog <- function(core_frame, ...) {
          lty = 1,
          col = "black")
 
-  if (length(core_frame[["layers"]]) > 0)
-    for (i in seq_along(length(core_frame[["layers"]])))
-      if (core_frame$layers[[i]]$type == "point")
-        draw_points(core_frame, core_frame$layers[[i]], NA, zero_axis = TRUE)
+  if (length(x[["layers"]]) > 0)
+    for (i in seq_along(length(x[["layers"]])))
+      if (x$layers[[i]]$type == "point")
+        draw_points(x, x$layers[[i]], NA, zero_axis = TRUE)
 
-  mtext(core_frame$labs[["ylab"]],
+  mtext(x$labs[["ylab"]],
         side = 2,
         outer = TRUE)
 
-  mtext(core_frame$labs[["xlab"]],
+  mtext(x$labs[["xlab"]],
         side = 1,
         outer = TRUE)
 }

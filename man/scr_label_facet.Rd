@@ -29,9 +29,6 @@ scr_label_facet(
 
 \item{labels}{as stated}
 }
-\value{
-
-}
 \description{
 scr_label_facet
 }

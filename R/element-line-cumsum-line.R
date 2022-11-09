@@ -10,7 +10,6 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_cumsum_lines <- function(core_frame,
                              lty = 1,
@@ -25,7 +24,7 @@ scr_cumsum_lines <- function(core_frame,
   newlayer[["size"]] <- size
   newlayer[["aesthetics"]] <- NA
 
-  if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)
+  if (!missing(mapping)) newlayer[["aesthetics"]] <- rlang::enexpr(mapping)
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 

@@ -8,10 +8,12 @@
 #' @param xticks specify ticks, vector or named list
 #' @param xdraws which x axes to draw
 #' @param xtickslabs custom x axis labels
+#' @param xrotation degree to rotate positioned labels
+#' @param xlabeloffset offset to push labels downward
+#' @param xticksadj alignment for custom labels
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_xoverride <- function(core_frame,
                           var,

@@ -11,9 +11,6 @@ scr_title(core_frame, var)
 
 \item{var}{string}
 }
-\value{
-
-}
 \description{
 Override the title
 }

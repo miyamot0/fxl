@@ -15,9 +15,6 @@ draw_points(core_frame, current_layer, facet_name, zero_axis = FALSE)
 
 \item{zero_axis}{filter out all but zeros}
 }
-\value{
-
-}
 \description{
 drawing function
 }

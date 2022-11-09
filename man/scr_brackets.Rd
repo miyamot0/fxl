@@ -35,9 +35,6 @@ scr_brackets(
 
 \item{lty}{from base}
 }
-\value{
-
-}
 \description{
 Add a layer with brackets on plot
 }

@@ -13,9 +13,6 @@ draw_bar_support(core_frame, current_layer, facet_name)
 
 \item{facet_name}{name of facet}
 }
-\value{
-
-}
 \description{
 Draw bars, but on a secondary axis
 }

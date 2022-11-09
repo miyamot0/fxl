@@ -11,9 +11,6 @@ scr_plines_mbd(core_frame, lines = NULL)
 
 \item{lines}{phase lines to be drawn}
 }
-\value{
-
-}
 \description{
 scr_plines_mbd
 }

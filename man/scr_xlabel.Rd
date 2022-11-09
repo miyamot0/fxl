@@ -10,9 +10,8 @@ scr_xlabel(core_frame, var, line = 0)
 \item{core_frame}{fxl object}
 
 \item{var}{string}
-}
-\value{
 
+\item{line}{line width}
 }
 \description{
 Override the x axis label

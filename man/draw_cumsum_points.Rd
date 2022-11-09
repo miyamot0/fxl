@@ -13,9 +13,6 @@ draw_cumsum_points(core_frame, current_layer, facet_name)
 
 \item{facet_name}{name of facet}
 }
-\value{
-
-}
 \description{
 draw_cumsum_points
 }

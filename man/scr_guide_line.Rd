@@ -11,14 +11,13 @@ scr_guide_line(core_frame, coords, facet = NA, color = "red", lty = 1, lwd = 1)
 
 \item{coords}{start and finish coords for aim line}
 
+\item{facet}{panel to draw upon}
+
 \item{color}{from base}
 
 \item{lty}{line type}
 
 \item{lwd}{line width}
-}
-\value{
-
 }
 \description{
 This is an annotation illustrating an aim/reduction line

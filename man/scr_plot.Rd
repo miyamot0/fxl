@@ -24,9 +24,16 @@ scr_plot(
 \item{mai}{margins in inches}
 
 \item{omi}{outer margins in inches}
-}
-\value{
 
+\item{xaxs}{TODO}
+
+\item{yaxs}{TODO}
+
+\item{ncol}{TODO}
+
+\item{family}{TODO}
+
+\item{semilog}{TODO}
 }
 \description{
 Core object for establishing fxl object and layers

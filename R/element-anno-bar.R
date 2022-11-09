@@ -6,8 +6,9 @@
 #' @param color from base
 #' @param alpha from base
 #' @param mapping (optional) if overriding draw (i.e., different response)
+#' @param label description for bar
+#' @param width width of bar
 #'
-#' @return
 #' @export
 scr_bar_support <- function(core_frame,
                             color = rgb(.8, .8, .8,
@@ -25,7 +26,7 @@ scr_bar_support <- function(core_frame,
   newlayer[["width"]] <- width
   newlayer[["aesthetics"]] <- NA
 
-  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
+  if (!missing(mapping))  newlayer[["aesthetics"]] <- rlang::enexpr(mapping)
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 

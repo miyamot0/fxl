@@ -21,9 +21,10 @@ scr_bar_support(
 \item{alpha}{from base}
 
 \item{mapping}{(optional) if overriding draw (i.e., different response)}
-}
-\value{
 
+\item{label}{description for bar}
+
+\item{width}{width of bar}
 }
 \description{
 Adds a supplemental bar to the figure, if relevant to the data

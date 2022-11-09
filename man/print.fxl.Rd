@@ -4,13 +4,12 @@
 \alias{print.fxl}
 \title{print.fxl}
 \usage{
-\method{print}{fxl}(core_frame, ...)
+\method{print}{fxl}(x, ...)
 }
 \arguments{
-\item{core_frame}{fxl object}
-}
-\value{
+\item{x}{fxl object}
 
+\item{...}{inherits from generic}
 }
 \description{
 Override the final call to print the fxl object. catches the obj and

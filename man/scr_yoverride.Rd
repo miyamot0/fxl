@@ -20,10 +20,11 @@ scr_yoverride(
 
 \item{ydelta}{skips between ticks (can override)}
 
-\item{ydraws}{specify axes manual}
-}
-\value{
+\item{yticks}{tick values (numerical)}
 
+\item{ydraws}{specify axes manual}
+
+\item{ytickslabs}{tick labels}
 }
 \description{
 Override the y axis (or axes) limits

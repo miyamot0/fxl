@@ -17,9 +17,6 @@ scr_cumsum_lines(core_frame, lty = 1, color = "black", size = 1, mapping)
 
 \item{mapping}{from base}
 }
-\value{
-
-}
 \description{
 Draw lines, but as a cumulative and rolling sum
 }

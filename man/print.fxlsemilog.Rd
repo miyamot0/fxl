@@ -4,13 +4,12 @@
 \alias{print.fxlsemilog}
 \title{print.fxlsemilog}
 \usage{
-\method{print}{fxlsemilog}(core_frame, ...)
+\method{print}{fxlsemilog}(x, ...)
 }
 \arguments{
-\item{core_frame}{fxlsemilog object}
-}
-\value{
+\item{x}{fxlsemilog object}
 
+\item{...}{inherits from generic}
 }
 \description{
 Override the final call to print the fxl object.

@@ -4,7 +4,6 @@
 #' @param current_layer layer to be drawn
 #' @param facet_name name of facet
 #'
-#' @return
 #' @export
 draw_guide_line <- function(core_frame,  current_layer, facet_name) {
 

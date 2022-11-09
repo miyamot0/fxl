@@ -11,7 +11,6 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_label_facet <- function(core_frame,
                             color  = "black",

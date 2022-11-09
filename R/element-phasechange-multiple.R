@@ -5,7 +5,6 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_plines_mbd <- function(core_frame,
                            lines = NULL) {

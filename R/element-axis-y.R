@@ -6,10 +6,11 @@
 #' @param var from base
 #' @param ydelta skips between ticks (can override)
 #' @param ydraws specify axes manual
+#' @param yticks tick values (numerical)
+#' @param ytickslabs tick labels
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_yoverride <- function(core_frame,
                           var,

@@ -9,7 +9,6 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 draw_points <- function(core_frame, current_layer, facet_name, zero_axis = FALSE) {
 

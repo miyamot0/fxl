@@ -8,7 +8,6 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 draw_label_phase <- function(core_frame, current_layer, facet_name) {
   if (current_layer$facet == facet_name) {

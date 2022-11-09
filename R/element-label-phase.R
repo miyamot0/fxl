@@ -8,10 +8,11 @@
 #' @param adj from base
 #' @param facet facet of interest
 #' @param labels as stated
+#' @param x location
+#' @param y location
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_label_phase <- function(core_frame,
                             color  = "black",

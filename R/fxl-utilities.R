@@ -21,13 +21,13 @@
 #'
 #' Slightly hacked/trimmed
 #'
+#' @importFrom grDevices xy.coords
 #' @param x abscissa
 #' @param y ordnate
 #' @param input device
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>, Greg Snow <538280@@gmail.com>
 #'
-#' @return
 #' @export
 cnvrt_coords <- function(x,
                          y = NULL,

@@ -31,11 +31,19 @@ scr_legend(
 
 \item{legend}{from base}
 
+\item{bg}{from base}
+
 \item{col}{from base}
+
+\item{pt_bg}{color, for point}
 
 \item{lty}{from base}
 
 \item{pch}{from base}
+
+\item{box_lty}{from base}
+
+\item{adj}{alignment}
 
 \item{bty}{from base}
 
@@ -45,14 +53,11 @@ scr_legend(
 
 \item{position}{from base}
 
-\item{box.lty}{from base}
+\item{pt_cex}{from base}
 
-\item{pt.cex}{from base}
+\item{text_col}{from base}
 
-\item{text.col}{from base}
-}
-\value{
-
+\item{border}{border status (from base)}
 }
 \description{
 Information for drawing legend onto plots

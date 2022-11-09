@@ -24,12 +24,13 @@ scr_label_phase(
 
 \item{adj}{from base}
 
+\item{x}{location}
+
+\item{y}{location}
+
 \item{facet}{facet of interest}
 
 \item{labels}{as stated}
-}
-\value{
-
 }
 \description{
 labels to be drawn on plots (typically for phases/conditions, but not necessarily)

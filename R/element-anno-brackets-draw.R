@@ -8,7 +8,6 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 draw_brackets <- function(core_frame, current_layer, facet_name) {
   if (current_layer$facet == as.character(facet_name)) {

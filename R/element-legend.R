@@ -8,17 +8,20 @@
 #' @param col from base
 #' @param lty from base
 #' @param pch from base
-#' @param box.lty from base
+#' @param box_lty from base
 #' @param bty from base
 #' @param cex from base
 #' @param horiz from base
 #' @param position from base
-#' @param pt.cex from base
-#' @param text.col from base
+#' @param pt_cex from base
+#' @param text_col from base
+#' @param bg from base
+#' @param pt_bg color, for point
+#' @param adj alignment
+#' @param border border status (from base)
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_legend <- function(core_frame,
                        panel = NA,

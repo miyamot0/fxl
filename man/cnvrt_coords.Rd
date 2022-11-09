@@ -13,9 +13,6 @@ cnvrt_coords(x, y = NULL, input = c("usr", "plt", "fig", "dev", "tdev"))
 
 \item{input}{device}
 }
-\value{
-
-}
 \description{
 Pulled from the TeachingDemos package (GPLv2+ Licensed)
 }

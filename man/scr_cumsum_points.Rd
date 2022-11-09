@@ -26,9 +26,6 @@ scr_cumsum_points(
 
 \item{mapping}{(optional) if overriding draw (i.e., different response)}
 }
-\value{
-
-}
 \description{
 scr_cumsum_points
 }

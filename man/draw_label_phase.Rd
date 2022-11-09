@@ -13,9 +13,6 @@ draw_label_phase(core_frame, current_layer, facet_name)
 
 \item{facet_name}{name of facet}
 }
-\value{
-
-}
 \description{
 drawing function
 }

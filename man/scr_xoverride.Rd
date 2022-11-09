@@ -12,7 +12,8 @@ scr_xoverride(
   xdraws = NULL,
   xrotation = NULL,
   xlabeloffset = NULL,
-  xtickslabs = NULL
+  xtickslabs = NULL,
+  xticksadj = 1
 )
 }
 \arguments{
@@ -26,10 +27,13 @@ scr_xoverride(
 
 \item{xdraws}{which x axes to draw}
 
-\item{xtickslabs}{custom x axis labels}
-}
-\value{
+\item{xrotation}{degree to rotate positioned labels}
 
+\item{xlabeloffset}{offset to push labels downward}
+
+\item{xtickslabs}{custom x axis labels}
+
+\item{xticksadj}{alignment for custom labels}
 }
 \description{
 Override the x axis limits

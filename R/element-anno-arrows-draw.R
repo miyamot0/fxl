@@ -4,13 +4,14 @@
 #'
 #' @param core_frame fxl object
 #' @param current_layer layer to be drawn
-#' @param n name of facet
+#' @param facet_name name of facet
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
-#'
-#' @return
 #' @export
-draw_arrows <- function(core_frame, current_layer, facet_name) {
+draw_arrows <- function(core_frame,
+                        current_layer,
+                        facet_name) {
+
   if (current_layer$facet == as.character(facet_name)) {
     for (aindex in seq_along(length(current_layer$arrows))) {
       current_arrow <- current_layer$arrows[[aindex]]

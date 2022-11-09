@@ -3,14 +3,14 @@
 #' Override the final call to print the fxl object. catches the obj and
 #' prints out layers in the sequence laid out by the user
 #'
-#' @param core_frame fxl object
+#' @param x fxl object
+#' @param ... inherits from generic
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export print.fxl
 #' @export
-print.fxl <- function(core_frame, ...) {
+print.fxl <- function(x, ...) {
 
   # Holders for phase coords
   plot_tops <- list()
@@ -24,25 +24,25 @@ print.fxl <- function(core_frame, ...) {
   lookup <- FALSE
   req_draw <- FALSE
 
-  if ("facet" %in% names(core_frame$aes)) {
-    facets <- unique(core_frame$data[[as.character(core_frame$aes["facet"])]])
+  if ("facet" %in% names(x$aes)) {
+    facets <- unique(x$data[[as.character(x$aes["facet"])]])
     n_facets <- length(facets)
     n_facets_draw <- n_facets
-    n_cols <- core_frame[["dims"]][["ncol"]]
+    n_cols <- x[["dims"]][["ncol"]]
     n_facets_draw <- as.integer(n_facets / n_cols)
     lookup <- TRUE
   }
 
-  font_family <- ifelse(is.null(core_frame[["family"]]),
+  font_family <- ifelse(is.null(x[["family"]]),
                         "serif",
-                        core_frame[["family"]])
+                        x[["family"]])
 
   par(mfrow  = c(n_facets_draw, n_cols), # Dynamic facet numbers/cols
       family = font_family,
-      omi    = core_frame[["dims"]][["omi"]],
-      mai    = core_frame[["dims"]][["mai"]],
-      xaxs   = core_frame[["dims"]][["xaxs"]],
-      yaxs   = core_frame[["dims"]][["yaxs"]],
+      omi    = x[["dims"]][["omi"]],
+      mai    = x[["dims"]][["mai"]],
+      xaxs   = x[["dims"]][["xaxs"]],
+      yaxs   = x[["dims"]][["yaxs"]],
       xpd    = NA)
 
   for (facetIndex in 1:n_facets) { # Print placeholders
@@ -50,102 +50,102 @@ print.fxl <- function(core_frame, ...) {
     # Defaults, per data
     current_facet <- NA
 
-    core_frame$dims[["min.local.x"]] <- min(
-      core_frame$data[[as.character(core_frame$aes["x"])]],
+    x$dims[["min.local.x"]] <- min(
+      x$data[[as.character(x$aes["x"])]],
       na.rm = TRUE)
-    core_frame$dims[["max.local.x"]] <- max(
-      core_frame$data[[as.character(core_frame$aes["x"])]],
+    x$dims[["max.local.x"]] <- max(
+      x$data[[as.character(x$aes["x"])]],
       na.rm = TRUE)
 
     # Facet override
     if (lookup)  current_facet <- facets[facetIndex]
 
     # X overrides
-    if (!is.null(core_frame$dims[["global.min.x"]]))
-      core_frame$dims[["min.local.x"]] <- core_frame$dims[["global.min.x"]]
+    if (!is.null(x$dims[["global.min.x"]]))
+      x$dims[["min.local.x"]] <- x$dims[["global.min.x"]]
 
-    if (!is.null(core_frame$dims[["global.max.x"]]))
-      core_frame$dims[["max.local.x"]] <- core_frame$dims[["global.max.x"]]
+    if (!is.null(x$dims[["global.max.x"]]))
+      x$dims[["max.local.x"]] <- x$dims[["global.max.x"]]
 
     # X axes
     x_axis_draw  <- (facetIndex == n_facets)
 
-    if (!is.null(core_frame$dims[["xdraws"]])) {
-      x_axis_draw <-  current_facet %in% core_frame$dims[["xdraws"]]
+    if (!is.null(x$dims[["xdraws"]])) {
+      x_axis_draw <-  current_facet %in% x$dims[["xdraws"]]
     }
 
     # Note: Round UP, so as to scuttle the space near origin over
-    x_axis_ticks <- seq(ceiling(core_frame$dims[["global.min.x"]]),
-                        ceiling(core_frame$dims[["global.max.x"]]),
-                        by = core_frame$dims[["xdelta"]])
+    x_axis_ticks <- seq(ceiling(x$dims[["global.min.x"]]),
+                        ceiling(x$dims[["global.max.x"]]),
+                        by = x$dims[["xdelta"]])
 
-    if (!is.null(core_frame$dims[["xticks"]]) && !is.list(
-      core_frame$dims[["xticks"]])) {
+    if (!is.null(x$dims[["xticks"]]) && !is.list(
+      x$dims[["xticks"]])) {
 
-      x_axis_ticks <- as.integer(core_frame$dims[["xticks"]])
+      x_axis_ticks <- as.integer(x$dims[["xticks"]])
     }
 
-    if (!is.null(core_frame$dims[["xticks"]]) && is.list(
-      core_frame$dims[["xticks"]])) {
+    if (!is.null(x$dims[["xticks"]]) && is.list(
+      x$dims[["xticks"]])) {
 
-      x_axis_ticks <- core_frame$dims[["xticks"]][[current_facet]]
+      x_axis_ticks <- x$dims[["xticks"]][[current_facet]]
 
-      core_frame$dims[["min.local.x"]] <- min(
-        as.numeric(core_frame$dims[["xticks"]][[current_facet]]))
-      core_frame$dims[["max.local.x"]] <- max(
-        as.numeric(core_frame$dims[["xticks"]][[current_facet]]))
+      x$dims[["min.local.x"]] <- min(
+        as.numeric(x$dims[["xticks"]][[current_facet]]))
+      x$dims[["max.local.x"]] <- max(
+        as.numeric(x$dims[["xticks"]][[current_facet]]))
     }
 
     # Y axes
 
     y_axis_draw  <- TRUE
 
-    if (!is.null(core_frame$dims[["ydraws"]])) {
-      y_axis_draw <-  current_facet %in% core_frame$dims[["ydraws"]]
+    if (!is.null(x$dims[["ydraws"]])) {
+      y_axis_draw <-  current_facet %in% x$dims[["ydraws"]]
     }
 
-    y_axis_ticks <- seq(ceiling(core_frame$dims[["global.min.y"]]),
-                        ceiling(core_frame$dims[["global.max.y"]]),
-                        by = core_frame$dims[["ydelta"]])
+    y_axis_ticks <- seq(ceiling(x$dims[["global.min.y"]]),
+                        ceiling(x$dims[["global.max.y"]]),
+                        by = x$dims[["ydelta"]])
 
-    if (!is.null(core_frame$dims[["local.dims"]])) {
-      core_frame$dims[["min.local.y"]] <- core_frame$dims[["local.dims"]][[current_facet]]$y0
-      core_frame$dims[["max.local.y"]] <- core_frame$dims[["local.dims"]][[current_facet]]$y1
+    if (!is.null(x$dims[["local.dims"]])) {
+      x$dims[["min.local.y"]] <- x$dims[["local.dims"]][[current_facet]]$y0
+      x$dims[["max.local.y"]] <- x$dims[["local.dims"]][[current_facet]]$y1
 
-      y_axis_ticks <- seq(core_frame$dims[["min.local.y"]],
-                          core_frame$dims[["max.local.y"]],
-                          by = core_frame$dims[["ydelta"]])
+      y_axis_ticks <- seq(x$dims[["min.local.y"]],
+                          x$dims[["max.local.y"]],
+                          by = x$dims[["ydelta"]])
 
-      if ("yticks" %in% names(core_frame$dims[["local.dims"]][[ current_facet]]))
-        y_axis_ticks <- core_frame$dims[["local.dims"]][[ current_facet]]$yticks
+      if ("yticks" %in% names(x$dims[["local.dims"]][[ current_facet]]))
+        y_axis_ticks <- x$dims[["local.dims"]][[ current_facet]]$yticks
 
     } else {
-      core_frame$dims[["min.local.y"]] <- ifelse(is.null(
-        core_frame$dims[["global.min.y"]]),
-        min(core_frame$data[[as.character(core_frame$aes["y"])]]),
-        core_frame$dims[["global.min.y"]])
+      x$dims[["min.local.y"]] <- ifelse(is.null(
+        x$dims[["global.min.y"]]),
+        min(x$data[[as.character(x$aes["y"])]]),
+        x$dims[["global.min.y"]])
 
-      core_frame$dims[["max.local.y"]] <- ifelse(is.null(
-        core_frame$dims[["global.min.y"]]),
-        max(core_frame$data[[as.character(core_frame$aes["y"])]]),
-        core_frame$dims[["global.max.y"]])
+      x$dims[["max.local.y"]] <- ifelse(is.null(
+        x$dims[["global.min.y"]]),
+        max(x$data[[as.character(x$aes["y"])]]),
+        x$dims[["global.max.y"]])
 
-      y_axis_ticks <- seq(core_frame$dims[["min.local.y"]],
-                          core_frame$dims[["max.local.y"]],
-                          by = core_frame$dims[["ydelta"]])
+      y_axis_ticks <- seq(x$dims[["min.local.y"]],
+                          x$dims[["max.local.y"]],
+                          by = x$dims[["ydelta"]])
     }
 
-    if (!is.null(core_frame$dims[["yticks"]]) && !is.list(
-      core_frame$dims[["yticks"]])) {
+    if (!is.null(x$dims[["yticks"]]) && !is.list(
+      x$dims[["yticks"]])) {
 
-      y_axis_ticks <- as.integer(core_frame$dims[["yticks"]])
+      y_axis_ticks <- as.integer(x$dims[["yticks"]])
     }
 
     plot(NULL,
-         xlim = c(core_frame$dims[["min.local.x"]],
-                  core_frame$dims[["max.local.x"]]),
-         ylim = c(core_frame$dims[["min.local.y"]],
-                  core_frame$dims[["max.local.y"]]),
+         xlim = c(x$dims[["min.local.x"]],
+                  x$dims[["max.local.x"]]),
+         ylim = c(x$dims[["min.local.y"]],
+                  x$dims[["max.local.y"]]),
          ylab = "",
          xlab = "",
          frame.plot = FALSE,
@@ -156,26 +156,26 @@ print.fxl <- function(core_frame, ...) {
 
     box(bty = "l")
 
-    if (!is.null(core_frame$dims[["xticklabs"]]) &&
-        !is.list(core_frame$dims[["xticklabs"]]) &&
+    if (!is.null(x$dims[["xticklabs"]]) &&
+        !is.list(x$dims[["xticklabs"]]) &&
         x_axis_draw) {
 
-      x_axis_draw <- core_frame$dims[["xticklabs"]]
+      x_axis_draw <- x$dims[["xticklabs"]]
     }
 
-    if (!is.null(core_frame$dims[["yticklabs"]]) &&
-        !is.list(core_frame$dims[["yticklabs"]])) {
+    if (!is.null(x$dims[["yticklabs"]]) &&
+        !is.list(x$dims[["yticklabs"]])) {
 
-      y_axis_draw <- core_frame$dims[["yticklabs"]]
+      y_axis_draw <- x$dims[["yticklabs"]]
     }
 
-    if (!is.null(core_frame$dims[["xlab.rotation"]]) &&
-        !is.null(core_frame$dims[["xlab.offset"]]) &&
-        !is.null(core_frame$dims[["xticklabs.offset"]])) {
+    if (!is.null(x$dims[["xlab.rotation"]]) &&
+        !is.null(x$dims[["xlab.offset"]]) &&
+        !is.null(x$dims[["xticklabs.offset"]])) {
 
-      x_lab_rotation <- core_frame$dims[["xlab.rotation"]]
-      x_lab_offset <- core_frame$dims[["xlab.offset"]]
-      x_lab_adj <- core_frame$dims[["xticklabs.offset"]]
+      x_lab_rotation <- x$dims[["xlab.rotation"]]
+      x_lab_offset <- x$dims[["xlab.offset"]]
+      x_lab_adj <- x$dims[["xticklabs.offset"]]
 
       axis(1,
            labels = FALSE,
@@ -203,63 +203,63 @@ print.fxl <- function(core_frame, ...) {
          las    = 1,
          at     = y_axis_ticks)
 
-    if (length(core_frame[["layers"]]) > 0) {
-      for (i in seq_len(length(core_frame[["layers"]]))) {
+    if (length(x[["layers"]]) > 0) {
+      for (i in seq_len(length(x[["layers"]]))) {
 
-        current_layer <- core_frame$layers[[i]]
+        current_layer <- x$layers[[i]]
 
         if (current_layer$type == "arrows")
-          draw_arrows(core_frame,
+          draw_arrows(x,
                       current_layer,
                       current_facet)
 
         if (current_layer$type == "brackets")
-          draw_brackets(core_frame,
+          draw_brackets(x,
                         current_layer,
                         current_facet)
 
         if (current_layer$type == "bar_support")
-          draw_bar_support(core_frame,
+          draw_bar_support(x,
                            current_layer,
                            current_facet)
 
         if (current_layer$type == "cum_sum_lines")
-          draw_cumsum_lines(core_frame,
+          draw_cumsum_lines(x,
                             current_layer,
                             current_facet)
 
         if (current_layer$type == "cum_sum_points")
-          draw_cumsum_points(core_frame,
+          draw_cumsum_points(x,
                              current_layer,
                              current_facet)
 
         if (current_layer$type == "facet_label")
-          draw_label_facet(core_frame,
+          draw_label_facet(x,
                            current_layer,
                            current_facet)
 
         if (current_layer$type == "guide_line")
-          draw_guide_line(core_frame,
+          draw_guide_line(x,
                           current_layer,
                           current_facet)
 
         if (current_layer$type == "line")
-          draw_lines(core_frame,
+          draw_lines(x,
                      current_layer,
                      current_facet)
 
         if (current_layer$type == "phase_label")
-          draw_label_phase(core_frame,
+          draw_label_phase(x,
                            current_layer,
                            current_facet)
 
         if (current_layer$type == "phase_lines")
-          draw_scr_plines(core_frame,
+          draw_scr_plines(x,
                           current_layer,
                           current_facet)
 
         if (current_layer$type == "point")
-          draw_points(core_frame,
+          draw_points(x,
                       current_layer,
                       current_facet)
 
@@ -296,12 +296,12 @@ print.fxl <- function(core_frame, ...) {
 
             current_layer$lines[[pname]][[current_index]][["topDraw"]] <- cnvrt_coords(
               tmp_x1,
-              core_frame$dims[["max.local.y"]])
+              x$dims[["max.local.y"]])
 
             current_layer$lines[[pname]][[current_index]][["botDraw"]] <- cnvrt_coords(
               tmp_x2,
-              -((core_frame$dims[["max.local.y"]] -
-                   core_frame$dims[["min.local.y"]]) * 0.04))
+              -((x$dims[["max.local.y"]] -
+                   x$dims[["min.local.y"]]) * 0.04))
 
             tmp_point_top_dev <- cnvrt_coords(
               current_layer$lines[[pname]][[current_index]][["topDraw"]]$dev,
@@ -341,11 +341,11 @@ print.fxl <- function(core_frame, ...) {
       }
     }
 
-    if (!is.null(core_frame[["legendpars"]])) {
-      if (lookup && core_frame$legendpars[["panel"]] ==  current_facet) {
-        draw_legend(core_frame)
-      } else if (lookup && is.na(core_frame$legendpars[["panel"]])) {
-        draw_legend(core_frame)
+    if (!is.null(x[["legendpars"]])) {
+      if (lookup && x$legendpars[["panel"]] ==  current_facet) {
+        draw_legend(x)
+      } else if (lookup && is.na(x$legendpars[["panel"]])) {
+        draw_legend(x)
       }
     }
   }
@@ -392,17 +392,17 @@ print.fxl <- function(core_frame, ...) {
     }
   }
 
-  if (!lookup && !is.null(core_frame[["legendpars"]]))  draw_legend(core_frame)
+  if (!lookup && !is.null(x[["legendpars"]]))  draw_legend(x)
 
-  mtext(core_frame$labs[["title"]],
+  mtext(x$labs[["title"]],
         side = 3,
-        outer = core_frame$labs[["outer"]])
-  mtext(core_frame$labs[["ylab"]],
+        outer = x$labs[["outer"]])
+  mtext(x$labs[["ylab"]],
         side = 2,
-        outer = core_frame$labs[["outer"]],
-        line = core_frame$labs[["outer.y.line"]])
-  mtext(core_frame$labs[["xlab"]],
+        outer = x$labs[["outer"]],
+        line = x$labs[["outer.y.line"]])
+  mtext(x$labs[["xlab"]],
         side = 1,
-        outer = core_frame$labs[["outer"]],
-        line = core_frame$labs[["outer.x.line"]])
+        outer = x$labs[["outer"]],
+        line = x$labs[["outer.x.line"]])
 }

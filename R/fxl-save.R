@@ -2,16 +2,18 @@
 #'
 #' Function for outputting fxl object at preset size (certain journal are opinionated on size, format, and density)
 #'
+#' @importFrom graphics abline arrows axis box layout legend lines mtext par points rect segments text
+#' @importFrom grDevices dev.off pdf png rgb svg tiff
 #' @param core_frame fxl object
 #' @param units from base
 #' @param name from base
+#' @param format type of image to save in
 #' @param width from base
 #' @param height from base
 #' @param res from base
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_save <- function(core_frame,
                      units = "in",

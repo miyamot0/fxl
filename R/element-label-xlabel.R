@@ -4,10 +4,10 @@
 #'
 #' @param core_frame fxl object
 #' @param var string
+#' @param line line width
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_xlabel <- function(core_frame,
                        var,

@@ -8,7 +8,6 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 draw_scr_plines <- function(core_frame, current_layer, facet_name) {
   if (as.character(facet_name) %in% names(current_layer$lines)) {

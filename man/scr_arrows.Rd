@@ -35,9 +35,6 @@ scr_arrows(
 
 \item{lty}{from base}
 }
-\value{
-
-}
 \description{
 Add a layer with arrows to direct attention on the plot
 }

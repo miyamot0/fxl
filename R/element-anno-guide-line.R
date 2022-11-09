@@ -7,10 +7,10 @@
 #' @param color from base
 #' @param lty line type
 #' @param lwd line width
+#' @param facet panel to draw upon
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_guide_line <- function(core_frame,
                            coords,

@@ -21,14 +21,13 @@ scr_save(
 
 \item{name}{from base}
 
+\item{format}{type of image to save in}
+
 \item{width}{from base}
 
 \item{height}{from base}
 
 \item{res}{from base}
-}
-\value{
-
 }
 \description{
 Function for outputting fxl object at preset size (certain journal are opinionated on size, format, and density)

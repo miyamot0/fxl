@@ -14,7 +14,6 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 scr_brackets <- function(core_frame,
                          brackets = NULL,

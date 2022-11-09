@@ -6,7 +6,6 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 draw_legend <- function(core_frame) {
 

@@ -8,7 +8,6 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
-#' @return
 #' @export
 draw_label_facet <- function(core_frame, current_layer, facet_name) {
   current_label <- current_layer$labels[[as.character(facet_name)]]
