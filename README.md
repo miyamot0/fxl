@@ -2,32 +2,33 @@
 
 # Faux XL Charting in R (fxl)
 
-The _fxl_ package was designed to support transparent, replicable, and efficently-drawn figure in single-case research design. In addition to be easily archived, effortlessly drawn, and automated, the R ecosystem supports the drawing of publication-quality figures that exceed traditional tools (e.g., Microsoft Excel). For instance, the figures output by _fxl_ can be lossless by default using a variety of vector-based drawing formats as well as publication-quality rasters.
+The *fxl* package was designed to support transparent, replicable, and efficently-drawn figure in single-case research design. In addition to be easily archived, effortlessly drawn, and automated, the R ecosystem supports the drawing of publication-quality figures that exceed traditional tools (e.g., Microsoft Excel). For instance, the figures output by *fxl* can be lossless by default using a variety of vector-based drawing formats as well as publication-quality rasters.
 
 Features include:
- - pixel-perfect phase change lines (yes, across different plots/facets)
- - Support for various single-subject designs (reversal, multiple-baseline, multielement)
- - Various annotations common in single-subject designs (e.g., arrows, brackets, style condition changes)
- - Options to output figures in various formats
- - Functional programming style (modeled after ggplot)
+
+-   pixel-perfect phase change lines (yes, across different plots/facets)
+-   Support for various single-subject designs (reversal, multiple-baseline, multielement)
+-   Various annotations common in single-subject designs (e.g., arrows, brackets, style condition changes)
+-   Options to output figures in various formats
+-   Functional programming style (modeled after ggplot)
 
 ### Version
 
-------
+------------------------------------------------------------------------
 
 0.3.0 (beta)
 
 ### Changelog
 
-------
+------------------------------------------------------------------------
 
-* 0.3.0 - Add in demo for completed silverman-style plot
-* 0.2.0 - Add in various demos (e.g., multiple baseline, annotated reversal)
-* 0.1.0 - Prep for initial submission to CRAN
+-   0.3.0 - Add in demo for completed silverman-style plot
+-   0.2.0 - Add in various demos (e.g., multiple baseline, annotated reversal)
+-   0.1.0 - Prep for initial submission to CRAN
 
 ### Features/Usage
 
-------
+------------------------------------------------------------------------
 
 Publication-quality annotations and flexibility
 
@@ -49,7 +50,7 @@ The figure below is from a single-subject evaluation conducted by [Gilroy et al.
 
 *Multiple Baseline Designs*
 
-The respective figure is drawn from a single-subject evaluation conducted by [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004). These data were previously illustrated using spreadsheet software and are now drawn in *fxl*. This figure was drawn using a multiple baseline design, whereby control is illustrated through a sequential introduction of independent variables, and changes in relational responding (i.e., deictics) were observed. 
+The respective figure is drawn from a single-subject evaluation conducted by [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004). These data were previously illustrated using spreadsheet software and are now drawn in *fxl*. This figure was drawn using a multiple baseline design, whereby control is illustrated through a sequential introduction of independent variables, and changes in relational responding (i.e., deictics) were observed.
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/multiplebaselineplot.R)
 
@@ -57,7 +58,7 @@ The respective figure is drawn from a single-subject evaluation conducted by [Gi
 
 *Semi-logarithmic (Celeration) Charting with Annotations*
 
-Although I've never used on in practice (behavior observed at rates ~1000x/day are pretty uncommon), _fxl_ supports plotting in log-linear space. This is often down when changes across orders of magnitude are more easily understood in terms of relative change. This is demonstrated with a toy simulation of data that occurs at low (0-2x/session) and high rates (~100-200x/session).
+Although I've never used on in practice (behavior observed at rates \~1000x/day are pretty uncommon), *fxl* supports plotting in log-linear space. This is often down when changes across orders of magnitude are more easily understood in terms of relative change. This is demonstrated with a toy simulation of data that occurs at low (0-2x/session) and high rates (\~100-200x/session).
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/semilogplot.R)
 
@@ -73,7 +74,7 @@ The respective figure is drawn from a single-subject evaluation conducted by [Lo
 
 *Multi-element Designs/Functional Analyses*
 
-The last example is constructed from a functional analysis of severe behavior conducted in a study by [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004). As with the other 2015 work, these data were previously illustrated using spreadsheet software and are now drawn in *fxl*. This figure was drawn using a multielement design, whereby the differential effects of contingencies are evaluated with respect to rates of behavior. 
+The last example is constructed from a functional analysis of severe behavior conducted in a study by [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004). As with the other 2015 work, these data were previously illustrated using spreadsheet software and are now drawn in *fxl*. This figure was drawn using a multielement design, whereby the differential effects of contingencies are evaluated with respect to rates of behavior.
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/faplot.R)
 
@@ -95,15 +96,21 @@ Plots designed in the manner often used by Kenneth Silverman are also supported 
 
 ![Koffarnus et al 2011](https://github.com/miyamot0/fxl/blob/main/man/figures/silvermanplot.svg?raw=true)
 
+*Integrated Single Case Methods with Multilevel Modeling of Fixed Group/Phase Effects*
+
+Plotting can be linked to predictions resulting from multilevel modeling, allowing for a visual of the individual data as well as an omnibus index of behavior across Phases and/or Groups. Image is drawn from Gelino et al. (In Press).
+
+![](man/figures/cigarettepolicy.svg)
+
 ### Referenced Works (F/OSS software)
 
 The fxl package uses a number of open source projects to work properly:
 
-* TeachingDemos - Artistic 2.0 Licensed. [Site](https://cran.r-project.org/web/packages/TeachingDemos/index.html)
+-   TeachingDemos - Artistic 2.0 Licensed. [Site](https://cran.r-project.org/web/packages/TeachingDemos/index.html)
 
 ### Installation
 
-The fxl package must be installed manually at this time, see below: 
+The fxl package must be installed manually at this time, see below:
 
 library(devtools)
 
@@ -115,9 +122,9 @@ Want to contribute? Great! Emails or PR's (worthwhile ones) are welcome.
 
 ### Todos
 
-* Condensing methods
+-   Condensing methods
 
-* ~~Individually-keyed styles~~
+-   ~~Individually-keyed styles~~
 
 ### License
 

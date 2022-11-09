@@ -11,6 +11,7 @@ scr_xoverride(
   xticks = NULL,
   xdraws = NULL,
   xrotation = NULL,
+  xlabeloffset = NULL,
   xtickslabs = NULL
 )
 }

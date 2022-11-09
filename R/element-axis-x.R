@@ -19,15 +19,19 @@ scr_xoverride <- function(core_frame,
                           xticks = NULL,
                           xdraws = NULL,
                           xrotation = NULL,
-                          xtickslabs = NULL) {
+                          xlabeloffset = NULL,
+                          xtickslabs = NULL,
+                          xticksadj = 1) {
 
   core_frame$dims[["global.min.x"]] <- {{var[1]}}
   core_frame$dims[["global.max.x"]] <- {{var[2]}}
   core_frame$dims[["xdelta"]] <- xdelta
   core_frame$dims[["xticks"]] <- xticks
   core_frame$dims[["xdraws"]] <- xdraws
-  core_frame$dims[["xticklabs"]] <- xtickslabs
   core_frame$dims[["xlab.rotation"]] <- xrotation
+  core_frame$dims[["xlab.offset"]] <- xlabeloffset
+  core_frame$dims[["xticklabs"]] <- xtickslabs
+  core_frame$dims[["xticklabs.offset"]] <- xticksadj
 
   core_frame
 }

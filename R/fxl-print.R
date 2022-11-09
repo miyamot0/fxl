@@ -149,6 +149,7 @@ print.fxl <- function(core_frame, ...) {
          ylab = "",
          xlab = "",
          frame.plot = FALSE,
+         family = font_family,
          las = 1,
          xaxt = "n",
          yaxt = "n")
@@ -168,15 +169,28 @@ print.fxl <- function(core_frame, ...) {
       y_axis_draw <- core_frame$dims[["yticklabs"]]
     }
 
-    if (!is.null(core_frame$dims[["xlab.rotation"]])) {
+    if (!is.null(core_frame$dims[["xlab.rotation"]]) &&
+        !is.null(core_frame$dims[["xlab.offset"]]) &&
+        !is.null(core_frame$dims[["xticklabs.offset"]])) {
 
       x_lab_rotation <- core_frame$dims[["xlab.rotation"]]
+      x_lab_offset <- core_frame$dims[["xlab.offset"]]
+      x_lab_adj <- core_frame$dims[["xticklabs.offset"]]
 
       axis(1,
-           labels = x_axis_draw,
+           labels = FALSE,
            las = 2,
-           srt = x_lab_rotation,
            at = x_axis_ticks)
+
+      ## Draw the x-axis labels.
+      text(x = x_axis_ticks,
+           y = par("usr")[3] - x_lab_offset,
+           labels = x_axis_draw,
+           xpd = NA,
+           srt = x_lab_rotation,
+           family = font_family,
+           adj = x_lab_adj,
+           cex = 1.2)
 
     } else {
       axis(1,

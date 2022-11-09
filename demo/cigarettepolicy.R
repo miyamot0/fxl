@@ -1,3 +1,18 @@
+detach_package <- function(pkg, character.only = FALSE)
+{
+  if (!character.only)
+  {
+    pkg <- deparse(substitute(pkg))
+  }
+  search_item <- paste("package", pkg, sep = ":")
+  while(search_item %in% search())
+  {
+    detach(search_item, unload = TRUE, character.only = TRUE)
+  }
+}
+
+detach_package("fxl")
+
 library(dplyr)
 library(fxl)
 library(extrafont)
@@ -33,13 +48,14 @@ scr_plot(newFrame, aesthetics = list(x = Time,
                                      y = Count1,
                                      p = Condition,
                                      facet = Facet),
-         mai = c(.75, 0.6, 0, 0.25),
+         mai = c(1, 0.6, 0, 0.25),
          family = "Open Sans",
          omi = c(0.25, 0.25, 0.5, 0.5)) %>%
   scr_xoverride(c(0.4, 11),
                 xticks = seq_len(11),
                 xrotation = 45,
-                xtickslabs = xticks) %>%
+                xtickslabs = xticks,
+                xlabeloffset = 40) %>%
   scr_yoverride(c(-10, 500),
                 yticks = c(0,   50, 100, 150,
                            200, 250, 300, 350,
@@ -101,7 +117,7 @@ scr_plot(newFrame, aesthetics = list(x = Time,
       )
     )) %>%
   scr_xlabel("Collection Period") %>%
-  scr_ylabel("           Frequency of Butts Collected") %>%
+  scr_ylabel("                          Frequency of Butts Collected") %>%
   scr_legend(panel = "1",
              position = "topright",
              legend = c("Location A",
@@ -128,8 +144,8 @@ scr_plot(newFrame, aesthetics = list(x = Time,
              text_col = "black",
              horiz = FALSE,
              box_lty = 0) %>%
-  scr_save(name = "CigaretteButtPolicyOutcomes.png",
-           format = "png",
-           units = "in",
-           height = 6,
-           width = 9)
+  scr_save(name = "../man/figures/cigarettepolicy.svg",
+          format = "svg",
+          res = 3000,
+          height = 6,
+          width = 9)
