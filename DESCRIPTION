@@ -4,7 +4,10 @@ Title: Faux xl Charting in R
 Version: 1.0.0
 Author: Shawn Gilroy <sgilroy1@lsu.edu>
 Maintainer: Shawn Gilroy <sgilroy1@lsu.edu>
-Suggests: knitr, rmarkdown
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Description: the Faux xl Charting library is used to prepare and design charts that are typically prepared in spreadsheet software. With fxl, there is no need to leave the R environment to prepare these works. 
 License: GPL (>=3)
@@ -14,3 +17,4 @@ Depends:
   R (>= 3.6),
   rlang
 RoxygenNote: 7.1.1
+Config/testthat/edition: 3

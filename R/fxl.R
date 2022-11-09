@@ -37,19 +37,39 @@ library(rlang)
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @export
-scr_plot <- function(data, aesthetics,
-                     mai     = c(0.375, 0.375, 0.25, 0.25),
-                     omi     = c(0.25, 0.25, 0.25, 0.25),
-                     xaxs    = "i",
-                     yaxs    = "i",
-                     ncol    = 1,
-                     family  = NULL,
+scr_plot <- function(data,
+                     aesthetics = NULL,
+                     mai = c(0.375,
+                             0.375,
+                             0.25,
+                             0.25),
+                     omi = c(0.25,
+                             0.25,
+                             0.25,
+                             0.25),
+                     xaxs = "i",
+                     yaxs = "i",
+                     ncol = 1,
+                     family = NULL,
                      semilog = FALSE) {
 
-  core_frame <- list()                             # Primary plotting object
-  core_frame[["layers"]] <- list()              # Layers for drawing
-  core_frame[["aes"]] <- enexpr(aesthetics)  # Mappings
-  core_frame[["data"]] <- data                # Stored data
+  # Type checks
+  isValidAestheticMapping(aesthetics, name = 'aesthetics')
+
+  isValidDataFrame(object = data, name = "data")
+
+  isValidNumericVector(object = mai, length = 4, name = "mai")
+  isValidNumericVector(object = omi, length = 4, name = "omi")
+
+  #isValidNumericVector(object = ncol, length = 1, name = "ncol")
+
+  isValidAXSCharacter(xaxs, "xaxs")
+  isValidAXSCharacter(yaxs, "yaxs")
+
+  core_frame <- list()
+  core_frame[["layers"]] <- list() # Layers for drawing
+  core_frame[["aes"]] <- enexpr(aesthetics) # Mappings
+  core_frame[["data"]] <- data # Stored data
   core_frame[["dims"]] <- list(# Global dimensions
     global.max.x = max(data[[as.character(core_frame$aes["x"])]], na.rm = TRUE),
     global.min.x = min(data[[as.character(core_frame$aes["x"])]], na.rm = TRUE),
@@ -73,11 +93,15 @@ scr_plot <- function(data, aesthetics,
     title        = ""
   )
 
-  core_frame[["family"]] <- family
-
-  class(core_frame) <- c("fxl")                   # Apply a class name (to override print)
-
-  if (semilog) class(core_frame) <- c("fxlsemilog")
+#   core_frame[["family"]] <- family
+#
+#   class(core_frame) <- c("fxl")                   # Apply a class name (to override print)
+#
+#   if (semilog) class(core_frame) <- c("fxlsemilog")
 
   core_frame
+}
+
+mapping <- function(x, y, ...) {
+  fullMap <- list(...)
 }
