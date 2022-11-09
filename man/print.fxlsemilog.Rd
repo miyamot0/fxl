@@ -13,7 +13,8 @@
 
 }
 \description{
-Override the final call to print the fxl object. catches the obj and prints out layers in the sequence laid out by the user
+Override the final call to print the fxl object.
+catches the obj and prints out layers in the sequence laid out by the user
 }
 \author{
 Shawn Gilroy <sgilroy1@lsu.edu>

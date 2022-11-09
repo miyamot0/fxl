@@ -2,7 +2,7 @@
 
 S3method(print,fxl)
 S3method(print,fxlsemilog)
-export(cnvrt.coords)
+export(cnvrt_coords)
 export(draw_arrows)
 export(draw_bar_support)
 export(draw_brackets)

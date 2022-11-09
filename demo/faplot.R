@@ -56,11 +56,11 @@ scr_plot(data, aesthetics = list(x = Session,
              lty      = c(1, 1, 1, 1),                      # line types (ordered)
              pch      = c(16, 22, 24, 8),                   # marker types (ordered)
              bty      = "n",                                # remove border
-             pt.cex   = 2.25,                               # point size scale
+             pt_cex   = 2.25,                               # point size scale
              cex      = 1.25,                               # text size scale
-             text.col = "black",                            # text color
+             text_col = "black",                            # text color
              horiz    = FALSE,                                  # list items vertically
-             box.lty  = 0)                                  # change box size (0 = removed)
+             box_lty  = 0)                                  # change box size (0 = removed)
 
 # Optional Save
 #

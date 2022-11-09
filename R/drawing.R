@@ -205,9 +205,9 @@ draw_bar_support <- function(core_frame,  current_layer, facet_name) {
 #' @export
 draw_guide_line <- function(core_frame,  current_layer, facet_name) {
 
-  if (is.na(facet_name) | current_layer$facet == facet_name) {
+  if (is.na(facet_name) || current_layer$facet == facet_name) {
 
-    for (gindex in 1:length(current_layer$coords)) {
+    for (gindex in seq_along(length(current_layer$coords))) {
       current_coords <- current_layer$coords[[gindex]]
 
       l_col <- as.character(current_layer[["col"]])
@@ -304,45 +304,52 @@ draw_lines <- function(core_frame, current_layer, facet_name) {
 #' @export
 draw_cumsum_lines <- function(core_frame, current_layer, facet_name) {
 
-  if (is.na(facet_name)) current_data = core_frame$data
-  else current_data = core_frame$data[
-    which(core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
+  if (is.na(facet_name))
+    current_data <- core_frame$data else current_data <- core_frame$data[which(
+      core_frame$data[, as.character(core_frame$aes["facet"])] ==
+        facet_name
+    ),
+    ]
 
-  # In case no phases are included?
-  if (!("p" %in% names(core_frame$aes))) {
-    core_frame$aes["p"] = "p"
-    current_data[, "p"] = "0"
-  }
-
-  for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
-    current_data_slice <- current_data[
-      which(current_data[, as.character(core_frame$aes["p"])] == p), ]
-
-    local_aesthetics = list(
-      "x"   = as.character(core_frame$aes["x"]),
-      "y"   = as.character(core_frame$aes["y"])
-    )
-
-    if (!is.na(current_layer["aesthetics"])) {
-      local_aesthetics <- list(
-        "x" = as.character(current_layer$aesthetics["x"]),
-        "y" = as.character(current_layer$aesthetics["y"])
-      )
+    # In case no phases are included?
+    if (!("p" %in% names(core_frame$aes))) {
+      core_frame$aes["p"] <- "p"
+      current_data[, "p"] <- "0"
     }
 
-    cumsumy = current_data_slice[, as.character(local_aesthetics["y"])]
-    cumsumy[is.na(cumsumy)] = 0
-    cumsumy = cumsum(cumsumy)
+    for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
+      current_data_slice <- current_data[which(
+        current_data[, as.character(core_frame$aes["p"])] ==
+          p
+      ),
+      ]
 
-    lines(
-      current_data_slice[, as.character(local_aesthetics["x"])],
-      cumsumy,
-      lty   = current_layer$lty,
-      col   = current_layer$color,
-      lwd   = current_layer$size
-    )
-  }
+      local_aesthetics <- list(
+        x = as.character(core_frame$aes["x"]),
+        y = as.character(core_frame$aes["y"])
+      )
+
+      if (!is.na(current_layer["aesthetics"])) {
+        local_aesthetics <- list(
+          x = as.character(current_layer$aesthetics["x"]),
+          y = as.character(current_layer$aesthetics["y"])
+        )
+      }
+
+      cumsumy <- current_data_slice[, as.character(local_aesthetics["y"])]
+      cumsumy[is.na(cumsumy)] <- 0
+      cumsumy <- cumsum(cumsumy)
+
+      lines(
+        current_data_slice[, as.character(local_aesthetics["x"])],
+        cumsumy,
+        lty = current_layer$lty,
+        col = current_layer$color,
+        lwd = current_layer$size
+      )
+    }
 }
+
 
 #' draw_cumsum_points
 #'
@@ -354,66 +361,70 @@ draw_cumsum_lines <- function(core_frame, current_layer, facet_name) {
 #' @export
 draw_cumsum_points <- function(core_frame, current_layer, facet_name) {
 
-  if (is.na(facet_name))  current_data   = core_frame$data
-  else           current_data   = core_frame$data[which(
-    core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
+  if (is.na(facet_name))
+    current_data <- core_frame$data else current_data <- core_frame$data[which(
+      core_frame$data[, as.character(core_frame$aes["facet"])] ==
+        facet_name
+    ),
+    ]
 
-  # In case no phases are included?
-  if (!("p" %in% names(core_frame$aes))) {
-    core_frame$aes["p"] = "p"
-    current_data[, "p"] = "0"
-  }
+    # In case no phases are included?
+    if (!("p" %in% names(core_frame$aes))) {
+      core_frame$aes["p"] <- "p"
+      current_data[, "p"] <- "0"
+    }
 
-  local_aesthetics = list(
-    "x" = as.character(core_frame$aes["x"]),
-    "y" = as.character(core_frame$aes["y"])
-  )
-
-  if (!is.na(current_layer["aesthetics"])) {
-    local_aesthetics = list(
-      "x" = as.character(current_layer$aesthetics["x"]),
-      "y" = as.character(current_layer$aesthetics["y"])
-    )
-  }
-
-  for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
-
-    current_data_slice <- current_data[which(current_data[, as.character(core_frame$aes["p"])] == p), ]
-
-    local_aesthetics = list(
-      "x"   = as.character(core_frame$aes["x"]),
-      "y"   = as.character(core_frame$aes["y"])
+    local_aesthetics <- list(
+      x = as.character(core_frame$aes["x"]),
+      y = as.character(core_frame$aes["y"])
     )
 
     if (!is.na(current_layer["aesthetics"])) {
-      local_aesthetics = list(
-        "x" = as.character(current_layer$aesthetics["x"]),
-        "y" = as.character(current_layer$aesthetics["y"])
+      local_aesthetics <- list(
+        x = as.character(current_layer$aesthetics["x"]),
+        y = as.character(current_layer$aesthetics["y"])
       )
     }
 
-    pch = 1
+    for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
 
-    if (is.list(current_layer$pch))  pch = current_layer$pch[[p]]
-    else                            pch = current_layer$pch
+      current_data_slice <- current_data[which(
+        current_data[, as.character(core_frame$aes["p"])] ==
+          p
+      ),
+      ]
 
-    fill = "black"
+      local_aesthetics <- list(
+        x = as.character(core_frame$aes["x"]),
+        y = as.character(core_frame$aes["y"])
+      )
 
-    if (is.list(current_layer$fill)) fill = current_layer$fill[[p]]
-    else                            fill = current_layer$fill
+      if (!is.na(current_layer["aesthetics"])) {
+        local_aesthetics <- list(
+          x = as.character(current_layer$aesthetics["x"]),
+          y = as.character(current_layer$aesthetics["y"])
+        )
+      }
 
-    cumsumy = current_data_slice[, as.character(local_aesthetics["y"])]
-    cumsumy[is.na(cumsumy)] = 0
-    cumsumy = cumsum(cumsumy)
+      pch <- 1
 
-    points(
-      current_data_slice[, as.character(local_aesthetics["x"])],
-      cumsumy,
-      pch = pch,
-      cex = current_layer$cex,
-      bg  = fill
-    )
-  }
+      if (is.list(current_layer$pch))
+        pch <- current_layer$pch[[p]] else pch <- current_layer$pch
+
+      fill <- "black"
+
+      if (is.list(current_layer$fill))
+        fill <- current_layer$fill[[p]] else fill <- current_layer$fill
+
+      cumsumy <- current_data_slice[, as.character(local_aesthetics["y"])]
+      cumsumy[is.na(cumsumy)] <- 0
+      cumsumy <- cumsum(cumsumy)
+
+      points(
+        current_data_slice[, as.character(local_aesthetics["x"])],
+        cumsumy, pch = pch, cex = current_layer$cex, bg = fill
+      )
+    }
 }
 
 #' draw_label_phase
@@ -431,39 +442,41 @@ draw_cumsum_points <- function(core_frame, current_layer, facet_name) {
 draw_label_phase <- function(core_frame, current_layer, facet_name) {
   if (current_layer$facet == facet_name) {
 
-    for (lindex in 1:length(current_layer$labels)) {
+    for (lindex in seq_along(length(current_layer$labels))) {
 
-      label        = names(current_layer$labels)[lindex]
+      label <- names(current_layer$labels)[lindex]
 
-      current_label = current_layer$labels[[lindex]]
+      current_label <- current_layer$labels[[lindex]]
 
-      label = ifelse(is.null(label),
-                     current_label,
-                     label)
+      label <- ifelse(
+        is.null(label),
+        current_label, label
+      )
 
-      temp_x = ifelse("x" %in% names(current_label),
-                     current_label[["x"]],
-                     current_layer$x)
+      temp_x <- ifelse(
+        "x" %in% names(current_label),
+        current_label[["x"]], current_layer$x
+      )
 
-      temp_y = ifelse("y" %in% names(current_label),
-                     current_label[["y"]],
-                     current_layer$y)
+      temp_y <- ifelse(
+        "y" %in% names(current_label),
+        current_label[["y"]], current_layer$y
+      )
 
-      font_c = ifelse("font" %in% names(current_label),
-                     current_label[["font"]],
-                     1)
+      font_c <- ifelse(
+        "font" %in% names(current_label),
+        current_label[["font"]], 1
+      )
 
-      srt          = ifelse("srt" %in% names(current_label),
-                            current_label[["srt"]],
-                            0)
+      srt <- ifelse(
+        "srt" %in% names(current_label),
+        current_label[["srt"]], 0
+      )
 
-      text(x      = temp_x,
-           y      = temp_y,
-           cex    = current_layer[["cex"]],
-           adj    = current_layer[["adj"]],
-           font   = font_c,
-           srt    = srt,
-           labels = label)
+      text(
+        x = temp_x, y = temp_y, cex = current_layer[["cex"]], adj = current_layer[["adj"]], font = font_c,
+        srt = srt, labels = label
+      )
     }
   }
 }
@@ -483,80 +496,81 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
 #' @export
 draw_points <- function(core_frame, current_layer, facet_name, zero_axis = FALSE) {
 
-  if (is.na(facet_name))  current_data   = core_frame$data
-  else           current_data   = core_frame$data[which(
-    core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
+  if (is.na(facet_name))
+    current_data <- core_frame$data else current_data <- core_frame$data[which(
+      core_frame$data[, as.character(core_frame$aes["facet"])] ==
+        facet_name
+    ),
+    ]
 
-  # In case no phases are included?
-  if (!("p" %in% names(core_frame$aes))) {
-    core_frame$aes["p"] = "p"
-    current_data[, "p"] = "0"
-  }
+    # In case no phases are included?
+    if (!("p" %in% names(core_frame$aes))) {
+      core_frame$aes["p"] <- "p"
+      current_data[, "p"] <- "0"
+    }
 
-  local_aesthetics = list(
-    "x" = as.character(core_frame$aes["x"]),
-    "y" = as.character(core_frame$aes["y"])
-  )
-
-  if (!is.na(current_layer["aesthetics"])) {
-    local_aesthetics = list(
-      "x" = as.character(current_layer$aesthetics["x"]),
-      "y" = as.character(current_layer$aesthetics["y"])
-    )
-  }
-
-  for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
-
-    current_data_slice <- current_data[which(current_data[, as.character(core_frame$aes["p"])] == p), ]
-
-    local_aesthetics = list(
-      "x"   = as.character(core_frame$aes["x"]),
-      "y"   = as.character(core_frame$aes["y"])
+    local_aesthetics <- list(
+      x = as.character(core_frame$aes["x"]),
+      y = as.character(core_frame$aes["y"])
     )
 
     if (!is.na(current_layer["aesthetics"])) {
-      local_aesthetics = list(
-        "x" = as.character(current_layer$aesthetics["x"]),
-        "y" = as.character(current_layer$aesthetics["y"])
+      local_aesthetics <- list(
+        x = as.character(current_layer$aesthetics["x"]),
+        y = as.character(current_layer$aesthetics["y"])
       )
     }
 
-    pch = 1
+    for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
 
-    if (is.list(current_layer$pch))  pch = current_layer$pch[[p]]
-    else                            pch = current_layer$pch
+      current_data_slice <- current_data[which(
+        current_data[, as.character(core_frame$aes["p"])] ==
+          p
+      ),
+      ]
 
-    fill = "black"
+      local_aesthetics <- list(
+        x = as.character(core_frame$aes["x"]),
+        y = as.character(core_frame$aes["y"])
+      )
 
-    if (is.list(current_layer$fill)) fill = current_layer$fill[[p]]
-    else                            fill = current_layer$fill
+      if (!is.na(current_layer["aesthetics"])) {
+        local_aesthetics <- list(
+          x = as.character(current_layer$aesthetics["x"]),
+          y = as.character(current_layer$aesthetics["y"])
+        )
+      }
 
-    col = "black"
+      pch <- 1
 
-    if (is.list(current_layer$color)) col = current_layer$color[[p]]
-    else                             col = current_layer$color
+      if (is.list(current_layer$pch))
+        pch <- current_layer$pch[[p]] else pch <- current_layer$pch
 
-    cex = 1
+      fill <- "black"
 
-    if (is.list(current_layer$cex)) cex = current_layer$cex[[p]]
-    else                           cex = current_layer$cex
+      if (is.list(current_layer$fill))
+        fill <- current_layer$fill[[p]] else fill <- current_layer$fill
 
-    plot_frame = data.frame(
-      X = current_data_slice[, as.character(local_aesthetics["x"])],
-      Y = current_data_slice[, as.character(local_aesthetics["y"])]
-    )
+      col <- "black"
 
-    if (zero_axis) plot_frame = plot_frame[plot_frame$Y == 0, ]
+      if (is.list(current_layer$color))
+        col <- current_layer$color[[p]] else col <- current_layer$color
 
-    points(
-      plot_frame$X,
-      plot_frame$Y,
-      pch = pch,
-      cex = cex,
-      bg  = fill,
-      col = col
-    )
-  }
+      cex <- 1
+
+      if (is.list(current_layer$cex))
+        cex <- current_layer$cex[[p]] else cex <- current_layer$cex
+
+      plot_frame <- data.frame(
+        X = current_data_slice[, as.character(local_aesthetics["x"])],
+        Y = current_data_slice[, as.character(local_aesthetics["y"])]
+      )
+
+      if (zero_axis)
+        plot_frame <- plot_frame[plot_frame$Y == 0, ]
+
+      points(plot_frame$X, plot_frame$Y, pch = pch, cex = cex, bg = fill, col = col)
+    }
 }
 
 #' draw_label_facet
@@ -572,36 +586,37 @@ draw_points <- function(core_frame, current_layer, facet_name, zero_axis = FALSE
 #' @return
 #' @export
 draw_label_facet <- function(core_frame, current_layer, facet_name) {
-  current_label = current_layer$labels[[as.character(facet_name)]]
+  current_label <- current_layer$labels[[as.character(facet_name)]]
 
-  label = facet_name
-  custom_label = FALSE
+  label <- facet_name
+  custom_label <- FALSE
 
   if ("label" %in% names(current_label)) {
-    label       = current_label[["label"]]
-    custom_label = TRUE
+    label <- current_label[["label"]]
+    custom_label <- TRUE
   }
 
-  if (label == "" | label == facet_name | custom_label == TRUE) {
+  if (label == "" || label == facet_name || custom_label == TRUE) {
 
-    temp_x = ifelse(!is.null(current_label[["x"]]),
-                   current_label[["x"]],
-                   current_layer$x)
+    temp_x <- ifelse(
+      !is.null(current_label[["x"]]),
+      current_label[["x"]], current_layer$x
+    )
 
-    temp_y = ifelse(!is.null(current_label[["y"]]),
-                   current_label[["y"]],
-                   current_layer$y)
+    temp_y <- ifelse(
+      !is.null(current_label[["y"]]),
+      current_label[["y"]], current_layer$y
+    )
 
-    font_c = ifelse("font" %in% names(current_label),
-                   current_label[["font"]],
-                   1)
+    font_c <- ifelse(
+      "font" %in% names(current_label),
+      current_label[["font"]], 1
+    )
 
-    text(x      = temp_x,
-         y      = temp_y,
-         cex    = current_layer[["cex"]],
-         adj    = current_layer[["adj"]],
-         font   = font_c,
-         labels = label)
+    text(
+      x = temp_x, y = temp_y, cex = current_layer[["cex"]], adj = current_layer[["adj"]], font = font_c,
+      labels = label
+    )
   }
 }
 
@@ -618,34 +633,40 @@ draw_label_facet <- function(core_frame, current_layer, facet_name) {
 #' @return
 #' @export
 draw_scr_plines <- function(core_frame, current_layer, facet_name) {
-  if (as.character(facet_name) %in% names(current_layer$lines)) {
+  if (as.character(facet_name) %in%
+      names(current_layer$lines)) {
     for (key in names(current_layer$lines[[facet_name]])) {
 
-      l_lty = current_layer[["lty"]]
-      l_x1  = current_layer$lines[[facet_name]][[key]][["x1"]]
-      l_x2  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][["x2"]]),
-                     l_x1,
-                     current_layer$lines[[facet_name]][[key]][["x2"]])
+      l_lty <- current_layer[["lty"]]
+      l_x1 <- current_layer$lines[[facet_name]][[key]][["x1"]]
+      l_x2 <- ifelse(
+        is.null(current_layer$lines[[facet_name]][[key]][["x2"]]),
+        l_x1, current_layer$lines[[facet_name]][[key]][["x2"]]
+      )
 
-      l_y1  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][["y1"]]),
-                     0,
-                     current_layer$lines[[facet_name]][[key]][["y1"]])
-      l_y2  = ifelse(is.null(current_layer$lines[[facet_name]][[key]][["y2"]]),
-                     0,
-                     current_layer$lines[[facet_name]][[key]][["y2"]])
+      l_y1 <- ifelse(
+        is.null(current_layer$lines[[facet_name]][[key]][["y1"]]),
+        0, current_layer$lines[[facet_name]][[key]][["y1"]]
+      )
+      l_y2 <- ifelse(
+        is.null(current_layer$lines[[facet_name]][[key]][["y2"]]),
+        0, current_layer$lines[[facet_name]][[key]][["y2"]]
+      )
 
-      temp_y1 = ifelse(l_y1 == 0,
-                      -((as.numeric(core_frame$dims[["max_local_y"]]) -
-                          as.numeric(core_frame$dims[["min_local_y"]])) * 0.04),
-                      current_layer$lines[[facet_name]][[key]][["y1"]])
+      temp_y1 <- ifelse(
+        l_y1 == 0, -((as.numeric(core_frame$dims[["max_local_y"]]) -
+                        as.numeric(core_frame$dims[["min_local_y"]])) *
+                       0.04), current_layer$lines[[facet_name]][[key]][["y1"]]
+      )
 
-      temp_y2 = ifelse(l_y2 == 0,
-                      -((as.numeric(core_frame$dims[["max_local_y"]]) -
-                          as.numeric(core_frame$dims[["min_local_y"]])) * 0.04),
-                      l_y2)
+      temp_y2 <- ifelse(
+        l_y2 == 0, -((as.numeric(core_frame$dims[["max_local_y"]]) -
+                        as.numeric(core_frame$dims[["min_local_y"]])) *
+                       0.04), l_y2
+      )
 
       if ("lty" %in% names(current_layer$lines[[facet_name]][[key]]))
-        l_lty = current_layer$lines[[facet_name]][[key]]$lty
+        l_lty <- current_layer$lines[[facet_name]][[key]]$lty
 
       lines(
         c(l_x1, l_x2),

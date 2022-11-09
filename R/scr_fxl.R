@@ -393,7 +393,7 @@ scr_label_facet <- function(core_frame,
 scr_guide_line <- function(core_frame,
                            coords,
                            facet = NA,
-                           color = 'red',
+                           color = "red",
                            lty = 1,
                            lwd = 1) {
 
@@ -591,7 +591,7 @@ scr_yoverride <- function(core_frame,
                           ydraws = NULL) {
 
   # Check if a vector and not multi-facet list
-  if (is.vector(var) & !is.list(var)) {
+  if (is.vector(var) && !is.list(var)) {
     core_frame$dims[["global.min.y"]] <- {{var[1]}}
     core_frame$dims[["global.max.y"]] <- {{var[2]}}
 
@@ -774,9 +774,9 @@ print.fxlsemilog <- function(core_frame, ...) {
   # X axis
   x_axis_ticks <- seq(core_frame$dims[["global.min.x"]],
                       core_frame$dims[["global.max.x"]],
-                      by = core_frame$dims[['xdelta']])
+                      by = core_frame$dims[["xdelta"]])
 
-  if (!is.null(core_frame$dims[["xticks"]]) & !is.list(core_frame$dims[["xticks"]])) {
+  if (!is.null(core_frame$dims[["xticks"]]) && !is.list(core_frame$dims[["xticks"]])) {
     x_axis_ticks <- as.integer(core_frame$dims[["xticks"]])
   }
 
@@ -884,7 +884,7 @@ print.fxlsemilog <- function(core_frame, ...) {
          col = "cadetblue")
 
   if (length(core_frame[["layers"]]) > 0) {
-    for (i in 1:length(core_frame[["layers"]])) {
+    for (i in seq_along(length(core_frame[["layers"]]))) {
 
       current_layer <- core_frame$layers[[i]]
       current_layer$facet <- "hack"
@@ -923,7 +923,7 @@ print.fxlsemilog <- function(core_frame, ...) {
     new    = TRUE)
 
   plot(NULL,
-       ylim = c(0,0),
+       ylim = c(0, 0),
        xlim = c(core_frame$dims[["min.local.x"]],
                 core_frame$dims[["max.local.x"]]),
        ylab = "",
@@ -949,7 +949,7 @@ print.fxlsemilog <- function(core_frame, ...) {
          col = "black")
 
   if (length(core_frame[["layers"]]) > 0)
-    for (i in 1:length(core_frame[["layers"]]))
+    for (i in seq_along(length(core_frame[["layers"]])))
       if (core_frame$layers[[i]]$type == "point")
         draw_points(core_frame, core_frame$layers[[i]], NA, zero_axis = TRUE)
 
@@ -964,7 +964,8 @@ print.fxlsemilog <- function(core_frame, ...) {
 
 #' print.fxl
 #'
-#' Override the final call to print the fxl object. catches the obj and prints out layers in the sequence laid out by the user
+#' Override the final call to print the fxl object. catches the obj and
+#' prints out layers in the sequence laid out by the user
 #'
 #' @param core_frame fxl object
 #'
@@ -985,10 +986,10 @@ print.fxl <- function(core_frame, ...) {
   n_facets_draw <- n_facets
   n_cols <- 1
   lookup <- FALSE
-  reqDraw <- FALSE
+  req_draw <- FALSE
 
   if ("facet" %in% names(core_frame$aes)) {
-    facets <- unique(core_frame$data[[as.character(core_frame$aes['facet'])]])
+    facets <- unique(core_frame$data[[as.character(core_frame$aes["facet"])]])
     n_facets <- length(facets)
     n_facets_draw <- n_facets
     n_cols <- core_frame[["dims"]][["ncol"]]
@@ -996,12 +997,12 @@ print.fxl <- function(core_frame, ...) {
     lookup <- TRUE
   }
 
-  fontFamily <- ifelse(is.null(core_frame[["family"]]),
+  font_family <- ifelse(is.null(core_frame[["family"]]),
                        "serif",
                        core_frame[["family"]])
 
   par(mfrow  = c(n_facets_draw, n_cols), # Dynamic facet numbers/cols
-      family = fontFamily,
+      family = font_family,
       omi    = core_frame[["dims"]][["omi"]],
       mai    = core_frame[["dims"]][["mai"]],
       xaxs   = "r",
@@ -1038,13 +1039,13 @@ print.fxl <- function(core_frame, ...) {
 
     x_axis_ticks <- seq(core_frame$dims[["global.min.x"]],
                        core_frame$dims[["global.max.x"]],
-                       by = core_frame$dims[['xdelta']])
+                       by = core_frame$dims[["xdelta"]])
 
-    if (!is.null(core_frame$dims[["xticks"]]) & !is.list(core_frame$dims[["xticks"]])) {
+    if (!is.null(core_frame$dims[["xticks"]]) && !is.list(core_frame$dims[["xticks"]])) {
       x_axis_ticks <- as.integer(core_frame$dims[["xticks"]])
     }
 
-    if (!is.null(core_frame$dims[["xticks"]]) & is.list(core_frame$dims[["xticks"]])) {
+    if (!is.null(core_frame$dims[["xticks"]]) && is.list(core_frame$dims[["xticks"]])) {
       x_axis_ticks <- core_frame$dims[["xticks"]][[ current_facet]]
 
       core_frame$dims[["min.local.x"]] <- min(as.numeric(core_frame$dims[["xticks"]][[ current_facet]]))
@@ -1053,26 +1054,26 @@ print.fxl <- function(core_frame, ...) {
 
     # Y axes
 
-    y.axis.draw  <- TRUE
+    y_axis_draw  <- TRUE
 
     if (!is.null(core_frame$dims[["ydraws"]])) {
-      y.axis.draw <-  current_facet %in% core_frame$dims[["ydraws"]]
+      y_axis_draw <-  current_facet %in% core_frame$dims[["ydraws"]]
     }
 
-    y.axis.ticks <- seq(core_frame$dims[["global.min.y"]],
+    y_axis_ticks <- seq(core_frame$dims[["global.min.y"]],
                        core_frame$dims[["global.max.y"]],
-                       by = core_frame$dims[['ydelta']])
+                       by = core_frame$dims[["ydelta"]])
 
     if (!is.null(core_frame$dims[["local.dims"]])) {
       core_frame$dims[["min.local.y"]] <- core_frame$dims[["local.dims"]][[ current_facet]]$y0
       core_frame$dims[["max.local.y"]] <- core_frame$dims[["local.dims"]][[ current_facet]]$y1
 
-      y.axis.ticks <- seq(core_frame$dims[["min.local.y"]],
+      y_axis_ticks <- seq(core_frame$dims[["min.local.y"]],
                          core_frame$dims[["max.local.y"]],
-                         by = core_frame$dims[['ydelta']])
+                         by = core_frame$dims[["ydelta"]])
 
       if ("yticks" %in% names(core_frame$dims[["local.dims"]][[ current_facet]]))
-        y.axis.ticks <- core_frame$dims[["local.dims"]][[ current_facet]]$yticks
+        y_axis_ticks <- core_frame$dims[["local.dims"]][[ current_facet]]$yticks
 
     } else {
       core_frame$dims[["min.local.y"]] <- ifelse(is.null(core_frame$dims[["global.min.y"]]),
@@ -1082,9 +1083,9 @@ print.fxl <- function(core_frame, ...) {
                                                max(core_frame$data[[as.character(core_frame$aes["y"])]]),
                                                core_frame$dims[["global.max.y"]])
 
-      y.axis.ticks <- seq(core_frame$dims[["min.local.y"]],
+      y_axis_ticks <- seq(core_frame$dims[["min.local.y"]],
                          core_frame$dims[["max.local.y"]],
-                         by = core_frame$dims[['ydelta']])
+                         by = core_frame$dims[["ydelta"]])
     }
 
     plot(NULL,
@@ -1094,13 +1095,13 @@ print.fxl <- function(core_frame, ...) {
          xlab = "",
          frame.plot = FALSE,
          las = 1,
-         xaxt = 'n',
-         yaxt = 'n')
+         xaxt = "n",
+         yaxt = "n")
 
     box(bty = "l")
 
-    if (!is.null(core_frame$dims[["xticklabs"]]) &
-        !is.list(core_frame$dims[["xticklabs"]]) &
+    if (!is.null(core_frame$dims[["xticklabs"]]) &&
+        !is.list(core_frame$dims[["xticklabs"]]) &&
         x_axis_draw) {
       x_axis_draw <- core_frame$dims[["xticklabs"]]
     }
@@ -1110,12 +1111,12 @@ print.fxl <- function(core_frame, ...) {
          at     = x_axis_ticks)
 
     axis(2,
-         labels = y.axis.draw,
+         labels = y_axis_draw,
          las    = 1,
-         at     = y.axis.ticks)
+         at     = y_axis_ticks)
 
     if (length(core_frame[["layers"]]) > 0) {
-      for (i in 1:length(core_frame[["layers"]])) {
+      for (i in seq_along(length(core_frame[["layers"]]))) {
 
         current_layer <- core_frame$layers[[i]]
 
@@ -1140,37 +1141,37 @@ print.fxl <- function(core_frame, ...) {
             # start of index for named list
             if (!(pname %in% names(index_num))) index_num[[pname]] <- 1
 
-            currentIndex <- which(names(current_layer$lines[[pname]]) ==  current_facet)
+            current_index <- which(names(current_layer$lines[[pname]]) ==  current_facet)
 
-            if (length(currentIndex) == 0) next
+            if (length(current_index) == 0) next
 
-            tmpX1 <- current_layer$lines[[pname]][[currentIndex]][["x1"]]
-            tmpX2 <- ifelse(is.null(current_layer$lines[[pname]][[currentIndex]][["x2"]]),
-                           tmpX1,
-                           current_layer$lines[[pname]][[currentIndex]][["x2"]])
+            tmp_x1 <- current_layer$lines[[pname]][[current_index]][["x1"]]
+            tmp_x2 <- ifelse(is.null(current_layer$lines[[pname]][[current_index]][["x2"]]),
+                           tmp_x1,
+                           current_layer$lines[[pname]][[current_index]][["x2"]])
 
-            tmpY1 <- ifelse(is.null(current_layer$lines[[pname]][[currentIndex]][["y1"]]),
+            tmp_y1 <- ifelse(is.null(current_layer$lines[[pname]][[current_index]][["y1"]]),
                            0,
-                           current_layer$lines[[pname]][[currentIndex]][["y1"]])
-            tmpY2 <- ifelse(is.null(current_layer$lines[[pname]][[currentIndex]][["y2"]]),
+                           current_layer$lines[[pname]][[current_index]][["y1"]])
+            tmp_y2 <- ifelse(is.null(current_layer$lines[[pname]][[current_index]][["y2"]]),
                            0,
-                           current_layer$lines[[pname]][[currentIndex]][["y2"]])
+                           current_layer$lines[[pname]][[current_index]][["y2"]])
 
-            current_layer$lines[[pname]][[currentIndex]][["topDraw"]] <- cnvrt_coords(
-              tmpX1,
+            current_layer$lines[[pname]][[current_index]][["topDraw"]] <- cnvrt_coords(
+              tmp_x1,
               core_frame$dims[["max.local.y"]])
 
-            current_layer$lines[[pname]][[currentIndex]][["botDraw"]] <- cnvrt_coords(
-              tmpX2,
+            current_layer$lines[[pname]][[current_index]][["botDraw"]] <- cnvrt_coords(
+              tmp_x2,
               -((core_frame$dims[["max.local.y"]] - core_frame$dims[["min.local.y"]]) * 0.04))
 
             tmp_point_top_dev <- cnvrt_coords(
-              current_layer$lines[[pname]][[currentIndex]][["topDraw"]]$dev,
-              input = 'dev')
+              current_layer$lines[[pname]][[current_index]][["topDraw"]]$dev,
+              input = "dev")
 
             tmp_point_bot_dev <- cnvrt_coords(
-              current_layer$lines[[pname]][[currentIndex]][["botDraw"]]$dev,
-              input = 'dev')
+              current_layer$lines[[pname]][[current_index]][["botDraw"]]$dev,
+              input = "dev")
 
             segments(tmp_point_top_dev$usr$x,
                      tmp_point_top_dev$usr$y,
@@ -1178,58 +1179,58 @@ print.fxl <- function(core_frame, ...) {
                      tmp_point_bot_dev$usr$y,
                      col = "black")
 
-            current_layer$lines[[pname]][[currentIndex]][["topDraw"]] <- cnvrt_coords(
-              tmpX1,
-              tmpY2)$dev
+            current_layer$lines[[pname]][[current_index]][["topDraw"]] <- cnvrt_coords(
+              tmp_x1,
+              tmp_y2)$dev
 
-            current_layer$lines[[pname]][[currentIndex]][["botDraw"]] <- cnvrt_coords(
-              tmpX2,
-              tmpY2)$dev
+            current_layer$lines[[pname]][[current_index]][["botDraw"]] <- cnvrt_coords(
+              tmp_x2,
+              tmp_y2)$dev
 
             plot_tops[[pname]][[index_num[[pname]]]] <- cnvrt_coords(
-              tmpX1,
-              tmpY1)
+              tmp_x1,
+              tmp_y1)
 
             plot_bots[[pname]][[index_num[[pname]]]] <- cnvrt_coords(
-              tmpX2,
-              tmpY2)
+              tmp_x2,
+              tmp_y2)
 
             index_num[[pname]] <- index_num[[pname]] + 1
           }
 
-          reqDraw <- TRUE
+          req_draw <- TRUE
         }
       }
     }
 
     if (!is.null(core_frame[["legendpars"]])) {
-      if (lookup & core_frame$legendpars[["panel"]] ==  current_facet) {
+      if (lookup && core_frame$legendpars[["panel"]] ==  current_facet) {
         draw_legend(core_frame)
-      } else if (lookup & is.na(core_frame$legendpars[["panel"]])) {
+      } else if (lookup && is.na(core_frame$legendpars[["panel"]])) {
         draw_legend(core_frame)
       }
     }
   }
 
   # Note: final overlays, once facets are drawn/coords cached
-  if (reqDraw) {
+  if (req_draw) {
 
     n_phase_lines <- unique(names(plot_bots))
 
-    for (pl in 1:length(n_phase_lines)) {
+    for (pl in seq_along(length(n_phase_lines))) {
 
       n_facets <- length(plot_tops[[n_phase_lines[pl]]])
 
       for (plfacet in 2:n_facets) {
 
         #pts.pre <- plot_tops[[n_phase_lines[pl]]][[plfacet - 1]]
-        pbs.pre <- plot_bots[[n_phase_lines[pl]]][[plfacet - 1]]
+        pbs_pre <- plot_bots[[n_phase_lines[pl]]][[plfacet - 1]]
 
         pts <- plot_tops[[n_phase_lines[pl]]][[plfacet]]
         pbs <- plot_bots[[n_phase_lines[pl]]][[plfacet]]
 
         #tmp.point.top.pre.dev <- cnvrt_coords(pts.pre$dev, input = "dev")
-        tmp_point_bot_pre_dev <- cnvrt_coords(pbs.pre$dev, input = "dev")
+        tmp_point_bot_pre_dev <- cnvrt_coords(pbs_pre$dev, input = "dev")
 
         tmp_point_top_dev <- cnvrt_coords(pts$dev, input = "dev")
         tmp_point_bot_dev <- cnvrt_coords(pbs$dev, input = "dev")
@@ -1253,7 +1254,7 @@ print.fxl <- function(core_frame, ...) {
     }
   }
 
-  if (!lookup & !is.null(core_frame[["legendpars"]]))  draw_legend(core_frame)
+  if (!lookup && !is.null(core_frame[["legendpars"]]))  draw_legend(core_frame)
 
   mtext(core_frame$labs[["title"]],
         side = 3,

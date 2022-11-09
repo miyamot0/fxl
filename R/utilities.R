@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with fxl  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
 
-#' cnvrt.coords
+#' cnvrt_coords
 #'
 #' Pulled from the TeachingDemos package (GPLv2+ Licensed)
 #'
@@ -29,7 +29,13 @@
 #'
 #' @return
 #' @export
-cnvrt_coords <- function(x, y = NULL, input = c("usr", "plt", "fig", "dev", "tdev")) {
+cnvrt_coords <- function(x,
+                         y = NULL,
+                         input = c("usr",
+                                   "plt",
+                                   "fig",
+                                   "dev",
+                                   "tdev")) {
   #warning("this function is now depricated, use grconvertX instead")
   input <- match.arg(input)
   xy <- xy.coords(x, y, recycle = TRUE)
@@ -155,6 +161,10 @@ cnvrt_coords <- function(x, y = NULL, input = c("usr", "plt", "fig", "dev", "tde
     tdev$x <- dev$x * (cdev[2] - cdev[1]) + cdev[1]
     tdev$y <- dev$y * (cdev[4] - cdev[3]) + cdev[3]
 
-    return(list(usr = usr, plt = plt, fig = fig, dev = dev, tdev = tdev))
+    return(list(usr = usr,
+                plt = plt,
+                fig = fig,
+                dev = dev,
+                tdev = tdev))
   }
 }

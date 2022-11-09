@@ -10,17 +10,17 @@ scr_legend(
   legend,
   bg = NULL,
   col = NULL,
-  pt.bg = NULL,
+  pt_bg = NULL,
   lty,
   pch,
-  box.lty = 0,
+  box_lty = 0,
   adj = c(0, 0.5),
   bty = "n",
   cex = 1,
   horiz = FALSE,
   position = "topright",
-  pt.cex = 1,
-  text.col = "black",
+  pt_cex = 1,
+  text_col = "black",
   border = "black"
 )
 }
@@ -37,8 +37,6 @@ scr_legend(
 
 \item{pch}{from base}
 
-\item{box.lty}{from base}
-
 \item{bty}{from base}
 
 \item{cex}{from base}
@@ -46,6 +44,8 @@ scr_legend(
 \item{horiz}{from base}
 
 \item{position}{from base}
+
+\item{box.lty}{from base}
 
 \item{pt.cex}{from base}
 
