@@ -17,7 +17,7 @@ library(fxl)   # core plotting methods
 # Responding:  measurement of behavior
 # Reinforcers: another type of phenomena being measured
 
-data = Gilroyetal2021
+data <- Gilroyetal2021
 
 # Initial setup, sets core aesthetics (what data to show where)
 scr_plot(data, aesthetics = list(x = Session,
@@ -26,8 +26,8 @@ scr_plot(data, aesthetics = list(x = Session,
                                  facet = Participant),
         mai = c(0.375, 0.375, 0.1, 0.1),
         omi = c(0.25, 0.25, 0.25, 0.25)) %>%
-  scr_xoverride(c(1, 25)) %>%                           # manually override x-axis
-  scr_yoverride(list(                                   # manually override y-axis and tick interval (tick every 5 units, individal overrides)
+  scr_xoverride(c(1, 25)) %>% # manually override x-axis
+  scr_yoverride(list(         # manually override y-axis and tick interval
     "John"    = list(y0 = 0,
                      y1 = 20),
     "Anthony" = list(y0 = 0,
@@ -35,20 +35,20 @@ scr_plot(data, aesthetics = list(x = Session,
     "Charles" = list(y0 = 0,
                      y1 = 20)),
     ydelta = 5) %>%
-  scr_points(cex = 2) %>%                               # plot points, using x/y from aesthetics
-  scr_points(cex = 2,                                   # plot more points, but override aesthetics and style (to show second series)
+  scr_points(cex = 2) %>% # plot points, using x/y from aesthetics
+  scr_points(cex = 2,     # plot more points, but override aesthetics and style
              pch = 2,
              mapping = list(x = Session,
                             y = Reinforcers)) %>%
-  scr_lines() %>%                               # plot lines, using x/y from aesthetics
-  scr_lines(lty = 2,                                   # plot more lines, but override aesthetics and style (to show second series)
+  scr_lines() %>% # plot lines, using x/y from aesthetics
+  scr_lines(lty = 2, # plot more lines, but override aesthetics and style
             mapping = list(x = Session,
                            y = Reinforcers)) %>%
-  scr_label_phase(facet = "John",                       # plot a set of labels on specific facet (typically the top)
+  scr_label_phase(facet = "John", # plot a set of labels on specific facet
                   cex    = 1.25,
                   adj    = 0.5,
                   y      = 20,
-                  labels = list(                        # list of labels to draw (will use assigned key for label)
+                  labels = list(# list of labels to draw
                     "Baseline"     = list(x = 2),
                     "FR-Lowest"    = list(x = 5),
                     "Baseline"     = list(x = 8),
@@ -56,16 +56,16 @@ scr_plot(data, aesthetics = list(x = Session,
                     "FR-Elastic"   = list(x = 14),
                     "FR-Inelastic" = list(x = 18)
                   )) %>%
-  scr_label_facet(cex = 1.5,                            # plot labels across facets (not within a single facet)
+  scr_label_facet(cex = 1.5, # plot labels across facets
                   adj = 1,
                   x   = 25,
-                  labels = list(                        # list of labels to draw (will use assigned key for label)
+                  labels = list(# list of labels to draw
                     "John"    = list(y = 5),
                     "Anthony" = list(y = 12),
                     "Charles" = list(y = 25)
                   )) %>%
-  scr_plines_mbd(lines = list(                          # plot linked phase lines (note: drawn from top through bottom)
-    "A" = list(                                         # list of phase lines to draw (where to draw lines across each participant)
+  scr_plines_mbd(lines = list(# plot linked phase lines
+    "A" = list(# list of phase lines to draw
       "John"    = list(x1 = 3.5, y1 = 20),
       "Anthony" = list(x1 = 3.5, y1 = 10),
       "Charles" = list(x1 = 3.5, y1 = 20)
@@ -98,16 +98,16 @@ scr_plot(data, aesthetics = list(x = Session,
   scr_legend(panel    = "John",
              position = "topright",
              legend   = c("Responses Observed", "Reinforcers Produced"),
-             col      = c('black', 'black'),
-             pt.bg    = c('black', 'black'),
+             col      = c("black", "black"),
+             pt.bg    = c("black", "black"),
              lty      = c(1, 2),
              pch      = c(19, 2),
-             bg       = c('black', 'black'),
+             bg       = c("black", "black"),
              bty      = "n",
              pt.cex   = 2.25,
              cex      = 1.25,
              text.col = "black",
-             horiz    = F,
+             horiz    = FALSE,
              box.lty  = 0)
 
 # Optional Save

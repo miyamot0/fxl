@@ -15,7 +15,7 @@ library(fxl)   # core plotting methods
 # Condition:   condition where data emerged from
 # Responding:  measurement of behavior
 
-data = Gilroyetal2015
+data <- Gilroyetal2015
 
 # Initial setup, sets core aesthetics (what data to show where)
 scr_plot(data, aesthetics = list(x     = Session,

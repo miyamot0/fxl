@@ -2,7 +2,9 @@
 #
 # demo/faplotintegrity.R
 #
-# This file illustrates how to construct a basic, no frills visual of a functional analysis but with integrity data mapped alongside the rates of target behavior.
+# This file illustrates how to construct a basic,
+# no frills visual of a functional analysis but with
+# integrity data mapped alongside the rates of target behavior.
 #
 
 library(dplyr) # included for infix logic
@@ -14,10 +16,10 @@ library(fxl)   # core plotting methods
 # Condition:   condition where data emerged from
 # CTB:         measurement of behavior
 
-data = Gilroyetal2019
+data <- Gilroyetal2019
 
 set.seed(65535)
-data$Integrity = sample(80:100,
+data$Integrity <- sample(80:100,
                         nrow(data),
                         replace = TRUE)
 
@@ -32,7 +34,7 @@ scr_plot(data, aesthetics = list(x = Session,
   scr_yoverride(c(0, 5)) %>%                                # manually override y-axis
   scr_bar_support(mapping = list(x = Session,
                                  y = Integrity),
-                  color = rgb(.8,.8,.8,
+                  color = rgb(.8, .8, .8,
                               alpha = 1),
                   label = "Procedural Fidelity") %>%
   scr_lines(size = 1) %>%                                   # plot lines, using x/y from aesthetics
@@ -44,10 +46,10 @@ scr_plot(data, aesthetics = list(x = Session,
                "Tangible"  = 8
              ),
              fill = list(                                   # override point marker colors (match FA conventions)
-               "Toy Play"  = 'black',
-               "Attention" = 'white',
-               "Demand"    = 'white',
-               "Tangible"  = 'black'
+               "Toy Play"  = "black",
+               "Attention" = "white",
+               "Demand"    = "white",
+               "Tangible"  = "black"
              )) %>%
   scr_xlabel("Session") %>%                                 # Override x-axis label (bottom only shown by default)
   scr_ylabel("Combined Target Behavior (Per Minute)") %>%   # Override y-axis label (centered, leftmost label)
@@ -57,22 +59,22 @@ scr_plot(data, aesthetics = list(x = Session,
                         "Attention",
                         "Demand",
                         "Tangible"),
-             col    = c('black',                            # color of markers (ordered)
-                        'black',
-                        'black',
-                        'black'),
+             col    = c("black",                            # color of markers (ordered)
+                        "black",
+                        "black",
+                        "black"),
              bg       = "white",
-             pt.bg    = c('black',                            # color of markers (ordered)
-                          'black',
-                          'black',
-                          'black'),
+             pt.bg    = c("black",                            # color of markers (ordered)
+                          "black",
+                          "black",
+                          "black"),
              lty      = c(1, 1, 1, 1),                      # line types (ordered)
              pch      = c(16, 22, 24, 8),                   # marker types (ordered)
              bty      = "o",                                # remove border
              pt.cex   = 2.25,                               # point size scale
              cex      = 1.25,                               # text size scale
              text.col = "black",                            # text color
-             horiz    = F,                                  # list items vertically
+             horiz    = FALSE,                                  # list items vertically
              box.lty  = 1)
 
 # %>%

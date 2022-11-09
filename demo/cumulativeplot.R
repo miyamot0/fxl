@@ -38,10 +38,10 @@ scr_plot(data = LozyEtAl2020, aesthetics = list(x = Session,
                   )
     ) %>%
     scr_cumsum_lines() %>%
-    scr_cumsum_points(pch = 24, fill = 'white', cex = 1.75)  %>%
+    scr_cumsum_points(pch = 24, fill = "white", cex = 1.75)  %>%
     scr_cumsum_lines(mapping = list(x = Session,
                                     y = TD)) %>%
-    scr_cumsum_points(pch = 22, fill = 'white', cex = 1.75,
+    scr_cumsum_points(pch = 22, fill = "white", cex = 1.75,
                       mapping = list(x = Session,
                                      y = TD)) %>%
     scr_label_facet(cex = 1.5,         # plot labels across facets (not within a single facet)
@@ -150,17 +150,17 @@ scr_plot(data = LozyEtAl2020, aesthetics = list(x = Session,
                panel    = "Eli",
                legend   = c("KM",                             # labels to include (ordered)
                             "TD"),
-               col      = c('black',                          # color of markers (ordered)
-                            'black'),
-               pt.bg    = c('black',                          # color of markers (ordered)
-                            'black'),
+               col      = c("black",                          # color of markers (ordered)
+                            "black"),
+               pt.bg    = c("black",                          # color of markers (ordered)
+                            "black"),
                lty      = c(1, 1),                            # line types (ordered)
                pch      = c(24, 22),                          # marker types (ordered)
                bty      = "y",                                # remove border
                pt.cex   = 2.25,                               # point size scale
                cex      = 1.25,                               # text size scale
                text.col = "black",                            # text color
-               horiz    = F,                                  # list items vertically
+               horiz    = FALSE,                                  # list items vertically
                box.lty  = 1)
 
 #%>%                             # change box size (0 = removed)
@@ -175,5 +175,3 @@ scr_plot(data = LozyEtAl2020, aesthetics = list(x = Session,
   #          width = 8,
   #          height = 6,
   #          res = 300)
-
-

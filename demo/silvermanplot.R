@@ -1,18 +1,18 @@
-rm(list=ls())
+rm(list = ls())
 library(fxl)
 library(tidyverse)
 
-KoffarnusEtAl2011 = KoffarnusEtAl2011 %>%
+koffarnus_et_al_mod <- KoffarnusEtAl2011 %>%
   mutate(facet = ifelse(ID < 40, "1",
                         ifelse(ID > 83, "3", "2"))) %>%
   arrange(-ID)
 
-scr_plot(KoffarnusEtAl2011,
+scr_plot(koffarnus_et_al_mod,
          aesthetics = list(x = X, y = ID,
                            p = Code, facet = facet),
          mai     = c(0.0,   0.0,   0.35,  0.0),
          omi     = c(0.725, 0.725, 0.0, 0.0)) %>%
-  scr_yoverride(list(                                   # manually override y-axis and tick interval (tick every 5 units, individal overrides)
+  scr_yoverride(list(# manually override y-axis and tick interval
     "1" = list(y0 = 0,
                y1 = 40,
                yticks = c(5, 10, 15, 20, 25, 30, 35)),
@@ -41,17 +41,17 @@ scr_plot(KoffarnusEtAl2011,
                "2"  = 22
              ),
              fill = list(                                   # override point marker colors (match FA conventions)
-               "0" = 'black',
-               "1" = 'white',
+               "0" = "black",
+               "1" = "white",
                "2" = rgb(.8,
                          .8,
                          .8,
                          alpha = 0.75)
              ),
              color = list(                                   # override point marker colors (match FA conventions)
-               "0" = 'transparent',
-               "1" = 'black',
-               "2" = 'transparent'
+               "0" = "transparent",
+               "1" = "black",
+               "2" = "transparent"
              )) %>%
   scr_label_facet(cex    = 1.25,
                   adj    = 0,
@@ -71,11 +71,11 @@ scr_plot(KoffarnusEtAl2011,
              legend   = c("Present: Positive",
                           "Present: Negative",
                           "Absent"),
-             col      = c('black',
-                          'black',
-                          'transparent'),
-             pt.bg     = c('white',
-                           'black',
+             col      = c("black",
+                          "black",
+                          "transparent"),
+             pt.bg     = c("white",
+                           "black",
                            rgb(.8,
                                .8,
                                .8,

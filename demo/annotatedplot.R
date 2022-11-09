@@ -2,61 +2,63 @@
 #
 # demo/concurrentplot.R
 #
-# This file illustrates how to construct a complicated figure, without a legend, and instead
-# describing features using annotations. This is particularly useful for emulating existing
-# conventions (e.g., labeled series with arrows, brackets for schedule thinning/demand fading)
+# This file illustrates how to construct a complicated figure,
+# without a legend, and instead describing features using
+# annotations. This is particularly useful for emulating existing
+# conventions (e.g., labeled series with arrows, brackets for
+# schedule thinning/demand fading)
 #
 
 library(dplyr) # included for infix logic
-library(fxl)   # core plotting methods
+library(fxl) # core plotting methods
 
-currentData = Gilroyetal2019Tx %>%
+current_data <- Gilroyetal2019Tx %>%
   mutate(Condition = paste0(Condition, PhaseNum)) %>%
-  rename(Function  = Participant,
-         AFCR      = FCR,
-         EFCR      = FCR2) %>%
+  rename(Function = Participant,
+         AFCR = FCR,
+         EFCR = FCR2) %>%
   dplyr::select(-c(PhaseNum, LineOff))
 
-scr_plot(currentData, aesthetics = list(x     = Session,
-                                        y     = CTB,
-                                        p     = Condition,
+scr_plot(current_data, aesthetics = list(x = Session,
+                                        y = CTB,
+                                        p = Condition,
                                         facet = Function),
-        mai = c(0.375, 0.375, 0.1,  0),
-        omi = c(0.25,  0.25,  0.25, 0.05)) %>%
-  scr_yoverride(c(0, 3)) %>%                                       # override global y axes
-  scr_xoverride(c(0, 100),                                         # override global x axes (specify tick interval)
+        mai = c(0.375, 0.375, 0.1, 0),
+        omi = c(0.25, 0.25, 0.25, 0.05)) %>%
+  scr_yoverride(c(0, 3)) %>% # override global y axes
+scr_xoverride(c(0, 100), # override global x axes (specify tick interval)
                 xdelta = 10) %>%
-  scr_lines(size = 1) %>%                                          # draw main x/y series (lines)
-  scr_lines(mapping = list(x = Session,                            # draw supplemental x/y series (lines)
+  scr_lines(size = 1) %>% # draw main x/y series (lines)
+scr_lines(mapping = list(x = Session, # draw supplemental x/y series (lines)
                            y = AFCR),
-            size    = 1,                                              # override size
-            lty     = 2) %>%                                          # override line type
-  scr_lines(mapping = list(x = Session,
+            size = 1, # override size
+            lty = 2) %>% # override line type
+scr_lines(mapping = list(x = Session,
                            y = EFCR),
-            size    = 1,
-            lty     = 3) %>%
-  scr_points(fill = 'white',                                       # draw main x/y series (points)
-             pch  = 21) %>%
-  scr_points(mapping = list(x = Session,                           # draw supplemental x/y series
+            size = 1,
+            lty = 3) %>%
+  scr_points(fill = "white", # draw main x/y series (points)
+             pch = 21) %>%
+  scr_points(mapping = list(x = Session, # draw supplemental x/y series
                             y = AFCR),
-             cex     = 1,
-             pch     = 20,                                            # override marker type
-             fill    = 'black') %>%                                   # override color fill
-  scr_points(mapping = list(x = Session,
+             cex = 1,
+             pch = 20, # override marker type
+             fill = "black") %>% # override color fill
+scr_points(mapping = list(x = Session,
                             y = EFCR),
-             cex     = 0.75,
-             pch     = 24,
-             fill    = 'black') %>%
-  scr_plines_mbd(lines = list(                                     # specify MBD phase lines
-    "A" = list(                                                    # single line, coming first panel into second
+             cex = 0.75,
+             pch = 24,
+             fill = "black") %>%
+  scr_plines_mbd(lines = list(# specify MBD phase lines
+    "A" = list(# single line, coming first panel into second
       "Attention" = list(x1 = 13.5,
                          y1 = 3.15),
-      "Demand"    = list(x1 = 20,
+      "Demand" = list(x1 = 20,
                          y1 = 3)
     )
   )) %>%
-  scr_plines(                                                      # add in simple phase lines
-    lty = 1,                                                       # solid lines globally (change of contingencies)
+  scr_plines(# add in simple phase lines
+    lty = 1, # solid lines globally (change of contingencies)
     lines = list(
     "Attention" = list(
       "A" = list(
@@ -70,7 +72,7 @@ scr_plot(currentData, aesthetics = list(x     = Session,
       "C" = list(
         x1 = 60.5,
         y1 = 3,
-        lty = 3                                                    # override linetype, dashed lines for non-contingency changes
+        lty = 3 # override linetype, dashed lines for non-contingency changes
       ),
       "D" = list(
         x1 = 76.5,
@@ -103,168 +105,168 @@ scr_plot(currentData, aesthetics = list(x     = Session,
       )
     )
   )) %>%
-    scr_label_facet(cex = 1.25,                                    # draw labels for each facet/panel
+    scr_label_facet(cex = 1.25, # draw labels for each facet/panel
                     adj = 1,
-                    y   = 3.15,
-                    x   = 100,
+                    y = 3.15,
+                    x = 100,
                     labels = list(
                       "Attention",
                       "Demand"
                     )) %>%
-    scr_label_phase(facet = "Attention",                           # Draw labels for phase (specific to a facet/panel)
+    scr_label_phase(facet = "Attention", # Draw labels for phase
                     cex = 0.6,
                     adj = 0.5,
-                    y   = 3,
+                    y = 3,
                     labels = list(
-                      "Baseline"              = list(x = 14,
+                      "Baseline" = list(x = 14,
                                                      y = 3.5),
-                      "FCR-A + EXT"           = list(x = 19),
-                      "FCR-A + EXT"           = list(x = 32),
+                      "FCR-A + EXT" = list(x = 19),
+                      "FCR-A + EXT" = list(x = 32),
                       "Parent Implementation" = list(x = 68.5),
-                      "Generalization"        = list(x = 82),
-                      "Problem Behavior"      = list(x = 7,
+                      "Generalization" = list(x = 82),
+                      "Problem Behavior" = list(x = 7,
                                                      y = 1.8),
-                      "FCR-A"                 = list(x = 20,
+                      "FCR-A" = list(x = 20,
                                                      y = 2.5),
-                      "Add FCR\nOptions"      = list(x = 31,
+                      "Add FCR\nOptions" = list(x = 31,
                                                      y = 2.5)
                     )) %>%
-  scr_label_phase(facet = "Attention",                             # separate call for convenience (goes with bracket)
+  scr_label_phase(facet = "Attention", # separate call for convenience
                   cex = 0.6,
                   adj = 0.5,
                   labels = list(
-                    "5s"                = list(x = 39,
+                    "5s" = list(x = 39,
                                                y = 2.4),
                     "Schedule Thinning" = list(x = 54,
                                                y = 2.4),
-                    "300s"              = list(x = 75,
+                    "300s" = list(x = 75,
                                                y = 2.4))) %>%
     scr_label_phase(facet = "Demand",
                     cex = 0.6,
                     adj = 0.5,
-                    y   = 3,
+                    y = 3,
                     labels = list(
-                      "FCR-E + EXT"             = list(x = 30,
+                      "FCR-E + EXT" = list(x = 30,
                                                        y = 3.45),
-                      "FCR-A P = 0.1"           = list(x = 36,
+                      "FCR-A P = 0.1" = list(x = 36,
                                                        y = 2,
                                                        srt = 90),
-                      "FCR-A/E + EXT"           = list(x = 47,
+                      "FCR-A/E + EXT" = list(x = 47,
                                                        y = 3.35),
-                      "Parent Implementation"   = list(x = 58.5),
-                      "Generalization"          = list(x = 78),
-                      "FCR-E"                   = list(x = 24,
+                      "Parent Implementation" = list(x = 58.5),
+                      "Generalization" = list(x = 78),
+                      "FCR-E" = list(x = 24,
                                                        y = 2.5),
                       "FCR-A\nP = 0.1\n200% SR" = list(x = 46,
                                                        y = 2)
                     )) %>%
-    scr_label_phase(facet  = "Demand",                              # separate call for convenience (goes with bracket)
-                    cex    = 0.6,
-                    adj    = 0.5,
-                    y      = 1.375,
+    scr_label_phase(facet = "Demand", # separate call for convenience
+                    cex = 0.6,
+                    adj = 0.5,
+                    y = 1.375,
                     labels = list(
-                      "1"             = list(x = 30),
+                      "1" = list(x = 30),
                       "Demand Fading" = list(x = 56),
-                      "6"             = list(x = 71.5))) %>%
-    scr_arrows(facet  = "Attention",                                # draw arrows to go with labels
+                      "6" = list(x = 71.5))) %>%
+    scr_arrows(facet = "Attention", # draw arrows to go with labels
                length = 0.1,
                arrows = list(
-                 "A"  = list(
+                 "A" = list(
                    x0 = 7,
                    x1 = 7,
                    y0 = 1.5,
                    y1 = 1
                  ),
-                 "B"  = list(
+                 "B" = list(
                    x0 = 20,
                    x1 = 20,
                    y0 = 2.25,
                    y1 = 2
                  ),
-                 "C"  = list(
+                 "C" = list(
                    x0 = 31,
                    x1 = 31,
                    y0 = 2.25,
                    y1 = 2
                  )
                )) %>%
-  scr_arrows(facet  = "Demand",
+  scr_arrows(facet = "Demand",
              length = 0.1,
              arrows = list(
-               "A"  = list(
+               "A" = list(
                  x0 = 24,
                  x1 = 24,
                  y0 = 2.25,
                  y1 = 1.5
                ),
-               "B"  = list(
+               "B" = list(
                  x0 = 36,
                  x1 = 36,
                  y0 = 1.3,
                  y1 = 0.75
                ),
-               "C"  = list(
+               "C" = list(
                  x0 = 46,
                  x1 = 46,
                  y0 = 1.5,
                  y1 = 0.75
                )
              )) %>%
-  scr_brackets(facet    = "Attention",                                # draw brackets to go with schedule thinning
-               length   = 0.1,
+  scr_brackets(facet = "Attention", # draw brackets to go with schedule thinning
+               length = 0.1,
                brackets = list(
-                 "A"    = list(
-                   x0   = 8,
-                   x1   = 26,
-                   y0   = 3.3,
-                   y1   = 3
+                 "A" = list(
+                   x0 = 8,
+                   x1 = 26,
+                   y0 = 3.3,
+                   y1 = 3
                  ),
-                 "B"    = list(
-                   x0   = 38,
-                   x1   = 76,
-                   y0   = 2.25,
-                   y1   = 1.5,
-                   lty  = 3
+                 "B" = list(
+                   x0 = 38,
+                   x1 = 76,
+                   y0 = 2.25,
+                   y1 = 1.5,
+                   lty = 3
                  )
                )) %>%
-  scr_brackets(facet    = "Demand",
-               length   = 0.1,
+  scr_brackets(facet = "Demand",
+               length = 0.1,
                brackets = list(
-                 "A"    = list(
-                   x0   = 23,
-                   x1   = 40,
-                   y0   = 3.3,
-                   y1   = 3
+                 "A" = list(
+                   x0 = 23,
+                   x1 = 40,
+                   y0 = 3.3,
+                   y1 = 3
                  ),
-                 "B"    = list(
-                   x0   = 36,
-                   x1   = 47,
-                   y0   = 3.2,
-                   y1   = 2.9
+                 "B" = list(
+                   x0 = 36,
+                   x1 = 47,
+                   y0 = 3.2,
+                   y1 = 2.9
                  ),
-                 "C"    = list(
-                   x0   = 29,
-                   x1   = 72,
-                   y0   = 1.25,
-                   y1   = 0.5,
-                   lty  = 3
+                 "C" = list(
+                   x0 = 29,
+                   x1 = 72,
+                   y0 = 1.25,
+                   y1 = 0.5,
+                   lty = 3
                  )
                )) %>%
-  scr_guide_line(col    = 'red',                                  # draw guide line (90% reduction target here)
-                 lty    = 3,
-                 facet  = "Attention",
+  scr_guide_line(color = "red", # draw guide line (90% reduction target here)
+                 lty = 3,
+                 facet = "Attention",
                  coords = list(
-                   "A"  = list(x0 = 14,
+                   "A" = list(x0 = 14,
                                x1 = 25.5,
                                y0 = 0.1),
-                   "B"  = list(x0 = 26.5,
+                   "B" = list(x0 = 26.5,
                                x1 = 100,
                                y0 = 0.1))) %>%
-  scr_guide_line(col    = 'red',
-                 lty    = 3,
-                 facet  = "Demand",
+  scr_guide_line(color = "red",
+                 lty = 3,
+                 facet = "Demand",
                  coords = list(
-                   "A"  = list(x0 = 20,
+                   "A" = list(x0 = 20,
                                x1 = 100,
                                y0 = 0.1)))
 

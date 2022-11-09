@@ -14,7 +14,7 @@ library(fxl)   # core plotting methods
 # Condition:   condition where data emerged from
 # CTB:         measurement of behavior
 
-data = Gilroyetal2019
+data <- Gilroyetal2019
 
 # Initial setup, sets core aesthetics (what data to show where)
 scr_plot(data, aesthetics = list(x = Session,
@@ -32,10 +32,10 @@ scr_plot(data, aesthetics = list(x = Session,
                "Tangible"  = 8
              ),
              fill = list(                                   # override point marker colors (match FA conventions)
-               "Toy Play"  = 'black',
-               "Attention" = 'white',
-               "Demand"    = 'white',
-               "Tangible"  = 'black'
+               "Toy Play"  = "black",
+               "Attention" = "white",
+               "Demand"    = "white",
+               "Tangible"  = "black"
              )) %>%
   scr_xlabel("Session") %>%                                 # Override x-axis label (bottom only shown by default)
   scr_ylabel("Combined Target Behavior (Per Minute)") %>%   # Override y-axis label (centered, leftmost label)
@@ -45,21 +45,21 @@ scr_plot(data, aesthetics = list(x = Session,
                         "Attention",
                         "Demand",
                         "Tangible"),
-             col    = c('black',                            # color of markers (ordered)
-                        'black',
-                        'black',
-                        'black'),
-             pt.bg  = c('black',                            # color of markers (ordered)
-                        'black',
-                        'black',
-                        'black'),
+             col    = c("black",                            # color of markers (ordered)
+                        "black",
+                        "black",
+                        "black"),
+             pt.bg  = c("black",                            # color of markers (ordered)
+                        "black",
+                        "black",
+                        "black"),
              lty      = c(1, 1, 1, 1),                      # line types (ordered)
              pch      = c(16, 22, 24, 8),                   # marker types (ordered)
              bty      = "n",                                # remove border
              pt.cex   = 2.25,                               # point size scale
              cex      = 1.25,                               # text size scale
              text.col = "black",                            # text color
-             horiz    = F,                                  # list items vertically
+             horiz    = FALSE,                                  # list items vertically
              box.lty  = 0)                                  # change box size (0 = removed)
 
 # Optional Save

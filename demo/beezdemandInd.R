@@ -4,48 +4,48 @@ apt
 
 #N>  override print in beez object
 
-results = FitCurves(apt, equation = "hs", detailed = FALSE)
-class(results) = "data.frame"
+results <- FitCurves(apt, equation = "hs", detailed = FALSE)
+class(results) <- "data.frame"
 
 # add in columns for preds
 
-minX      = 0
-maxX      = 500
-lengthOut = 2500
+min_x      <- 0
+max_x      <- 500
+length_out <- 2500
 
-xPoints = seq(minX, maxX,
-              length.out = lengthOut)
+x_points <- seq(min_x, max_x,
+              length.out = length_out)
 
-prePop = rep(NA, length(results$id) * length(xPoints))
-prePop = matrix(prePop,
+pre_pop <- rep(NA, length(results$id) * length(x_points))
+pre_pop <- matrix(pre_pop,
                 nrow = length(results$id),
-                ncol = length(xPoints))
-prePop = as.data.frame(prePop)
-colnames(prePop) = as.character(xPoints)
+                ncol = length(x_points))
+pre_pop <- as.data.frame(pre_pop)
+colnames(pre_pop) <- as.character(x_points)
 
-#results = cbind(results, prePop)
+#results <- cbind(results, pre_pop)
 
-for (rowNum in 1:nrow(results))
-  prePop[rowNum, ] = log10(results[rowNum, "Q0d"]) +
-    results[rowNum, "K"] * exp(
-      (-results[rowNum, "Alpha"] * results[rowNum, "Q0d"] * xPoints) - 1)
+for (row_num in seq_len(nrow(results)))
+  pre_pop[row_num, ] <- log10(results[row_num, "Q0d"]) +
+    results[row_num, "K"] * exp(
+      (-results[row_num, "Alpha"] * results[row_num, "Q0d"] * x_points) - 1)
 
-prePop$id = results$id
+pre_pop$id <- results$id
 
 library(tidyverse)
 
-prePop.gather = prePop %>%
+pre_pop_gather <- pre_pop %>%
   gather(Price, Demand, -id) %>%
   mutate(Price  = as.numeric(Price),
          Demand = as.numeric(Demand))
 
-# ggplot(prePop.gather, aes(Price, Demand, group = id)) +
+# ggplot(pre_pop_gather, aes(Price, Demand, group = id)) +
 #   geom_line() +
 #   scale_x_log10() +
 #   scale_y_log10()
 
 library(fxl)
 
-scr_plot(prePop.gather, aesthetics = list(x = Price,
-                                          y = Demand)) +
+scr_plot(pre_pop_gather, aesthetics = list(x = Price,
+                                           y = Demand)) +
   scr_xoverride(xticks = c(0.01, 0.1, 1, 10, 100, 1000))

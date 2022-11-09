@@ -36,6 +36,8 @@ library(dplyr)
 scr_plot <- function(data, aesthetics,
                      mai     = c(0.375, 0.375, 0.25, 0.25),
                      omi     = c(0.25, 0.25, 0.25, 0.25),
+                     xaxs    = "i",
+                     yaxs    = "i",
                      ncol    = 1,
                      family  = NULL,
                      semilog = FALSE) {
@@ -51,8 +53,10 @@ scr_plot <- function(data, aesthetics,
     global.min.y = min(data[[as.character(coreFrame$aes['y'])]], na.rm = TRUE),
     mai          = mai,
     omi          = omi,
+    xaxs         = xaxs,
+    yaxs         = yaxs,
     ncol         = ncol,
-    xdelta       = 1,                            # General defaults, for now
+    xdelta       = 1,
     ydelta       = 1)
 
   coreFrame[[ "labs"   ]] <- list(               # Presumed labels, blank title by default
