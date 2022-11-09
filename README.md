@@ -1,7 +1,9 @@
 [![DOI](https://zenodo.org/badge/357648823.svg)](https://zenodo.org/badge/latestdoi/357648823)
 
 <!-- badges: start -->
-[![Codecov test coverage](https://codecov.io/gh/miyamot0/fxl/branch/main/graph/badge.svg)](https://codecov.io/gh/miyamot0/fxl?branch=main)
+
+[![codecov](https://codecov.io/gh/miyamot0/fxl/branch/main/graph/badge.svg?token=V02KN70O3V)](https://codecov.io/gh/miyamot0/fxl)
+
 <!-- badges: end -->
 
 # Faux XL Charting in R (fxl)
