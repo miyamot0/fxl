@@ -6,13 +6,13 @@
 \usage{
 scr_plot(
   data,
-  aesthetics,
+  aesthetics = NULL,
   mai = c(0.375, 0.375, 0.25, 0.25),
   omi = c(0.25, 0.25, 0.25, 0.25),
   xaxs = "i",
   yaxs = "i",
   ncol = 1,
-  family = NULL,
+  family = "sans",
   semilog = FALSE
 )
 }

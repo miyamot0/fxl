@@ -5,8 +5,6 @@
 #' @param name name for object
 #'
 #' @export
-#'
-#' @examples
 isValidDataFrame <- function(object = NULL, name = NULL) {
   if (is.null(object)) {
     stop(paste("Parameter:",
@@ -14,7 +12,7 @@ isValidDataFrame <- function(object = NULL, name = NULL) {
                "should NOT be set to a null value."))
   }
 
-  if (is.data.frame(object) && nrow(object) == 0) {
+  if (is.data.frame(object) && nrow(as.data.frame(object)) == 0) {
     stop(paste("Parameter:",
                name,
                "contains no data."))
@@ -27,8 +25,6 @@ isValidDataFrame <- function(object = NULL, name = NULL) {
 #' @param name name for object
 #'
 #' @export
-#'
-#' @examples
 isValidAestheticMapping <- function(object = NULL, name = NULL) {
   if (is.null(object)) {
     stop(paste("Parameter:",
@@ -88,6 +84,75 @@ isValidNumericVector <- function(object = NULL, length = -1, name = NULL) {
   }
 }
 
+#' isValidCharacterVector
+#'
+#' @param object some type of object
+#' @param length expected length
+#' @param name parameter name
+#'
+#' @export
+isValidCharacterVector <- function(object = NULL, length = -1, name = NULL) {
+  if (is.null(object)) {
+    stop(paste("Parameter:",
+               name,
+               "should NOT be set to a null value."))
+  }
+
+  if (!is.character(object)) {
+    stop(paste("Parameter:",
+               name,
+               "should be of a character type."))
+  }
+
+  if (length != -1 && length(object) != length) {
+    stop(paste("Parameter:",
+               name,
+               "should have",
+               length,
+               "entries but has",
+               length(object),
+               "."))
+  }
+}
+
+
+#' isValidLogicalVector
+#'
+#' @param object some type of object
+#' @param length expected length
+#' @param name parameter name
+#'
+#' @export
+isValidLogicalVector <- function(object = NULL, length = -1, name = NULL) {
+  if (is.null(object)) {
+    stop(paste("Parameter:",
+               name,
+               "should NOT be set to a null value."))
+  }
+
+  if (!is.logical(object)) {
+    stop(paste("Parameter:",
+               name,
+               "should be of a logical type."))
+  }
+
+  if (length != -1 && length(object) != length) {
+    stop(paste("Parameter:",
+               name,
+               "should have",
+               length,
+               "entries but has",
+               length(object),
+               "."))
+  }
+}
+
+#' isValidAXSCharacter
+#'
+#' @param object some type of object
+#' @param name parameter name
+#'
+#' @export
 isValidAXSCharacter <- function(object = NULL, name = NULL) {
   if (!is.character(object)) {
     stop(paste("Parameter:",

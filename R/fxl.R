@@ -50,21 +50,49 @@ scr_plot <- function(data,
                      xaxs = "i",
                      yaxs = "i",
                      ncol = 1,
-                     family = NULL,
+                     family = "sans",
                      semilog = FALSE) {
 
   # Type checks
-  isValidAestheticMapping(aesthetics, name = 'aesthetics')
-
-  isValidDataFrame(object = data, name = "data")
-
-  isValidNumericVector(object = mai, length = 4, name = "mai")
-  isValidNumericVector(object = omi, length = 4, name = "omi")
-
-  #isValidNumericVector(object = ncol, length = 1, name = "ncol")
-
-  isValidAXSCharacter(xaxs, "xaxs")
-  isValidAXSCharacter(yaxs, "yaxs")
+  isValidDataFrame(
+    object = data,
+    name = "data"
+  )
+  isValidAestheticMapping(
+    aesthetics,
+    name = 'aesthetics'
+  )
+  isValidNumericVector(
+    object = mai,
+    length = 4,
+    name = "mai"
+  )
+  isValidNumericVector(
+    object = omi,
+    length = 4,
+    name = "omi"
+  )
+  isValidAXSCharacter(
+    xaxs,
+    "xaxs"
+  )
+  isValidAXSCharacter(
+    yaxs,
+    "yaxs"
+  )
+  isValidNumericVector(
+    object = ncol,
+    name = "ncol"
+  )
+  isValidCharacterVector(
+    object = family,
+    name = "family"
+  )
+  isValidLogicalVector(
+    object = semilog,
+    length = 1,
+    name = "semilog"
+  )
 
   core_frame <- list()
   core_frame[["layers"]] <- list() # Layers for drawing
@@ -93,15 +121,11 @@ scr_plot <- function(data,
     title        = ""
   )
 
-#   core_frame[["family"]] <- family
-#
-#   class(core_frame) <- c("fxl")                   # Apply a class name (to override print)
-#
-#   if (semilog) class(core_frame) <- c("fxlsemilog")
+  core_frame[["family"]] <- family
+
+  class(core_frame) <- c("fxl")                   # Apply a class name (to override print)
+
+  if (semilog) class(core_frame) <- c("fxlsemilog")
 
   core_frame
-}
-
-mapping <- function(x, y, ...) {
-  fullMap <- list(...)
 }

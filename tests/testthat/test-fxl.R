@@ -32,6 +32,37 @@ describe("scr_plot", {
       )
     })
 
+    it("Should fail if data NULL", {
+      expect_error(
+        scr_plot(
+          data = NULL,
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+        )),
+        "Parameter: data should NOT be set to a null value."
+      )
+    })
+
+    it("Should fail if data BLANK", {
+      expect_error(
+        scr_plot(
+          data = data.frame(
+            sessions = numeric(0),
+            behavior = numeric(0)
+          ),
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+          )),
+        "Parameter: data contains no data."
+      )
+    })
+
     it("Should fail if aesthetics MISSING", {
       expect_error(
         scr_plot(data = current_data),
@@ -221,9 +252,157 @@ describe("scr_plot", {
               y = behavior
             )
           ),
+          yaxs = TRUE
+        ),
+        "Parameter: yaxs must be a single-character value."
+      )
+    })
+
+    it("Should fail if not a correct string type", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+          ),
           yaxs = "p"
         ),
         "Parameter: yaxs must be set to either \"i\" or \"r\""
+      )
+    })
+  })
+
+  describe("family input", {
+    it("Should PASS if valid", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+          ),
+          family = "serif"
+        ),
+        NA
+      )
+    })
+
+    it("Should fail if not a string: NULL", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+          ),
+          family = NULL
+        ),
+        "Parameter: family should NOT be set to a null value."
+      )
+    })
+
+    it("Should fail if not a string: NULL", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+          ),
+          family = 1
+        ),
+        "Parameter: family should be of a character type."
+      )
+    })
+  })
+
+  describe("semilog input", {
+    it("Should PASS if valid: FALSE", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+          ),
+          semilog = FALSE
+        ),
+        NA
+      )
+    })
+
+    it("Should PASS if valid: TRUE", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+          ),
+          semilog = TRUE
+        ),
+        NA
+      )
+    })
+
+    it("Should fail if not a logical: NULL", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+          ),
+          semilog = NULL
+        ),
+        "Parameter: semilog should NOT be set to a null value."
+      )
+    })
+
+    it("Should fail if not a logical: CHARACTER", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+          ),
+          semilog = "TRUE"
+        ),
+        "Parameter: semilog should be of a logical type."
+      )
+    })
+
+    it("Should fail if not a single logical", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = expr(
+            list(
+              x = sessions,
+              y = behavior
+            )
+          ),
+          semilog = c(TRUE, TRUE)
+        ),
+        "Parameter: semilog should have 1 entries but has 2 ."
       )
     })
   })
