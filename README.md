@@ -1,5 +1,9 @@
 [![DOI](https://zenodo.org/badge/357648823.svg)](https://zenodo.org/badge/latestdoi/357648823)
 
+<!-- badges: start -->
+[![Codecov test coverage](https://codecov.io/gh/miyamot0/fxl/branch/main/graph/badge.svg)](https://codecov.io/gh/miyamot0/fxl?branch=main)
+<!-- badges: end -->
+
 # Faux XL Charting in R (fxl)
 
 The *fxl* package was designed to support transparent, replicable, and efficently-drawn figure in single-case research design. In addition to be easily archived, effortlessly drawn, and automated, the R ecosystem supports the drawing of publication-quality figures that exceed traditional tools (e.g., Microsoft Excel). For instance, the figures output by *fxl* can be lossless by default using a variety of vector-based drawing formats as well as publication-quality rasters.

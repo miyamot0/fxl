@@ -37,19 +37,67 @@ library(rlang)
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @export
-scr_plot <- function(data, aesthetics,
-                     mai     = c(0.375, 0.375, 0.25, 0.25),
-                     omi     = c(0.25, 0.25, 0.25, 0.25),
-                     xaxs    = "i",
-                     yaxs    = "i",
-                     ncol    = 1,
-                     family  = NULL,
+scr_plot <- function(data,
+                     aesthetics = NULL,
+                     mai = c(0.375,
+                             0.375,
+                             0.25,
+                             0.25),
+                     omi = c(0.25,
+                             0.25,
+                             0.25,
+                             0.25),
+                     xaxs = "i",
+                     yaxs = "i",
+                     ncol = 1,
+                     family = "sans",
                      semilog = FALSE) {
 
-  core_frame <- list()                             # Primary plotting object
-  core_frame[["layers"]] <- list()              # Layers for drawing
-  core_frame[["aes"]] <- enexpr(aesthetics)  # Mappings
-  core_frame[["data"]] <- data                # Stored data
+  # Type checks
+  isValidDataFrame(
+    object = data,
+    name = "data"
+  )
+  isValidAestheticMapping(
+    aesthetics,
+    name = 'aesthetics'
+  )
+  isValidNumericVector(
+    object = mai,
+    length = 4,
+    name = "mai"
+  )
+  isValidNumericVector(
+    object = omi,
+    length = 4,
+    name = "omi"
+  )
+  isValidAXSCharacter(
+    xaxs,
+    "xaxs"
+  )
+  isValidAXSCharacter(
+    yaxs,
+    "yaxs"
+  )
+  isValidNumericVector(
+    object = ncol,
+    name = "ncol"
+  )
+  isValidCharacterVector(
+    object = family,
+    name = "family"
+  )
+  isValidLogicalVector(
+    object = semilog,
+    length = 1,
+    name = "semilog"
+  )
+
+  core_frame <- list()
+  core_frame[["layers"]] <- list() # Layers for drawing
+  core_frame[["aes"]] <- enexpr(aesthetics) # Mappings
+  core_frame[["data"]] <- data # Stored data
   core_frame[["dims"]] <- list(# Global dimensions
     global.max.x = max(data[[as.character(core_frame$aes["x"])]], na.rm = TRUE),
     global.min.x = min(data[[as.character(core_frame$aes["x"])]], na.rm = TRUE),
