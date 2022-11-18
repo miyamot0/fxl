@@ -169,6 +169,8 @@ print.fxl <- function(x, ...) {
       y_axis_draw <- x$dims[["yticklabs"]]
     }
 
+    x_lab_cex = x$dims[["xlab.cex"]]
+
     if (!is.null(x$dims[["xlab.rotation"]]) &&
         !is.null(x$dims[["xlab.offset"]]) &&
         !is.null(x$dims[["xticklabs.offset"]])) {
@@ -190,11 +192,12 @@ print.fxl <- function(x, ...) {
            srt = x_lab_rotation,
            family = font_family,
            adj = x_lab_adj,
-           cex = 1.2)
+           cex = x_lab_cex)
 
     } else {
       axis(1,
            labels = x_axis_draw,
+           cex    = x_lab_cex,
            at     = x_axis_ticks)
     }
 

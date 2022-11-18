@@ -30,13 +30,13 @@ yticks <- c(
 )
 
 scr_plot(newFrame,
-  aesthetics = list(
+  aesthetics = expr(list(
     x = Time,
     y = Count1,
     p = Condition,
     facet = Facet
-  ),
-  mai = c(1, 0.6, 0, 0.25),
+  )),
+  mai = c(0.85, 0.6, 0, 0.25),
   family = "Open Sans",
   omi = c(0.25, 0.25, 0.5, 0.5)
 ) %>%
@@ -45,7 +45,7 @@ scr_xoverride(
   xticks = seq_len(11),
   xrotation = 45,
   xtickslabs = xticks,
-  xlabeloffset = 40
+  xlabeloffset = 30
 ) %>%
 scr_yoverride(
   c(-10, 500),
@@ -174,15 +174,16 @@ scr_legend(
     "black"
   ),
   bty = "n",
-  pt_cex = 2,
-  cex = 1.25,
+  pt_cex = 1.5,
+  cex = 1,
   text_col = "black",
   horiz = FALSE,
   box_lty = 0
-) %>%
-scr_save(
-  name = "../man/figures/cigarettepolicy.svg",
-  format = "svg",
-  height = 6,
-  width = 9
 )
+# %>%
+# scr_save(
+#   name = "../man/figures/cigarettepolicy.svg",
+#   format = "svg",
+#   height = 6,
+#   width = 9
+# )
