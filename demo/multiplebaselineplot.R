@@ -22,7 +22,7 @@ scr_plot(
   mai = c(
     0.375,
     0.375,
-    0.1,
+    0.2,
     0.0
   ),
   omi = c(
@@ -38,9 +38,9 @@ scr_xoverride(
   xtickslabs = as.character(1:27)
 ) %>% # manually override x-axis (make extra room for labels)
 scr_yoverride(
-  c(-5, 109), # manually override y-axis and tick interval (tick every 10 units)
-  yticks = seq(0, 110, by = 10),
-  ytickslabs = as.character(seq(0, 110, by = 10)),
+  c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+  yticks = seq(0, 100, by = 10),
+  ytickslabs = as.character(seq(0, 100, by = 10)),
 ) %>%
 scr_points(
   cex = 2
@@ -97,7 +97,8 @@ scr_plines_mbd(
       ),
       "Charles" = list(
         x1 = 18.5,
-        y1 = 100
+        y1 = 100,
+        y2 = -5
       )
   ),
   "B" = list(
@@ -111,7 +112,8 @@ scr_plines_mbd(
     ),
     "Charles" = list(
       x1 = 23.5,
-      y1 = 100
+      y1 = 100,
+      y2 = -5
     )
   ),
   "C" = list(
@@ -125,12 +127,13 @@ scr_plines_mbd(
     ),
     "Charles" = list(
       x1 = 23.5,
-      y1 = 100
+      y1 = 100,
+      y2 = -5
     )
   )
 )) %>%
 scr_xlabel("Session") %>% # Override x-axis label (bottom only shown by default)
-scr_ylabel("Percent Accuracy") %>% # Override y-axis label (centered, leftmost label)
+scr_ylabel("      Percent Accuracy") %>% # Override y-axis label (centered, leftmost label)
 scr_title("Rates of Acquisition across Participants") %>%
   scr_save(name = "../man/figures/multiplebaselinefigure.svg",
            format = "svg",
