@@ -12,7 +12,7 @@ library(fxl) # core plotting methods
 
 scr_plot(
   data = LozyEtAl2020,
-  aesthetics = list(
+  aesthetics = var_map(
     x = Session,
     y = KM,
     p = Phase,

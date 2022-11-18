@@ -1,4 +1,3 @@
-library(fxl)
 
 current_data <- data.frame(
   sessions = seq_len(5),

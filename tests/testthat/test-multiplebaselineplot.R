@@ -6,9 +6,6 @@
 # no frills multiple baseline plot
 #
 
-library(dplyr) # included for infix logic
-library(fxl) # core plotting methods
-
 data <- Gilroyetal2015
 
 describe("Annotated Plot Style", {

@@ -19,7 +19,7 @@ current_data <- Gilroyetal2019Tx %>%
   dplyr::select(-c(PhaseNum, LineOff))
 
 scr_plot(current_data,
-  aesthetics = list(
+  aesthetics = var_map(
     x = Session,
     y = CTB,
     p = Condition,

@@ -8,9 +8,6 @@
 # findings in conjunction with statistical modeling.
 #
 
-library(dplyr) # included for logic
-library(fxl) # core plotting methods
-#library(extrafont) # using custom font
 
 #extrafont::choose_font("Open Sans")
 

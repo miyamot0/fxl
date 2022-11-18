@@ -13,7 +13,7 @@ data <- Gilroyetal2021
 
 scr_plot(
   data,
-  aesthetics = list(
+  aesthetics = var_map(
     x = Session,
     y = Responding,
     p = Condition,

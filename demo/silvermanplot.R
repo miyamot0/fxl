@@ -23,7 +23,7 @@ koffarnus_et_al_mod <- KoffarnusEtAl2011 %>%
 
 scr_plot(
   koffarnus_et_al_mod,
-  aesthetics = list(
+  aesthetics = var_map(
     x = X,
     y = ID,
     p = Code,

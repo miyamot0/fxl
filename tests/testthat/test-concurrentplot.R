@@ -6,9 +6,6 @@
 # illustrated across participants using shared phase change lines
 #
 
-library(dplyr) # included for %>% logic
-library(fxl) # core plotting methods
-
 data <- Gilroyetal2021
 
 describe("Annotated Plot Style", {

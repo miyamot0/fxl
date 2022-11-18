@@ -1,7 +1,4 @@
 
-require(dplyr)
-require(fxl)
-
 current_data <- Gilroyetal2019Tx %>%
   mutate(Condition = paste0(Condition, PhaseNum)) %>%
   rename(Function = Participant,

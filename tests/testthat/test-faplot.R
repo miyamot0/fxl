@@ -6,9 +6,6 @@
 # no frills visual of a functional analysis
 #
 
-library(dplyr) # included for infix logic
-library(fxl) # core plotting methods
-
 data <- Gilroyetal2019
 
 describe("Annotated Plot Style", {

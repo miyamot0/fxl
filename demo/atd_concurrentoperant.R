@@ -8,10 +8,13 @@ lightestGray = "#CCCCCC"
 mediumGray = "#999999"
 darkGray = "#333333"
 
-scr_plot(consumptionData, aesthetics = expr(list(x = Session,
-                                                 y = Baseline,
-                                                 p = Condition,
-                                                 facet = Participant)),
+scr_plot(consumptionData,
+         aesthetics = var_map(
+           x = Session,
+           y = Baseline,
+           p = Condition,
+           facet = Participant
+         ),
          mai = c(0.375, 0.375, 0.1, 0.1),
          omi = c(0.25, 0.25, 0.25, 0.25)) %>%
   scr_xoverride(

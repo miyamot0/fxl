@@ -7,9 +7,6 @@
 # integrity data mapped alongside the rates of target behavior.
 #
 
-library(dplyr) # included for infix logic
-library(fxl) # core plotting methods
-
 data <- Gilroyetal2019
 
 set.seed(65535)

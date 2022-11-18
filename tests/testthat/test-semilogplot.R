@@ -6,9 +6,6 @@
 # chart with basic annotations
 #
 
-library(dplyr) # included for infix logic
-library(fxl) # core plotting methods
-
 min_x <- 1
 max_x <- 30
 

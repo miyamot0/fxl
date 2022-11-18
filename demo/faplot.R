@@ -11,9 +11,11 @@ library(magrittr)
 
 data <- Gilroyetal2019
 
+
+
 scr_plot(
   data,
-  aesthetics = list(
+  aesthetics = var_map(
     x = Session,
     y = CTB,
     p = Condition

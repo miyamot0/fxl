@@ -6,11 +6,6 @@
 # silverman-style chart with basic annotations
 #
 
-rm(list = ls())
-
-library(fxl)
-library(dplyr)
-
 koffarnus_et_al_mod <- KoffarnusEtAl2011 %>%
   mutate(facet = ifelse(ID < 40,
     "1",

@@ -21,7 +21,7 @@ data$Integrity <- sample(
 
 scr_plot(
   data,
-  aesthetics = list(
+  aesthetics = var_map(
     x = Session,
     y = CTB,
     p = Condition
