@@ -9,7 +9,9 @@
 #' @param xdraws which x axes to draw
 #' @param xtickslabs custom x axis labels
 #' @param xrotation degree to rotate positioned labels
+#' @param xtickscex expansion factor for labels
 #' @param xlabeloffset offset to push labels downward
+#' @param xtickslabs labels for x axis
 #' @param xticksadj alignment for custom labels
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>

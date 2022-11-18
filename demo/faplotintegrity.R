@@ -7,8 +7,8 @@
 # integrity data mapped alongside the rates of target behavior.
 #
 
-library(dplyr) # included for infix logic
 library(fxl) # core plotting methods
+library(magrittr)
 
 data <- Gilroyetal2019
 

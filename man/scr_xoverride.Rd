@@ -11,6 +11,7 @@ scr_xoverride(
   xticks = NULL,
   xdraws = NULL,
   xrotation = NULL,
+  xtickscex = 1,
   xlabeloffset = NULL,
   xtickslabs = NULL,
   xticksadj = 1
@@ -29,9 +30,11 @@ scr_xoverride(
 
 \item{xrotation}{degree to rotate positioned labels}
 
+\item{xtickscex}{expansion factor for labels}
+
 \item{xlabeloffset}{offset to push labels downward}
 
-\item{xtickslabs}{custom x axis labels}
+\item{xtickslabs}{labels for x axis}
 
 \item{xticksadj}{alignment for custom labels}
 }

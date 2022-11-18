@@ -9,7 +9,7 @@
 rm(list = ls())
 
 library(fxl)
-library(tidyverse)
+library(dplyr)
 
 koffarnus_et_al_mod <- KoffarnusEtAl2011 %>%
   mutate(facet = ifelse(ID < 40,

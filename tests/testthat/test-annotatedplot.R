@@ -1,16 +1,13 @@
 
-### covr::package_coverage()
-### covr::report()
-
-library(dplyr)
-library(fxl)
+require(dplyr)
+require(fxl)
 
 current_data <- Gilroyetal2019Tx %>%
   mutate(Condition = paste0(Condition, PhaseNum)) %>%
   rename(Function = Participant,
          AFCR = FCR,
          EFCR = FCR2) %>%
-  dplyr::select(-c(PhaseNum, LineOff))
+  select(-c(PhaseNum, LineOff))
 
 describe("Annotated Plot Style", {
   it("Should render as normal", {
@@ -376,6 +373,5 @@ describe("Annotated Plot Style", {
         print(),
       NA
     )
-
     })
   })

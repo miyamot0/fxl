@@ -6,8 +6,8 @@
 # no frills multiple baseline plot
 #
 
-library(dplyr) # included for infix logic
 library(fxl) # core plotting methods
+library(magrittr)
 
 data <- Gilroyetal2015
 

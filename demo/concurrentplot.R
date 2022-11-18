@@ -6,8 +6,8 @@
 # illustrated across participants using shared phase change lines
 #
 
-library(dplyr) # included for %>% logic
 library(fxl) # core plotting methods
+library(magrittr)
 
 data <- Gilroyetal2021
 

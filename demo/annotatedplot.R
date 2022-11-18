@@ -1,4 +1,15 @@
+# Shawn Gilroy, 2021 GPLv2+
+#
+# demo/annotatedplot.R
+#
+# This file illustrates how to construct a figure,
+# with a combination of labels and arrows to simulate
+# conventions common in SCRDs
+#
 
+library(fxl) # core plotting methods
+library(dplyr)
+library(magrittr)
 
 current_data <- Gilroyetal2019Tx %>%
   mutate(Condition = paste0(Condition, PhaseNum)) %>%
