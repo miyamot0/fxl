@@ -303,8 +303,7 @@ print.fxl <- function(x, ...) {
 
             current_layer$lines[[pname]][[current_index]][["botDraw"]] <- cnvrt_coords(
               tmp_x2,
-              -((x$dims[["max.local.y"]] -
-                   x$dims[["min.local.y"]]) * 0.04))
+              tmp_y2)
 
             tmp_point_top_dev <- cnvrt_coords(
               current_layer$lines[[pname]][[current_index]][["topDraw"]]$dev,
