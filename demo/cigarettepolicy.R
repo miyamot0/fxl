@@ -179,11 +179,10 @@ scr_legend(
   text_col = "black",
   horiz = FALSE,
   box_lty = 0
+) %>%
+scr_save(
+  name = "../man/figures/cigarettepolicy.svg",
+  format = "svg",
+  height = 6,
+  width = 9
 )
-# %>%
-# scr_save(
-#   name = "../man/figures/cigarettepolicy.svg",
-#   format = "svg",
-#   height = 6,
-#   width = 9
-# )

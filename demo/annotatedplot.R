@@ -25,15 +25,28 @@ scr_plot(current_data,
     p = Condition,
     facet = Function
   ),
-  mai = c(0.375, 0.375, 0.1, 0),
-  omi = c(0.25, 0.25, 0.25, 0.05)
+  mai = c(0.375, 0.375, 0.25, .25),
+  omi = c(0.25, 0.25, 0.25, 0.25)
 ) %>%
 scr_yoverride(
-  c(0, 3)
-) %>%
+  list(
+    "Attention" = list(
+      y0 = -0.125,
+      y1 = 3,
+      yticks = c(0, 1, 2, 3)
+    ),
+    "Demand" = list(
+      y0 = -0.125,
+      y1 = 3,
+      yticks = c(0, 1, 2, 3)
+    )
+)) %>%
 scr_xoverride(
-  c(0, 100),
-  xdelta = 10
+  c(-1, 100),
+  xdelta = 10,
+  xticks = c(1,
+             seq(10, 100,
+                 by = 10))
 ) %>%
 scr_lines(
   size = 1
@@ -81,11 +94,13 @@ scr_plines_mbd(
     "A" = list(
       "Attention" = list(
         x1 = 13.5,
-        y1 = 3.15
+        y1 = 3.15,
+        y2 = -0.125
       ),
       "Demand" = list(
         x1 = 20,
-        y1 = 3)
+        y1 = 3,
+        y2 = -0.125)
     )
   )
 ) %>%
@@ -375,4 +390,10 @@ scr_guide_line(
       y0 = 0.1
     )
   )
+) %>%
+scr_save(
+  name = "../man/figures/annotatedplot.svg",
+  format = "svg",
+  height = 6,
+  width = 9
 )

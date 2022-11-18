@@ -90,8 +90,8 @@ print.fxl <- function(x, ...) {
 
       x_axis_ticks <- x$dims[["xticks"]][[current_facet]]
 
-      x$dims[["min.local.x"]] <- min(
-        as.numeric(x$dims[["xticks"]][[current_facet]]))
+      #x$dims[["min.local.x"]] <- min(
+      #  as.numeric(x$dims[["xticks"]][[current_facet]]))
       x$dims[["max.local.x"]] <- max(
         as.numeric(x$dims[["xticks"]][[current_facet]]))
     }

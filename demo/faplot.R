@@ -21,7 +21,14 @@ scr_plot(
   mai = c(0.5, 0.5, 0.1, 0.5),
   omi = c(0.25, 0.25, 0.25, 0.25)
 ) %>%
-scr_yoverride(c(0, 2)) %>% # manually override y-axis
+scr_xoverride(c(-.5, 15)) %>%
+scr_yoverride(c(-.05, 2),
+              yticks = c(0, 0.5, 1, 1.5, 2),
+              ytickslabs = c("0",
+                             "0.5",
+                             "1",
+                             "1.5",
+                             "2")) %>% # manually override y-axis
 scr_lines(size = 1) %>% # plot lines, using x/y from aesthetics
 scr_points(
   cex = 2, # plot points, using x/y from aesthetics
@@ -78,11 +85,9 @@ scr_legend(
   cex = 1.25,
   text_col = "black",
   horiz = FALSE,
-  box_lty = 0)
-
-# %>%
-#   scr_save(name = "fafigure.svg",
-#            format = "svg",
-#            units = "in",
-#            height = 6,
-#            width = 9)
+  box_lty = 0) %>%
+  scr_save(name = "../man/figures/fafigure.svg",
+           format = "svg",
+           units = "in",
+           height = 6,
+           width = 9)

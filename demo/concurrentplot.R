@@ -21,7 +21,7 @@ scr_plot(
   ),
   mai = c(0.375,
           0.375,
-          0.1,
+          0.175,
           0.1),
   omi = c(0.25,
           0.25,
@@ -29,21 +29,25 @@ scr_plot(
           0.25)
 ) %>%
 scr_xoverride(
-  c(1, 25)
+  c(0.5, 25),
+  xticks = 1:25
 ) %>%
 scr_yoverride(
   list(
     "John" = list(
-      y0 = 0,
-      y1 = 20
+      y0 = -1,
+      y1 = 20,
+      yticks = c(0, 5, 10, 15, 20)
     ),
     "Anthony" = list(
-      y0 = 0,
-      y1 = 10
+      y0 = -0.5,
+      y1 = 10,
+      yticks = c(0, 5, 10)
     ),
     "Charles" = list(
-      y0 = 0,
-      y1 = 20
+      y0 = -1,
+      y1 = 20,
+      yticks = c(0, 5, 10, 15, 20)
     )
   ),
   ydelta = 5
@@ -99,7 +103,7 @@ scr_label_facet(
   x = 25,
   labels = list(
     "John" = list(
-      y = 5
+      y = 2.5
     ),
     "Anthony" = list(
       y = 12
@@ -120,7 +124,8 @@ scr_plines_mbd(lines = list(
     ),
     "Charles" = list(
       x1 = 3.5,
-      y1 = 20
+      y1 = 20,
+      y2 = -1
     )
   ),
   "B" = list(
@@ -134,7 +139,8 @@ scr_plines_mbd(lines = list(
     ),
     "Charles" = list(
       x1 = 8.5,
-      y1 = 20
+      y1 = 20,
+      y2 = -1
     )
   ),
   "C" = list(
@@ -148,7 +154,8 @@ scr_plines_mbd(lines = list(
     ),
     "Charles" = list(
       x1 = 11.5,
-      y1 = 20
+      y1 = 20,
+      y2 = -1
     )
   ),
   "D" = list(
@@ -162,7 +169,8 @@ scr_plines_mbd(lines = list(
     ),
     "Charles" = list(
       x1 = 16.5,
-      y1 = 20
+      y1 = 20,
+      y2 = -1
     )
   ),
   "E" = list(
@@ -177,16 +185,17 @@ scr_plines_mbd(lines = list(
     ),
     "Charles" = list(
       x1 = 19.5,
-      y1 = 20
+      y1 = 20,
+      y2 = -1
     )
   )
 )) %>%
 scr_xlabel("Session") %>%
-scr_ylabel("Frequency (Responses, Reinforcers Delivered)") %>%
+scr_ylabel("         Frequency (Responses, Reinforcers Delivered)") %>%
 scr_title("Individual Evaluations of Reinforcer Efficacy and Elasticity across Reinforcers") %>%
 scr_legend(
   panel = "John",
-  position = "topright",
+  position = "right",
   legend = c("Responses Observed",
              "Reinforcers Produced"),
   col = c("black",
@@ -205,13 +214,9 @@ scr_legend(
   text_col = "black",
   horiz = FALSE,
   box_lty = 0
-)
-
-# Optional Save
-#
-# %>%
-#   scr_save(name = "concurrentfigure.svg",
-#            format = "svg",
-#            units = "in",
-#            height = 6,
-#            width = 9)
+) %>%
+  scr_save(name = "../man/figures/concurrentfigure.svg",
+           format = "svg",
+           units = "in",
+           height = 6,
+           width = 9)

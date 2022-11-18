@@ -32,13 +32,13 @@ scr_plot(
     0.0,
     0.0,
     0.35,
-    0.0
+    0.1
   ),
   omi = c(
     0.725,
     0.725,
     0.0,
-    0.0
+    0.1
   )
 ) %>%
 scr_yoverride(list(# manually override y-axis and tick interval

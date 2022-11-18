@@ -19,11 +19,11 @@ scr_plot(
     facet = Participant
   ),
   ncol = 2,
-  mai = c(0.3, 0.3, 0.0, 0.1),
-  omi = c(0.25, 0.25, 0.1, 0)
+  mai = c(0.3, 0.3, 0.1, 0.1),
+  omi = c(0.25, 0.25, 0.1, 0.1)
 ) %>%
 scr_xoverride(
-  c(1, 30),
+  c(0, 30),
   xdraws = c(
     "Eva",
     "Cali",
@@ -240,9 +240,9 @@ scr_label_phase(
   )
 ) %>%
 scr_xlabel("Choice Training Session") %>%
-scr_ylabel("Cumulative Number of Selections") %>%
+scr_ylabel("     Cumulative Number of Selections") %>%
 scr_legend(
-  position = "topright",
+  position = "right",
   panel = "Eli",
   legend = c(
     "KM",
@@ -252,8 +252,8 @@ scr_legend(
     "black"
   ),
   pt_bg = c(
-    "black",
-    "black"
+    "white",
+    "white"
   ),
   lty = c(
     1,
@@ -269,17 +269,9 @@ scr_legend(
   text_col = "black",
   horiz = FALSE,
   box_lty = 1
-)
-
-#%>%
-# scr_save(units = "in",
-#          name = "cumulativeplot.svg",
-#          format = "svg",
-#          width = 8,
-#          height = 6)  %>%
-# scr_save(units = "in",
-#          name = "cumulativeplot.png",
-#          format = "png",
-#          width = 8,
-#          height = 6,
-#          res = 300)
+) %>%
+scr_save(units = "in",
+         name = "../man/figures/cumulativeplot.svg",
+         format = "svg",
+         width = 9,
+         height = 6)
