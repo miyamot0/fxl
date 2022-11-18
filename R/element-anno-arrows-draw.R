@@ -13,7 +13,7 @@ draw_arrows <- function(core_frame,
                         facet_name) {
 
   if (current_layer$facet == as.character(facet_name)) {
-    for (aindex in seq_along(length(current_layer$arrows))) {
+    for (aindex in seq_len(length(current_layer$arrows))) {
       current_arrow <- current_layer$arrows[[aindex]]
 
       arrows(x0     = as.numeric(current_arrow[["x0"]]),

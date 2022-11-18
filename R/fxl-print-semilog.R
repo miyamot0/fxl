@@ -207,7 +207,7 @@ print.fxlsemilog <- function(x, ...) {
          col = "black")
 
   if (length(x[["layers"]]) > 0)
-    for (i in seq_along(length(x[["layers"]])))
+    for (i in seq_len(length(x[["layers"]])))
       if (x$layers[[i]]$type == "point")
         draw_points(x, x$layers[[i]], NA, zero_axis = TRUE)
 

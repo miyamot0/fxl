@@ -12,7 +12,7 @@
 draw_brackets <- function(core_frame, current_layer, facet_name) {
   if (current_layer$facet == as.character(facet_name)) {
 
-    for (bindex in seq_along(length(current_layer$brackets))) {
+    for (bindex in seq_len(length(current_layer$brackets))) {
       current_bracket <- current_layer$brackets[[bindex]]
 
       l_lty <- as.numeric(current_layer[["lty"]])

@@ -9,7 +9,7 @@ draw_guide_line <- function(core_frame,  current_layer, facet_name) {
 
   if (is.na(facet_name) || current_layer$facet == facet_name) {
 
-    for (gindex in seq_along(length(current_layer$coords))) {
+    for (gindex in seq_len(length(current_layer$coords))) {
       current_coords <- current_layer$coords[[gindex]]
 
       l_col <- as.character(current_layer[["col"]])

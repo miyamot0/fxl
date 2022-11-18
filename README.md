@@ -1,10 +1,8 @@
+| Coverage                                       | DOI |
+|:-----------------------------------------------|:----|
+| <a href="https://codecov.io/gh/miyamot0/fxl" > |     |
 
-| Coverage | DOI |
-|:--------|:------|
-|<a href="https://codecov.io/gh/miyamot0/fxl" >
-<img src="https://codecov.io/gh/miyamot0/fxl/branch/main/graph/badge.svg?token=V02KN70O3V"/>
-</a> | <a href="https://zenodo.org/badge/latestdoi/357648823"><img src="https://zenodo.org/badge/357648823.svg" alt="DOI"></a> |
-
+<img src="https://codecov.io/gh/miyamot0/fxl/branch/main/graph/badge.svg?token=V02KN70O3V"/> </a> \| <a href="https://zenodo.org/badge/latestdoi/357648823"><img src="https://zenodo.org/badge/357648823.svg" alt="DOI"/></a> \|
 
 # Faux XL Charting in R (fxl)
 
