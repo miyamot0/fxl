@@ -28,11 +28,11 @@ library(rlang)
 #' @param aesthetics references for data in frame
 #' @param mai margins in inches
 #' @param omi outer margins in inches
-#' @param xaxs TODO
-#' @param yaxs TODO
+#' @param xaxs x axis formatting, relative to hanging space
+#' @param yaxs y axis formatting, relative to hanging space
 #' @param ncol TODO
-#' @param family TODO
-#' @param semilog TODO
+#' @param family font family
+#' @param semilog determine if this is a semilog type of plot
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
@@ -99,17 +99,29 @@ scr_plot <- function(data,
   core_frame[["aes"]] <- enexpr(aesthetics) # Mappings
   core_frame[["data"]] <- data # Stored data
   core_frame[["dims"]] <- list(# Global dimensions
-    global.max.x = max(data[[as.character(core_frame$aes["x"])]], na.rm = TRUE),
-    global.min.x = min(data[[as.character(core_frame$aes["x"])]], na.rm = TRUE),
-    global.max.y = max(data[[as.character(core_frame$aes["y"])]], na.rm = TRUE),
-    global.min.y = min(data[[as.character(core_frame$aes["y"])]], na.rm = TRUE),
-    mai          = mai,
-    omi          = omi,
-    xaxs         = xaxs,
-    yaxs         = yaxs,
-    ncol         = ncol,
-    xdelta       = 1,
-    ydelta       = 1
+    global.max.x = max(
+      data[[as.character(core_frame$aes["x"])]],
+      na.rm = TRUE
+    ),
+    global.min.x = min(
+      data[[as.character(core_frame$aes["x"])]],
+      na.rm = TRUE
+    ),
+    global.max.y = max(
+      data[[as.character(core_frame$aes["y"])]],
+      na.rm = TRUE
+    ),
+    global.min.y = min(
+      data[[as.character(core_frame$aes["y"])]],
+      na.rm = TRUE
+    ),
+    mai    = mai,
+    omi    = omi,
+    xaxs   = xaxs,
+    yaxs   = yaxs,
+    ncol   = ncol,
+    xdelta = 1,
+    ydelta = 1
   )
 
   core_frame[["labs"]] <- list(# Presumed labels, blank title by default
@@ -123,7 +135,7 @@ scr_plot <- function(data,
 
   core_frame[["family"]] <- family
 
-  class(core_frame) <- c("fxl")                   # Apply a class name (to override print)
+  class(core_frame) <- c("fxl")  # Apply a class name (to override print)
 
   if (semilog) class(core_frame) <- c("fxlsemilog")
 

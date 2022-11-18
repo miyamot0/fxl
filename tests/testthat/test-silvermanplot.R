@@ -23,11 +23,11 @@ describe("Annotated Plot Style", {
 
 scr_plot(
   koffarnus_et_al_mod,
-  aesthetics = expr(list(
+  aesthetics = var_map(
     x = X,
     y = ID,
     p = Code,
-    facet = facet)),
+    facet = facet),
   mai = c(
     0.0,
     0.0,

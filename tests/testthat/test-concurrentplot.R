@@ -13,12 +13,12 @@ describe("Annotated Plot Style", {
     expect_error(
       scr_plot(
         data,
-        aesthetics = expr(list(
+        aesthetics = var_map(
           x = Session,
           y = Responding,
           p = Condition,
           facet = Participant
-        )),
+        ),
         mai = c(0.375,
                 0.375,
                 0.1,

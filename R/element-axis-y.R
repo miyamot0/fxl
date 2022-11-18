@@ -19,19 +19,60 @@ scr_yoverride <- function(core_frame,
                           ydraws = NULL,
                           ytickslabs = NULL) {
 
+  if (is.null(var)) {
+    stop(paste("scr_yoverride: cannot be set to a null value."))
+  }
+
   # Check if a vector and not multi-facet list
   if (is.vector(var) && !is.list(var)) {
+    isValidNumericVector(
+      object = var,
+      length = 2,
+      name = "scr_yoverride"
+    )
+
     core_frame$dims[["global.min.y"]] <- {{var[1]}}
     core_frame$dims[["global.max.y"]] <- {{var[2]}}
 
   } else {
     core_frame$dims[["local.dims"]] <- var
+
   }
 
+  isValidNumericVector(
+    object = ydelta,
+    name = "ydelta",
+    length = 1
+  )
+
   core_frame$dims[["ydelta"]] <- ydelta
+
+  if (!is.null(yticks)) {
+    isValidNumericVector(
+      object = yticks,
+      name = "yticks"
+    )
+  }
+
   core_frame$dims[["yticks"]] <- yticks
-  core_frame$dims[["ydraws"]] <- ydraws
+
+  if (!is.null(ytickslabs)) {
+    isValidCharacterVector(
+      object = ytickslabs,
+      name = "ytickslabs"
+    )
+  }
+
   core_frame$dims[["yticklabs"]] <- ytickslabs
+
+  if (!is.null(ydraws)) {
+    isValidCharacterVector(
+      object = ydraws,
+      name = "ydraws"
+    )
+  }
+
+  core_frame$dims[["ydraws"]] <- ydraws
 
   core_frame
 }

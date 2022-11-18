@@ -98,7 +98,7 @@ print.fxl <- function(x, ...) {
 
     # Y axes
 
-    y_axis_draw  <- TRUE
+    y_axis_draw  <- NULL
 
     if (!is.null(x$dims[["ydraws"]])) {
       y_axis_draw <-  current_facet %in% x$dims[["ydraws"]]
@@ -108,6 +108,8 @@ print.fxl <- function(x, ...) {
                         ceiling(x$dims[["global.max.y"]]),
                         by = x$dims[["ydelta"]])
 
+    y_axis_draw <- as.character(y_axis_ticks)
+
     if (!is.null(x$dims[["local.dims"]])) {
       x$dims[["min.local.y"]] <- x$dims[["local.dims"]][[current_facet]]$y0
       x$dims[["max.local.y"]] <- x$dims[["local.dims"]][[current_facet]]$y1
@@ -116,8 +118,13 @@ print.fxl <- function(x, ...) {
                           x$dims[["max.local.y"]],
                           by = x$dims[["ydelta"]])
 
-      if ("yticks" %in% names(x$dims[["local.dims"]][[ current_facet]]))
-        y_axis_ticks <- x$dims[["local.dims"]][[ current_facet]]$yticks
+      y_axis_draw <- as.character(y_axis_ticks)
+
+      if ("yticks" %in% names(x$dims[["local.dims"]][[current_facet]])) {
+        y_axis_ticks <- x$dims[["local.dims"]][[current_facet]][["yticks"]]
+        y_axis_draw <- as.character(y_axis_ticks)
+
+      }
 
     } else {
       x$dims[["min.local.y"]] <- ifelse(is.null(

@@ -29,10 +29,10 @@ describe("Annotated Plot Style", {
 
 scr_plot(
   semi_log_data,
-  aesthetics = expr(list(
+  aesthetics = var_map(
     x = Session,
     y = SkillA
-  )),
+  ),
   omi = c(
     0.0,
     0.35,

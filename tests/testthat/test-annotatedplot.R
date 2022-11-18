@@ -10,12 +10,12 @@ describe("Annotated Plot Style", {
   it("Should render as normal", {
     expect_error(
       scr_plot(current_data,
-               aesthetics = expr(list(
+               aesthetics = var_map(
                  x = Session,
                  y = CTB,
                  p = Condition,
                  facet = Function
-               )),
+               ),
                mai = c(0.375, 0.375, 0.1, 0),
                omi = c(0.25, 0.25, 0.25, 0.05)
       ) %>%

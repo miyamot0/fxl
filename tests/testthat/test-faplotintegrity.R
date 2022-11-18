@@ -22,11 +22,11 @@ describe("Annotated Plot Style", {
 
 scr_plot(
   data,
-  aesthetics = expr(list(
+  aesthetics = var_map(
     x = Session,
     y = CTB,
     p = Condition
-  )),
+  ),
   mai = c(
     0.5,
     0.5,

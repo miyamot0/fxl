@@ -7,7 +7,7 @@
 var_map(...)
 }
 \arguments{
-\item{vars}{map expressed relationships out}
+\item{...}{map expressed relationships out}
 }
 \value{
 list of exprs

@@ -25,15 +25,15 @@ scr_plot(
 
 \item{omi}{outer margins in inches}
 
-\item{xaxs}{TODO}
+\item{xaxs}{x axis formatting, relative to hanging space}
 
-\item{yaxs}{TODO}
+\item{yaxs}{y axis formatting, relative to hanging space}
 
 \item{ncol}{TODO}
 
-\item{family}{TODO}
+\item{family}{font family}
 
-\item{semilog}{TODO}
+\item{semilog}{determine if this is a semilog type of plot}
 }
 \description{
 Core object for establishing fxl object and layers

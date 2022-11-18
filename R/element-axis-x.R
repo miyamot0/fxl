@@ -28,15 +28,106 @@ scr_xoverride <- function(core_frame,
                           xtickslabs = NULL,
                           xticksadj = 1) {
 
-  core_frame$dims[["global.min.x"]] <- {{var[1]}}
-  core_frame$dims[["global.max.x"]] <- {{var[2]}}
+  if (is.null(var)) {
+    stop(paste("scr_xoverride: var must not be set to null."))
+  }
+
+  # Check if a vector and not multi-facet list
+  if (is.vector(var)) {
+    isValidNumericVector(
+      object = var,
+      length = 2,
+      name = "scr_xoverride"
+    )
+
+    core_frame$dims[["global.min.x"]] <- {{var[1]}}
+    core_frame$dims[["global.max.x"]] <- {{var[2]}}
+  } else {
+    stop(paste("scr_xoverride: var must be a vector"))
+  }
+
+  isValidNumericVector(
+    object = xdelta,
+    name = "xdelta",
+    length = 1
+  )
+
   core_frame$dims[["xdelta"]] <- xdelta
+
+  if (!is.null(xticks) && is.numeric(xticks)) {
+    isValidNumericVector(
+      object = xticks,
+      name = "xticks"
+    )
+  }
+
   core_frame$dims[["xticks"]] <- xticks
-  core_frame$dims[["xdraws"]] <- xdraws
-  core_frame$dims[["xlab.rotation"]] <- xrotation
-  core_frame$dims[["xlab.offset"]] <- xlabeloffset
-  core_frame$dims[["xlab.cex"]] <- xtickscex
+
+  if (!is.null(xtickslabs)) {
+    isValidCharacterVector(
+      object = xtickslabs,
+      name = "xtickslabs"
+    )
+  }
+
   core_frame$dims[["xticklabs"]] <- xtickslabs
+
+  if (!is.null(xdraws)) {
+    isValidCharacterVector(
+      object = xdraws,
+      name = "xdraws"
+    )
+  }
+
+
+  core_frame$dims[["xdraws"]] <- xdraws
+
+  if (!is.null(xrotation)) {
+    isValidNumericVector(
+      object = xrotation,
+      name = "xrotation",
+      length = 1
+    )
+
+    if (is.logical(xrotation)) {
+      stop(paste("xrotation: should not be a logical"))
+    }
+  }
+
+  core_frame$dims[["xlab.rotation"]] <- xrotation
+
+  if (!is.null(xlabeloffset)) {
+    isValidNumericVector(
+      object = xlabeloffset,
+      name = "xlabeloffset",
+      length = 1
+    )
+
+    if (is.logical(xlabeloffset)) {
+      stop(paste("xlabeloffset: should not be a logical"))
+    }
+  }
+
+  core_frame$dims[["xlab.offset"]] <- xlabeloffset
+
+  if (!is.null(xtickscex)) {
+    isValidNumericVector(
+      object = xtickscex,
+      name = "xtickscex",
+      length = 1
+    )
+  }
+
+  core_frame$dims[["xlab.cex"]] <- xtickscex
+
+  if (!is.null(xticksadj)) {
+    isValidNumericVector(
+      object = xticksadj,
+      name = "xticksadj",
+      length = 1
+    )
+  }
+
   core_frame$dims[["xticklabs.offset"]] <- xticksadj
 
   core_frame

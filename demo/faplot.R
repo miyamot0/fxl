@@ -11,40 +11,6 @@ library(magrittr)
 
 data <- Gilroyetal2019
 
-object <- var_map(
-  x = Session,
-  y = CTB,
-  p = Condition
-)
-
-
-if (is.null(object)) {
-  stop(paste("Parameter:",
-             name,
-             "cannot be set to a null value."))
-}
-
-aes <- enexpr(object)
-
-aes[['x']]
-
-if (!("x" %in% names(aes))) {
-  stop(paste("Parameter:",
-             name,
-             "must contain a mapping for x."))
-}
-
-if (!("y" %in% names(aes))) {
-  stop(paste("Parameter:",
-             name,
-             "must contain a mapping for y."))
-}
-
-
-
-
-
-
 scr_plot(
   data,
   aesthetics = var_map(
