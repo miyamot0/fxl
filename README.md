@@ -70,7 +70,7 @@ The respective figure is drawn from a single-subject evaluation conducted by [Lo
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/cumulativeplot.R)
 
-![Lozy et al 2020](man/figures/cumulativefigure.svg)
+![Lozy et al 2020](man/figures/cumulativeplot.svg)
 
 *Multi-element Designs/Functional Analyses*
 
