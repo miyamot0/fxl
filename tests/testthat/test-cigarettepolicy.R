@@ -8,9 +8,6 @@
 # findings in conjunction with statistical modeling.
 #
 
-library(dplyr) # included for logic
-library(fxl) # core plotting methods
-#library(extrafont) # using custom font
 
 #extrafont::choose_font("Open Sans")
 
@@ -33,12 +30,12 @@ describe("Annotated Plot Style", {
     expect_error(
 
 scr_plot(newFrame,
-  aesthetics = expr(list(
+  aesthetics = var_map(
     x = Time,
     y = Count1,
     p = Condition,
     facet = Facet
-  )),
+  ),
   mai = c(1, 0.6, 0, 0.25),
   #family = "Open Sans",
   omi = c(0.25, 0.25, 0.5, 0.5)
@@ -58,7 +55,11 @@ scr_yoverride(
     400, 450, 500
   ),
   ydelta = 50,
-  ytickslabs = yticks
+  ytickslabs = c(
+    "0", "50", "100", "150",
+    "200", "250", "300", "350",
+    "400", "450", "500"
+  )
 ) %>%
 scr_lines() %>%
 scr_points(

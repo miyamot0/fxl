@@ -6,9 +6,6 @@
 # chart with basic annotations
 #
 
-library(dplyr) # included for infix logic
-library(fxl) # core plotting methods
-
 min_x <- 1
 max_x <- 30
 
@@ -32,10 +29,10 @@ describe("Annotated Plot Style", {
 
 scr_plot(
   semi_log_data,
-  aesthetics = expr(list(
+  aesthetics = var_map(
     x = Session,
     y = SkillA
-  )),
+  ),
   omi = c(
     0.0,
     0.35,

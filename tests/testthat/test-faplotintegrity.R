@@ -7,9 +7,6 @@
 # integrity data mapped alongside the rates of target behavior.
 #
 
-library(dplyr) # included for infix logic
-library(fxl) # core plotting methods
-
 data <- Gilroyetal2019
 
 set.seed(65535)
@@ -25,11 +22,11 @@ describe("Annotated Plot Style", {
 
 scr_plot(
   data,
-  aesthetics = expr(list(
+  aesthetics = var_map(
     x = Session,
     y = CTB,
     p = Condition
-  )),
+  ),
   mai = c(
     0.5,
     0.5,

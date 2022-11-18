@@ -16,12 +16,12 @@ describe("Annotated Plot Style", {
 
 scr_plot(
   data = LozyEtAl2020,
-  aesthetics = expr(list(
+  aesthetics = var_map(
     x = Session,
     y = KM,
     p = Phase,
     facet = Participant
-  )),
+  ),
   ncol = 2,
   mai = c(0.3, 0.3, 0.0, 0.1),
   omi = c(0.25, 0.25, 0.1, 0)
@@ -43,11 +43,6 @@ scr_xoverride(
   )
 ) %>%
 scr_yoverride(
-  ydraws = c(
-    "Eli",
-    "Al",
-    "Eva"
-  ),
   list(
     "Eli" = list(
       y0 = 0,
@@ -79,6 +74,11 @@ scr_yoverride(
       y1 = 8,
       yticks = c(0, 2, 4, 6, 8)
     )
+  ),
+  ydraws = c(
+    "Eli",
+    "Al",
+    "Eva"
   )
 ) %>%
 scr_cumsum_lines() %>%

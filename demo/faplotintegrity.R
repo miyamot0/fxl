@@ -21,7 +21,7 @@ data$Integrity <- sample(
 
 scr_plot(
   data,
-  aesthetics = list(
+  aesthetics = var_map(
     x = Session,
     y = CTB,
     p = Condition
@@ -40,7 +40,14 @@ scr_plot(
   )
 ) %>%
 scr_yoverride(
-  c(0, 5)
+  c(-.175, 5),
+  yticks = c(0, 1, 2, 3, 4, 5),
+  ytickslabs = c("0", "1", "2", "3", "4", "5")
+) %>%
+scr_xoverride(
+  c(0.5, 15.5),
+  xticks = 1:15,
+  xtickslabs = as.character(1:15)
 ) %>%
 scr_bar_support(
   mapping = list(

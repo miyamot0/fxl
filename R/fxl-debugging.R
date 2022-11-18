@@ -37,13 +37,17 @@ isValidAestheticMapping <- function(object = NULL, name = NULL) {
   if (!("x" %in% names(aes))) {
     stop(paste("Parameter:",
                name,
-               "must contain a mapping for x."))
+               "must contain a mapping for x [",
+               names(aes),
+               "]"))
   }
 
   if (!("y" %in% names(aes))) {
     stop(paste("Parameter:",
                name,
-               "must contain a mapping for y."))
+               "must contain a mapping for y [",
+               names(aes),
+               "]"))
   }
 }
 

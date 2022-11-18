@@ -28,7 +28,7 @@ semi_log_data <- data.frame(
 
 scr_plot(
   semi_log_data,
-  aesthetics = list(
+  aesthetics = var_map(
     x = Session,
     y = SkillA
   ),

@@ -30,12 +30,12 @@ yticks <- c(
 )
 
 scr_plot(newFrame,
-  aesthetics = expr(list(
+  aesthetics = var_map(
     x = Time,
     y = Count1,
     p = Condition,
     facet = Facet
-  )),
+  ),
   mai = c(0.85, 0.6, 0, 0.25),
   family = "Open Sans",
   omi = c(0.25, 0.25, 0.5, 0.5)
@@ -179,11 +179,10 @@ scr_legend(
   text_col = "black",
   horiz = FALSE,
   box_lty = 0
+) %>%
+scr_save(
+  name = "../man/figures/cigarettepolicy.svg",
+  format = "svg",
+  height = 6,
+  width = 9
 )
-# %>%
-# scr_save(
-#   name = "../man/figures/cigarettepolicy.svg",
-#   format = "svg",
-#   height = 6,
-#   width = 9
-# )

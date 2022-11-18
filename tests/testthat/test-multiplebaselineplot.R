@@ -6,9 +6,6 @@
 # no frills multiple baseline plot
 #
 
-library(dplyr) # included for infix logic
-library(fxl) # core plotting methods
-
 data <- Gilroyetal2015
 
 describe("Annotated Plot Style", {
@@ -17,12 +14,12 @@ describe("Annotated Plot Style", {
 
 scr_plot(
   data,
-  aesthetics = expr(list(
+  aesthetics = var_map(
     x = Session,
     y = Responding,
     p = Condition,
     facet = Participant
-  )),
+  ),
   mai = c(
     0.375,
     0.375,

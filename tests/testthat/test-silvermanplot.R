@@ -6,11 +6,6 @@
 # silverman-style chart with basic annotations
 #
 
-rm(list = ls())
-
-library(fxl)
-library(dplyr)
-
 koffarnus_et_al_mod <- KoffarnusEtAl2011 %>%
   mutate(facet = ifelse(ID < 40,
     "1",
@@ -28,11 +23,11 @@ describe("Annotated Plot Style", {
 
 scr_plot(
   koffarnus_et_al_mod,
-  aesthetics = expr(list(
+  aesthetics = var_map(
     x = X,
     y = ID,
     p = Code,
-    facet = facet)),
+    facet = facet),
   mai = c(
     0.0,
     0.0,

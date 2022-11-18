@@ -1,33 +1,27 @@
-
-| Coverage | DOI |
-|:--------|:------|
-|<a href="https://codecov.io/gh/miyamot0/fxl" >
-<img src="https://codecov.io/gh/miyamot0/fxl/branch/main/graph/badge.svg?token=V02KN70O3V"/>
-</a> | <a href="https://zenodo.org/badge/latestdoi/357648823"><img src="https://zenodo.org/badge/357648823.svg" alt="DOI"></a> |
-
+<img src="https://codecov.io/gh/miyamot0/fxl/branch/main/graph/badge.svg?token=V02KN70O3V"/> <img src="https://zenodo.org/badge/357648823.svg" alt="DOI"/>
 
 # Faux XL Charting in R (fxl)
 
-The *fxl* package was designed to support transparent, replicable, and efficently-drawn figure in single-case research design. In addition to be easily archived, effortlessly drawn, and automated, the R ecosystem supports the drawing of publication-quality figures that exceed traditional tools (e.g., Microsoft Excel). For instance, the figures output by *fxl* can be lossless by default using a variety of vector-based drawing formats as well as publication-quality rasters.
+The *fxl* package was designed to support transparent, replicable, and efficently-drawn figures to automate research and practice using single-case research designs. In addition to be easily archived, effortlessly drawn, and readily automated, the R ecosystem supports drawing publication-quality figures at with densities that exceed traditional tools (e.g., Microsoft Excel). Figures are available in lossless, lossy, vector, and a variety of raster formats.
 
-Features include:
+Some relevant features include:
 
--   pixel-perfect phase change lines (yes, across different plots/facets)
+-   Pixel-perfect phase change lines (yes, across different plots/facets; no more hacks)
 -   Support for various single-subject designs (reversal, multiple-baseline, multielement)
--   Various annotations common in single-subject designs (e.g., arrows, brackets, style condition changes)
--   Options to output figures in various formats
+-   Accommodation for various annotations common in single-subject designs (e.g., arrows, brackets, style condition changes)
 -   Functional programming style (modeled after ggplot)
 
 ### Version
 
 ------------------------------------------------------------------------
 
-0.3.0 (beta)
+0.3.1 (beta)
 
 ### Changelog
 
 ------------------------------------------------------------------------
 
+-   0.3.1 - Updates for padding, margins, rich expression mappings
 -   0.3.0 - Add in demo for completed silverman-style plot
 -   0.2.0 - Add in various demos (e.g., multiple baseline, annotated reversal)
 -   0.1.0 - Prep for initial submission to CRAN
@@ -44,7 +38,7 @@ The figure below is from a single-subject evaluation conducted by [Gilroy et al.
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/annotatedplot.R)
 
-![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/annotatedfigure2.svg?raw=true)
+![Gilroy et al 2019](man/figures/annotatedplot.svg)
 
 *Concurrent Reversal Designs (Across Participants)*
 
@@ -52,7 +46,7 @@ The figure below is from a single-subject evaluation conducted by [Gilroy et al.
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/concurrentplot.R)
 
-![Gilroy et al 2021](https://github.com/miyamot0/fxl/blob/main/man/figures/concurrentfigure.svg?raw=true)
+![Gilroy et al 2021](man/figures/concurrentfigure.svg)
 
 *Multiple Baseline Designs*
 
@@ -60,7 +54,7 @@ The respective figure is drawn from a single-subject evaluation conducted by [Gi
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/multiplebaselineplot.R)
 
-![Gilroy et al 2015](https://github.com/miyamot0/fxl/blob/main/man/figures/multiplebaselinefigure.svg?raw=true)
+![Gilroy et al 2015](man/figures/multiplebaselinefigure.svg)
 
 *Semi-logarithmic (Celeration) Charting with Annotations*
 
@@ -76,7 +70,7 @@ The respective figure is drawn from a single-subject evaluation conducted by [Lo
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/cumulativeplot.R)
 
-![Lozy et al 2020](https://github.com/miyamot0/fxl/blob/main/man/figures/cumulativefigure.svg?raw=true)
+![Lozy et al 2020](man/figures/cumulativeplot.svg)
 
 *Multi-element Designs/Functional Analyses*
 
@@ -84,7 +78,7 @@ The last example is constructed from a functional analysis of severe behavior co
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/faplot.R)
 
-![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/fafigure.svg?raw=true)
+![Gilroy et al 2019](man/figures/fafigure.svg)
 
 *Multi-element Designs/Functional Analyses with corresponding Integrity*
 

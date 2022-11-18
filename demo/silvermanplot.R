@@ -23,7 +23,7 @@ koffarnus_et_al_mod <- KoffarnusEtAl2011 %>%
 
 scr_plot(
   koffarnus_et_al_mod,
-  aesthetics = list(
+  aesthetics = var_map(
     x = X,
     y = ID,
     p = Code,
@@ -32,13 +32,13 @@ scr_plot(
     0.0,
     0.0,
     0.35,
-    0.0
+    0.1
   ),
   omi = c(
     0.725,
     0.725,
     0.0,
-    0.0
+    0.1
   )
 ) %>%
 scr_yoverride(list(# manually override y-axis and tick interval
