@@ -9,24 +9,21 @@ describe("scr_plot", {
     it("Should PASS if data is a dataframe", {
       expect_error(
         scr_plot(data = current_data,
-                 aesthetics = expr(
-                   list(
-                     x = sessions,
-                     y = behavior
-                   )
-                 )),
+                 aesthetics = var_map(
+                   x = sessions,
+                   y = behavior
+                 ),
+                ),
         NA
       )
     })
 
     it("Should fail if data MISSING", {
       expect_error(
-        scr_plot(aesthetics = expr(
-          list(
-            x = sessions,
-            y = behavior
-          )
-        )),
+        scr_plot(aesthetics = var_map(
+          x = sessions,
+          y = behavior
+        ),),
         "argument \"data\" is missing, with no default"
       )
     })
@@ -35,12 +32,10 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = NULL,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
-        )),
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
+          )),
         "Parameter: data should NOT be set to a null value."
       )
     })
@@ -52,11 +47,9 @@ describe("scr_plot", {
             sessions = numeric(0),
             behavior = numeric(0)
           ),
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           )),
         "Parameter: data contains no data."
       )
@@ -72,10 +65,8 @@ describe("scr_plot", {
     it("Should fail if aesthetics [y] MISSING", {
       expect_error(
         scr_plot(data = current_data,
-                 aesthetics = expr(
-                   list(
-                     x = sessions,
-                   )
+                 aesthetics = var_map(
+                   x = sessions
                  )),
         "Parameter: aesthetics must contain a mapping for y."
       )
@@ -84,10 +75,8 @@ describe("scr_plot", {
     it("Should fail if aesthetics [x] MISSING", {
       expect_error(
         scr_plot(data = current_data,
-                 aesthetics = expr(
-                   list(
-                     y = behavior
-                   )
+                 aesthetics = var_map(
+                   y = behavior
                  )),
         "Parameter: aesthetics must contain a mapping for x."
       )
@@ -99,11 +88,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           mai = NULL
         ),
@@ -115,11 +102,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           mai = c("1", "1", "1", "1")
         ),
@@ -133,11 +118,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           omi = NULL
         ),
@@ -149,11 +132,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           omi = c("1", "1", "1", "1")
         ),
@@ -167,11 +148,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           xaxs = "i"
         ),
@@ -181,11 +160,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           xaxs = "r"
         ),
@@ -197,11 +174,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           xaxs = "p"
         ),
@@ -215,11 +190,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           yaxs = "i"
         ),
@@ -229,11 +202,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           yaxs = "r"
         ),
@@ -245,11 +216,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           yaxs = TRUE
         ),
@@ -261,11 +230,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           yaxs = "p"
         ),
@@ -279,11 +246,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           family = "serif"
         ),
@@ -295,11 +260,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           family = NULL
         ),
@@ -311,11 +274,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           family = 1
         ),
@@ -329,11 +290,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           semilog = FALSE
         ),
@@ -345,11 +304,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           semilog = TRUE
         ),
@@ -361,11 +318,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           semilog = NULL
         ),
@@ -377,11 +332,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           semilog = "TRUE"
         ),
@@ -393,11 +346,9 @@ describe("scr_plot", {
       expect_error(
         scr_plot(
           data = current_data,
-          aesthetics = expr(
-            list(
-              x = sessions,
-              y = behavior
-            )
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
           ),
           semilog = c(TRUE, TRUE)
         ),
