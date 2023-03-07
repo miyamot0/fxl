@@ -10,6 +10,8 @@
 #' @export
 draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
 
+  #TODO: throw error if values aren't bounded between 0 and 100
+
   if (is.na(facet_name))  current_data   <- core_frame$data
   else                   current_data   <- core_frame$data[which(
     core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
