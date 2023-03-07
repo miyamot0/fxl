@@ -41,6 +41,8 @@ scr_legend <- function(core_frame,
                        text_col = "black",
                        border = "black") {
 
+  #TODO: lots to add
+
   core_frame$legendpars <- list()
   core_frame$legendpars[["panel"]] <- panel
   core_frame$legendpars[["adj"]] <- adj

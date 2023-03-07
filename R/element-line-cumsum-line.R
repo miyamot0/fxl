@@ -19,8 +19,20 @@ scr_cumsum_lines <- function(core_frame,
 
   newlayer <- list()
   newlayer[["type"]] <- "cum_sum_lines"
+
+  isValidNumericVector(
+    object = lty,
+    name = "lty"
+  )
+
   newlayer[["lty"]] <- lty
   newlayer[["color"]] <- color
+
+  isValidNumericVector(
+    object = size,
+    name = "size"
+  )
+
   newlayer[["size"]] <- size
   newlayer[["aesthetics"]] <- NA
 

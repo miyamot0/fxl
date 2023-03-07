@@ -14,6 +14,12 @@ scr_ylabel <- function(core_frame,
                        line = 0) {
 
   core_frame$labs[["ylab"]] <- {{ var }}
+
+  isValidNumericVector(
+    object = line,
+    name = "line"
+  )
+
   core_frame$labs[["outer.y.line"]] <- line
 
   core_frame

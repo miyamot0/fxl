@@ -18,8 +18,20 @@ scr_lines <- function(core_frame,
 
   newlayer <- list()
   newlayer[["type"]] <- "line"
+
+  isValidNumericVector(
+    object = lty,
+    name = "lty"
+  )
+
   newlayer[["lty"]] <- lty
   newlayer[["color"]] <- color
+
+  isValidNumericVector(
+    object = size,
+    name = "size"
+  )
+
   newlayer[["size"]] <- size
   newlayer[["aesthetics"]] <- NA
 

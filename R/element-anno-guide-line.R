@@ -19,12 +19,26 @@ scr_guide_line <- function(core_frame,
                            lty = 1,
                            lwd = 1) {
 
+  #TODO: Tests for remaining params
+
   newlayer <- list()
   newlayer[["type"]] <- "guide_line"
   newlayer[["coords"]] <- coords
   newlayer[["col"]] <- color
   newlayer[["facet"]] <- facet
+
+  isValidNumericVector(
+    object = lty,
+    name = "lty"
+  )
+
   newlayer[["lty"]] <- lty
+
+  isValidNumericVector(
+    object = lwd,
+    name = "lwd"
+  )
+
   newlayer[["lwd"]] <- lwd
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer

@@ -27,15 +27,47 @@ scr_arrows <- function(core_frame,
                        lwd = 1,
                        lty = 1) {
 
+  #TODO: Tests for remaining params
+
   newlayer <- list()
   newlayer[["type"]] <- "arrows"
   newlayer[["facet"]] <- facet
   newlayer[["arrows"]] <- arrows
   newlayer[["color"]] <- color
+
+  isValidNumericVector(
+    object = length,
+    name = "length"
+  )
+
   newlayer[["length"]] <- length
+
+  isValidNumericVector(
+    object = angle,
+    name = "angle"
+  )
+
   newlayer[["angle"]] <- angle
+
+  isValidNumericVector(
+    object = code,
+    name = "code"
+  )
+
   newlayer[["code"]] <- code
+
+  isValidNumericVector(
+    object = lwd,
+    name = "lwd"
+  )
+
   newlayer[["lwd"]] <- lwd
+
+  isValidNumericVector(
+    object = lty,
+    name = "lty"
+  )
+
   newlayer[["lty"]] <- lty
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer

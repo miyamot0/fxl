@@ -25,16 +25,47 @@ scr_brackets <- function(core_frame,
                          lwd = 1,
                          lty = 1) {
 
+  #TODO: Tests for remaining params
+
   newlayer <- list()
   newlayer[["type"]] <- "brackets"
   newlayer[["facet"]] <- facet
   newlayer[["brackets"]] <- brackets
   newlayer[["color"]] <- color
   newlayer[["length"]] <- length
+
+  isValidNumericVector(
+    object = length,
+    name = "length"
+  )
+
   newlayer[["angle"]] <- angle
+
+  isValidNumericVector(
+    object = angle,
+    name = "angle"
+  )
+
   newlayer[["code"]] <- code
+
+  isValidNumericVector(
+    object = code,
+    name = "code"
+  )
+
   newlayer[["lwd"]] <- lwd
+
+  isValidNumericVector(
+    object = lwd,
+    name = "lwd"
+  )
+
   newlayer[["lty"]] <- lty
+
+  isValidNumericVector(
+    object = lty,
+    name = "lty"
+  )
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 

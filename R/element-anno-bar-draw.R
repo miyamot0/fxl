@@ -11,6 +11,7 @@
 draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
 
   #TODO: throw error if values aren't bounded between 0 and 100
+  #TODO: need to reference supplied width
 
   if (is.na(facet_name))  current_data   <- core_frame$data
   else                   current_data   <- core_frame$data[which(
@@ -37,8 +38,6 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
   label_y <- as.character(local_aesthetics["y"])
 
   if (current_layer$label != "")  label_y <- as.character(current_layer$label)
-
-  opar <- par()
 
   y_axis_ticks <- c(0 * max_y,
                     0.25 * max_y,
@@ -70,13 +69,11 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
     }
   }
 
-  axis(side = 4,
-       las = 1,
-       at = pretty(range(c(0, current_data_slice[, as.character(local_aesthetics["y"])]))))
+#  axis(side = 4,
+#       las = 1,
+#       at = pretty(range(c(0, current_data_slice[, as.character(local_aesthetics["y"])]))))
 
   mtext(label_y,
         side = 4,
         outer = TRUE)
-
-  par(opar)
 }

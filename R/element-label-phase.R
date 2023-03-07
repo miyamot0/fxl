@@ -26,7 +26,19 @@ scr_label_phase <- function(core_frame,
   newlayer <- list()
   newlayer[["type"]] <- "phase_label"
   newlayer[["color"]] <- color
+
+  isValidNumericVector(
+    object = cex,
+    name = "cex"
+  )
+
   newlayer[["cex"]] <- cex
+
+  isValidNumericVector(
+    object = adj,
+    name = "adj"
+  )
+
   newlayer[["adj"]] <- adj
   newlayer[["x"]] <- x
   newlayer[["y"]] <- y

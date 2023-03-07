@@ -23,7 +23,19 @@ scr_label_facet <- function(core_frame,
   newlayer <- list()
   newlayer[["type"]] <- "facet_label"
   newlayer[["color"]] <- color
+
+  isValidNumericVector(
+    object = cex,
+    name = "cex"
+  )
+
   newlayer[["cex"]] <- cex
+
+  isValidNumericVector(
+    object = adj,
+    name = "adj"
+  )
+
   newlayer[["adj"]] <- adj
   newlayer[["x"]] <- x
   newlayer[["y"]] <- y

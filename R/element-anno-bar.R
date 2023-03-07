@@ -18,11 +18,31 @@ scr_bar_support <- function(core_frame,
                             label = "",
                             width = 0.8) {
 
+  #TODO: Tests for remaining params
+
   newlayer <- list()
   newlayer[["type"]] <- "bar_support"
+
+  isValidNumericVector(
+    object = alpha,
+    name = "alpha"
+  )
+
   newlayer[["alpha"]] <- alpha
   newlayer[["color"]] <- color
+
+  isValidCharacterVector(
+    object = label,
+    name = "label"
+  )
+
   newlayer[["label"]] <- label
+
+  isValidNumericVector(
+    object = width,
+    name = "width"
+  )
+
   newlayer[["width"]] <- width
   newlayer[["aesthetics"]] <- NA
 
