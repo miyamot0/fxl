@@ -39,23 +39,21 @@ scr_plot(
     0.25
   )
 ) %>%
-scr_yoverride(
-  c(-.175, 5),
+scr_yoverride(c(-.175, 5),
   yticks = c(0, 1, 2, 3, 4, 5),
   ytickslabs = c("0", "1", "2", "3", "4", "5")
 ) %>%
-scr_xoverride(
-  c(0.5, 15.5),
+scr_xoverride(c(0.5, 15.5),
   xticks = 1:15,
   xtickslabs = as.character(1:15)
 ) %>%
 scr_bar_support(
-  mapping = list(
-    x = Session,
-    y = Integrity
-  ),
-  color = rgb(.8, .8, .8, alpha = 1),
-  label = "Procedural Fidelity"
+ mapping = list(
+   x = Session,
+   y = Integrity
+ ),
+ color = rgb(.8, .8, .8, alpha = 1),
+ label = "Procedural Fidelity"
 ) %>%
 scr_lines(
   size = 1
@@ -95,8 +93,8 @@ scr_legend(
   bg = "white",
   pt_bg = c(
     "black", # color of markers (ordered)
-    "black",
-    "black",
+    "white",
+    "white",
     "black"
   ),
   lty = c(1, 1, 1, 1), # line types (ordered)

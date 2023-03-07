@@ -5,9 +5,10 @@
 #' @param core_frame fxl object
 #' @param current_layer layer to be drawn
 #' @param facet_name name of facet
+#' @param max_y top of y axis to match
 #'
 #' @export
-draw_bar_support <- function(core_frame,  current_layer, facet_name) {
+draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
 
   if (is.na(facet_name))  current_data   <- core_frame$data
   else                   current_data   <- core_frame$data[which(
@@ -37,27 +38,18 @@ draw_bar_support <- function(core_frame,  current_layer, facet_name) {
 
   opar <- par()
 
-  # Add on to "new" plot
-  par(new = TRUE,
-      xaxs   = "r",
-      yaxs   = "r",
-      xpd    = NA)
+  y_axis_ticks <- c(0 * max_y,
+                    0.25 * max_y,
+                    0.5 * max_y,
+                    0.75 * max_y,
+                    1 * max_y)
 
-  plot(NULL,
-       axes = FALSE,
-       xlim = c(core_frame$dims[["min.local.x"]],
-                core_frame$dims[["max.local.x"]]),
-       ylim = c(0, 100),
-       xlab = "",
-       ylab = "",
-       frame.plot = FALSE,
-       las = 1,
-       xaxt = "n",
-       yaxt = "n")
+  y_axis_draw <- c("0", "25", "50", "75", "100")
 
-  box(bty = "U")
-
-  p_off <- current_layer$width / 2
+  axis(4,
+       labels = y_axis_draw,
+       las    = 1,
+       at     = y_axis_ticks)
 
   for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
 
@@ -65,10 +57,13 @@ draw_bar_support <- function(core_frame,  current_layer, facet_name) {
 
     for (row in seq_len(nrow(current_data_slice))) {
 
-      rect(current_data_slice[row, as.character(local_aesthetics["x"])] - p_off,
+      mod_y = current_data_slice[row, as.character(local_aesthetics["y"])] / 100
+      mod_y = mod_y * max_y
+
+      rect(current_data_slice[row, as.character(local_aesthetics["x"])] - 0.25,
            0,
-           current_data_slice[row, as.character(local_aesthetics["x"])] + p_off,
-           current_data_slice[row, as.character(local_aesthetics["y"])],
+           current_data_slice[row, as.character(local_aesthetics["x"])] + 0.25,
+           mod_y,
            col = current_layer$color)
     }
   }

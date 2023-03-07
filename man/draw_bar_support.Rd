@@ -4,7 +4,7 @@
 \alias{draw_bar_support}
 \title{draw_bar_support}
 \usage{
-draw_bar_support(core_frame, current_layer, facet_name)
+draw_bar_support(core_frame, current_layer, facet_name, max_y)
 }
 \arguments{
 \item{core_frame}{fxl object}
@@ -12,6 +12,8 @@ draw_bar_support(core_frame, current_layer, facet_name)
 \item{current_layer}{layer to be drawn}
 
 \item{facet_name}{name of facet}
+
+\item{max_y}{top of y axis to match}
 }
 \description{
 Draw bars, but on a secondary axis

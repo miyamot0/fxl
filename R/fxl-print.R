@@ -231,7 +231,8 @@ print.fxl <- function(x, ...) {
         if (current_layer$type == "bar_support")
           draw_bar_support(x,
                            current_layer,
-                           current_facet)
+                           current_facet,
+                           x$dims[["max.local.y"]])
 
         if (current_layer$type == "cum_sum_lines")
           draw_cumsum_lines(x,
