@@ -122,9 +122,7 @@ Want to contribute? Great! Emails or PR's (worthwhile ones) are welcome.
 
 ### Todos
 
--   Condensing methods
-
--   ~~Individually-keyed styles~~
+-  Working to 100% coverage.
 
 ### License
 

@@ -189,7 +189,7 @@ describe("scr_bar_support", {
           )
         ) %>%
         print(),
-      "Parameter: alpha should NOT be set to a null value."
+      "Parameter: width should NOT be set to a null value."
     )
   })
 })
