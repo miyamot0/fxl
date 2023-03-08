@@ -4,3 +4,11 @@
 .Ruserdata
 *.png
 .DS_Store
+
+.github/*
+
+tests/testthat/Rplots.pdf
+tests/testthat/test.pdf
+tests/testthat/test.png
+tests/testthat/test.svg
+tests/testthat/test.tiff
