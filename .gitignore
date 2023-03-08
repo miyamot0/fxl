@@ -7,6 +7,9 @@
 
 .github/*
 
+demo/demo.csv
+demo/mbl.R
+
 tests/testthat/Rplots.pdf
 tests/testthat/test.pdf
 tests/testthat/test.png
