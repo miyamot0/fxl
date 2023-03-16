@@ -35,7 +35,7 @@ The *fxl* package was designed to be compatible with *RMarkdown* and *Quarto* to
 
 ## TODO: Syntax and General Code Structure
 
-The *fxl* package was constructed to use a functional approach to ...
+The *fxl* package was constructed to use a functional approach to *R* and makes heavy use of the \`\|\>\` pipe operator to streamline the expressiveness of the syntax. Specifically,
 
 # Example Figure Output
 

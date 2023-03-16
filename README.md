@@ -126,8 +126,11 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ------------------------------------------------------------------------
 
-The fxl package incorporates a number of open-source projects to work properly:
+The fxl package incorporates a number of open-source projects to work properly. Specifically, the core design and overall engine was modeled from Hadley Wickham's ggplot. Attempts were made to accomplish these features in ggplot alone doing so required deviating from low-level functionality in ggplot. The TeachingDemos package was referenced for code that translates coordinates from multiple view devices.
 
+The specific software referenced is provided credit below:
+
+-   ggplot2 - MIT Licensed. [Site](https://github.com/tidyverse/ggplot2)
 -   TeachingDemos - Artistic 2.0 Licensed. [Site](https://cran.r-project.org/web/packages/TeachingDemos/index.html)
 
 ## Installation
