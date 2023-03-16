@@ -223,7 +223,7 @@
 </symbol>
 </g>
 </defs>
-<g id="surface56">
+<g id="surface6">
 <rect x="0" y="0" width="648" height="432" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
 <path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 45 32.398438 L 45 123 L 640.800781 123 "/>
 <path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 61.398438 123 L 629.867188 123 "/>
@@ -492,7 +492,7 @@
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
   <use xlink:href="#glyph2-7" x="602.132813" y="246.828125"/>
   <use xlink:href="#glyph2-4" x="610.05668" y="246.828125"/>
-  <use xlink:href="#glyph2-8" x="614.012813" y="246.828125"/>
+  <use xlink:href="#glyph2-8" x="614.012812" y="246.828125"/>
   <use xlink:href="#glyph2-9" x="616.652168" y="246.828125"/>
   <use xlink:href="#glyph2-2" x="623.259258" y="246.828125"/>
 </g>

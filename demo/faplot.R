@@ -55,8 +55,8 @@ scr_legend(
   ),
   pt_bg = c(
     "black",
-    "black",
-    "black",
+    "white",
+    "white",
     "black"
   ),
   lty = c(

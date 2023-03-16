@@ -11,7 +11,7 @@ scr_plot(
   ncol = 2,
   mai = c(0.3, 0.3, 0.1, 0.1),
   omi = c(0.25, 0.25, 0.1, 0.1)
-) %>%
+) |>
 scr_xoverride(
   c(0, 30),
   xdraws = c(
@@ -27,7 +27,7 @@ scr_xoverride(
     "Eva" = c(1, 5, 10, 15),
     "Cali" = c(1, 5, 10, 15)
   )
-) %>%
+) |>
 scr_yoverride(
   ydraws = c(
     "Eli",
@@ -66,19 +66,19 @@ scr_yoverride(
       yticks = c(0, 2, 4, 6, 8)
     )
   )
-) %>%
-scr_cumsum_lines() %>%
+) |>
+scr_cumsum_lines() |>
 scr_cumsum_points(
   pch = 24,
   fill = "white",
   cex = 1.75
-) %>%
+) |>
 scr_cumsum_lines(
   mapping = list(
     x = Session,
     y = TD
   )
-) %>%
+) |>
 scr_cumsum_points(
   pch = 22,
   fill = "white",
@@ -87,7 +87,7 @@ scr_cumsum_points(
     x = Session,
     y = TD
   )
-) %>%
+) |>
 scr_label_facet(
   cex = 1.5,
   adj = 1,
@@ -106,7 +106,7 @@ scr_label_facet(
     "Ry",
     "Eva"
   )
-) %>%
+) |>
 scr_plines(
   lty = 3,
   lines = list(
@@ -145,7 +145,7 @@ scr_plines(
       )
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Eli",
   cex = 1.25,
@@ -155,7 +155,7 @@ scr_label_phase(
   labels = list(
     "Choice 1"
     )
-) %>%
+) |>
 scr_label_phase(
   facet = "Ari",
   cex = 1.25,
@@ -169,7 +169,7 @@ scr_label_phase(
       x = 20
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Al",
   cex = 1.25,
@@ -183,7 +183,7 @@ scr_label_phase(
       x = 11
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Ry",
   cex = 1.25,
@@ -197,7 +197,7 @@ scr_label_phase(
       x = 13
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Eva",
   cex = 1.25,
@@ -214,7 +214,7 @@ scr_label_phase(
       x = 11
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Cali",
   cex = 1.25,
@@ -228,9 +228,9 @@ scr_label_phase(
       x = 11
     )
   )
-) %>%
-scr_xlabel("Choice Training Session") %>%
-scr_ylabel("       Cumulative Number of Selections") %>%
+) |>
+scr_xlabel("Choice Training Session") |>
+scr_ylabel("       Cumulative Number of Selections") |>
 scr_legend(
   position = "right",
   panel = "Eli",
@@ -259,7 +259,7 @@ scr_legend(
   text_col = "black",
   horiz = FALSE,
   box_lty = 1
-) %>%
+) |>
 scr_save(units = "in",
          name = "../man/figures/cumulativeplot.svg",
          format = "svg",

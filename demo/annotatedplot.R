@@ -1,11 +1,10 @@
 library(fxl) # core plotting methods
 
-current_data <- Gilroyetal2019Tx |>
-  mutate(Condition = paste0(Condition, PhaseNum)) |>
-  rename(Function = Participant,
-         AFCR = FCR,
-         EFCR = FCR2) |>
-  dplyr::select(-c(PhaseNum, LineOff))
+current_data <- Gilroyetal2019Tx
+current_data$Condition <- paste0(current_data$Condition, current_data$PhaseNum)
+current_data$Function <- current_data$Participant
+current_data$AFCR <- current_data$FCR
+current_data$EFCR <- current_data$FCR2
 
 scr_plot(current_data,
   aesthetics = var_map(
