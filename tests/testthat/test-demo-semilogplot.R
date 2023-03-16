@@ -23,7 +23,7 @@ semi_log_data <- data.frame(
   SkillB = ys2
 )
 
-describe("Annotated Plot Style", {
+describe("Semi Log Plot Style", {
   it("Should render as normal", {
     expect_error(
 
@@ -46,23 +46,23 @@ scr_plot(
     0.25
   ),
   semilog = TRUE
-) %>%
-scr_yoverride(c(0.1, 1000)) %>%
-scr_title("Semi-log Chart: Hypothetical Case") %>%
-scr_xlabel("Session") %>%
-scr_ylabel("Frequency") %>%
-scr_lines() %>%
+) |>
+scr_yoverride(c(0.1, 1000)) |>
+scr_title("Semi-log Chart: Hypothetical Case") |>
+scr_xlabel("Session") |>
+scr_ylabel("Frequency") |>
+scr_lines() |>
 scr_points(
   pch = 21,
   fill = "black",
   cex = 2
-) %>%
+) |>
 scr_lines(
   mapping = list(
     x = Session,
     y = SkillB
   )
-) %>%
+) |>
 scr_points(
   pch = 21,
   fill = "gray",
@@ -71,7 +71,7 @@ scr_points(
     x = Session,
     y = SkillB
   )
-) %>%
+) |>
 scr_label_phase(
   cex = 1,
   adj = 0.5,
@@ -90,7 +90,7 @@ scr_label_phase(
       cex = 1
     )
   )
-) %>%
+) |>
 scr_arrows(
   length = 0.1,
   arrows = list(
@@ -107,7 +107,7 @@ scr_arrows(
       y1 = 55
     )
   )
-) %>%
+) |>
 scr_brackets(
   length = 0.1,
   brackets = list(
@@ -118,7 +118,7 @@ scr_brackets(
       y1 = 1.5
     )
   )
-) %>%
+) |>
 scr_guide_line(
   color = "black",
   lty = 1,
@@ -147,7 +147,7 @@ scr_guide_line(
       lty = 2,
       lwd = 3)
   )
-) %>%
+) |>
 scr_legend(
   position = "topright", # Specify legend location
   legend = c(
@@ -177,18 +177,18 @@ scr_legend(
   text_col = "black", # text color
   horiz = FALSE, # list items vertically
   box_lty = 1
-) %>%
+) |>
   print(),
 NA)
   })
 })
 
-#%>%
+#|>
 # scr_save(name = "semilogfigure.svg",
 #          format = "svg",
 #          units = "in",
 #          height = 6,
-#          width = 9) %>%
+#          width = 9) |>
 # scr_save(name = "semilogfigure.png",
 #          format = "png",
 #          units = "in",

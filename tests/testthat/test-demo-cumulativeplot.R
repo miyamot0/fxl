@@ -1,16 +1,5 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/cumulativeplot.R
-#
-# This file illustrates how to construct a cumulative figure, without a legend, and instead
-# describing features using annotations. This is particularly useful for emulating existing
-# conventions that reflect cumulative choice across time (e.g., counts of initial link selections)
-#
 
-library(dplyr) # included for infix logic
-library(fxl) # core plotting methods
-
-describe("Annotated Plot Style", {
+describe("Cumulative Plot Style", {
   it("Should render as normal", {
     expect_error(
 
@@ -25,7 +14,7 @@ scr_plot(
   ncol = 2,
   mai = c(0.3, 0.3, 0.0, 0.1),
   omi = c(0.25, 0.25, 0.1, 0)
-) %>%
+) |>
 scr_xoverride(
   c(1, 30),
   xdraws = c(
@@ -41,7 +30,7 @@ scr_xoverride(
     "Eva" = c(1, 5, 10, 15),
     "Cali" = c(1, 5, 10, 15)
   )
-) %>%
+) |>
 scr_yoverride(
   list(
     "Eli" = list(
@@ -80,19 +69,19 @@ scr_yoverride(
     "Al",
     "Eva"
   )
-) %>%
-scr_cumsum_lines() %>%
+) |>
+scr_cumsum_lines() |>
 scr_cumsum_points(
   pch = 24,
   fill = "white",
   cex = 1.75
-) %>%
+) |>
 scr_cumsum_lines(
   mapping = list(
     x = Session,
     y = TD
   )
-) %>%
+) |>
 scr_cumsum_points(
   pch = 22,
   fill = "white",
@@ -101,7 +90,7 @@ scr_cumsum_points(
     x = Session,
     y = TD
   )
-) %>%
+) |>
 scr_label_facet(
   cex = 1.5,
   adj = 1,
@@ -120,7 +109,7 @@ scr_label_facet(
     "Ry",
     "Eva"
   )
-) %>%
+) |>
 scr_plines(
   lty = 3,
   lines = list(
@@ -159,7 +148,7 @@ scr_plines(
       )
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Eli",
   cex = 1.25,
@@ -169,7 +158,7 @@ scr_label_phase(
   labels = list(
     "Choice 1"
     )
-) %>%
+) |>
 scr_label_phase(
   facet = "Ari",
   cex = 1.25,
@@ -183,7 +172,7 @@ scr_label_phase(
       x = 20
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Al",
   cex = 1.25,
@@ -197,7 +186,7 @@ scr_label_phase(
       x = 11
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Ry",
   cex = 1.25,
@@ -211,7 +200,7 @@ scr_label_phase(
       x = 13
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Eva",
   cex = 1.25,
@@ -228,7 +217,7 @@ scr_label_phase(
       x = 11
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Cali",
   cex = 1.25,
@@ -242,9 +231,9 @@ scr_label_phase(
       x = 11
     )
   )
-) %>%
-scr_xlabel("Choice Training Session") %>%
-scr_ylabel("Cumulative Number of Selections") %>%
+) |>
+scr_xlabel("Choice Training Session") |>
+scr_ylabel("Cumulative Number of Selections") |>
 scr_legend(
   position = "topright",
   panel = "Eli",
@@ -273,18 +262,18 @@ scr_legend(
   text_col = "black",
   horiz = FALSE,
   box_lty = 1
-) %>%
+) |>
   print(),
 NA)
   })
 })
 
-#%>%
+#|>
 # scr_save(units = "in",
 #          name = "cumulativeplot.svg",
 #          format = "svg",
 #          width = 8,
-#          height = 6)  %>%
+#          height = 6)  |>
 # scr_save(units = "in",
 #          name = "cumulativeplot.png",
 #          format = "png",

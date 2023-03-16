@@ -25,7 +25,7 @@ yticks <- c(
   "200", "250", "300", "350",
   "400", "450", "500"
 )
-describe("Annotated Plot Style", {
+describe("Cigarette Policy Plot", {
   it("Should render as normal", {
     expect_error(
 
@@ -39,14 +39,14 @@ scr_plot(newFrame,
   mai = c(1, 0.6, 0, 0.25),
   #family = "Open Sans",
   omi = c(0.25, 0.25, 0.5, 0.5)
-) %>%
+) |>
 scr_xoverride(
   c(0.4, 11),
   xticks = seq_len(11),
   xrotation = 45,
   xtickslabs = xticks,
   xlabeloffset = 40
-) %>%
+) |>
 scr_yoverride(
   c(-10, 500),
   yticks = c(
@@ -60,13 +60,13 @@ scr_yoverride(
     "200", "250", "300", "350",
     "400", "450", "500"
   )
-) %>%
-scr_lines() %>%
+) |>
+scr_lines() |>
 scr_points(
   cex = 2,
   pch = 21,
   fill = "gray"
-) %>%
+) |>
 scr_points(
   cex = 2,
   pch = 22,
@@ -75,14 +75,14 @@ scr_points(
     y = Count2,
     p = Condition
   )
-) %>%
+) |>
 scr_lines(
   mapping = list(
     x = Time,
     y = Count2,
     p = Condition
   )
-) %>%
+) |>
 scr_points(
   cex = 2,
   pch = 23,
@@ -91,21 +91,21 @@ scr_points(
     y = Count3,
     p = Condition
   )
-) %>%
+) |>
 scr_lines(
   mapping = list(
     x = Time,
     y = Count3,
     p = Condition
   )
-) %>%
+) |>
 scr_lines(
   mapping = list(
     x = Time,
     y = Count4,
     p = Condition
   )
-) %>%
+) |>
 scr_points(
   cex = 2,
   pch = 24,
@@ -115,7 +115,7 @@ scr_points(
     y = Count4,
     p = Condition
   )
-) %>%
+) |>
 scr_lines(
   size = 1,
   mapping = list(
@@ -124,7 +124,7 @@ scr_lines(
     p = Condition
   ),
   lty = 3,
-  color = "black") %>%
+  color = "black") |>
   scr_label_phase(
   facet = "1",
   cex = 1.25,
@@ -133,7 +133,7 @@ scr_lines(
   labels = list(
     "Pre-Policy" = list(x = 2),
     "Policy Enacted" = list(x = 7)
-  )) %>%
+  )) |>
 scr_plines(
   lty = 1,
   lines = list(
@@ -145,9 +145,9 @@ scr_plines(
       )
     )
   )
-) %>%
-scr_xlabel("Collection Period") %>%
-scr_ylabel("                          Frequency of Butts Collected") %>%
+) |>
+scr_xlabel("Collection Period") |>
+scr_ylabel("                          Frequency of Butts Collected") |>
 scr_legend(
   panel = "1",
   position = "topright",
@@ -183,7 +183,7 @@ scr_legend(
   text_col = "black",
   horiz = FALSE,
   box_lty = 0
-) %>%
+) |>
   print(),
 NA)
 })

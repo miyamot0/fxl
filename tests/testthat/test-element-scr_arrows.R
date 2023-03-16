@@ -1,10 +1,9 @@
 
-current_data <- Gilroyetal2019Tx %>%
-  mutate(Condition = paste0(Condition, PhaseNum)) %>%
-  rename(Function = Participant,
-         AFCR = FCR,
-         EFCR = FCR2) %>%
-  select(-c(PhaseNum, LineOff))
+current_data <- Gilroyetal2019Tx
+current_data$Condition <- paste0(current_data$Condition, current_data$PhaseNum)
+current_data$Function <- current_data$Participant
+current_data$AFCR <- current_data$FCR
+current_data$EFCR <- current_data$FCR2
 
 describe("scr_arrows", {
   it("Should fail at length", {
@@ -18,10 +17,10 @@ describe("scr_arrows", {
                ),
                mai = c(0.375, 0.375, 0.1, 0),
                omi = c(0.25, 0.25, 0.25, 0.05)
-      ) %>%
+      ) |>
         scr_lines(
           size = 1
-        ) %>%
+        ) |>
         scr_arrows(
           facet = "Attention",
           length = NULL,
@@ -45,7 +44,7 @@ describe("scr_arrows", {
               y1 = 2
             )
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: length should NOT be set to a null value."
     )
@@ -62,10 +61,10 @@ describe("scr_arrows", {
                ),
                mai = c(0.375, 0.375, 0.1, 0),
                omi = c(0.25, 0.25, 0.25, 0.05)
-      ) %>%
+      ) |>
         scr_lines(
           size = 1
-        ) %>%
+        ) |>
         scr_arrows(
           facet = "Attention",
           length = 0.1,
@@ -90,7 +89,7 @@ describe("scr_arrows", {
               y1 = 2
             )
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: angle should NOT be set to a null value."
     )
@@ -107,10 +106,10 @@ describe("scr_arrows", {
                ),
                mai = c(0.375, 0.375, 0.1, 0),
                omi = c(0.25, 0.25, 0.25, 0.05)
-      ) %>%
+      ) |>
         scr_lines(
           size = 1
-        ) %>%
+        ) |>
         scr_arrows(
           facet = "Attention",
           length = 0.1,
@@ -135,7 +134,7 @@ describe("scr_arrows", {
               y1 = 2
             )
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: code should NOT be set to a null value."
     )
@@ -152,10 +151,10 @@ describe("scr_arrows", {
                ),
                mai = c(0.375, 0.375, 0.1, 0),
                omi = c(0.25, 0.25, 0.25, 0.05)
-      ) %>%
+      ) |>
         scr_lines(
           size = 1
-        ) %>%
+        ) |>
         scr_arrows(
           facet = "Attention",
           length = 0.1,
@@ -180,7 +179,7 @@ describe("scr_arrows", {
               y1 = 2
             )
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: lwd should NOT be set to a null value."
     )
@@ -197,10 +196,10 @@ describe("scr_arrows", {
                ),
                mai = c(0.375, 0.375, 0.1, 0),
                omi = c(0.25, 0.25, 0.25, 0.05)
-      ) %>%
+      ) |>
         scr_lines(
           size = 1
-        ) %>%
+        ) |>
         scr_arrows(
           facet = "Attention",
           length = 0.1,
@@ -225,7 +224,7 @@ describe("scr_arrows", {
               y1 = 2
             )
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: lty should NOT be set to a null value."
     )
