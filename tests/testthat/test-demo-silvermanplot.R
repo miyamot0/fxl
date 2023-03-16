@@ -1,22 +1,12 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/silvermanplot.R
-#
-# This file illustrates how to construct a
-# silverman-style chart with basic annotations
-#
 
-koffarnus_et_al_mod <- KoffarnusEtAl2011 %>%
-  mutate(facet = ifelse(ID < 40,
-    "1",
-    ifelse(ID > 83,
-      "3",
-      "2")
-    )
-  ) %>%
-  arrange(-ID)
+koffarnus_et_al_mod <- KoffarnusEtAl2011
+koffarnus_et_al_mod$facet = ifelse(koffarnus_et_al_mod$ID < 40,
+                                   "1",
+                                   ifelse(koffarnus_et_al_mod$ID > 83,
+                                          "3",
+                                          "2"))
 
-describe("Annotated Plot Style", {
+describe("Silverman Plot Style", {
   it("Should render as normal", {
     expect_error(
 

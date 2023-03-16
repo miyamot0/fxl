@@ -25,6 +25,7 @@ library(rlang)
 #' @param ... map expressed relationships out
 #'
 #' @return list of exprs
+#' @importFrom rlang enexprs
 #' @export
 var_map <- function(...) {
   enexprs(...)

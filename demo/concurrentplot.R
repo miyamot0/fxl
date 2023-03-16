@@ -1,13 +1,4 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/concurrentplot.R
-#
-# This file illustrates how to construct a collection of reversals that are
-# illustrated across participants using shared phase change lines
-#
-
 library(fxl) # core plotting methods
-library(magrittr)
 
 data <- Gilroyetal2021
 
@@ -27,11 +18,11 @@ scr_plot(
           0.25,
           0.25,
           0.25)
-) %>%
+) |>
 scr_xoverride(
   c(0.5, 25),
   xticks = 1:25
-) %>%
+) |>
 scr_yoverride(
   list(
     "John" = list(
@@ -51,10 +42,10 @@ scr_yoverride(
     )
   ),
   ydelta = 5
-) %>%
+) |>
 scr_points(
   cex = 2
-) %>%
+) |>
 scr_points(
   cex = 2,
   pch = 2,
@@ -62,15 +53,15 @@ scr_points(
     x = Session,
     y = Reinforcers
   )
-) %>%
-scr_lines() %>%
+) |>
+scr_lines() |>
 scr_lines(
   lty = 2,
   mapping = list(
     x = Session,
     y = Reinforcers
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "John",
   cex = 1.25,
@@ -96,7 +87,7 @@ scr_label_phase(
       x = 18
     )
   )
-) %>%
+) |>
 scr_label_facet(
   cex = 1.5,
   adj = 1,
@@ -111,7 +102,7 @@ scr_label_facet(
     "Charles" = list(
       y = 25
     )
-  )) %>%
+  )) |>
 scr_plines_mbd(lines = list(
   "A" = list(
     "John" = list(
@@ -189,10 +180,10 @@ scr_plines_mbd(lines = list(
       y2 = -1
     )
   )
-)) %>%
-scr_xlabel("Session") %>%
-scr_ylabel("         Frequency (Responses, Reinforcers Delivered)") %>%
-scr_title("Individual Evaluations of Reinforcer Efficacy and Elasticity across Reinforcers") %>%
+)) |>
+scr_xlabel("Session") |>
+scr_ylabel("         Frequency (Responses, Reinforcers Delivered)") |>
+scr_title("Individual Evaluations of Reinforcer Efficacy and Elasticity across Reinforcers") |>
 scr_legend(
   panel = "John",
   position = "right",
@@ -214,7 +205,7 @@ scr_legend(
   text_col = "black",
   horiz = FALSE,
   box_lty = 0
-) %>%
+) |>
   scr_save(name = "../man/figures/concurrentfigure.svg",
            format = "svg",
            units = "in",

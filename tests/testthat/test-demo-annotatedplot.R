@@ -1,12 +1,11 @@
 
-current_data <- Gilroyetal2019Tx %>%
-  mutate(Condition = paste0(Condition, PhaseNum)) %>%
-  rename(Function = Participant,
-         AFCR = FCR,
-         EFCR = FCR2) %>%
-  select(-c(PhaseNum, LineOff))
+current_data <- Gilroyetal2019Tx
+current_data$Condition <- paste0(current_data$Condition, current_data$PhaseNum)
+current_data$Function <- current_data$Participant
+current_data$AFCR <- current_data$FCR
+current_data$EFCR <- current_data$FCR2
 
-describe("Annotated Plot Style", {
+describe("Annotated Plot", {
   it("Should render as normal", {
     expect_error(
       scr_plot(current_data,
@@ -18,17 +17,17 @@ describe("Annotated Plot Style", {
                ),
                mai = c(0.375, 0.375, 0.1, 0),
                omi = c(0.25, 0.25, 0.25, 0.05)
-      ) %>%
+      ) |>
         scr_yoverride(
           c(0, 3)
-        ) %>%
+        ) |>
         scr_xoverride(
           c(0, 100),
           xdelta = 10
-        ) %>%
+        ) |>
         scr_lines(
           size = 1
-        ) %>%
+        ) |>
         scr_lines(
           mapping = list(
             x = Session,
@@ -36,7 +35,7 @@ describe("Annotated Plot Style", {
           ),
           size = 1,
           lty = 2
-        ) %>%
+        ) |>
         scr_lines(
           mapping = list(
             x = Session,
@@ -44,11 +43,11 @@ describe("Annotated Plot Style", {
           ),
           size = 1,
           lty = 3
-        ) %>%
+        ) |>
         scr_points(
           fill = "white",
           pch = 21
-        ) %>%
+        ) |>
         scr_points(
           mapping = list(
             x = Session,
@@ -57,7 +56,7 @@ describe("Annotated Plot Style", {
           cex = 1,
           pch = 20,
           fill = "black"
-        ) %>%
+        ) |>
         scr_points(
           mapping = list(
             x = Session,
@@ -66,7 +65,7 @@ describe("Annotated Plot Style", {
           cex = 0.75,
           pch = 24,
           fill = "black"
-        ) %>%
+        ) |>
         scr_plines_mbd(
           lines = list(
             "A" = list(
@@ -79,7 +78,7 @@ describe("Annotated Plot Style", {
                 y1 = 3)
             )
           )
-        ) %>%
+        ) |>
         scr_plines(
           lty = 1,
           lines = list(
@@ -128,7 +127,7 @@ describe("Annotated Plot Style", {
               )
             )
           )
-        ) %>%
+        ) |>
         scr_label_facet(
           cex = 1.25,
           adj = 1,
@@ -138,7 +137,7 @@ describe("Annotated Plot Style", {
             "Attention",
             "Demand"
           )
-        ) %>%
+        ) |>
         scr_label_phase(
           facet = "Attention",
           cex = 0.6,
@@ -174,7 +173,7 @@ describe("Annotated Plot Style", {
               y = 2.5
             )
           )
-        ) %>%
+        ) |>
         scr_label_phase(
           facet = "Attention",
           cex = 0.6,
@@ -193,7 +192,7 @@ describe("Annotated Plot Style", {
               y = 2.4
             )
           )
-        ) %>%
+        ) |>
         scr_label_phase(
           facet = "Demand",
           cex = 0.6,
@@ -228,7 +227,7 @@ describe("Annotated Plot Style", {
               y = 2
             )
           )
-        ) %>%
+        ) |>
         scr_label_phase(
           facet = "Demand",
           cex = 0.6,
@@ -245,7 +244,7 @@ describe("Annotated Plot Style", {
               x = 71.5
             )
           )
-        ) %>%
+        ) |>
         scr_arrows(
           facet = "Attention",
           length = 0.1,
@@ -269,7 +268,7 @@ describe("Annotated Plot Style", {
               y1 = 2
             )
           )
-        ) %>%
+        ) |>
         scr_arrows(
           facet = "Demand",
           length = 0.1,
@@ -293,7 +292,7 @@ describe("Annotated Plot Style", {
               y1 = 0.75
             )
           )
-        ) %>%
+        ) |>
         scr_brackets(
           facet = "Attention",
           length = 0.1,
@@ -312,7 +311,7 @@ describe("Annotated Plot Style", {
               lty = 3
             )
           )
-        ) %>%
+        ) |>
         scr_brackets(
           facet = "Demand",
           length = 0.1,
@@ -337,7 +336,7 @@ describe("Annotated Plot Style", {
               lty = 3
             )
           )
-        ) %>%
+        ) |>
         scr_guide_line(
           color = "red",
           lty = 3,
@@ -354,7 +353,7 @@ describe("Annotated Plot Style", {
               y0 = 0.1
             )
           )
-        ) %>%
+        ) |>
         scr_guide_line(
           color = "red",
           lty = 3,
@@ -366,7 +365,7 @@ describe("Annotated Plot Style", {
               y0 = 0.1
             )
           )
-        ) %>%
+        ) |>
         print(),
       NA
     )

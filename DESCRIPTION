@@ -1,7 +1,7 @@
 Package: fxl
 Type: Package
 Title: Faux xl Charting in R
-Version: 1.0.0
+Version: 1.4.1
 Author: Shawn Gilroy <sgilroy1@lsu.edu>
 Maintainer: Shawn Gilroy <sgilroy1@lsu.edu>
 Suggests: 
@@ -15,9 +15,7 @@ License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
 Depends: 
-  R (>= 3.6),
-  magrittr,
+  R (>= 4.1),
   rlang,
-  dplyr,
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Config/testthat/edition: 3

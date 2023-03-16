@@ -1,22 +1,10 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/annotatedplot.R
-#
-# This file illustrates how to construct a figure,
-# with a combination of labels and arrows to simulate
-# conventions common in SCRDs
-#
-
 library(fxl) # core plotting methods
-library(dplyr)
-library(magrittr)
 
-current_data <- Gilroyetal2019Tx %>%
-  mutate(Condition = paste0(Condition, PhaseNum)) %>%
-  rename(Function = Participant,
-         AFCR = FCR,
-         EFCR = FCR2) %>%
-  dplyr::select(-c(PhaseNum, LineOff))
+current_data <- Gilroyetal2019Tx
+current_data$Condition <- paste0(current_data$Condition, current_data$PhaseNum)
+current_data$Function <- current_data$Participant
+current_data$AFCR <- current_data$FCR
+current_data$EFCR <- current_data$FCR2
 
 scr_plot(current_data,
   aesthetics = var_map(
@@ -27,7 +15,7 @@ scr_plot(current_data,
   ),
   mai = c(0.375, 0.375, 0.25, .25),
   omi = c(0.25, 0.25, 0.25, 0.25)
-) %>%
+) |>
 scr_yoverride(
   list(
     "Attention" = list(
@@ -40,17 +28,17 @@ scr_yoverride(
       y1 = 3,
       yticks = c(0, 1, 2, 3)
     )
-)) %>%
+)) |>
 scr_xoverride(
   c(-1, 100),
   xdelta = 10,
   xticks = c(1,
              seq(10, 100,
                  by = 10))
-) %>%
+) |>
 scr_lines(
   size = 1
-) %>%
+) |>
 scr_lines(
   mapping = list(
     x = Session,
@@ -58,7 +46,7 @@ scr_lines(
   ),
   size = 1,
   lty = 2
-) %>%
+) |>
 scr_lines(
   mapping = list(
     x = Session,
@@ -66,11 +54,11 @@ scr_lines(
   ),
   size = 1,
   lty = 3
-) %>%
+) |>
 scr_points(
   fill = "white",
   pch = 21
-) %>%
+) |>
 scr_points(
   mapping = list(
     x = Session,
@@ -79,7 +67,7 @@ scr_points(
   cex = 1,
   pch = 20,
   fill = "black"
-) %>%
+) |>
 scr_points(
   mapping = list(
     x = Session,
@@ -88,7 +76,7 @@ scr_points(
   cex = 0.75,
   pch = 24,
   fill = "black"
-) %>%
+) |>
 scr_plines_mbd(
   lines = list(
     "A" = list(
@@ -103,7 +91,7 @@ scr_plines_mbd(
         y2 = -0.125)
     )
   )
-) %>%
+) |>
 scr_plines(
   lty = 1,
   lines = list(
@@ -152,7 +140,7 @@ scr_plines(
       )
     )
   )
-) %>%
+) |>
 scr_label_facet(
   cex = 1.25,
   adj = 1,
@@ -162,7 +150,7 @@ scr_label_facet(
     "Attention",
     "Demand"
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Attention",
   cex = 0.6,
@@ -198,7 +186,7 @@ scr_label_phase(
       y = 2.5
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Attention",
   cex = 0.6,
@@ -217,7 +205,7 @@ scr_label_phase(
       y = 2.4
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Demand",
   cex = 0.6,
@@ -252,7 +240,7 @@ scr_label_phase(
       y = 2
     )
   )
-) %>%
+) |>
 scr_label_phase(
   facet = "Demand",
   cex = 0.6,
@@ -269,7 +257,7 @@ scr_label_phase(
       x = 71.5
     )
   )
-) %>%
+) |>
 scr_arrows(
   facet = "Attention",
   length = 0.1,
@@ -293,7 +281,7 @@ scr_arrows(
       y1 = 2
     )
   )
-) %>%
+) |>
 scr_arrows(
   facet = "Demand",
   length = 0.1,
@@ -317,7 +305,7 @@ scr_arrows(
       y1 = 0.75
     )
   )
-) %>%
+) |>
 scr_brackets(
   facet = "Attention",
   length = 0.1,
@@ -336,7 +324,7 @@ scr_brackets(
       lty = 3
     )
   )
-) %>%
+) |>
 scr_brackets(
   facet = "Demand",
   length = 0.1,
@@ -361,7 +349,7 @@ scr_brackets(
       lty = 3
     )
   )
-) %>%
+) |>
 scr_guide_line(
   color = "red",
   lty = 3,
@@ -378,7 +366,7 @@ scr_guide_line(
       y0 = 0.1
     )
   )
-) %>%
+) |>
 scr_guide_line(
   color = "red",
   lty = 3,
@@ -390,7 +378,7 @@ scr_guide_line(
       y0 = 0.1
     )
   )
-) %>%
+) |>
 scr_save(
   name = "../man/figures/annotatedplot.svg",
   format = "svg",

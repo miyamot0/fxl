@@ -29,15 +29,15 @@ describe("scr_bar_support", {
           0.25,
           0.25
         )
-      ) %>%
+      ) |>
         scr_yoverride(c(-.175, 5),
                       yticks = c(0, 1, 2, 3, 4, 5),
                       ytickslabs = c("0", "1", "2", "3", "4", "5")
-        ) %>%
+        ) |>
         scr_xoverride(c(0.5, 15.5),
                       xticks = 1:15,
                       xtickslabs = as.character(1:15)
-        ) %>%
+        ) |>
         scr_bar_support(
           mapping = list(
             x = Session,
@@ -46,10 +46,10 @@ describe("scr_bar_support", {
           alpha = NULL,
           color = rgb(.8, .8, .8, alpha = 1),
           label = "Procedural Fidelity"
-        ) %>%
+        ) |>
         scr_lines(
           size = 1
-        ) %>%
+        ) |>
         scr_points(
           cex = 2,
           pch = list(
@@ -64,7 +64,7 @@ describe("scr_bar_support", {
             "Demand" = "white",
             "Tangible" = "black"
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: alpha should NOT be set to a null value."
     )
@@ -91,15 +91,15 @@ describe("scr_bar_support", {
           0.25,
           0.25
         )
-      ) %>%
+      ) |>
         scr_yoverride(c(-.175, 5),
                       yticks = c(0, 1, 2, 3, 4, 5),
                       ytickslabs = c("0", "1", "2", "3", "4", "5")
-        ) %>%
+        ) |>
         scr_xoverride(c(0.5, 15.5),
                       xticks = 1:15,
                       xtickslabs = as.character(1:15)
-        ) %>%
+        ) |>
         scr_bar_support(
           mapping = list(
             x = Session,
@@ -107,10 +107,10 @@ describe("scr_bar_support", {
           ),
           color = rgb(.8, .8, .8, alpha = 1),
           label = 0
-        ) %>%
+        ) |>
         scr_lines(
           size = 1
-        ) %>%
+        ) |>
         scr_points(
           cex = 2,
           pch = list(
@@ -125,7 +125,7 @@ describe("scr_bar_support", {
             "Demand" = "white",
             "Tangible" = "black"
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: label should be of a character type."
     )
@@ -152,15 +152,15 @@ describe("scr_bar_support", {
           0.25,
           0.25
         )
-      ) %>%
+      ) |>
         scr_yoverride(c(-.175, 5),
                       yticks = c(0, 1, 2, 3, 4, 5),
                       ytickslabs = c("0", "1", "2", "3", "4", "5")
-        ) %>%
+        ) |>
         scr_xoverride(c(0.5, 15.5),
                       xticks = 1:15,
                       xtickslabs = as.character(1:15)
-        ) %>%
+        ) |>
         scr_bar_support(
           mapping = list(
             x = Session,
@@ -169,10 +169,10 @@ describe("scr_bar_support", {
           width = NULL,
           color = rgb(.8, .8, .8, alpha = 1),
           label = "Procedural Fidelity"
-        ) %>%
+        ) |>
         scr_lines(
           size = 1
-        ) %>%
+        ) |>
         scr_points(
           cex = 2,
           pch = list(
@@ -187,7 +187,7 @@ describe("scr_bar_support", {
             "Demand" = "white",
             "Tangible" = "black"
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: width should NOT be set to a null value."
     )

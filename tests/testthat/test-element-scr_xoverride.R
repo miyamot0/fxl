@@ -1,7 +1,4 @@
 
-library(dplyr) # included for infix logic
-library(fxl) # core plotting methods
-
 describe("scr_xoverride", {
   it("Should render as normal", {
     expect_error(
@@ -16,7 +13,7 @@ describe("scr_xoverride", {
         ncol = 2,
         mai = c(0.3, 0.3, 0.0, 0.1),
         omi = c(0.25, 0.25, 0.1, 0)
-      ) %>%
+      ) |>
         scr_xoverride(
           c(1, 30),
           xdraws = c(
@@ -32,7 +29,7 @@ describe("scr_xoverride", {
             "Eva" = c(1, 5, 10, 15),
             "Cali" = c(1, 5, 10, 15)
           )
-        ) %>%
+        ) |>
         scr_yoverride(
           list(
             "Eli" = list(
@@ -71,7 +68,7 @@ describe("scr_xoverride", {
             "Al",
             "Eva"
           )
-        ) %>%
+        ) |>
         print(),
       NA)
   })
@@ -89,7 +86,7 @@ describe("scr_xoverride", {
         ncol = 2,
         mai = c(0.3, 0.3, 0.0, 0.1),
         omi = c(0.25, 0.25, 0.1, 0)
-      ) %>%
+      ) |>
         scr_xoverride(
           c(1, 30),
           xdraws = TRUE,
@@ -101,7 +98,7 @@ describe("scr_xoverride", {
             "Eva" = c(1, 5, 10, 15),
             "Cali" = c(1, 5, 10, 15)
           )
-        ) %>%
+        ) |>
         scr_yoverride(
           list(
             "Eli" = list(
@@ -140,7 +137,7 @@ describe("scr_xoverride", {
             "Al",
             "Eva"
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: xdraws should be of a character type.")
   })
@@ -158,7 +155,7 @@ describe("scr_xoverride", {
         ncol = 2,
         mai = c(0.3, 0.3, 0.0, 0.1),
         omi = c(0.25, 0.25, 0.1, 0)
-      ) %>%
+      ) |>
         scr_xoverride(
           xdraws = TRUE,
           xticks = list(
@@ -169,7 +166,7 @@ describe("scr_xoverride", {
             "Eva" = c(1, 5, 10, 15),
             "Cali" = c(1, 5, 10, 15)
           )
-        ) %>%
+        ) |>
         scr_yoverride(
           list(
             "Eli" = list(
@@ -208,7 +205,7 @@ describe("scr_xoverride", {
             "Al",
             "Eva"
           )
-        ) %>%
+        ) |>
         print(),
       "argument \"var\" is missing, with no default")
   })
@@ -226,7 +223,7 @@ describe("scr_xoverride", {
         ncol = 2,
         mai = c(0.3, 0.3, 0.0, 0.1),
         omi = c(0.25, 0.25, 0.1, 0)
-      ) %>%
+      ) |>
         scr_xoverride(
           c(1, 30, 10),
           xdraws = TRUE,
@@ -238,7 +235,7 @@ describe("scr_xoverride", {
             "Eva" = c(1, 5, 10, 15),
             "Cali" = c(1, 5, 10, 15)
           )
-        ) %>%
+        ) |>
         scr_yoverride(
           list(
             "Eli" = list(
@@ -277,7 +274,7 @@ describe("scr_xoverride", {
             "Al",
             "Eva"
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: scr_xoverride should have 2 entries but has 3 .")
   })
@@ -295,7 +292,7 @@ describe("scr_xoverride", {
         ncol = 2,
         mai = c(0.3, 0.3, 0.0, 0.1),
         omi = c(0.25, 0.25, 0.1, 0)
-      ) %>%
+      ) |>
         scr_xoverride(
           c(1, 30),
           xdraws = c(
@@ -312,7 +309,7 @@ describe("scr_xoverride", {
             "Eva" = c(1, 5, 10, 15),
             "Cali" = c(1, 5, 10, 15)
           )
-        ) %>%
+        ) |>
         scr_yoverride(
           list(
             "Eli" = list(
@@ -351,7 +348,7 @@ describe("scr_xoverride", {
             "Al",
             "Eva"
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: xrotation should be of a numeric type.")
   })
@@ -369,7 +366,7 @@ describe("scr_xoverride", {
         ncol = 2,
         mai = c(0.3, 0.3, 0.0, 0.1),
         omi = c(0.25, 0.25, 0.1, 0)
-      ) %>%
+      ) |>
         scr_xoverride(
           c(1, 30),
           xdraws = TRUE,
@@ -382,7 +379,7 @@ describe("scr_xoverride", {
             "Eva" = c(1, 5, 10, 15),
             "Cali" = c(1, 5, 10, 15)
           )
-        ) %>%
+        ) |>
         scr_yoverride(
           list(
             "Eli" = list(
@@ -421,7 +418,7 @@ describe("scr_xoverride", {
             "Al",
             "Eva"
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: xtickslabs should be of a character type.")
   })
@@ -439,7 +436,7 @@ describe("scr_xoverride", {
         ncol = 2,
         mai = c(0.3, 0.3, 0.0, 0.1),
         omi = c(0.25, 0.25, 0.1, 0)
-      ) %>%
+      ) |>
         scr_xoverride(
           c(1, 30),
           xlabeloffset = TRUE,
@@ -451,7 +448,7 @@ describe("scr_xoverride", {
             "Eva" = c(1, 5, 10, 15),
             "Cali" = c(1, 5, 10, 15)
           )
-        ) %>%
+        ) |>
         scr_yoverride(
           list(
             "Eli" = list(
@@ -490,7 +487,7 @@ describe("scr_xoverride", {
             "Al",
             "Eva"
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: xlabeloffset should be of a numeric type.")
   })
@@ -508,7 +505,7 @@ describe("scr_xoverride", {
         ncol = 2,
         mai = c(0.3, 0.3, 0.0, 0.1),
         omi = c(0.25, 0.25, 0.1, 0)
-      ) %>%
+      ) |>
         scr_xoverride(
           c(1, 30),
           xtickscex = TRUE,
@@ -520,7 +517,7 @@ describe("scr_xoverride", {
             "Eva" = c(1, 5, 10, 15),
             "Cali" = c(1, 5, 10, 15)
           )
-        ) %>%
+        ) |>
         scr_yoverride(
           list(
             "Eli" = list(
@@ -559,7 +556,7 @@ describe("scr_xoverride", {
             "Al",
             "Eva"
           )
-        ) %>%
+        ) |>
         print(),
       "Parameter: xtickscex should be of a numeric type.")
   })

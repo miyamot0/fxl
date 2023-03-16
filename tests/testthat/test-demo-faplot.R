@@ -1,14 +1,7 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/faplot.R
-#
-# This file illustrates how to construct a basic,
-# no frills visual of a functional analysis
-#
 
 data <- Gilroyetal2019
 
-describe("Annotated Plot Style", {
+describe("FA Plot Style", {
   it("Should render as normal", {
     expect_error(
 scr_plot(

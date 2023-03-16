@@ -8,7 +8,7 @@
 
 data <- Gilroyetal2021
 
-describe("Annotated Plot Style", {
+describe("Concurrent Plot Style", {
   it("Should render as normal", {
     expect_error(
       scr_plot(
@@ -27,10 +27,10 @@ describe("Annotated Plot Style", {
                 0.25,
                 0.25,
                 0.25)
-      ) %>%
+      ) |>
       scr_xoverride(
         c(1, 25)
-      ) %>%
+      ) |>
       scr_yoverride(
         list(
           "John" = list(
@@ -47,10 +47,10 @@ describe("Annotated Plot Style", {
           )
         ),
         ydelta = 5
-      ) %>%
+      ) |>
       scr_points(
         cex = 2
-      ) %>%
+      ) |>
       scr_points(
         cex = 2,
         pch = 2,
@@ -58,15 +58,15 @@ describe("Annotated Plot Style", {
           x = Session,
           y = Reinforcers
         )
-      ) %>%
-      scr_lines() %>%
+      ) |>
+      scr_lines() |>
       scr_lines(
         lty = 2,
         mapping = list(
           x = Session,
           y = Reinforcers
         )
-      ) %>%
+      ) |>
       scr_label_phase(
         facet = "John",
         cex = 1.25,
@@ -92,7 +92,7 @@ describe("Annotated Plot Style", {
             x = 18
           )
         )
-      ) %>%
+      ) |>
       scr_label_facet(
         cex = 1.5,
         adj = 1,
@@ -107,7 +107,7 @@ describe("Annotated Plot Style", {
           "Charles" = list(
             y = 25
           )
-        )) %>%
+        )) |>
       scr_plines_mbd(lines = list(
         "A" = list(
           "John" = list(
@@ -180,10 +180,10 @@ describe("Annotated Plot Style", {
             y1 = 20
           )
         )
-      )) %>%
-      scr_xlabel("Session") %>%
-      scr_ylabel("Frequency (Responses, Reinforcers Delivered)") %>%
-      scr_title("Individual Evaluations of Reinforcer Efficacy and Elasticity across Reinforcers") %>%
+      )) |>
+      scr_xlabel("Session") |>
+      scr_ylabel("Frequency (Responses, Reinforcers Delivered)") |>
+      scr_title("Individual Evaluations of Reinforcer Efficacy and Elasticity across Reinforcers") |>
       scr_legend(
         panel = "John",
         position = "topright",
@@ -205,27 +205,27 @@ describe("Annotated Plot Style", {
         text_col = "black",
         horiz = FALSE,
         box_lty = 0
-      ) %>%
+      ) |>
       scr_save(name = "test.svg",
                format = "svg",
                units = "in",
                height = 6,
-               width = 9) %>%
+               width = 9) |>
         scr_save(name = "test.png",
                  format = "png",
                  units = "in",
                  height = 6,
-                 width = 9) %>%
+                 width = 9) |>
         scr_save(name = "test.tiff",
                  format = "tiff",
                  units = "in",
                  height = 6,
-                 width = 9) %>%
+                 width = 9) |>
         scr_save(name = "test.pdf",
                  format = "pdf",
                  units = "in",
                  height = 6,
-                 width = 9) %>%
+                 width = 9) |>
       print(),
       NA
     )

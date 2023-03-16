@@ -1,14 +1,4 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/faplotintegrity.R
-#
-# This file illustrates how to construct a basic,
-# no frills visual of a functional analysis but with
-# integrity data mapped alongside the rates of target behavior.
-#
-
 library(fxl) # core plotting methods
-library(magrittr)
 
 data <- Gilroyetal2019
 
@@ -38,15 +28,15 @@ scr_plot(
     0.25,
     0.25
   )
-) %>%
+) |>
 scr_yoverride(c(-.175, 5),
   yticks = c(0, 1, 2, 3, 4, 5),
   ytickslabs = c("0", "1", "2", "3", "4", "5")
-) %>%
+) |>
 scr_xoverride(c(0.5, 15.5),
   xticks = 1:15,
   xtickslabs = as.character(1:15)
-) %>%
+) |>
 scr_bar_support(
  mapping = list(
    x = Session,
@@ -54,10 +44,10 @@ scr_bar_support(
  ),
  color = rgb(.8, .8, .8, alpha = 1),
  label = "Procedural Fidelity"
-) %>%
+) |>
 scr_lines(
   size = 1
-) %>%
+) |>
 scr_points(
   cex = 2,
   pch = list(
@@ -72,10 +62,10 @@ scr_points(
     "Demand" = "white",
     "Tangible" = "black"
   )
-) %>%
-scr_xlabel("Session") %>%
-scr_ylabel("Combined Target Behavior (Per Minute)") %>%
-scr_title("Analog Functional Analysis w/ Integrity Information") %>%
+) |>
+scr_xlabel("Session") |>
+scr_ylabel("Combined Target Behavior (Per Minute)") |>
+scr_title("Analog Functional Analysis w/ Integrity Information") |>
 scr_legend(
   position = "right", # Specify legend location
   legend = c(
@@ -106,12 +96,12 @@ scr_legend(
   horiz = FALSE, # list items vertically
   box_lty = 1)
 
-# %>%
+# |>
 #   scr_save(name = "fafigureintegrity.svg",
 #            format = "svg",
 #            units = "in",
 #            height = 6,
-#            width = 9) %>%
+#            width = 9) |>
 #   scr_save(name = "fafigureintegrity.png",
 #            format = "png",
 #            units = "in",
