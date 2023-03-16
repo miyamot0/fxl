@@ -1,5 +1,3 @@
-library(fxl) # core plotting methods
-
 data <- Gilroyetal2015
 
 scr_plot(

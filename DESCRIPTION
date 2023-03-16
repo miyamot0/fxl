@@ -17,5 +17,5 @@ LazyData: true
 Depends: 
   R (>= 4.1),
   rlang,
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Config/testthat/edition: 3

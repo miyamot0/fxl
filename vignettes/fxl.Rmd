@@ -7,19 +7,19 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-# Rationale for *fxl* and Novel Methods
+# The rationale for *fxl* and Novel Methods
 
-Single case research designs involve the presentation of empirical data across experimental conditions to visually draw inferences regarding the effects of environmental manipulations on observed behavior. The empirical data featured in these designs are presented using a variety of conventions that have been shaped by decades of research and practice in behavior analysis. Many of these conventions are highly specialized and are not natively supported in any existing software package (e.g., phase change lines being drawn across multiple individual plots). Even though methods exist for accomodating these conventions in spreadsheet software, these are all tedious and effortful, and subsequent modifications typically require additional human interaction to edit. Various scripts and macros have been suggested to streamline these efforts; however, these are at best incomplete at best and a security threat at works. Indeed, most organizations disable the use of macros by default for all users. The *fxl* package was designed to meet this gap in available and accessible tools.
+Single-case research designs involve the presentation of empirical data across experimental conditions to visually draw inferences regarding the effects of environmental manipulations on observed behavior. The empirical data featured in these designs are presented using various that have been shaped by decades of research and practice in behavior analysis. Many of these conventions are highly specialized and are not natively supported in any existing software package (e.g., phase change lines being drawn across multiple individual plots). Even though methods exist for accommodating these conventions in spreadsheet software, these are all tedious and effortful and subsequent modifications typically require additional human interaction to edit. Various scripts and macros have been suggested to streamline these efforts; however, these are at best incomplete at best and a security threat at worst. Indeed, most organizations disable the use of macros by default for all users. The *fxl* package was designed to meet this gap in available and accessible tools.
 
 ## Primary Goals of *fxl* Package
 
-Various methods exist for visualizing the results of clinical work and research using single case designs and visual analysis. However, most of these approaches are limited in flexibility, reproducibility, and security. The methods and design of the package have been designed to accomplish several goals.
+Various methods exist for visualizing the results of clinical work and research using single-case designs and visual analysis. However, most of these approaches are limited in flexibility, reproducibility, and security. The methods and design of the package have been designed to accomplish several goals.
 
 ### Goal #1: Transparency and Replicability
 
-Visualizations of single case designs are carefully constructed from empirical data to support visual analysis. This is potentially problematic from a reproducibility standpoint, as these types of figures are traditionally constructed by hand and cannot be fully reproduced without direct access to the exact spreadsheet from which the figure was developed. Furthermore, even with direct access to the exact spreadsheet, changes cannot be audited and documented over time and this further hinders efforts at transparency.
+Visualizations of single-case designs are carefully constructed from empirical data to support visual analysis. This is potentially problematic from a reproducibility standpoint, as these types of figures are traditionally constructed by hand and cannot be fully reproduced without direct access to the exact spreadsheet from which the figure was developed. Furthermore, even with direct access to the exact spreadsheet, changes cannot be audited and documented over time and this further hinders efforts at transparency.
 
-The *fxl* package was designed to address these shortcomings of by leveraging the transparency and replicability of the *R Statistical Program* and support the drawing of single case design figures using *R* syntax only. This syntax-forward approach also allows researchers to pre-register their design specifications and visualizations in an attempt to better distinguish exploratory vs hypothesis testing research.
+The *fxl* package was designed to address these shortcomings by leveraging the transparency and replicability of the *R Statistical Program* and supporting the drawing of single case design figures using *R* syntax only. This syntax-forward approach also allows researchers to pre-register their design specifications and visualizations in an attempt to better distinguish exploratory vs hypothesis testing research.
 
 ### Goal #2: Access to Single Case Conventions
 
@@ -33,9 +33,83 @@ Attempts to scale interventions and clinical/educational programming based on si
 
 The *fxl* package was designed to be compatible with *RMarkdown* and *Quarto* to support dynamic reports that can simultaneously visualize progress for multiple individuals (e.g., students in a classroom) as well as multiple groups (e.g., across classrooms in a grade). Specifically, *fxl* was designed to be able to be used in a way that scaled effectively in ways that other, earlier methods for drawing single case design figures did not. Similarly, this approach can be used to draw reports that are up-to-date, drawn in lossless quality, and built to scale as new students are added to the caseload.
 
-## TODO: Syntax and General Code Structure
+## Syntax and General Code Structure
 
-The *fxl* package was constructed to use a functional approach to *R* and makes heavy use of the \`\|\>\` pipe operator to streamline the expressiveness of the syntax. Specifically,
+The *fxl* package was constructed to use a functional approach to *R* and makes heavy use of the \`\|\>\` pipe operator to streamline the expressiveness of the syntax. For users of the *ggplot2* package, the general logic and workflow are almost identical. That is, a general object is created (e.g., 'fxl' class in *fxl* as opposed to 'ggproto' in *ggplot2*) and layers are added to the object to tailor what is drawn upon the figure (e.g., markers, lines, annotations) and adjust other features of the figure (e.g., spacing, coordinate limits).
+
+The high degree of overlap observed with *ggplot2* was due to two reasons. First, the initial design used *ggplot2* as a base and focused on extending the package to support conventions common in single-case research designs. However, low-level conventions regarding how individual facets were drawn limited options for drawing cross-plot features (e.g., staggered phase change lines across plots). Considerable work was done here, but a dedicated drawing algorithm using base *R* methods needed to be developed to fully incorporate all desired plotting features. Second, the workflow and usage patterns common in *ggplot2* were emulated to assist users of *ggplot2* in using *fxl* if and when they needed access to a plotting engine that supports those conventions (e.g., generating figures that meet publication standards).
+
+### Core Plotting Object
+
+The core plotting object for the figure is produced using the *scr_plot* call with the required arguments. The *required* arguments include a valid dataframe with relevant data as well as a list of aesthetics that direct the engine on how to visualize that data (e.g., which data corresponds with the x-axis). Other arguments are also available to further customize the plot (e.g., margins), but only these are *required* to produce the core object.
+
+An example of this is provided below:
+
+```{r, eval=FALSE}
+scr_plot(
+  Gilroyetal2015, # Data frame (long format)
+  aesthetics = var_map(
+    x = Session, # Column name for x-axis values
+    y = Responding, # Column name for y-axis values
+    p = Condition, # Column name for phases associated with x-y coordinates
+    facet = Participant # Column name distinguishing individual plots/facets
+  )
+)
+```
+
+### Adding Drawing Layers to Core Plotting Object
+
+The core plotting object alone will rarely provide a sufficient visualization of the supplied data and layers can be added to the object to further refine the end result. That is, despite the core object being provided with x-y coordinate data, no specific instructions to draw are provided without specific instructions. Layers to add the drawing of markers (*scr_points*), lines (*scr_lines*), or alter any other relevant feature of the figure must be specified in the call.
+
+An example that builds from the previous example and adds points and lines is provided below:
+
+```{r eval=FALSE}
+scr_plot(
+  Gilroyetal2015, 
+  aesthetics = var_map(
+    x = Session, 
+    y = Responding, 
+    p = Condition, 
+    facet = Participant 
+  )
+) |>
+scr_points(cex = 2) |> # plot points, using x/y from aesthetics
+scr_lines(size = 1) # plot line, using x/y from aesthetics
+```
+
+As an added note, it warrants stating clearly that the sequence (i.e., the call must begin with *scr_plot*) and chain of calls are relevant to how the program works (i.e., all are linked together by the native *R* pipe operator '\|\>'). The pipe operator should be used to connect calls in the sequence; however, the historical '%\>%' operator from *magittr* could also be used if desired (but is not generally recommended). Additionally, the *order* of layers is also relevant because layers added earlier with be drawn earlier (i.e., lower *z-index*) and layers added later will be drawn later (i.e., higher *z-index*).
+
+### Customizing Labels and Axes
+
+The default behavior of the drawing engine is to draw axes using the names supplied to x-y coordinate variables and use the domains and ranges specified by the data supplied. Occasionally, the visualization of these data may be more understandable to set to a different set of extremes (i.e., round to a number maximum divisible by 10; e.g., 100 instead of 97). Various calls exist to override the range of axes (i.e., *scr_xoverride*, *scr_yoverride*), the labels for those axes (i.e., *scr_xlabel*, *scr_ylabel*), and the title of the overall figure (i.e., *scr_title*).
+
+An example that builds from the previous examples and customizes the axes titles, ticks, and figure title is provided below:
+
+```{r eval=FALSE}
+scr_plot(
+  Gilroyetal2015, 
+  aesthetics = var_map(
+    x = Session, 
+    y = Responding, 
+    p = Condition, 
+    facet = Participant 
+  )
+) |>
+scr_points(cex = 2) |> # plot points, using x/y from aesthetics
+scr_lines(size = 1) |> # plot line, using x/y from aesthetics
+scr_xoverride(c(0.25, 27.5),
+  xticks = 1:27,
+  xtickslabs = as.character(1:27)
+) |> # manually override x-axis (make extra room for labels) and specify ticks
+scr_yoverride(c(-5, 105), 
+  yticks = seq(0, 100, by = 10),
+  ytickslabs = as.character(seq(0, 100, by = 10)),
+) |> # manually override y-axis and tick interval (tick for every 10 units)
+scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
+scr_ylabel("Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
+scr_title("Rates of Acquisition across Participants") 
+
+```
 
 # Example Figure Output
 
