@@ -1,347 +1,992 @@
-## ---- fig.width=8, fig.height=6, warning=FALSE, eval=FALSE--------------------
-#  
-#  library(fxl)
-#  
-#  plotMultiElementFA(Gilroyetal2019,
-#   grouping = "Condition",
-#   session  = "Session",
-#   response = "CTB",
-#   title    = "Functional Analysis",
-#   xlab     = "Session",
-#   ylab     = "Frequency (Responses, Reinforcers Delivered)",
-#   ylims    = c(0, 4),
-#   legend.position = "topright")
+## ---- fig.width=7, fig.height=4-----------------------------------------------
+suppressPackageStartupMessages(library(fxl))
+
+scr_plot(
+  Gilroyetal2015, # Data frame (long format)
+  aesthetics = var_map(
+    x = Session, # Column name for x-axis values
+    y = Responding, # Column name for y-axis values
+    p = Condition, # Column name for phases associated with x-y coordinates
+    facet = Participant # Column name distinguishing individual plots/facets
+  )
+)
+
+## ---- fig.width=8, fig.height=4-----------------------------------------------
+scr_plot(
+  Gilroyetal2015, 
+  aesthetics = var_map(
+    x = Session, 
+    y = Responding, 
+    p = Condition, 
+    facet = Participant 
+  )
+) |>
+scr_points(cex = 2) |> # plot points, using x/y from aesthetics
+scr_lines(size = 1) # plot line, using x/y from aesthetics
+
+## ---- fig.width=8, fig.height=4-----------------------------------------------
+scr_plot(
+  Gilroyetal2015, 
+  aesthetics = var_map(
+    x = Session, 
+    y = Responding, 
+    p = Condition, 
+    facet = Participant 
+  )
+) |>
+scr_points(cex = 2) |> 
+scr_lines(size = 1) |> 
+scr_xoverride(c(0.25, 27.5),
+  xticks = 1:27,
+  xtickslabs = as.character(1:27)
+) |> # manually override x-axis (make extra room for labels) and specify ticks
+scr_yoverride(c(-5, 105), 
+  yticks = c(0, 50, 100),
+  ytickslabs = as.character(c(0, 50, 100)),
+) |> # manually override y-axis and tick interval (tick for every 10 units)
+scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
+scr_ylabel("Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
+scr_title("Rates of Acquisition across Participants") 
+
+
+## ---- fig.width=8, fig.height=4-----------------------------------------------
+scr_plot(
+  Gilroyetal2015, 
+  aesthetics = var_map(
+    x = Session, 
+    y = Responding, 
+    p = Condition, 
+    facet = Participant 
+  )
+) |>
+scr_points(cex = 2) |> 
+scr_lines(size = 1) |> 
+scr_xoverride(c(0.25, 27.5),
+  xticks = 1:27,
+  xtickslabs = as.character(1:27)
+) |> 
+scr_yoverride(c(-5, 105), 
+  yticks = c(0, 50, 100),
+  ytickslabs = as.character(c(0, 50, 100)),
+) |> 
+scr_label_facet( # Draw a label for each facet (i.e., plot)
+  cex = 1.5, 
+  adj = 1,
+  y = 25, # Specify a common height for all labels
+  labels = list(
+    "Andrew" = list(x = 27), "Brian" = list(x = 27), "Charles" = list(x = 27)
+  ) # Labels to draw, for each respective facet, with specific args (i.e., x)
+) |>
+scr_label_phase(
+  facet = "Andrew", # plot labels on specific facet
+  cex = 1.25,
+  adj = 0.5,
+  y = 120,
+  labels = list(# list of labels to draw (will use assigned key for label)
+    "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
+    "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
+  )
+) |>
+scr_plines_mbd(
+  lines = list(# plot linked phase lines (note: drawn from top through bottom)
+    "A" = list(
+      "Andrew" = list(x1 = 4.5, y1 = 100),
+      "Brian" = list(x1 = 11.5, y1 = 100),
+      "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
+  ),
+  "B" = list(
+    "Andrew" = list(x1 = 13.5, y1 = 100),
+    "Brian" = list(x1 = 20.5, y1 = 100),
+    "Charles" = list(x1 = 23.5, y1 = 100,y2 = -5)
+  ),
+  "C" = list(
+    "Andrew" = list(x1 = 23.5, y1 = 100),
+    "Brian" = list(x1 = 23.5, y1 = 100),
+    "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+  )
+)) |>
+scr_xlabel("Session") |> 
+scr_ylabel("Percent Accuracy") |> 
+scr_title("Rates of Acquisition across Participants") 
+
+
+## ---- eval=FALSE--------------------------------------------------------------
+#  scr_plot(
+#    Gilroyetal2015,
+#    aesthetics = var_map(
+#      x = Session,
+#      y = Responding,
+#      p = Condition,
+#      facet = Participant
+#    )
+#  ) |>
+#  scr_points(cex = 2) |>
+#  scr_lines(size = 1) |>
+#  scr_xoverride(c(0.25, 27.5),
+#    xticks = 1:27,
+#    xtickslabs = as.character(1:27)
+#  ) |>
+#  scr_yoverride(c(-5, 105),
+#    yticks = c(0, 50, 100),
+#    ytickslabs = as.character(c(0, 50, 100)),
+#  ) |>
+#  scr_label_facet(
+#    cex = 1.5,
+#    adj = 1,
+#    y = 25,
+#    labels = list(
+#      "Andrew" = list(x = 27),
+#      "Brian" = list(x = 27),
+#      "Charles" = list(x = 27)
+#    )
+#  ) |>
+#  scr_label_phase(
+#    facet = "Andrew",
+#    cex = 1.25,
+#    adj = 0.5,
+#    y = 120,
+#    labels = list(
+#      "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
+#      "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
+#    )
+#  ) |>
+#  scr_plines_mbd(
+#    lines = list(
+#      "A" = list(
+#        "Andrew" = list(x1 = 4.5, y1 = 100),
+#        "Brian" = list(x1 = 11.5, y1 = 100),
+#        "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
+#    ),
+#    "B" = list(
+#      "Andrew" = list(x1 = 13.5, y1 = 100),
+#      "Brian" = list(x1 = 20.5, y1 = 100),
+#      "Charles" = list(x1 = 23.5, y1 = 100,y2 = -5)
+#    ),
+#    "C" = list(
+#      "Andrew" = list(x1 = 23.5, y1 = 100),
+#      "Brian" = list(x1 = 23.5, y1 = 100),
+#      "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+#    )
+#  )) |>
+#  scr_xlabel("Session") |>
+#  scr_ylabel("Percent Accuracy") |>
+#  scr_title("Rates of Acquisition across Participants") |>
+#  scr_save(name = "NewFileName.svg",
+#             format = "svg",
+#             units = "in",
+#             height = 6,
+#             width = 9) # Save options for figure
 #  
 
-## ---- fig.width=10, fig.height=8, warning=FALSE, eval=FALSE-------------------
-#  
-#  condition_label <- data.frame(
-#    Panel = rep("Attention", 11),
-#    X     = c(17.5,
-#              23.5,
-#              37.5,
-#              72.5,
-#              85,
-#              39, 57.5, 74,
-#              9.5,
-#              22,
-#              33),
-#    Y     = c(3.3,
-#              3,
-#              3,
-#              3,
-#              3,
-#              2.05, 2.05, 2.05,
-#              1.5,
-#              2.25,
-#              2.15),
-#    Cex   = rep(0.75, 11),
-#    Text  = c("Baseline",
-#              "FCR-A + EXT",
-#              "FCR-A + EXT",
-#              "Parent-Implementation",
-#              "Generalization",
-#              "5s",
-#              "Schedule Thinning",
-#              "300s",
-#              "Problem Behavior",
-#              "FCR-A",
-#              "Add FCR\r\nOptions"),
-#    Srt  = rep(0, 11)
-#  )
-#  
-#  condition_label2 <- data.frame(
-#    Panel = rep("Demand", 10),
-#    X     = c(35,
-#              50.5,
-#              65,
-#              85,
-#              30, 60, 71,
-#              26,
-#              36.5,
-#              47.5),
-#    Y     = c(3.35,
-#              3.25,
-#              3,
-#              3,
-#              1.3, 1.3, 1.3,
-#              2,
-#              2.4,
-#              1.5),
-#    Cex   = rep(0.75, 10),
-#    Text  = c("FCR-E + EXT",
-#              "FCR-A/E + EXT",
-#              "Parent-Implementation",
-#              "Generalization",
-#              "1",
-#              "Demand Fading",
-#              "6",
-#              "FCR-E",
-#              "FCR-A P = 0.1",
-#              "FCR-A\r\nP = 0.1\r\n200% SR"),
-#    Srt  = c(rep(0, 8),
-#             90,
-#             0)
-#  )
-#  
-#  condition_label <- rbind(
-#    condition_label,
-#    condition_label2
-#  )
-#  
-#  panel_label <- data.frame(
-#    Panel = c("Attention",
-#              "Demand"),
-#    X     = rep(95, 2),
-#    Y     = rep(3.25, 2),
-#    Cex   = rep(1.25, 2),
-#    Text  = c("Attention",
-#              "Demand")
-#  )
-#  
-#  annotate_phase_lines <- data.frame(
-#    Panel = c(rep("Attention", 2),
-#              rep("Demand", 5)),
-#    X     = c(58.5, 74.5,
-#              34.5, 37.5, 41.5, 50.5, 72.5),
-#    Lty   = c(2, 2,
-#              1, 1, 1, 2, 2)
-#  )
-#  
-#  annotate_brackets <- data.frame(
-#    Panel = c("Attention",
-#              "Demand",
-#              "Demand",
-#              "Attention",
-#              "Demand",
-#              "Attention",
-#              "Attention",
-#              "Attention",
-#              "Demand",
-#              "Demand",
-#              "Demand"),
-#    X1    = c(5,
-#              22.5,
-#              36.5,
-#              38,
-#              29,
-#              7,
-#              20,
-#              31,
-#              24,
-#              36,
-#              45.5),
-#    X2    = c(26.25,
-#              39.5,
-#              47.5,
-#              74,
-#              72,
-#              7,
-#              20,
-#              31,
-#              24,
-#              36,
-#              45.5),
-#    Y1    = c(3.175,
-#              3.275,
-#              3.175,
-#              2,
-#              1.25,
-#              1.4,
-#              2.15,
-#              2.1,
-#              1.9,
-#              1.35,
-#              1.35),
-#    Y2    = c(2.95,
-#              2.95,
-#              2.85,
-#              1.25,
-#              0.5,
-#              0.75,
-#              1.9,
-#              1.9,
-#              1.35,
-#              0.75,
-#              0.65),
-#    Lty   = c(1, 1, 1,
-#              2, 2,
-#              1, 1, 1,
-#              1, 1, 1)
-#  )
-#  
-#  plotAnnotatedReversal(data      = Gilroyetal2019Tx,
-#                        grouping  = "Participant",
-#                        session   = "Session",
-#                        response  = "CTB",
-#                        response2 = "FCR",
-#                        response3 = "FCR2",
-#                        condCol   = "Condition",
-#                        pnum      = "PhaseNum",
-#                        poff      = "LineOff",
-#                        title     = "Evaluation of FCT Treatment Package",
-#                        xlab      = "Session",
-#                        ylab      = "Problem Behavior per Minute",
-#                        deltaX    = 10,
-#                        ymins     = list("Attention" = 0,
-#                                         "Demand"   = 0),
-#                        ymaxs     = list("Attention" = 3,
-#                                         "Demand"   = 3),
-#                        clabs     = condition_label,
-#                        plabs     = panel_label,
-#                        alines    = annotate_phase_lines,
-#                        abracks   = annotate_brackets)
-#  
+## ----ex_gilroy_et_al_2021, fig.width=9, fig.height=6, echo=FALSE--------------
 
-## ---- fig.width=8, fig.height=6, warning=FALSE, eval=FALSE--------------------
-#  
-#  # Specify location, text, and aesthetics of condition labels
-#  condition_labels <- data.frame(
-#    Panel = rep("Andrew", 4),         # Only on top row (for andrew)
-#    X     = c(3.5,                    # Positioned between phase change lines
-#              9,
-#              19,
-#              27),
-#    Y     = rep(100, 4),              # Positioned near top of panel
-#    Cex   = rep(1.25, 4),             # Slightly oversized for clarity
-#    Text  = c("Baseline",             # Content of phase labels
-#              "Training",
-#              "Post-Training",
-#              "Generalization")
-#  )
-#  
-#  # Specify location, text, and aesthetics of panel labels
-#  panel_labels <- data.frame(
-#    Panel = c("Andrew",               # Specify the panels to draw upon
-#              "Brian",
-#              "Charles"),
-#    X     = rep(27, 3),               # Positioned near right of panel edge
-#    Y     = c(0,                      # Positioned near the abscissa
-#              0,
-#              0),
-#    Cex   = rep(1.5, 3),              # Slightly oversized for clarity
-#    Text  = c("Andrew",               # Specific text to write
-#              "Brian",
-#              "Charles")
-#  )
-#  
-#  # Adding in "fake" phase data, since not all have identical exposure
-#  data_frame_adds <- data.frame(
-#    Participant	= c("Andrew",         # Specify where data is associated
-#                    "Brian",
-#                    "Charles"),
-#    Session	    = c(23,               # Add in an "edge" at session 23 (pre-generalization probe)
-#                    23,
-#                    23),
-#    Condition	  = c("Generalization", # Specify condition (just for clarity sake)
-#                    "Maintenance",
-#                    "Maintenance"),
-#    Responding	= c(NA,               # Leave bx as NA, so nothing is plotted
-#                    NA,
-#                    NA),
-#    PhaseNum	  = c(3,                # Note phase index (important)
-#                    3,
-#                    4),
-#    LineOff     = c(0,                # Specify line offset (in case of line overlap)
-#                    0,
-#                    0)
-#  )
-#  
-#  # Add in the faux data, so R can guess where phase changes look best
-#  Gilroyetal2015 <- rbind(Gilroyetal2015,
-#                          data_frame_adds)
-#  
-#  plotMultipleBaseline(data     = Gilroyetal2015,
-#                       grouping = "Participant",
-#                       session  = "Session",
-#                       response = "Responding",
-#                       pnum     = "PhaseNum",
-#                       poff     = "LineOff",
-#                       ymins    = list("Andrew"  = 0,    # Set lower limits (specific to panel)
-#                                       "Brian"   = 0,
-#                                       "Charles" = 0),
-#                       ymaxs    = list("Andrew"  = 100,  # Set upper limits (specific to panel)
-#                                       "Brian"   = 100,
-#                                       "Charles" = 100),
-#                       title    = "Rates of Acquisition across Participants",
-#                       xlab     = "Session",
-#                       xmax     = 27,                    # Extend out max session, for panel tags
-#                       ylab     = "Percent Accuracy",
-#                       clabs    = condition_labels,
-#                       plabs    = panel_labels)
-#  
+data <- Gilroyetal2021
 
-## ---- fig.width=8, fig.height=6, error=TRUE, warning=FALSE, eval=FALSE--------
-#  
-#  # Specify location, text, and aesthetics of condition labels
-#  condition_label <- data.frame(
-#    Panel = rep("John", 6),         # Only on top row (for andrew)
-#    X     = c(2.5,                  # Positioned between phase change lines
-#              6.1,
-#              9,
-#              12.25,
-#              15,
-#              18.25),
-#    Y     = rep(19, 6),             # Positioned near top of (John"s) panel
-#    Cex   = rep(1.25, 6),           # Slightly oversized for clarity
-#    Text  = c("Baseline",           # Content of phase labels
-#              "FR-Lowest",
-#              "Baseline",
-#              "FR-Inelastic",
-#              "FR-Elastic",
-#              "FR-Inelastic")
-#  )
-#  
-#  # Specify location, text, and aesthetics of panel labels
-#  panel_label <- data.frame(
-#    Panel = c("John",               # Specify the panels to draw upon
-#              "Anthony",
-#              "Charles"),
-#    X     = rep(26, 3),             # Positioned near right of panel edge
-#    Y     = c(5,                    # Positioned at various heights, for each case
-#              12,
-#              21),
-#    Cex   = rep(1.5, 3),            # Slightly oversized for clarity
-#    Text  = c("John",               # Specific text to write
-#              "Anthony",
-#              "Charles")
-#  )
-#  
-#  # Specify if/how we want to show a legend
-#  legend_params <- data.frame(
-#    panel =      "John",                # legend drawn on panel for John
-#    position =   "topright",            # drawn in top right corner
-#    legend = c("Responses Observed",    # Items to draw for legend
-#               "Reinforcers Produced"),
-#    col = c("black",                    # colors to draw lines
-#            "black"),
-#    lty = c(1, 2),                      # draw solid lines
-#    pch = c(19, 2),                     # markers to draw
-#    bty = "n",                          # don"t draw surrounding box
-#    pt.cex = 2.25,                      # oversize markers
-#    cex = 1.25,                         # slightly oversize text
-#    text.col = "black",                 # draw text in black
-#    horiz = FALSE,                      # organize items vertically
-#    box.lty = 0                         # don"t draw surrounding box
-#  )
-#  
-#  plotConcurrentReversals(data     = Gilroyetal2021,
-#                          grouping = "Participant",
-#                          session  = "Session",
-#                          response = "Responding",
-#                          response2 = "Reinforcers",
-#                          pnum     = "PhaseNum",
-#                          poff     = "LineOff",
-#                          title    = "Individual Evaluations of Reinforcer Efficacy and Elasticity across Reinforcers",
-#                          xlab     = "Session",
-#                          ylab     = "Frequency (Responses, Reinforcers Delivered)",
-#                          ymins    = list("John"    = 0,
-#                                          "Anthony" = 0,
-#                                          "Charles" = 0),
-#                          ymaxs    = list("John"    = 20,
-#                                          "Anthony" = 10,
-#                                          "Charles" = 20),
-#                          clabs    = condition_label,
-#                          plabs    = panel_label,
-#                          llabs    = legend_params)
+scr_plot(
+  data,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(0.375,
+          0.375,
+          0.175,
+          0.1),
+  omi = c(0.25,
+          0.25,
+          0.25,
+          0.25)
+) |>
+scr_xoverride(
+  c(0.5, 25),
+  xticks = 1:25
+) |>
+scr_yoverride(
+  list(
+    "John" = list(
+      y0 = -1,
+      y1 = 20,
+      yticks = c(0, 5, 10, 15, 20)
+    ),
+    "Anthony" = list(
+      y0 = -0.5,
+      y1 = 10,
+      yticks = c(0, 5, 10)
+    ),
+    "Charles" = list(
+      y0 = -1,
+      y1 = 20,
+      yticks = c(0, 5, 10, 15, 20)
+    )
+  ),
+  ydelta = 5
+) |>
+scr_points(
+  cex = 2
+) |>
+scr_points(
+  cex = 2,
+  pch = 2,
+  mapping = list(
+    x = Session,
+    y = Reinforcers
+  )
+) |>
+scr_lines() |>
+scr_lines(
+  lty = 2,
+  mapping = list(
+    x = Session,
+    y = Reinforcers
+  )
+) |>
+scr_label_phase(
+  facet = "John",
+  cex = 1.25,
+  adj = 0.5,
+  y = 20,
+  labels = list(
+    "Baseline" = list(
+      x = 2
+    ),
+    "FR-Lowest" = list(
+      x = 5
+    ),
+    "Baseline" = list(
+      x = 8
+    ),
+    "FR-Inelastic" = list(
+      x = 11
+    ),
+    "FR-Elastic" = list(
+      x = 14
+    ),
+    "FR-Inelastic" = list(
+      x = 18
+    )
+  )
+) |>
+scr_label_facet(
+  cex = 1.5,
+  adj = 1,
+  x = 25,
+  labels = list(
+    "John" = list(
+      y = 2.5
+    ),
+    "Anthony" = list(
+      y = 12
+    ),
+    "Charles" = list(
+      y = 25
+    )
+  )) |>
+scr_plines_mbd(lines = list(
+  "A" = list(
+    "John" = list(
+      x1 = 3.5,
+      y1 = 20
+    ),
+    "Anthony" = list(
+      x1 = 3.5,
+      y1 = 10
+    ),
+    "Charles" = list(
+      x1 = 3.5,
+      y1 = 20,
+      y2 = -1
+    )
+  ),
+  "B" = list(
+    "John" = list(
+      x1 = 6.5,
+      y1 = 20
+    ),
+    "Anthony" = list(
+      x1 = 6.5,
+      y1 = 10
+    ),
+    "Charles" = list(
+      x1 = 8.5,
+      y1 = 20,
+      y2 = -1
+    )
+  ),
+  "C" = list(
+    "John" = list(
+      x1 = 9.5,
+      y1 = 20
+    ),
+    "Anthony" = list(
+      x1 = 9.5,
+      y1 = 10
+    ),
+    "Charles" = list(
+      x1 = 11.5,
+      y1 = 20,
+      y2 = -1
+    )
+  ),
+  "D" = list(
+    "John" = list(
+      x1 = 12.5,
+      y1 = 20
+    ),
+    "Anthony" = list(
+      x1 = 16.5,
+      y1 = 10
+    ),
+    "Charles" = list(
+      x1 = 16.5,
+      y1 = 20,
+      y2 = -1
+    )
+  ),
+  "E" = list(
+    "John" = list(
+      x1 = 15.5,
+      y1 = 20,
+      y2 = 2
+    ),
+    "Anthony" = list(
+      x1 = 22.5,
+      y1 = 10
+    ),
+    "Charles" = list(
+      x1 = 19.5,
+      y1 = 20,
+      y2 = -1
+    )
+  )
+)) |>
+scr_xlabel("Session") |>
+scr_ylabel("         Frequency (Responses, Reinforcers Delivered)") |>
+scr_title("Individual Evaluations of Reinforcer Efficacy and Elasticity across Reinforcers") |>
+scr_legend(
+  panel = "John",
+  position = "right",
+  legend = c("Responses Observed",
+             "Reinforcers Produced"),
+  col = c("black",
+          "black"),
+  pt_bg = c("black",
+            "black"),
+  lty = c(1,
+          2),
+  pch = c(19,
+          2),
+  bg = c("black",
+         "black"),
+  bty = "n",
+  pt_cex = 2.25,
+  cex = 1.25,
+  text_col = "black",
+  horiz = FALSE,
+  box_lty = 0
+)
+
+
+## ----ex_gilroy_et_al_at, fig.width=9, fig.height=6, echo=FALSE----------------
+
+data <- Gilroyetal2019
+
+scr_plot(
+  data,
+  aesthetics = var_map(
+    x = Session,
+    y = CTB,
+    p = Condition
+  ),
+  mai = c(0.5, 0.5, 0.1, 0.5),
+  omi = c(0.25, 0.25, 0.25, 0.25)
+) |>
+scr_xoverride(c(-.5, 15)) |>
+scr_yoverride(c(-.05, 2),
+              yticks = c(0, 0.5, 1, 1.5, 2),
+              ytickslabs = c("0",
+                             "0.5",
+                             "1",
+                             "1.5",
+                             "2")) |> # manually override y-axis
+scr_lines(size = 1) |> # plot lines, using x/y from aesthetics
+scr_points(
+  cex = 2, # plot points, using x/y from aesthetics
+  pch = list(# override point marker types (match FA conventions)
+    "Toy Play" = 16,
+    "Attention" = 22,
+    "Demand" = 24,
+    "Tangible" = 8
+  ),
+  fill = list(# override point marker colors (match FA conventions)
+    "Toy Play" = "black",
+    "Attention" = "white",
+    "Demand" = "white",
+    "Tangible" = "black"
+  )
+) |>
+scr_xlabel("Session") |>
+scr_ylabel("Combined Target Behavior (Per Minute)") |>
+scr_title("Analog Functional Analysis") |>
+scr_legend(
+  position = "topright", # Specify legend location
+  legend = c(
+    "Toy Play",
+    "Attention",
+    "Demand",
+    "Tangible"
+  ),
+  col = c(
+    "black",
+    "black",
+    "black",
+    "black"
+  ),
+  pt_bg = c(
+    "black",
+    "white",
+    "white",
+    "black"
+  ),
+  lty = c(
+    1,
+    1,
+    1,
+    1
+  ),
+  pch = c(
+    16,
+    22,
+    24,
+    8
+  ),
+  bty = "n",
+  pt_cex = 2.25,
+  cex = 1.25,
+  text_col = "black",
+  horiz = FALSE,
+  box_lty = 0) |>
+  scr_save(name = "../man/figures/fafigure.svg",
+           format = "svg",
+           units = "in",
+           height = 6,
+           width = 9)
+
+
+## ----ex_gilroy_et_al_mbd, fig.width=9, fig.height=6, echo=FALSE---------------
+current_data <- Gilroyetal2019Tx
+current_data$Condition <- paste0(current_data$Condition, current_data$PhaseNum)
+current_data$Function <- current_data$Participant
+current_data$AFCR <- current_data$FCR
+current_data$EFCR <- current_data$FCR2
+
+scr_plot(current_data,
+  aesthetics = var_map(
+    x = Session,
+    y = CTB,
+    p = Condition,
+    facet = Function
+  ),
+  mai = c(0.375, 0.375, 0.25, .25),
+  omi = c(0.25, 0.25, 0.25, 0.25)
+) |>
+scr_yoverride(
+  list(
+    "Attention" = list(
+      y0 = -0.125,
+      y1 = 3,
+      yticks = c(0, 1, 2, 3)
+    ),
+    "Demand" = list(
+      y0 = -0.125,
+      y1 = 3,
+      yticks = c(0, 1, 2, 3)
+    )
+)) |>
+scr_xoverride(
+  c(-1, 100),
+  xdelta = 10,
+  xticks = c(1,
+             seq(10, 100,
+                 by = 10))
+) |>
+scr_lines(
+  size = 1
+) |>
+scr_lines(
+  mapping = list(
+    x = Session,
+    y = AFCR
+  ),
+  size = 1,
+  lty = 2
+) |>
+scr_lines(
+  mapping = list(
+    x = Session,
+    y = EFCR
+  ),
+  size = 1,
+  lty = 3
+) |>
+scr_points(
+  fill = "white",
+  pch = 21
+) |>
+scr_points(
+  mapping = list(
+    x = Session,
+    y = AFCR
+  ),
+  cex = 1,
+  pch = 20,
+  fill = "black"
+) |>
+scr_points(
+  mapping = list(
+    x = Session,
+    y = EFCR
+  ),
+  cex = 0.75,
+  pch = 24,
+  fill = "black"
+) |>
+scr_plines_mbd(
+  lines = list(
+    "A" = list(
+      "Attention" = list(
+        x1 = 13.5,
+        y1 = 3.15,
+        y2 = -0.125
+      ),
+      "Demand" = list(
+        x1 = 20,
+        y1 = 3,
+        y2 = -0.125)
+    )
+  )
+) |>
+scr_plines(
+  lty = 1,
+  lines = list(
+    "Attention" = list(
+      "A" = list(
+        x1 = 25.5,
+        y1 = 3
+      ),
+      "B" = list(
+        x1 = 26.5,
+        y1 = 3
+      ),
+      "C" = list(
+        x1 = 60.5,
+        y1 = 3,
+        lty = 3
+      ),
+      "D" = list(
+        x1 = 76.5,
+        y1 = 3,
+        lty = 3
+      )
+    ),
+    "Demand" = list(
+      "A" = list(
+        x1 = 34.5,
+        y1 = 3
+      ),
+      "B" = list(
+        x1 = 37.5,
+        y1 = 3
+      ),
+      "C" = list(
+        x1 = 41.5,
+        y1 = 3
+      ),
+      "D" = list(
+        x1 = 50.5,
+        y1 = 3,
+        lty = 3
+      ),
+      "E" = list(
+        x1 = 72.5,
+        y1 = 3,
+        lty = 3
+      )
+    )
+  )
+) |>
+scr_label_facet(
+  cex = 1.25,
+  adj = 1,
+  y = 3.15,
+  x = 100,
+  labels = list(
+    "Attention",
+    "Demand"
+  )
+) |>
+scr_label_phase(
+  facet = "Attention",
+  cex = 0.6,
+  adj = 0.5,
+  y = 3,
+  labels = list(
+    "Baseline" = list(
+      x = 14,
+      y = 3.5
+    ),
+    "FCR-A + EXT" = list(
+      x = 19
+    ),
+    "FCR-A + EXT" = list(
+      x = 32
+    ),
+    "Parent Implementation" = list(
+      x = 68.5
+    ),
+    "Generalization" = list(
+      x = 82
+    ),
+    "Problem Behavior" = list(
+      x = 7,
+      y = 1.8
+    ),
+    "FCR-A" = list(
+      x = 20,
+      y = 2.5
+    ),
+    "Add FCR\nOptions" = list(
+      x = 31,
+      y = 2.5
+    )
+  )
+) |>
+scr_label_phase(
+  facet = "Attention",
+  cex = 0.6,
+  adj = 0.5,
+  labels = list(
+    "5s" = list(
+      x = 39,
+      y = 2.4
+    ),
+    "Schedule Thinning" = list(
+      x = 54,
+      y = 2.4
+    ),
+    "300s" = list(
+      x = 75,
+      y = 2.4
+    )
+  )
+) |>
+scr_label_phase(
+  facet = "Demand",
+  cex = 0.6,
+  adj = 0.5,
+  y = 3,
+  labels = list(
+    "FCR-E + EXT" = list(
+      x = 30,
+      y = 3.45
+    ),
+    "FCR-A P = 0.1" = list(
+      x = 36,
+      y = 2,
+      srt = 90
+    ),
+    "FCR-A/E + EXT" = list(
+      x = 47,
+      y = 3.35
+    ),
+    "Parent Implementation" = list(
+      x = 58.5
+    ),
+    "Generalization" = list(
+      x = 78
+    ),
+    "FCR-E" = list(
+      x = 24,
+      y = 2.5
+    ),
+    "FCR-A\nP = 0.1\n200% SR" = list(
+      x = 46,
+      y = 2
+    )
+  )
+) |>
+scr_label_phase(
+  facet = "Demand",
+  cex = 0.6,
+  adj = 0.5,
+  y = 1.375,
+  labels = list(
+    "1" = list(
+      x = 30
+    ),
+    "Demand Fading" = list(
+      x = 56
+    ),
+    "6" = list(
+      x = 71.5
+    )
+  )
+) |>
+scr_arrows(
+  facet = "Attention",
+  length = 0.1,
+  arrows = list(
+    "A" = list(
+      x0 = 7,
+      x1 = 7,
+      y0 = 1.5,
+      y1 = 1
+    ),
+    "B" = list(
+      x0 = 20,
+      x1 = 20,
+      y0 = 2.25,
+      y1 = 2
+    ),
+    "C" = list(
+      x0 = 31,
+      x1 = 31,
+      y0 = 2.25,
+      y1 = 2
+    )
+  )
+) |>
+scr_arrows(
+  facet = "Demand",
+  length = 0.1,
+  arrows = list(
+    "A" = list(
+      x0 = 24,
+      x1 = 24,
+      y0 = 2.25,
+      y1 = 1.5
+    ),
+    "B" = list(
+      x0 = 36,
+      x1 = 36,
+      y0 = 1.3,
+      y1 = 0.75
+    ),
+    "C" = list(
+      x0 = 46,
+      x1 = 46,
+      y0 = 1.5,
+      y1 = 0.75
+    )
+  )
+) |>
+scr_brackets(
+  facet = "Attention",
+  length = 0.1,
+  brackets = list(
+    "A" = list(
+      x0 = 8,
+      x1 = 26,
+      y0 = 3.3,
+      y1 = 3
+    ),
+    "B" = list(
+      x0 = 38,
+      x1 = 76,
+      y0 = 2.25,
+      y1 = 1.5,
+      lty = 3
+    )
+  )
+) |>
+scr_brackets(
+  facet = "Demand",
+  length = 0.1,
+  brackets = list(
+    "A" = list(
+      x0 = 23,
+      x1 = 40,
+      y0 = 3.3,
+      y1 = 3
+    ),
+    "B" = list(
+      x0 = 36,
+      x1 = 47,
+      y0 = 3.2,
+      y1 = 2.9
+    ),
+    "C" = list(
+      x0 = 29,
+      x1 = 72,
+      y0 = 1.25,
+      y1 = 0.5,
+      lty = 3
+    )
+  )
+) |>
+scr_guide_line(
+  color = "red",
+  lty = 3,
+  facet = "Attention",
+  coords = list(
+    "A" = list(
+      x0 = 14,
+      x1 = 25.5,
+      y0 = 0.1
+    ),
+    "B" = list(
+      x0 = 26.5,
+      x1 = 100,
+      y0 = 0.1
+    )
+  )
+) |>
+scr_guide_line(
+  color = "red",
+  lty = 3,
+  facet = "Demand",
+  coords = list(
+    "A" = list(
+      x0 = 20,
+      x1 = 100,
+      y0 = 0.1
+    )
+  )
+)
+
+
+## ----ex_gilroy_et_al_2015, fig.width=9, fig.height=6, echo=FALSE--------------
+data <- Gilroyetal2015
+
+scr_plot(
+  data,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+scr_xoverride(
+  c(0.25, 27.5),
+  xticks = 1:27,
+  xtickslabs = as.character(1:27)
+) |> # manually override x-axis (make extra room for labels)
+scr_yoverride(
+  c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+  yticks = seq(0, 100, by = 10),
+  ytickslabs = as.character(seq(0, 100, by = 10)),
+) |>
+scr_points(
+  cex = 2
+) |> # plot points, using x/y from aesthetics
+scr_lines(
+  size = 1
+) |> # plot lines, using x/y from aesthetics
+scr_label_phase(
+  facet = "Andrew", # plot labels on specific facet
+  cex = 1.25,
+  adj = 0.5,
+  y = 107,
+  labels = list(# list of labels to draw (will use assigned key for label)
+    "Baseline" = list(
+      x = 2.5
+    ),
+    "Treatment" = list(
+      x = 9
+    ),
+    "Maintenance" = list(
+      x = 19
+    ),
+    "Generalization" = list(
+      x = 26
+    )
+  )
+) |>
+scr_label_facet(
+  cex = 1.5, # plot labels across facets (not within a single facet)
+  adj = 1,
+  y = 10,
+  labels = list(# list of labels to draw (will use assigned key for label)
+    "Andrew" = list(
+      x = 27
+    ),
+    "Brian" = list(
+      x = 27
+    ),
+    "Charles" = list(
+      x = 27
+    )
+  )
+) |>
+scr_plines_mbd(
+  lines = list(# plot linked phase lines (note: drawn from top through bottom)
+    "A" = list(
+      "Andrew" = list(
+        x1 = 4.5,
+        y1 = 100
+      ),
+      "Brian" = list(
+        x1 = 11.5,
+        y1 = 100
+      ),
+      "Charles" = list(
+        x1 = 18.5,
+        y1 = 100,
+        y2 = -5
+      )
+  ),
+  "B" = list(
+    "Andrew" = list(
+      x1 = 13.5,
+      y1 = 100
+    ),
+    "Brian" = list(
+      x1 = 20.5,
+      y1 = 100
+    ),
+    "Charles" = list(
+      x1 = 23.5,
+      y1 = 100,
+      y2 = -5
+    )
+  ),
+  "C" = list(
+    "Andrew" = list(
+      x1 = 23.5,
+      y1 = 100
+    ),
+    "Brian" = list(
+      x1 = 23.5,
+      y1 = 100
+    ),
+    "Charles" = list(
+      x1 = 23.5,
+      y1 = 100,
+      y2 = -5
+    )
+  )
+)) |>
+scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
+scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
+scr_title("Rates of Acquisition across Participants") |>
+  scr_save(name = "../man/figures/multiplebaselinefigure.svg",
+           format = "svg",
+           units = "in",
+           height = 6,
+           width = 9)
+
 

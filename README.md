@@ -16,12 +16,13 @@ Some relevant features include:
 
 ------------------------------------------------------------------------
 
-0.4.0 (beta)
+0.4.1 (beta)
 
 ## Changelog
 
 ------------------------------------------------------------------------
 
+-   0.4.1 - Removing older dependencies out, building out vignettes
 -   0.4.0 - Added testing, convenience wrappers
 -   0.3.1 - Updates for padding, margins, rich expression mappings
 -   0.3.0 - Add in demo for completed silverman-style plot
