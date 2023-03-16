@@ -1,13 +1,4 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/faplot.R
-#
-# This file illustrates how to construct a basic,
-# no frills visual of a functional analysis
-#
-
 library(fxl) # core plotting methods
-library(magrittr)
 
 data <- Gilroyetal2019
 
@@ -20,16 +11,16 @@ scr_plot(
   ),
   mai = c(0.5, 0.5, 0.1, 0.5),
   omi = c(0.25, 0.25, 0.25, 0.25)
-) %>%
-scr_xoverride(c(-.5, 15)) %>%
+) |>
+scr_xoverride(c(-.5, 15)) |>
 scr_yoverride(c(-.05, 2),
               yticks = c(0, 0.5, 1, 1.5, 2),
               ytickslabs = c("0",
                              "0.5",
                              "1",
                              "1.5",
-                             "2")) %>% # manually override y-axis
-scr_lines(size = 1) %>% # plot lines, using x/y from aesthetics
+                             "2")) |> # manually override y-axis
+scr_lines(size = 1) |> # plot lines, using x/y from aesthetics
 scr_points(
   cex = 2, # plot points, using x/y from aesthetics
   pch = list(# override point marker types (match FA conventions)
@@ -44,10 +35,10 @@ scr_points(
     "Demand" = "white",
     "Tangible" = "black"
   )
-) %>%
-scr_xlabel("Session") %>%
-scr_ylabel("Combined Target Behavior (Per Minute)") %>%
-scr_title("Analog Functional Analysis") %>%
+) |>
+scr_xlabel("Session") |>
+scr_ylabel("Combined Target Behavior (Per Minute)") |>
+scr_title("Analog Functional Analysis") |>
 scr_legend(
   position = "topright", # Specify legend location
   legend = c(
@@ -85,7 +76,7 @@ scr_legend(
   cex = 1.25,
   text_col = "black",
   horiz = FALSE,
-  box_lty = 0) %>%
+  box_lty = 0) |>
   scr_save(name = "../man/figures/fafigure.svg",
            format = "svg",
            units = "in",

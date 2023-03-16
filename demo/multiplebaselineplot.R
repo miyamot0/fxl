@@ -1,13 +1,4 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/multiplebaselineplot.R
-#
-# This file illustrates how to construct a basic,
-# no frills multiple baseline plot
-#
-
 library(fxl) # core plotting methods
-library(magrittr)
 
 data <- Gilroyetal2015
 
@@ -31,23 +22,23 @@ scr_plot(
     0.25,
     0.1
   )
-) %>%
+) |>
 scr_xoverride(
   c(0.25, 27.5),
   xticks = 1:27,
   xtickslabs = as.character(1:27)
-) %>% # manually override x-axis (make extra room for labels)
+) |> # manually override x-axis (make extra room for labels)
 scr_yoverride(
   c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
   yticks = seq(0, 100, by = 10),
   ytickslabs = as.character(seq(0, 100, by = 10)),
-) %>%
+) |>
 scr_points(
   cex = 2
-) %>% # plot points, using x/y from aesthetics
+) |> # plot points, using x/y from aesthetics
 scr_lines(
   size = 1
-) %>% # plot lines, using x/y from aesthetics
+) |> # plot lines, using x/y from aesthetics
 scr_label_phase(
   facet = "Andrew", # plot labels on specific facet
   cex = 1.25,
@@ -67,7 +58,7 @@ scr_label_phase(
       x = 26
     )
   )
-) %>%
+) |>
 scr_label_facet(
   cex = 1.5, # plot labels across facets (not within a single facet)
   adj = 1,
@@ -83,7 +74,7 @@ scr_label_facet(
       x = 27
     )
   )
-) %>%
+) |>
 scr_plines_mbd(
   lines = list(# plot linked phase lines (note: drawn from top through bottom)
     "A" = list(
@@ -131,10 +122,10 @@ scr_plines_mbd(
       y2 = -5
     )
   )
-)) %>%
-scr_xlabel("Session") %>% # Override x-axis label (bottom only shown by default)
-scr_ylabel("      Percent Accuracy") %>% # Override y-axis label (centered, leftmost label)
-scr_title("Rates of Acquisition across Participants") %>%
+)) |>
+scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
+scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
+scr_title("Rates of Acquisition across Participants") |>
   scr_save(name = "../man/figures/multiplebaselinefigure.svg",
            format = "svg",
            units = "in",

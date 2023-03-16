@@ -32,7 +32,7 @@ Some relevant features include:
 
 ------------------------------------------------------------------------
 
-### Hybrid Experimental Designs (Multiple Baseline + Reversal) 
+### Hybrid Experimental Designs (Multiple Baseline + Reversal)
 
 The figure below is from a single-subject evaluation conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) and drawn in *fxl*. The goal of this study was to demonstrate how an operant behavioral economic approach can be used in conjunction with functional communication training. The figure illustrated below uses *fxl* to illustrate a combination of multiple baseline features as well as a reversal to demonstrate at least 3 demonstrations of control. This figure features dynamic phase change lines, phase change lines varying in style, annotated text and arrows/brackets, and facet/phase labels.
 
@@ -42,7 +42,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ![Gilroy et al 2019](man/figures/annotatedplot.svg)
 
-### Alternating Treatment Design/Functional Analysis 
+### Alternating Treatment Design/Functional Analysis
 
 The figure below represents the results of a functional analysis also conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) and drawn in *fxl*. Specifically, the functional analysis conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) was designed to experimentally determine the function of a child's aggressive behavior. This figure visualizes multiple data series (i.e., each representing a distinct condition) as well as a customized legend to contextualize results. Markers and lines are fully customizable and tailored to the conventions common in functional analysis.
 
@@ -72,7 +72,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ![Gilroy et al 2021](man/figures/concurrentfigure.svg)
 
-### Multiple Baseline Designs 
+### Multiple Baseline Designs
 
 The figure below is based on data from [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004) and is drawn in *fxl*. The goal of this study was to explore whether a relational training procedure could be used to teach autistic children to demonstrate behavior consistent with Theory of Mind (derived relational responding via deictic frames). The figure illustrated below uses *fxl* to illustrate a multiple baseline design, whereby demonstrations of control take place across participants through a systematic introduction of the independent variable (i.e., relational training procedure). This figure features dynamic phase change lines across participants and facet/phase labels.
 
@@ -112,7 +112,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ![](man/figures/cigarettepolicy.svg)
 
-### *Celeration (Semi-logarithmic) Charts* 
+### *Celeration (Semi-logarithmic) Charts*
 
 Standard celeration charts are a type of visualization highly specific to behavior analytic use. Specifically, this semi-logarithmic visualization using logarithmic scaling to support visual changes in behavior over time in terms of relative change on the ordinate (linear change on the abscissa). An example of this type of charge is displayed below with simulated changes in behavior at low (0-2x/session) and high rates (\~100-200x/session) along with phase change lines and text annotations.
 
@@ -124,11 +124,15 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ## Referenced Works (F/OSS software)
 
+------------------------------------------------------------------------
+
 The fxl package incorporates a number of open-source projects to work properly:
 
 -   TeachingDemos - Artistic 2.0 Licensed. [Site](https://cran.r-project.org/web/packages/TeachingDemos/index.html)
 
 ## Installation
+
+------------------------------------------------------------------------
 
 At present, the *fxl* package is not yet part of CRAN. The package must be installed manually at this time, using the *devtools* package. Example installation instructions using *devtools* are provided in source code form below.
 
@@ -138,13 +142,19 @@ At present, the *fxl* package is not yet part of CRAN. The package must be insta
 
 ## Development
 
+------------------------------------------------------------------------
+
 Want to contribute? Great! Emails or PR's (worthwhile ones) are welcome.
 
-## Todos
+## TODOs
+
+------------------------------------------------------------------------
 
 -   Working to 100% coverage.
 -   Building out vignettes for more complete example usage.
 
 ## License
+
+------------------------------------------------------------------------
 
 *fxl* - Copyright 2021, Shawn P. Gilroy. GPL-Version 2+

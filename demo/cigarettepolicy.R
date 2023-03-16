@@ -1,18 +1,7 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/cigarettepolicy.R
-#
-# This file illustrates how to construct a figure,
-# that used timesseries data in FXL along with predictions
-# drawn from a model. This is useful for communicating SCRD
-# findings in conjunction with statistical modeling.
-#
-
 library(fxl) # core plotting methods
-library(magrittr)
-library(extrafont) # using custom font
+#library(extrafont) # using custom font
 
-extrafont::choose_font("Open Sans")
+#extrafont::choose_font("Open Sans")
 
 newFrame <- GelinoEtAl2022
 
@@ -37,16 +26,16 @@ scr_plot(newFrame,
     facet = Facet
   ),
   mai = c(0.85, 0.6, 0, 0.25),
-  family = "Open Sans",
+  #family = "Open Sans",
   omi = c(0.25, 0.25, 0.5, 0.5)
-) %>%
+) |>
 scr_xoverride(
   c(0.4, 11),
   xticks = seq_len(11),
   xrotation = 45,
   xtickslabs = xticks,
   xlabeloffset = 30
-) %>%
+) |>
 scr_yoverride(
   c(-10, 500),
   yticks = c(
@@ -56,13 +45,13 @@ scr_yoverride(
   ),
   ydelta = 50,
   ytickslabs = yticks
-) %>%
-scr_lines() %>%
+) |>
+scr_lines() |>
 scr_points(
   cex = 2,
   pch = 21,
   fill = "gray"
-) %>%
+) |>
 scr_points(
   cex = 2,
   pch = 22,
@@ -71,14 +60,14 @@ scr_points(
     y = Count2,
     p = Condition
   )
-) %>%
+) |>
 scr_lines(
   mapping = list(
     x = Time,
     y = Count2,
     p = Condition
   )
-) %>%
+) |>
 scr_points(
   cex = 2,
   pch = 23,
@@ -87,21 +76,21 @@ scr_points(
     y = Count3,
     p = Condition
   )
-) %>%
+) |>
 scr_lines(
   mapping = list(
     x = Time,
     y = Count3,
     p = Condition
   )
-) %>%
+) |>
 scr_lines(
   mapping = list(
     x = Time,
     y = Count4,
     p = Condition
   )
-) %>%
+) |>
 scr_points(
   cex = 2,
   pch = 24,
@@ -111,7 +100,7 @@ scr_points(
     y = Count4,
     p = Condition
   )
-) %>%
+) |>
 scr_lines(
   size = 1,
   mapping = list(
@@ -120,7 +109,7 @@ scr_lines(
     p = Condition
   ),
   lty = 3,
-  color = "black") %>%
+  color = "black") |>
   scr_label_phase(
   facet = "1",
   cex = 1.25,
@@ -129,7 +118,7 @@ scr_lines(
   labels = list(
     "Pre-Policy" = list(x = 2),
     "Policy Enacted" = list(x = 7)
-  )) %>%
+  )) |>
 scr_plines(
   lty = 1,
   lines = list(
@@ -141,9 +130,9 @@ scr_plines(
       )
     )
   )
-) %>%
-scr_xlabel("Collection Period") %>%
-scr_ylabel("                          Frequency of Butts Collected") %>%
+) |>
+scr_xlabel("Collection Period") |>
+scr_ylabel("                          Frequency of Butts Collected") |>
 scr_legend(
   panel = "1",
   position = "topright",
@@ -179,7 +168,7 @@ scr_legend(
   text_col = "black",
   horiz = FALSE,
   box_lty = 0
-) %>%
+) |>
 scr_save(
   name = "../man/figures/cigarettepolicy.svg",
   format = "svg",

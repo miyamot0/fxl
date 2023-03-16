@@ -1,24 +1,13 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/silvermanplot.R
-#
-# This file illustrates how to construct a
-# silverman-style chart with basic annotations
-#
-
-rm(list = ls())
-
 library(fxl) # core plotting methods
-library(magrittr)
 
-koffarnus_et_al_mod <- KoffarnusEtAl2011 %>%
+koffarnus_et_al_mod <- KoffarnusEtAl2011 |>
   mutate(facet = ifelse(ID < 40,
     "1",
     ifelse(ID > 83,
       "3",
       "2")
     )
-  ) %>%
+  ) |>
   arrange(-ID)
 
 scr_plot(
@@ -40,7 +29,7 @@ scr_plot(
     0.0,
     0.1
   )
-) %>%
+) |>
 scr_yoverride(list(# manually override y-axis and tick interval
   "1" = list(
     y0 = 0,
@@ -55,8 +44,8 @@ scr_yoverride(list(# manually override y-axis and tick interval
     y1 = 127,
     yticks = c(85, 90, 95, 100, 105, 110, 115, 120, 125))),
   ydelta = 5
-) %>%
-scr_ylabel("Participant Number", line = 3) %>%
+) |>
+scr_ylabel("Participant Number", line = 3) |>
 scr_xoverride(
   var = c(1, 135),
   xdelta = 5,
@@ -65,8 +54,8 @@ scr_xoverride(
     60, 70, 80, 90, 100, 110,
     120, 130
   )
-) %>%
-scr_xlabel("Consecutive Work Day", line = 3) %>%
+) |>
+scr_xlabel("Consecutive Work Day", line = 3) |>
 scr_points(
   cex = list(
     "0" = 1,
@@ -91,7 +80,7 @@ scr_points(
     "1" = "black",
     "2" = "transparent"
   )
-) %>%
+) |>
 scr_label_facet(
   cex = 1.25,
   adj = 0,
@@ -110,7 +99,7 @@ scr_label_facet(
       label = "Contingent Paid Training (n = 42)"
     )
   )
-) %>%
+) |>
 scr_legend(
   panel = "3",
   position = list(
@@ -148,13 +137,13 @@ scr_legend(
   horiz = TRUE,
   box_lty = 0)
 
-#%>%
+#|>
 # scr_save(name = "silvermanfigure.png",
 #          format = "png",
 #          units = "in",
 #          height = 11,
 #          res = 500,
-#          width = 9) %>%
+#          width = 9) |>
 # scr_save(name = "silvermanfigure.svg",
 #          format = "svg",
 #          height = 11,

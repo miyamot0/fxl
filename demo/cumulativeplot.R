@@ -1,13 +1,3 @@
-# Shawn Gilroy, 2021 GPLv2+
-#
-# demo/cumulativeplot.R
-#
-# This file illustrates how to construct a cumulative figure, without a legend, and instead
-# describing features using annotations. This is particularly useful for emulating existing
-# conventions that reflect cumulative choice across time (e.g., counts of initial link selections)
-#
-
-library(dplyr) # included for infix logic
 library(fxl) # core plotting methods
 
 scr_plot(
