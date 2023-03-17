@@ -42,3 +42,7 @@
 #' Plotting data from Gelino et al. (2022)
 #'
 "GelinoEtAl2022"
+
+#' Plotting data for Hypothetical Academic MTSS
+#'
+"SimulatedAcademicFluency"

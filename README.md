@@ -124,15 +124,15 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ![](man/figures/cigarettepolicy.svg)
 
-### *Celeration (Semi-logarithmic) Charts*
+### *Celeration (Semi-logarithmic) Charts* 
 
-Standard celeration charts are a type of visualization highly specific to behavior analytic use. Specifically, this semi-logarithmic visualization using logarithmic scaling to support visual changes in behavior over time in terms of relative change on the ordinate (linear change on the abscissa). An example of this type of charge is displayed below with simulated changes in behavior at low (0-2x/session) and high rates (\~100-200x/session) along with phase change lines and text annotations.
+Standard celeration charts are a type of visualization highly specific to behavior analytic use and are particularly suited to fluency-based interpretation. Specifically, this semi-logarithmic visualizations use logarithmic scaling to support an inspection of changes in behavior over time in terms of relative change on the ordinate (and linear change on the abscissa). An example of this type of charge is displayed below with simulated changes in the rate of performing declarative math facts.
 
 The source code necessary to re-create the figure is provided below (data included in the package).
 
-[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/semilogplot.R)
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/reports_academic.R)
 
-![Example Celeration Figure](https://github.com/miyamot0/fxl/blob/main/man/figures/semilogfigure.svg?raw=true)
+![Example Celeration Figure](man/figures/celeration_academic.svg)
 
 ## Referenced Works (F/OSS software)
 

@@ -38,6 +38,9 @@ print.fxlsemilog <- function(x, ...) {
     x_axis_ticks <- as.integer(x$dims[["xticks"]])
   }
 
+  # X axes
+  x_axis_draw  <- TRUE
+
   # Y axis
 
   x$dims[["min.local.y"]] <- ifelse(is.null(x$dims[["global.min.y"]]),
@@ -93,12 +96,6 @@ print.fxlsemilog <- function(x, ...) {
        at     = x_axis_ticks,
        labels = NA)
 
-  # TODO: remove hard codes?
-  axis(2,
-       at     = c(0.1, breaks),
-       las    = 1,
-       tcl    = par("tcl") * 0.33,
-       labels = c("0.1", labels))
   axis(2,
        at = c(0.1,
               as.vector(c(1) %o%
@@ -137,7 +134,7 @@ print.fxlsemilog <- function(x, ...) {
          lty = 3,
          col = "darkblue")
 
-  abline(v   = x$dims[["min.local.x"]]:x$dims[["max.local.x"]],
+  abline(v   = x_axis_ticks,
          lty = 1,
          col = "cadetblue")
 
@@ -156,19 +153,27 @@ print.fxlsemilog <- function(x, ...) {
       if (current_layer$type == "guide_line")  draw_guide_line(x,
                                                                current_layer,
                                                                "hack")
-      if (current_layer$type == "line")        draw_lines(x,
-                                                          current_layer,
-                                                          NA)
+      if (current_layer$type == "line") {
+        draw_lines(x, current_layer, NA)
+      }
+
       if (current_layer$type == "phase_label") draw_label_phase(x,
                                                                 current_layer,
                                                                 "hack")
-      if (current_layer$type == "point")       draw_points(x,
-                                                           current_layer,
-                                                           NA)
+      if (current_layer$type == "point") {
+        draw_points(x, current_layer, NA)
+      }
     }
   }
 
   box(bty = "l")
+
+  if (!is.null(x$dims[["xticklabs"]]) &&
+      !is.list(x$dims[["xticklabs"]]) &&
+      x_axis_draw) {
+
+    x_axis_draw <- x$dims[["xticklabs"]]
+  }
 
   if (!is.null(x[["legendpars"]]))  draw_legend(x)
 
@@ -192,8 +197,8 @@ print.fxlsemilog <- function(x, ...) {
        las = 1)
 
   axis(1,
-       labels = x$dims[["min.local.x"]]:x$dims[["max.local.x"]],
-       at     = x$dims[["min.local.x"]]:x$dims[["max.local.x"]],
+       labels = x_axis_draw,
+       at     = x_axis_ticks,
        pos = 0)
 
   axis(2,

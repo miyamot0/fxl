@@ -36,9 +36,9 @@ The package was developed to provide access to methods specifically designed to 
 
 ### Goal #3: Support for Dynamic Reporting
 
-Attempts to scale interventions and clinical/educational programming based on single case designs and visual analysis have traditionally been difficult due to the efforts and consideration required for visual analysis. Generally, most clinicians working with many cases typically track and monitor the results of intervention using individual spreadsheets. That is, much of this work is unnecessarily duplicated and this is introduces a significant source of inefficiency at scale.
+Attempts to scale interventions and clinical/educational programming based on single case designs and visual analysis have traditionally been difficult due to the efforts and consideration required for visual analysis. Generally, most clinicians working with many cases typically track and monitor the results of intervention using individual spreadsheets. That is, much of this work is unnecessarily duplicated and this introduces a significant source of inefficiency at scale.
 
-The *fxl* package was designed to be compatible with *RMarkdown* and *Quarto* to support dynamic reports that can simultaneously visualize progress for multiple individuals (e.g., students in a classroom) as well as multiple groups (e.g., across classrooms in a grade). Specifically, *fxl* was designed to be able to be used in a way that scaled effectively in ways that other, earlier methods for drawing single case design figures did not. Similarly, this approach can be used to draw reports that are up-to-date, drawn in lossless quality, and built to scale as new students are added to the caseload.
+The *fxl* package was designed to be compatible with *RMarkdown* and *Quarto* to support dynamic reports that can simultaneously visualize progress for multiple individuals (e.g., students in a classroom) as well as multiple groups (e.g., across classrooms in a grade). Specifically, *fxl* was designed to be able to be used in a way that scaled effectively in ways that other, earlier methods for drawing single case design figures did not. Similarly, this approach can be used to draw up-to-date reports, drawn in lossless quality, and built to scale as new students are added to the caseload.
 
 ## Syntax and General Code Structure
 
@@ -269,13 +269,13 @@ scr_save(name = "NewFileName.svg",
 
 ```
 
-# Publication-quality *fxl* Examples 
+# Publication-quality *fxl* Examples
 
 Several examples of figures constructed using *fxl* and data from peer-reviewed works are provided in the sections below. The source code necessary to reproduce all figures here is provided in the 'demo' folder of the source repository.
 
 ## Gilroy et al. (2021)
 
-### Results in Concurrent Reversal Design 
+### Results in Concurrent Reversal Design
 
 ```{r ex_gilroy_et_al_2021, fig.width=9, fig.height=6, echo=FALSE}
 
@@ -1103,4 +1103,10 @@ scr_title("Rates of Acquisition across Participants") |>
 
 ```
 
-# TODO: Automation of *fxl* in Clinical Reports
+# Automation of *fxl* in Clinical Reports
+
+Apart from research applications and the benefits afforded by a purely programmatic means of building, generating, and archiving figures, these benefits also extend to various types of clinical applications as well. That is, any type of regularly collected data and form of educational programming that is common across students or cases can be visualized in a way that (1) reduces redundancy and eliminates the need for individual spreadsheets, (2) can be updated moment-to-moment with either the click of a button or as an automated process (e.g., run every morning before classes start), or (3) facilitates an overall view of the individual's behavior on its own and in comparison to the rest of the class/caseload.
+
+## Integration with Quarto/RMarkdown
+
+...
