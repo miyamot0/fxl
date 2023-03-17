@@ -16,12 +16,13 @@ Some relevant features include:
 
 ------------------------------------------------------------------------
 
-0.4.1 (beta)
+0.4.2 (beta)
 
 ## Changelog
 
 ------------------------------------------------------------------------
 
+-   0.4.2 - Add in support for custom images and markers
 -   0.4.1 - Removing older dependencies out, building out vignettes
 -   0.4.0 - Added testing, convenience wrappers
 -   0.3.1 - Updates for padding, margins, rich expression mappings
@@ -69,9 +70,19 @@ The figure below is from a single-subject evaluation conducted by [Gilroy et al.
 
 The source code necessary to re-create the figure is provided below (data included in the package).
 
-[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/concurrentplot.R)
+[Code to Draw Figure](https://github.com/miyamot0/fxl/demo/concurrentplot.R)
 
 ![Gilroy et al 2021](man/figures/concurrentfigure.svg)
+
+### Custom Images for Figures
+
+Building upon the prior example, figures can be constructed using custom markers and images as well. Specifically, an RGML file (an xml file that tells R how to draw an image) made from either a vector-based or raster can be used in place of a point or marker. The previous example is re-drawn with custom markers for the figure presented here.
+
+The source code necessary to re-create the figure is provided below (data included in the package).
+
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/concurrentplot_fun.R)
+
+![Gilroy et al 2021](man/figures/concurrentfigure_fun.svg)
 
 ### Multiple Baseline Designs
 
@@ -133,6 +144,13 @@ The specific software referenced is provided credit below:
 
 -   ggplot2 - MIT Licensed. [Site](https://github.com/tidyverse/ggplot2)
 -   TeachingDemos - Artistic 2.0 Licensed. [Site](https://cran.r-project.org/web/packages/TeachingDemos/index.html)
+
+## Referenced Works (Other Assets)
+
+The specific assets embedded in this work are credited below:
+
+-   Star SVG Vector - CC0 Licensed. [Site](https://www.svgrepo.com/svg/13695/star)
+-   Like SVG Vector - CC0 Licensed. [Site](https://www.svgrepo.com/svg/13653/like)
 
 ## Installation
 

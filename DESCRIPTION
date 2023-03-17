@@ -1,7 +1,7 @@
 Package: fxl
 Type: Package
 Title: Faux xl Charting in R
-Version: 1.4.1
+Version: 1.4.2
 Author: Shawn Gilroy <sgilroy1@lsu.edu>
 Maintainer: Shawn Gilroy <sgilroy1@lsu.edu>
 Suggests: 
@@ -17,5 +17,6 @@ LazyData: true
 Depends: 
   R (>= 4.1),
   rlang,
+  grImport
 RoxygenNote: 7.2.3
 Config/testthat/edition: 3
