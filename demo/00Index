@@ -3,6 +3,7 @@ atd_concurrentoperant R code for drawing plot
 beezdemandInd         R code for drawing plot
 cigarettepolicy       R code for drawing plot
 concurrentplot        R code for drawing plot
+concurrentplot_fun    R code for drawing plot
 cumulativeplot        R code for drawing plot
 faplot                R code for drawing plot
 faplotintegrity       R code for drawing plot
