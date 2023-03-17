@@ -156,7 +156,7 @@
 <path type='stroke' id='2'>
 	<context>
 		<rgb r='0.0' g='0.0' b='0.0'/>
-		<style lwd='500.0' lty='' lineend='0' linemitre='1.0' linejoin='0'/>
+		<style lwd='300.0' lty='' lineend='0' linemitre='1.0' linejoin='0'/>
 	</context>
 
 	<move y='1798.59' x='3902.7'/>
