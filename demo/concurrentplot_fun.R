@@ -3,8 +3,10 @@ library(grImport)
 
 data <- Gilroyetal2021
 
-heart <- readPicture("heart-cairo-mod.ps.xml")
-star <- readPicture("star-cairo-mod.ps.xml")
+# Note: must be a valid RGML file image to use with base R
+
+like <- readPicture("../man/figures/like-cairo-mod.ps.xml")
+star <- readPicture("../man/figures/star-cairo-mod.ps.xml")
 
 scr_plot(
   data,
@@ -47,18 +49,28 @@ scr_yoverride(
   ),
   ydelta = 5
 ) |>
-scr_lines() |>
+scr_lines(color = 'black', size = 3) |>
+scr_lines(color = 'red', size = 1.5) |>
+scr_images(
+  image = like,
+  cex = 0.03
+) |>
 scr_lines(
-  lty = 2,
+  color = 'black',
+  size = 3,
   mapping = list(
     x = Session,
     y = Reinforcers
   )
 ) |>
-scr_images(
-  image = heart,
-  cex = 0.03
-) |>
+  scr_lines(
+    color = '#ed8a19',
+    size = 1.5,
+    mapping = list(
+      x = Session,
+      y = Reinforcers
+    )
+  ) |>
 scr_images(
   image = star,
   cex = 0.03,
@@ -189,32 +201,41 @@ scr_plines_mbd(lines = list(
 scr_xlabel("Session") |>
 scr_ylabel("         Frequency (Responses, Reinforcers Delivered)") |>
 scr_title("Individual Evaluations of Reinforcer Efficacy and Elasticity across Reinforcers") |>
-scr_legend(
-  panel = "John",
-  position = "right",
-  legend = c("Responses Observed",
-             "Reinforcers Produced"),
-  col = c("black",
-          "black"),
-  pt_bg = c("black",
-            "black"),
-  lty = c(1,
-          2),
-  pch = c(19,
-          2),
-  bg = c("black",
-         "black"),
-  bty = "n",
-  pt_cex = 2.25,
+scr_label_phase(
+  facet = "John",
   cex = 1.25,
-  text_col = "black",
-  horiz = FALSE,
-  box_lty = 0
-)
-
-# |>
-#   scr_save(name = "../man/figures/concurrentfigure_fun.svg",
-#            format = "svg",
-#            units = "in",
-#            height = 6,
-#            width = 9)
+  adj = 0,
+  labels = list(
+    "Response Observed" = list(
+      x = 20.5,
+      y = 15.5
+    ),
+    "Reinforcers Produced" = list(
+      x = 20.5,
+      y = 5
+    )
+  )
+) |>
+scr_arrows(
+  facet = "John",
+  length = 0.1,
+  arrows = list(
+    "A" = list(
+      x0 = 20.25,
+      x1 = 19.5,
+      y0 = 15.5,
+      y1 = 15.5
+    ),
+    "B" = list(
+      x0 = 20.25,
+      x1 = 19.5,
+      y0 = 5,
+      y1 = 5
+    )
+  )
+) |>
+scr_save(name = "../man/figures/concurrentfigure_fun.svg",
+         format = "svg",
+         units = "in",
+         height = 6,
+         width = 9)
