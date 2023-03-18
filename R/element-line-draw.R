@@ -41,6 +41,8 @@ draw_lines <- function(core_frame, current_layer, facet_name) {
       Y = current_data_slice[, as.character(local_aesthetics["y"])]
     )
 
+    plot_frame <- plot_frame[!is.na(plot_frame$X) & !is.na(plot_frame$Y),]
+
     lines(
       plot_frame$X,
       plot_frame$Y,

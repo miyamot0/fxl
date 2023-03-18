@@ -48,6 +48,11 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
         current_label[["color"]], "black"
       )
 
+      temp_label <- ifelse(
+        "label" %in% names(current_label),
+        current_label[["label"]], label
+      )
+
       text(
         x = temp_x,
         y = temp_y,
@@ -56,7 +61,7 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
         font = font_c,
         col = temp_color,
         srt = srt,
-        labels = label
+        labels = temp_label
       )
     }
   }
