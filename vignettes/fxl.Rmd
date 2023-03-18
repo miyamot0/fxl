@@ -52,7 +52,7 @@ The core plotting object for the figure is produced using the *scr_plot* call wi
 
 An example of this is provided below:
 
-```{r, fig.width=7, fig.height=4}
+```{r structure_core, fig.width=7, fig.height=4}
 suppressPackageStartupMessages(library(fxl))
 
 scr_plot(
@@ -72,7 +72,7 @@ The core plotting object alone will rarely provide a sufficient visualization of
 
 An example that builds from the previous example and adds points and lines is provided below:
 
-```{r, fig.width=8, fig.height=4}
+```{r structure_layers, fig.width=8, fig.height=4}
 scr_plot(
   Gilroyetal2015, 
   aesthetics = var_map(
@@ -94,7 +94,7 @@ The default behavior of the drawing engine is to draw axes using the names suppl
 
 An example that builds from the previous examples and customizes the axes titles, ticks, and figure title is provided below:
 
-```{r, fig.width=8, fig.height=4}
+```{r structure_labels, fig.width=8, fig.height=4}
 scr_plot(
   Gilroyetal2015, 
   aesthetics = var_map(
@@ -132,7 +132,7 @@ The *scr_plines_mbd* is perhaps the most specialized of all the methods included
 
 An example that builds from the previous examples and each of these conventions is provided below:
 
-```{r, fig.width=8, fig.height=4}
+```{r structure_lines, fig.width=8, fig.height=4}
 scr_plot(
   Gilroyetal2015, 
   aesthetics = var_map(
@@ -200,7 +200,7 @@ The user can choose to save the output of *fxl* printed to the screen by using t
 
 An example that completes the previous examples and saves the figure to a file is provided below:
 
-```{r, eval=FALSE}
+```{r structure_save, eval=FALSE}
 scr_plot(
   Gilroyetal2015, 
   aesthetics = var_map(
