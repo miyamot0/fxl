@@ -51,7 +51,7 @@ print.fxlsemilog <- function(x, ...) {
                                              x$dims[["global.max.y"]])
 
   # Hack:
-  x$dims[["min.local.y"]] <- 0.1
+  # x$dims[["min.local.y"]] <- 0.1
 
   par(family = "serif",
       omi    = x[["dims"]][["omi"]],
