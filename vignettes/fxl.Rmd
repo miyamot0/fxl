@@ -1109,4 +1109,18 @@ Apart from research applications and the benefits afforded by a purely programma
 
 ## Integration with Quarto/RMarkdown
 
-...
+The ability to generate up-to-date reports and present data ready for visual analysis assists analysts in using data to inform their decisions as well as to learn more about present needs. Reports can be used to facilitate high-level reviews of behavior change (e.g., across center, school, grade level) as well as inspection of individual-level response to intervention and progress monitoring.
+
+TODO
+
+### High Level Example: Classroom Academics
+
+TODO
+
+### High Level Example: Schoolwide Support
+
+TODO
+
+### Low Level Inspection
+
+TODO
