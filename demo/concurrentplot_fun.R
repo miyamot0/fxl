@@ -206,7 +206,7 @@ scr_label_phase(
   cex = 1.25,
   adj = 0,
   labels = list(
-    "Response Observed" = list(
+    "Responses Observed" = list(
       x = 20.5,
       y = 15.5
     ),

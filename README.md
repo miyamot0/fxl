@@ -22,6 +22,7 @@ Some relevant features include:
 
 ------------------------------------------------------------------------
 
+-   0.4.3 - Vignette and example figure expansion
 -   0.4.2 - Add in support for custom images and markers
 -   0.4.1 - Removing older dependencies out, building out vignettes
 -   0.4.0 - Added testing, convenience wrappers
@@ -76,13 +77,17 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ### Custom Images for Figures
 
-Building upon the prior example, figures can be constructed using custom markers and images as well. Specifically, an RGML file (an xml file that tells R how to draw an image) made from either a vector-based or raster can be used in place of a point or marker. The previous example is re-drawn with custom markers for the figure presented here.
+Building upon the prior example, figures can be constructed using custom markers and images as well. Specifically, an RGML file (i.e., an XML file that tells R how to draw an image) made from either a vector-based or raster can be used in place of a point or marker. The previous example is re-drawn with custom markers for the figure presented here.
 
-The source code necessary to re-create the figure is provided below (data included in the package).
+Several examples as well as the respective source code necessary to re-create them are provided below (data included in the package).
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/concurrentplot_fun.R)
 
-![Gilroy et al 2021](man/figures/concurrentfigure_fun.svg)
+![Customized figure with Hearts and Stars](man/figures/concurrentfigure_fun.svg)
+
+[Code to Draw Figure](demo/atd_example_fun.R)
+
+![Customized figure with Black Scorpions and Green Dragons](man/figures/atd_example_fun.svg){alt="Customized figure with Hearts and Stars"}
 
 ### Multiple Baseline Designs
 
@@ -124,15 +129,25 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ![](man/figures/cigarettepolicy.svg)
 
-### *Celeration (Semi-logarithmic) Charts*
+### *Celeration (Semi-logarithmic) Charts - Grouped*
 
-Standard celeration charts are a type of visualization highly specific to behavior analytic use. Specifically, this semi-logarithmic visualization using logarithmic scaling to support visual changes in behavior over time in terms of relative change on the ordinate (linear change on the abscissa). An example of this type of charge is displayed below with simulated changes in behavior at low (0-2x/session) and high rates (\~100-200x/session) along with phase change lines and text annotations.
+Standard celeration charts are a type of visualization highly specific to behavior analytic use and are particularly suited to fluency-based interpretation. Specifically, this semi-logarithmic visualizations use logarithmic scaling to support an inspection of changes in behavior over time in terms of relative change on the ordinate (and linear change on the abscissa). An example of this type of charge is displayed below with simulated changes in the rate of performing declarative math facts.
 
 The source code necessary to re-create the figure is provided below (data included in the package).
 
-[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/semilogplot.R)
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/reports_academic.R)
 
-![Example Celeration Figure](https://github.com/miyamot0/fxl/blob/main/man/figures/semilogfigure.svg?raw=true)
+![Example Celeration Figure](man/figures/celeration_academic.svg)
+
+### *Celeration (Semi-logarithmic) Charts - Individualized*
+
+In addition to group-wide monitoring using celeration charts, these are also used in the context of progress monitoring and in other related educational contexts. An example of educational progress monitoring (i.e., reading indicators) is simulated and provided in this section.
+
+The source code necessary to re-create the figure is provided below (data included in the package).
+
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/reports_academic_rti.R)
+
+![Example Celeration Figure](man/figures/celeration_academic_rti.svg){alt="Example Celeration Figure"}
 
 ## Referenced Works (F/OSS software)
 
