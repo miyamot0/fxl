@@ -1,4 +1,4 @@
-## ---- fig.width=7, fig.height=4-----------------------------------------------
+## ----structure_core, fig.width=7, fig.height=4--------------------------------
 suppressPackageStartupMessages(library(fxl))
 
 scr_plot(
@@ -11,7 +11,7 @@ scr_plot(
   )
 )
 
-## ---- fig.width=8, fig.height=4-----------------------------------------------
+## ----structure_layers, fig.width=8, fig.height=4------------------------------
 scr_plot(
   Gilroyetal2015, 
   aesthetics = var_map(
@@ -24,7 +24,7 @@ scr_plot(
 scr_points(cex = 2) |> # plot points, using x/y from aesthetics
 scr_lines(size = 1) # plot line, using x/y from aesthetics
 
-## ---- fig.width=8, fig.height=4-----------------------------------------------
+## ----structure_labels, fig.width=8, fig.height=4------------------------------
 scr_plot(
   Gilroyetal2015, 
   aesthetics = var_map(
@@ -49,7 +49,7 @@ scr_ylabel("Percent Accuracy") |> # Override y-axis label (centered, leftmost la
 scr_title("Rates of Acquisition across Participants") 
 
 
-## ---- fig.width=8, fig.height=4-----------------------------------------------
+## ----structure_lines, fig.width=8, fig.height=4-------------------------------
 scr_plot(
   Gilroyetal2015, 
   aesthetics = var_map(
@@ -110,7 +110,7 @@ scr_ylabel("Percent Accuracy") |>
 scr_title("Rates of Acquisition across Participants") 
 
 
-## ---- eval=FALSE--------------------------------------------------------------
+## ----structure_save, eval=FALSE-----------------------------------------------
 #  scr_plot(
 #    Gilroyetal2015,
 #    aesthetics = var_map(

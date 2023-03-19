@@ -5,7 +5,7 @@
 \alias{SimulatedAcademicFluency}
 \title{Plotting data for Hypothetical Academic MTSS}
 \format{
-An object of class \code{data.frame} with 120 rows and 6 columns.
+An object of class \code{data.frame} with 168 rows and 7 columns.
 }
 \usage{
 SimulatedAcademicFluency

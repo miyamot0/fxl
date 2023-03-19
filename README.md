@@ -22,6 +22,7 @@ Some relevant features include:
 
 ------------------------------------------------------------------------
 
+-   0.4.3 - Vignette and example figure expansion
 -   0.4.2 - Add in support for custom images and markers
 -   0.4.1 - Removing older dependencies out, building out vignettes
 -   0.4.0 - Added testing, convenience wrappers
@@ -76,13 +77,17 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ### Custom Images for Figures
 
-Building upon the prior example, figures can be constructed using custom markers and images as well. Specifically, an RGML file (an xml file that tells R how to draw an image) made from either a vector-based or raster can be used in place of a point or marker. The previous example is re-drawn with custom markers for the figure presented here.
+Building upon the prior example, figures can be constructed using custom markers and images as well. Specifically, an RGML file (i.e., an XML file that tells R how to draw an image) made from either a vector-based or raster can be used in place of a point or marker. The previous example is re-drawn with custom markers for the figure presented here.
 
-The source code necessary to re-create the figure is provided below (data included in the package).
+Several examples as well as the respective source code necessary to re-create them are provided below (data included in the package).
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/concurrentplot_fun.R)
 
-![Gilroy et al 2021](man/figures/concurrentfigure_fun.svg)
+![Customized figure with Hearts and Stars](man/figures/concurrentfigure_fun.svg)
+
+[Code to Draw Figure](demo/atd_example_fun.R)
+
+![Customized figure with Black Scorpions and Green Dragons](man/figures/atd_example_fun.svg){alt="Customized figure with Hearts and Stars"}
 
 ### Multiple Baseline Designs
 

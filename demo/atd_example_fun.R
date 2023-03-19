@@ -5,22 +5,22 @@ scorpion <- readPicture("../man/figures/scorpion-cairo.ps.xml")
 skinner <- readPicture("../man/figures/skinner-cairo.ps.xml")
 
 dataFrame <- data.frame(
-  Time = seq_len(30),
-  Control = c(c(4,3,2,4,2,1),
+  Time = seq_len(32),
+  Control = c(c(5,3,1,3,4,1),
               rep(NA, 14),
-              c(8,6,4,3,2,1),
-              rep(NA, 4)),
+              c(8,6,2,4,3,1),
+              rep(NA, 6)),
   TreatA = c(rep(NA, 6),
-             c(5,NA,6,NA,6,NA,8,NA,9,NA,11,NA,10,NA),
+             c(5,NA,8,NA,5,NA,9,NA,8,NA,11,NA,9,NA),
              rep(NA, 6),
-             c(NA,NA,NA,NA)),
+             c(NA,NA,NA,NA,NA,NA)),
   TreatB = c(rep(NA, 6),
-             c(NA,4,NA,8,NA,12,NA,10,NA,14,NA,14,NA,15),
+             c(NA,3,NA,7,NA,12,NA,11,NA,14,NA,13.5,NA,16),
              rep(NA, 6),
-             c(10,11,14,15)),
+             c(8,15,12,16,13,18)),
   Phase = c(rep('First', 20),
-            rep('Half', 10)),
-  Facet = rep('P1', 30)
+            rep('Half', 12)),
+  Facet = rep('P1', 32)
 )
 
 scr_plot(dataFrame,
@@ -45,27 +45,6 @@ scr_plot(dataFrame,
                               p = Phase)) |>
   scr_lines(mapping = var_map(x = Time,
                            y = TreatB)) |>
-  scr_images(cex = 0.06,
-             image = skinner) |>
-  scr_images(cex = 0.06,
-             image = dragon,
-             mapping = var_map(x = Time,
-                               y = TreatA)) |>
-  scr_images(cex = 0.06,
-             image = scorpion,
-             mapping = var_map(x = Time,
-                               y = TreatB)) |>
-  scr_label_phase(facet = "P1",
-                  cex    = 1.25,
-                  adj    = 0.5,
-                  y      = 20,
-                  labels = list(
-                    "Baseline"          = list(x = 3.5),
-                    "ATD"               = list(x = 13.5),
-                    "Baseline2"         = list(x = 23.5,
-                                               label = "Baseline"),
-                    "Best Treatment"    = list(x = 30)
-                  )) |>
   scr_plines(
     lty = 1,
     lines = list(
@@ -88,6 +67,27 @@ scr_plot(dataFrame,
       )
     )
   ) |>
+  scr_images(cex = 0.08,
+             image = skinner) |>
+  scr_images(cex = 0.075,
+             image = dragon,
+             mapping = var_map(x = Time,
+                               y = TreatA)) |>
+  scr_images(cex = 0.065,
+             image = scorpion,
+             mapping = var_map(x = Time,
+                               y = TreatB)) |>
+  scr_label_phase(facet = "P1",
+                  cex    = 1.25,
+                  adj    = 0.5,
+                  y      = 20,
+                  labels = list(
+                    "Baseline"          = list(x = 3.5),
+                    "Alternating Treatments" = list(x = 13.5),
+                    "Baseline2"         = list(x = 23.5,
+                                               label = "Baseline"),
+                    "Best Treatment"    = list(x = 30)
+                  )) |>
   scr_xlabel("Session") |>
   scr_ylabel("          Work Output") |>
   scr_save(name = "../man/figures/atd_example_fun.svg",
