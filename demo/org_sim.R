@@ -129,8 +129,6 @@ custom_print <- function(x, ...) {
                                       max(x$data[[as.character(x$aes["y"])]]),
                                       x$dims[["global.max.y"]])
 
-    par(set.par, new = FALSE)
-
     # Top plot
     plot(NULL,
          ylim = c(x$dims[["min.local.y"]],
@@ -179,7 +177,7 @@ custom_print <- function(x, ...) {
 
     abline(h = c(0.1, breaks),
            lty = 1,
-           col = "cadetblue")
+           col = "lightgray")
 
     abline(h = c(0.1,
                  as.vector(c(1) %o%
@@ -197,11 +195,11 @@ custom_print <- function(x, ...) {
                                  x$dims[["min.local.y"]]):log10(
                                    x$dims[["max.local.y"]])))),
            lty = 3,
-           col = "cadetblue")
+           col = "blue")
 
     abline(v   = x_axis_ticks,
            lty = 1,
-           col = "cadetblue")
+           col = "lightgray")
 
     if (length(x[["layers"]]) > 0) {
       for (i in seq_len(length(x[["layers"]]))) {
@@ -313,7 +311,7 @@ custom_print <- function(x, ...) {
       x_axis_draw <- x$dims[["xticklabs"]]
     }
 
-    #if (!is.null(x[["legendpars"]]))  draw_legend(x)
+    if (!is.null(x[["legendpars"]]))  draw_legend(x)
 
     plot(NULL,
          ylim = c(0, 0),
@@ -375,7 +373,7 @@ custom_print <- function(x, ...) {
 student_count = 8
 class_count = 3
 grade_count = 1
-run_time = 8
+run_time = 24
 
 data_frame <- data.frame(
   Student = numeric(student_count * class_count * grade_count),
@@ -389,10 +387,12 @@ data_frame <- data.frame(
   Var = numeric(student_count * class_count * grade_count)
 )
 
-bl_starts_value <- runif(student_count * class_count * grade_count, 0, 6)
+intervention_starts <- c(4, 8, 12)
+
+bl_starts_value <- runif(student_count * class_count * grade_count, 0, 8)
 bl_grd_growth   <- c(0, 5, 10)
-bl_rates_value  <- runif(student_count * class_count * grade_count, 0, 1.25)
-bl_var_value    <- rnorm(student_count * class_count * grade_count, 6, 1.5)
+bl_rates_value  <- runif(student_count * class_count * grade_count, 0, 0.725)
+bl_var_value    <- rnorm(student_count * class_count * grade_count, 4, 1.25)
 bl_otrs_value   <- runif(class_count, 5, 10)
 
 row_number   <- 1
@@ -443,7 +443,11 @@ for (student in seq_len(row_number - 1)) {
   noise_error  <- rnorm(run_time, 0, student_var)
 
   for (time in seq_len(run_time)) {
-    yhat <- student_bl + time * student_lx * student_otr + noise_error[time]
+
+    time_score <- time - intervention_starts[student_cls]
+    time_sign  <- ifelse(time_score > 0, 1, 0)
+
+    yhat <- student_bl + time_score * student_lx * student_otr * time_sign + noise_error[time]
 
     new_data <- data.frame(
       Student = student,
@@ -472,9 +476,12 @@ data_frame$GradeName <- paste0("Grade ", data_frame$Grade)
 
 data_frame$Phase <- "Baseline"
 
-data_frame[data_frame$Classroom == 1 & data_frame$Time > 2, "Phase"] <- "Intervention"
-data_frame[data_frame$Classroom == 2 & data_frame$Time > 4, "Phase"] <- "Intervention"
-data_frame[data_frame$Classroom == 3 & data_frame$Time > 7, "Phase"] <- "Intervention"
+data_frame[data_frame$Classroom == 1 & data_frame$Time > intervention_starts[1], "Phase"] <- "Intervention"
+data_frame[data_frame$Classroom == 2 & data_frame$Time > intervention_starts[2], "Phase"] <- "Intervention"
+data_frame[data_frame$Classroom == 3 & data_frame$Time > intervention_starts[3], "Phase"] <- "Intervention"
+
+data_frame <- data_frame[data_frame$Time > 0, ]
+#data_frame$Time <- data_frame$Time + rnorm(nrow(data_frame), 0, .15)
 
 library(fxl)
 
@@ -483,7 +490,8 @@ scr_plot(
   aesthetics = var_map(
     x = Time,
     y = Value,
-    p = Student,
+    p = Phase,
+    g = Student,
     facet = Classroom
   ),
   omi = c(
@@ -504,6 +512,7 @@ scr_plot(
   scr_xlabel("Weeks of Classroom Instruction") |>
   scr_ylabel("Oral Reading Fluency") |>
   scr_yoverride(c(1, 100)) |>
+  scr_xoverride(c(1, 24)) |>
   scr_lines(
     color = "#000005",
     size = 0.5
@@ -516,8 +525,8 @@ scr_plot(
   scr_label_facet(
     cex = 1.5,
     adj = 1,
-    y = 0.2,
-    x = 8,
+    y = 1.3,
+    x = 24,
     labels = list(
       "1" = list(
         label = "Classroom #1"
@@ -530,21 +539,35 @@ scr_plot(
       )
     )
   ) |>
+  scr_label_phase(
+    cex = 1.5,
+    adj = 0.5,
+    y = 80,
+    facet = '1',
+    labels = list(
+      "Baseline" = list(
+        x = 2.5
+      ),
+      "Increased Daily OTRs" = list(
+        x = 7.5
+      )
+    )
+  ) |>
   scr_plines_mbd(
     lines = list(# plot linked phase lines (note: drawn from top through bottom)
       "A" = list(
         "1" = list(
-          x1 = 2.5,
-          y1 = 110,
-          y2 = 0.1
-        ),
-        "2" = list(
           x1 = 4.5,
           y1 = 110,
           y2 = 0.1
         ),
+        "2" = list(
+          x1 = 8.5,
+          y1 = 110,
+          y2 = 0.1
+        ),
         "3" = list(
-          x1 = 7.5,
+          x1 = 12.5,
           y1 = 110,
           y2 = 0.1
         )
@@ -552,41 +575,7 @@ scr_plot(
     )
   ) |>
   custom_print()
-#|>
-  # scr_lines(
-  #   mapping = list(
-  #     x = Session,
-  #     y = SkillB
-  #   )
-  # ) |>
-  # scr_points(
-  #   pch = 21,
-  #   fill = "gray",
-  #   cex = 2,
-  #   mapping = list(
-  #     x = Session,
-  #     y = SkillB
-  #   )
-  # ) |>
-  # scr_label_phase(
-  #   cex = 1,
-  #   adj = 0.5,
-  #   labels = list(
-  #     "Annotated Labels on Plot" = list(
-  #       x = 5,
-  #       y = 150
-  #     ),
-  #     "Labels for Phase Changes" = list(
-  #       x = 18,
-  #       y = 15
-  #     ),
-  #     "Logarithmic Plotting, With Zero Visualizations" = list(
-  #       x = 6,
-  #       y = 3,
-  #       cex = 1
-  #     )
-  #   )
-  # ) |>
+
   # scr_arrows(
   #   length = 0.1,
   #   arrows = list(
@@ -603,74 +592,4 @@ scr_plot(
   #       y1 = 55
   #     )
   #   )
-  # ) |>
-  # scr_brackets(
-  #   length = 0.1,
-  #   brackets = list(
-  #     "A" = list(
-  #       x0 = 1.5,
-  #       x1 = 10.5,
-  #       y0 = 2.5,
-  #       y1 = 1.5
-  #     )
-  #   )
-  # ) |>
-  # scr_guide_line(
-  #   color = "black",
-  #   lty = 1,
-  #   coords = list(
-  #     "A" = list(
-  #       x0 = 9.5,
-  #       x1 = 9.5,
-  #       y0 = 10,
-  #       y1 = 500
-  #     ),
-  #     "B" = list(
-  #       x0 = 1,
-  #       x1 = 9,
-  #       y0 = 8,
-  #       y1 = 50,
-  #       col = "green",
-  #       lty = 2,
-  #       lwd = 3
-  #     ),
-  #     "C" = list(
-  #       x0 = 10,
-  #       x1 = 30,
-  #       y0 = 50,
-  #       y1 = 150,
-  #       col = "orange",
-  #       lty = 2,
-  #       lwd = 3)
-  #   )
-  # ) |>
-  # scr_legend(
-  #   position = "topright", # Specify legend location
-  #   legend = c(
-  #     "Skill A", # labels to include (ordered)
-  #     "Skill B"
-  #   ),
-  #   col = c(
-  #     "black", # color of markers (ordered)
-  #     "black"
-  #   ),
-  #   pt_bg = c(
-  #     "black", # color of markers (ordered)
-  #     "gray"
-  #   ),
-  #   bg = "white",
-  #   lty = c(
-  #     1,
-  #     1
-  #   ), # line types (ordered)
-  #   pch = c(
-  #     21,
-  #     21
-  #   ), # marker types (ordered)
-  #   bty = "y", # remove border
-  #   pt_cex = 2.25, # point size scale
-  #   cex = 1.5, # text size scale
-  #   text_col = "black", # text color
-  #   horiz = FALSE, # list items vertically
-  #   box_lty = 1
   # )
