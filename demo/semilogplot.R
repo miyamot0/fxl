@@ -24,16 +24,16 @@ scr_plot(
     y = SkillA
   ),
   omi = c(
-    0.0,
-    0.35,
-    0.2,
-    0.25
+    0.5,
+    0.25,
+    0.5,
+    0.5
   ),
   mai = c(
     0.0,
-    0.25,
-    0.1,
-    0.25
+    0.5,
+    0.0,
+    0.0
   ),
   semilog = TRUE
 ) |>
@@ -45,7 +45,7 @@ scr_lines() |>
 scr_points(
   pch = 21,
   fill = "black",
-  cex = 2
+  cex = 3
 ) |>
 scr_lines(
   mapping = list(
@@ -56,7 +56,7 @@ scr_lines(
 scr_points(
   pch = 21,
   fill = "gray",
-  cex = 2,
+  cex = 3,
   mapping = list(
     x = Session,
     y = SkillB

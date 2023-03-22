@@ -6,8 +6,9 @@
 #'
 #' @export
 draw_guide_line <- function(core_frame,  current_layer, facet_name) {
+  is_facet_name_na <- is.na(facet_name)
 
-  if (is.na(facet_name) || current_layer$facet == facet_name) {
+  if (current_layer$facet == facet_name | is_facet_name_na) {
 
     for (gindex in seq_len(length(current_layer$coords))) {
       current_coords <- current_layer$coords[[gindex]]

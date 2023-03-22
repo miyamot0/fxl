@@ -8,10 +8,6 @@
 #'
 #' @export
 draw_legend <- function(core_frame) {
-  font_c <- ifelse(
-    "font" %in% names(current_label),
-    current_label[["font"]], 1
-  )
 
   if (is.list(core_frame$legendpars[["position"]])) {
 
@@ -32,8 +28,7 @@ draw_legend <- function(core_frame) {
       bg        = as.character(core_frame$legendpars[["bg"]]),
       col       = as.character(core_frame$legendpars[["col"]]),
       pt.bg     = as.character(core_frame$legendpars[["pt.bg"]]),
-      horiz     = as.logical(core_frame$legendpars[["horiz"]]),
-      text.font = font_c
+      horiz     = as.logical(core_frame$legendpars[["horiz"]])
     )
 
     return(NA)
@@ -54,7 +49,6 @@ draw_legend <- function(core_frame) {
     bg        = as.character(core_frame$legendpars[["bg"]]),
     col       = as.character(core_frame$legendpars[["col"]]),
     pt.bg     = as.character(core_frame$legendpars[["pt.bg"]]),
-    horiz     = as.logical(core_frame$legendpars[["horiz"]]),
-    text.font = font_c
+    horiz     = as.logical(core_frame$legendpars[["horiz"]])
   )
 }
