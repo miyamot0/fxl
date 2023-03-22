@@ -314,7 +314,13 @@ print.fxlsemilog <- function(x, ...) {
       x_axis_draw <- x$dims[["xticklabs"]]
     }
 
-    if (!is.null(x[["legendpars"]]))  draw_legend(x)
+    if (!is.null(x[["legendpars"]])) {
+      if (lookup && x$legendpars[["panel"]] ==  current_facet) {
+        draw_legend(x)
+      } else if (lookup && is.na(x$legendpars[["panel"]])) {
+        draw_legend(x)
+      }
+    }
 
     plot(NULL,
          ylim = c(0, 0),

@@ -85,6 +85,10 @@ draw_points <- function(core_frame, current_layer, facet_name, zero_axis = FALSE
       if (zero_axis)
         plot_frame <- plot_frame[plot_frame$Y == 0, ]
 
-      points(plot_frame$X, plot_frame$Y, pch = pch, cex = cex, bg = fill, col = col)
+      if (!is.na(current_layer["styler"])) {
+        current_layer[["styler"]](plot_frame, pch = pch, cex = cex, bg = fill, col = col)
+      } else {
+        points(plot_frame$X, plot_frame$Y, pch = pch, cex = cex, bg = fill, col = col)
+      }
     }
 }

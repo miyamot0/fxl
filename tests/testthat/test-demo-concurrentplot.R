@@ -10,7 +10,7 @@ data <- Gilroyetal2021
 
 describe("Concurrent Plot Style", {
   it("Should render as normal", {
-    expect_error(
+    expect_no_error(
       scr_plot(
         data,
         aesthetics = var_map(
@@ -206,28 +206,27 @@ describe("Concurrent Plot Style", {
         horiz = FALSE,
         box_lty = 0
       ) |>
-      scr_save(name = "test.svg",
+      scr_save(name = "testdraws/test.svg",
                format = "svg",
                units = "in",
                height = 6,
                width = 9) |>
-        scr_save(name = "test.png",
+        scr_save(name = "testdraws/test.png",
                  format = "png",
                  units = "in",
                  height = 6,
                  width = 9) |>
-        scr_save(name = "test.tiff",
+        scr_save(name = "testdraws/test.tiff",
                  format = "tiff",
                  units = "in",
                  height = 6,
                  width = 9) |>
-        scr_save(name = "test.pdf",
+        scr_save(name = "testdraws/test.pdf",
                  format = "pdf",
                  units = "in",
                  height = 6,
                  width = 9) |>
-      print(),
-      NA
+      print()
     )
   })
 })

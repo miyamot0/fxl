@@ -7,7 +7,7 @@ current_data$EFCR <- current_data$FCR2
 
 describe("Annotated Plot", {
   it("Should render as normal", {
-    expect_error(
+    expect_no_error(
       scr_plot(current_data,
                aesthetics = var_map(
                  x = Session,
@@ -366,8 +366,7 @@ describe("Annotated Plot", {
             )
           )
         ) |>
-        print(),
-      NA
+        print()
     )
     })
   })
