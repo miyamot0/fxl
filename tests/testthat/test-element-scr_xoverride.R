@@ -90,14 +90,8 @@ describe("scr_xoverride", {
         scr_xoverride(
           c(1, 30),
           xdraws = TRUE,
-          xticks = list(
-            "Eli" = c(1, 5, 10, 15),
-            "Ari" = c(1, 10, 20, 30),
-            "Al" = c(1, 5, 10, 15),
-            "Ry" = c(1, 5, 10, 15),
-            "Eva" = c(1, 5, 10, 15),
-            "Cali" = c(1, 5, 10, 15)
-          )
+          xticks = c(1, 5, 10, 15),
+          xtickslabs = c("1", "5", "10", "15")
         ) |>
         scr_yoverride(
           list(
