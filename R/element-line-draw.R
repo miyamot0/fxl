@@ -20,35 +20,44 @@ draw_lines <- function(core_frame, current_layer, facet_name) {
     current_data[, "p"] <- "0"
   }
 
-  for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
-    current_data_slice <- current_data[
-      which(current_data[, as.character(core_frame$aes["p"])] == p), ]
+  # In case no groups are included?
+  if (!("g" %in% names(core_frame$aes))) {
+    core_frame$aes["g"] <- "g"
+    current_data[, "g"] <- "0"
+  }
 
-    local_aesthetics <- list(
-      "x"   = as.character(core_frame$aes["x"]),
-      "y"   = as.character(core_frame$aes["y"])
-    )
+  for (g in unique(current_data[, as.character(core_frame$aes["g"])])) {
+    for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
+      current_data_slice <- current_data[
+        which(current_data[, as.character(core_frame$aes["p"])] == p &
+                current_data[, as.character(core_frame$aes["g"])] == g), ]
 
-    if (!is.na(current_layer["aesthetics"])) {
       local_aesthetics <- list(
-        "x" = as.character(current_layer$aesthetics["x"]),
-        "y" = as.character(current_layer$aesthetics["y"])
+        "x"   = as.character(core_frame$aes["x"]),
+        "y"   = as.character(core_frame$aes["y"])
+      )
+
+      if (!is.na(current_layer["aesthetics"])) {
+        local_aesthetics <- list(
+          "x" = as.character(current_layer$aesthetics["x"]),
+          "y" = as.character(current_layer$aesthetics["y"])
+        )
+      }
+
+      plot_frame <- data.frame(
+        X = current_data_slice[, as.character(local_aesthetics["x"])],
+        Y = current_data_slice[, as.character(local_aesthetics["y"])]
+      )
+
+      plot_frame <- plot_frame[!is.na(plot_frame$X) & !is.na(plot_frame$Y),]
+
+      lines(
+        plot_frame$X,
+        plot_frame$Y,
+        lty   = current_layer$lty,
+        col   = current_layer$color,
+        lwd   = current_layer$size
       )
     }
-
-    plot_frame <- data.frame(
-      X = current_data_slice[, as.character(local_aesthetics["x"])],
-      Y = current_data_slice[, as.character(local_aesthetics["y"])]
-    )
-
-    plot_frame <- plot_frame[!is.na(plot_frame$X) & !is.na(plot_frame$Y),]
-
-    lines(
-      plot_frame$X,
-      plot_frame$Y,
-      lty   = current_layer$lty,
-      col   = current_layer$color,
-      lwd   = current_layer$size
-    )
   }
 }

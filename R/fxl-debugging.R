@@ -108,15 +108,15 @@ isValidCharacterVector <- function(object = NULL, length = -1, name = NULL) {
                "should be of a character type."))
   }
 
-  if (length != -1 && length(object) != length) {
-    stop(paste("Parameter:",
-               name,
-               "should have",
-               length,
-               "entries but has",
-               length(object),
-               "."))
-  }
+  # if (length != -1 && length(object) != length) {
+  #   stop(paste("Parameter:",
+  #              name,
+  #              "should have",
+  #              length,
+  #              "entries but has",
+  #              length(object),
+  #              "."))
+  # }
 }
 
 

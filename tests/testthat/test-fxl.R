@@ -355,5 +355,35 @@ describe("scr_plot", {
         "Parameter: semilog should have 1 entries but has 2 ."
       )
     })
+
+    it("Should fail if x override is not a vector", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
+          ),
+          semilog = c(TRUE, TRUE)
+        ) |>
+        scr_xoverride(14),
+        "Parameter: scr_xoverride should have 2 entries but has 1 ."
+      )
+    })
+
+    it("Should fail if y override is not a vector", {
+      expect_error(
+        scr_plot(
+          data = current_data,
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
+          ),
+          semilog = c(TRUE, TRUE)
+        ) |>
+          scr_yoverride(14),
+        "Parameter: scr_yoverride should have 2 entries but has 1 ."
+      )
+    })
   })
 })

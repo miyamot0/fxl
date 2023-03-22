@@ -8,11 +8,11 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #' @export
-draw_arrows <- function(core_frame,
-                        current_layer,
-                        facet_name) {
+draw_arrows <- function(core_frame, current_layer, facet_name) {
 
-  if (current_layer$facet == as.character(facet_name)) {
+  is_facet_name_na <- is.na(facet_name)
+
+  if (current_layer$facet == as.character(facet_name) | is_facet_name_na) {
     for (aindex in seq_len(length(current_layer$arrows))) {
       current_arrow <- current_layer$arrows[[aindex]]
 

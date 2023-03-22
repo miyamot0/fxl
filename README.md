@@ -129,16 +129,6 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ![](man/figures/cigarettepolicy.svg)
 
-### *Celeration (Semi-logarithmic) Charts - Grouped*
-
-Standard celeration charts are a type of visualization highly specific to behavior analytic use and are particularly suited to fluency-based interpretation. Specifically, this semi-logarithmic visualizations use logarithmic scaling to support an inspection of changes in behavior over time in terms of relative change on the ordinate (and linear change on the abscissa). An example of this type of charge is displayed below with simulated changes in the rate of performing declarative math facts.
-
-The source code necessary to re-create the figure is provided below (data included in the package).
-
-[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/reports_academic.R)
-
-![Example Celeration Figure](man/figures/celeration_academic.svg)
-
 ### *Celeration (Semi-logarithmic) Charts - Individualized*
 
 In addition to group-wide monitoring using celeration charts, these are also used in the context of progress monitoring and in other related educational contexts. An example of educational progress monitoring (i.e., reading indicators) is simulated and provided in this section.
@@ -148,6 +138,16 @@ The source code necessary to re-create the figure is provided below (data includ
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/reports_academic_rti.R)
 
 ![Example Celeration Figure](man/figures/celeration_academic_rti.svg){alt="Example Celeration Figure"}
+
+### *Celeration (Semi-logarithmic) Charts - Multiple (Groups/Individuals)*
+
+Standard celeration charts are a type of visualization highly specific to behavior analytic use and are particularly suited to fluency-based interpretation. Specifically, this semi-logarithmic visualizations use logarithmic scaling to support an inspection of changes in behavior over time in terms of relative change on the ordinate (and linear change on the abscissa). An example of this type of charge is displayed below with simulated changes in the rate of reading fluency across classrooms in a multiple baseline design.
+
+The source code necessary to re-create the figure is provided below (data included in the package).
+
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/reports_academic_rti.R)
+
+![Example Celeration Figure](man/figures/celeration_classwide.svg){alt="Example Classwide Celeration Figure"}
 
 ## Referenced Works (F/OSS software)
 

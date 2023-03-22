@@ -11,8 +11,7 @@ data$Integrity <- sample(
 
 describe("FA Plot with Integrity", {
   it("Should render as normal", {
-    expect_error(
-
+    expect_no_error(
       scr_plot(
         data,
         aesthetics = var_map(
@@ -99,20 +98,7 @@ describe("FA Plot with Integrity", {
           text_col = "black", # text color
           horiz = FALSE, # list items vertically
           box_lty = 1) |>
-  print(),
-NA)
+    print()
+  )
   })
 })
-
-# |>
-#   scr_save(name = "fafigureintegrity.svg",
-#            format = "svg",
-#            units = "in",
-#            height = 6,
-#            width = 9) |>
-#   scr_save(name = "fafigureintegrity.png",
-#            format = "png",
-#            units = "in",
-#            res = 300,
-#            height = 6,
-#            width = 9)
