@@ -42,10 +42,20 @@ custom_print <- function(x, ...) {
 
   message(paste('n facets = ',n_facets_draw))
 
-  par(mfrow  = c(n_facets_draw, n_cols), # Dynamic facet numbers/cols,
+  set.par <- par(mfrow  = c(n_facets_draw, n_cols), # Dynamic facet numbers/cols,
       family = "serif",
-      omi    = x[["dims"]][["omi"]],
-      mai    = x[["dims"]][["mai"]],
+      omi = c(
+        0.5,
+        0.35,
+        0.2,
+        0.25
+      ),
+      mai = c(
+        0.0,
+        0.5,
+        0,
+        0.25
+      ),
       xaxs   = "r",
       yaxs   = "r",
       xpd    = FALSE)
@@ -70,8 +80,6 @@ custom_print <- function(x, ...) {
     current_id <- current_id + 1
   }
 
-  print(build_vector)
-
   # Set layouts
   layout(matrix(build_vector,
                 nrow = 6 * n_facets_draw,
@@ -91,8 +99,6 @@ custom_print <- function(x, ...) {
 
     # Facet override
     if (lookup)  current_facet <- facets[facetIndex]
-
-
 
     x$dims[["min.local.x"]] <- min(
       x$data[[
@@ -133,9 +139,10 @@ custom_print <- function(x, ...) {
                                       max(x$data[[as.character(x$aes["y"])]]),
                                       x$dims[["global.max.y"]])
 
+    par(set.par, new = FALSE)
 
     # Top plot
-    plot(c(1,1),
+    plot(NULL,
          ylim = c(x$dims[["min.local.y"]],
                   x$dims[["max.local.y"]]),
          xlim = c(x$dims[["min.local.x"]],
@@ -155,142 +162,141 @@ custom_print <- function(x, ...) {
           line = 0)
 
 
-  }
+    breaks  <- as.vector(c(2:10) %o% 10^(log10(x$dims[["min.local.y"]]):log10(x$dims[["max.local.y"]])))
 
+    label_logicals <- c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE)
+    labels <- as.character(breaks * label_logicals)
+    labels <- gsub("^0$", "", labels)
 
-  return(0)
+    axis(1,
+         at     = x_axis_ticks,
+         labels = NA)
 
+    axis(2,
+         at = c(0.1,
+                as.vector(c(1) %o%
+                            10^(
+                              log10(
+                                x$dims[["min.local.y"]]):log10(
+                                  x$dims[["max.local.y"]])))),
+         las    = 1,
+         tcl    = par("tcl"),
+         labels = c(0.1,
+                    as.vector(c(1) %o%
+                                10^(
+                                  log10(
+                                    x$dims[["min.local.y"]]):log10(
+                                      x$dims[["max.local.y"]])))))
 
+    # abline(h = c(0.1, breaks),
+    #        lty = 1,
+    #        col = "cadetblue")
 
-  breaks  <- as.vector(c(2:10) %o% 10^(log10(x$dims[["min.local.y"]]):log10(x$dims[["max.local.y"]])))
+    abline(h = c(0.1,
+                 as.vector(c(1) %o%
+                             10^(
+                               log10(
+                                 x$dims[["min.local.y"]]):log10(
+                                   x$dims[["max.local.y"]])))),
+           lty = 1,
+           col = "cadetblue")
 
-  label_logicals <- c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE)
-  labels <- as.character(breaks * label_logicals)
-  labels <- gsub("^0$", "", labels)
+    abline(h = c(0.1,
+                 as.vector(c(5) %o%
+                             10^(
+                               log10(
+                                 x$dims[["min.local.y"]]):log10(
+                                   x$dims[["max.local.y"]])))),
+           lty = 3,
+           col = "cadetblue")
 
-  axis(1,
-       at     = x_axis_ticks,
-       labels = NA)
+    abline(v   = x_axis_ticks,
+           lty = 1,
+           col = "cadetblue")
 
-  axis(2,
-       at = c(0.1,
-              as.vector(c(1) %o%
-                          10^(
-                            log10(
-                              x$dims[["min.local.y"]]):log10(
-                                x$dims[["max.local.y"]])))),
-       las    = 1,
-       tcl    = par("tcl"),
-       labels = c(0.1,
-                  as.vector(c(1) %o%
-                              10^(
-                                log10(
-                                  x$dims[["min.local.y"]]):log10(
-                                    x$dims[["max.local.y"]])))))
+    if (length(x[["layers"]]) > 0) {
+      for (i in seq_len(length(x[["layers"]]))) {
 
-  abline(h = c(0.1, breaks),
-         lty = 1,
-         col = "cadetblue")
+        current_layer <- x$layers[[i]]
 
-  abline(h = c(0.1,
-               as.vector(c(1) %o%
-                           10^(
-                             log10(
-                               x$dims[["min.local.y"]]):log10(
-                                 x$dims[["max.local.y"]])))),
-         lty = 1,
-         col = "darkblue")
-
-  abline(h = c(0.1,
-               as.vector(c(5) %o%
-                           10^(
-                             log10(
-                               x$dims[["min.local.y"]]):log10(
-                                 x$dims[["max.local.y"]])))),
-         lty = 3,
-         col = "darkblue")
-
-  abline(v   = x_axis_ticks,
-         lty = 1,
-         col = "cadetblue")
-
-  if (length(x[["layers"]]) > 0) {
-    for (i in seq_len(length(x[["layers"]]))) {
-
-      current_layer <- x$layers[[i]]
-      current_layer$facet <- "hack"
-
-      if (current_layer$type == "arrows")      draw_arrows(x,
-                                                           current_layer,
-                                                           "hack")
-      if (current_layer$type == "brackets")    draw_brackets(x,
+        if (current_layer$type == "arrows")      draw_arrows(x,
                                                              current_layer,
-                                                             "hack")
-      if (current_layer$type == "guide_line")  draw_guide_line(x,
+                                                             current_facet)
+        if (current_layer$type == "brackets")    draw_brackets(x,
                                                                current_layer,
-                                                               "hack")
-      if (current_layer$type == "line") {
-        draw_lines(x, current_layer, NA)
-      }
+                                                               current_facet)
+        if (current_layer$type == "guide_line")  draw_guide_line(x,
+                                                                 current_layer,
+                                                                 current_facet)
+        if (current_layer$type == "line") {
+          draw_lines(x, current_layer, current_facet)
+        }
 
-      if (current_layer$type == "phase_label") draw_label_phase(x,
-                                                                current_layer,
-                                                                "hack")
-      if (current_layer$type == "point") {
-        draw_points(x, current_layer, NA)
+        if (current_layer$type == "phase_label") draw_label_phase(x,
+                                                                  current_layer,
+                                                                  current_facet)
+
+        if (current_layer$type == "facet_label")
+          draw_label_facet(x,
+                           current_layer,
+                           current_facet)
+
+        if (current_layer$type == "point") {
+          draw_points(x, current_layer, current_facet)
+        }
       }
     }
+
+    box(bty = "l")
+
+    if (!is.null(x$dims[["xticklabs"]]) &&
+        !is.list(x$dims[["xticklabs"]]) &&
+        x_axis_draw) {
+
+      x_axis_draw <- x$dims[["xticklabs"]]
+    }
+
+    #if (!is.null(x[["legendpars"]]))  draw_legend(x)
+
+    plot(NULL,
+         ylim = c(0, 0),
+         xlim = c(x$dims[["min.local.x"]],
+                  x$dims[["max.local.x"]]),
+         ylab = "",
+         xlab = "",
+         xaxt = "n",
+         yaxt = "n",
+         frame.plot = FALSE,
+         las = 1)
+
+    x_labels_holder <- x_axis_draw
+
+    if (facetIndex != n_facets) {
+      x_labels_holder <- NA
+    }
+
+    axis(1,
+         labels = x_labels_holder,
+         at     = x_axis_ticks,
+         pos = 0)
+
+    axis(2,
+         labels = c(0),
+         las    = 1,
+         tcl    = 0,
+         at     = c(0))
+
+
   }
 
-  box(bty = "l")
-
-  if (!is.null(x$dims[["xticklabs"]]) &&
-      !is.list(x$dims[["xticklabs"]]) &&
-      x_axis_draw) {
-
-    x_axis_draw <- x$dims[["xticklabs"]]
-  }
-
-  if (!is.null(x[["legendpars"]]))  draw_legend(x)
-
-  par(
-    omi    = c(0.2, 0.25, 0.1, 0.25),
-    mai    = c(0.4, 0.35, 0.1, 0.25),
-    xaxs   = "r",
-    yaxs   = "r",
-    xpd    = FALSE,
-    new    = TRUE)
-
-  plot(NULL,
-       ylim = c(0, 0),
-       xlim = c(x$dims[["min.local.x"]],
-                x$dims[["max.local.x"]]),
-       ylab = "",
-       xlab = "",
-       xaxt = "n",
-       yaxt = "n",
-       frame.plot = FALSE,
-       las = 1)
-
-  axis(1,
-       labels = x_axis_draw,
-       at     = x_axis_ticks,
-       pos = 0)
-
-  axis(2,
-       labels = c(0),
-       las    = 1,
-       tcl    = 0,
-       at     = c(0))
-
-  abline(h = 0,
-         lty = 1,
-         col = "black")
-
-  if (length(x[["layers"]]) > 0)
-    for (i in seq_len(length(x[["layers"]])))
-      if (x$layers[[i]]$type == "point")
-        draw_points(x, x$layers[[i]], NA, zero_axis = TRUE)
+  # abline(h = 0,
+  #        lty = 1,
+  #        col = "black")
+  #
+  # if (length(x[["layers"]]) > 0)
+  #   for (i in seq_len(length(x[["layers"]])))
+  #     if (x$layers[[i]]$type == "point")
+  #       draw_points(x, x$layers[[i]], NA, zero_axis = TRUE)
 
   mtext(x$labs[["ylab"]],
         side = 2,
@@ -298,14 +304,14 @@ custom_print <- function(x, ...) {
 
   mtext(x$labs[["xlab"]],
         side = 1,
+        line = 2,
         outer = TRUE)
 }
 
-
-student_count = 30
+student_count = 8
 class_count = 3
 grade_count = 1
-run_time = 5
+run_time = 8
 
 data_frame <- data.frame(
   Student = numeric(student_count * class_count * grade_count),
@@ -319,11 +325,11 @@ data_frame <- data.frame(
   Var = numeric(student_count * class_count * grade_count)
 )
 
-bl_starts_value <- runif(student_count * class_count * grade_count, 0, 10)
-bl_grd_growth   <- runif(grade_count, 0, 15)
+bl_starts_value <- runif(student_count * class_count * grade_count, 0, 6)
+bl_grd_growth   <- c(0, 5, 10)
 bl_rates_value  <- runif(student_count * class_count * grade_count, 0, 1.25)
-bl_var_value    <- rnorm(student_count * class_count * grade_count, 6, 2.5)
-bl_otrs_value   <- runif(class_count, 15, 25)
+bl_var_value    <- rnorm(student_count * class_count * grade_count, 6, 3)
+bl_otrs_value   <- runif(class_count, 5, 10)
 
 row_number   <- 1
 class_number <- 1
@@ -395,7 +401,7 @@ for (student in seq_len(row_number - 1)) {
   }
 }
 
-data_frame
+data_frame[data_frame$Value < 1, "Value"] <- 0
 
 data_frame$ClassName <- paste0("Classroom #", data_frame$Classroom)
 data_frame$GradeName <- paste0("Grade ", data_frame$Grade)
@@ -428,6 +434,7 @@ scr_plot(
   scr_title("Semi-log Chart: Grade-level Acquisition in Schools") |>
   scr_xlabel("Weeks of Classroom Instruction") |>
   scr_ylabel("Oral Reading Fluency") |>
+  scr_yoverride(c(1, 1000)) |>
   scr_lines(
     color = "#000005",
     size = 0.5
@@ -436,6 +443,23 @@ scr_plot(
     pch = 21,
     fill = "white",
     cex = 2
+  ) |>
+  scr_label_facet(
+    cex = 1.5,
+    adj = 1,
+    y = 0.2,
+    x = 8,
+    labels = list(
+      "1" = list(
+        label = "Classroom #1"
+      ),
+      "2" = list(
+        label = "Classroom #2"
+      ),
+      "3" = list(
+        label = "Classroom #3"
+      )
+    )
   ) |>
   custom_print()
 #|>
