@@ -10,6 +10,7 @@
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @export
+#' @importFrom rlang enexprs
 scr_cumsum_points <- function(core_frame,
                               pch = 21,
                               color = "black",
@@ -25,7 +26,7 @@ scr_cumsum_points <- function(core_frame,
   newlayer[["cex"]] <- cex
   newlayer[["aesthetics"]] <- NA
 
-  if (!missing(mapping))  newlayer[["aesthetics"]] <- rlang::enexpr(mapping)
+  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 

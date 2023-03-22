@@ -15,9 +15,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with fxl  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
 
-library(rlang)
-
-
 #' var_map
 #'
 #' This helper function maps out relationships to be parsed later on

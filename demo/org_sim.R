@@ -520,7 +520,22 @@ scr_plot(
   scr_points(
     pch = 21,
     fill = "white",
-    cex = 2
+    cex = 2,
+    styler = function(value) {
+      if (value < 10) {
+        return(list(
+          'col' = 'red'
+        ))
+      } else if (value > 40) {
+        return(list(
+          'col' = 'green'
+        ))
+      } else {
+        return(list(
+          'col' = 'yellow'
+        ))
+      }
+    }
   ) |>
   scr_label_facet(
     cex = 1.5,
