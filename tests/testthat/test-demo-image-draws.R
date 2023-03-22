@@ -1,7 +1,7 @@
 
-dragon <- readPicture("../../man/figures/dragon-cairo.ps.xml")
-scorpion <- readPicture("../../man/figures/scorpion-cairo.ps.xml")
-skinner <- readPicture("../../man/figures/skinner-cairo.ps.xml")
+dragon <- readPicture("dragon-cairo.ps.xml")
+scorpion <- readPicture("scorpion-cairo.ps.xml")
+skinner <- readPicture("skinner-cairo.ps.xml")
 
 dataFrame <- data.frame(
   Time = seq_len(32),
