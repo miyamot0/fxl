@@ -151,7 +151,6 @@ custom_print <- function(x, ...) {
           adj = 0.5,
           line = 1)
 
-
     breaks  <- as.vector(c(2:10) %o% 10^(log10(x$dims[["min.local.y"]]):log10(x$dims[["max.local.y"]])))
 
     label_logicals <- c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE)
@@ -189,7 +188,7 @@ custom_print <- function(x, ...) {
                                  x$dims[["min.local.y"]]):log10(
                                    x$dims[["max.local.y"]])))),
            lty = 1,
-           col = "cadetblue")
+           col = "blue")
 
     abline(h = c(0.1,
                  as.vector(c(5) %o%
@@ -266,56 +265,41 @@ custom_print <- function(x, ...) {
               0,
               current_layer$lines[[pname]][[current_index]][["y2"]])
 
-            current_layer$lines[[pname]][[current_index]][["topDraw"]] <- cnvrt_coords(
-              tmp_x1,
-              x$dims[["max.local.y"]])
-
-            current_layer$lines[[pname]][[current_index]][["botDraw"]] <- cnvrt_coords(
-              tmp_x2,
-              tmp_y2)
-
-            tmp_point_top_dev <- cnvrt_coords(
-              current_layer$lines[[pname]][[current_index]][["topDraw"]]$dev,
-              input = "dev")
-
-            tmp_point_bot_dev <- cnvrt_coords(
-              current_layer$lines[[pname]][[current_index]][["botDraw"]]$dev,
-              input = "dev")
-
-            #abline(v = tmp_point_top_dev$usr$x)
-
-            segments(tmp_point_top_dev$usr$x,
-                     tmp_point_top_dev$usr$y,
-                     tmp_point_bot_dev$usr$x,
-                     tmp_point_bot_dev$usr$y,
+            segments(tmp_x1,
+                     tmp_y1,
+                     tmp_x2,
+                     tmp_y2,
                      col = "black")
 
-            current_layer$lines[[pname]][[current_index]][["topDraw"]] <- cnvrt_coords(
-              tmp_x1,
-              tmp_y2)$dev
-
-            current_layer$lines[[pname]][[current_index]][["botDraw"]] <- cnvrt_coords(
-              tmp_x2,
-              tmp_y2)$dev
-
-            plot_tops[[pname]][[index_num[[pname]]]] <- cnvrt_coords(
-              tmp_x1,
-              tmp_y1)
-
-            plot_bots[[pname]][[index_num[[pname]]]] <- cnvrt_coords(
-              tmp_x2,
-              tmp_y2)
-
-            print(paste(pname,
-                        'x1:', tmp_x1,
-                        'x2:', tmp_x2,
-                        'y1:', tmp_y1,
-                        'y2:', tmp_y2))
-
             index_num[[pname]] <- index_num[[pname]] + 1
-          }
 
-          req_draw <- TRUE
+            if (current_index > 1) {
+
+              pre_tmp_x1 <- ifelse(is.null(
+                current_layer$lines[[pname]][[current_index - 1]][["x1"]]),
+                0,
+                current_layer$lines[[pname]][[current_index - 1]][["x1"]])
+
+              segments(tmp_x1,
+                       tmp_y1,
+                       tmp_x2,
+                       tmp_y2,
+                       col = "black")
+
+              segments(pre_tmp_x1,
+                       tmp_y1,
+                       tmp_x1,
+                       tmp_y1,
+                       col = "black")
+
+              segments(pre_tmp_x1,
+                       tmp_y1,
+                       pre_tmp_x1,
+                       tmp_y1 * 10,
+                       col = "black")
+
+            }
+          }
         }
       }
     }
@@ -369,82 +353,11 @@ custom_print <- function(x, ...) {
           draw_points(x, x$layers[[i]], NA, zero_axis = TRUE)
 
         if (current_layer$type == "mbd_phase_lines") {
-          plines <- names(current_layer$lines)
-
           tmp_x1 <- current_layer$lines[[pname]][[current_index]][["x1"]]
 
           abline(v = tmp_x1,
                  lty = 1,
                  col = 'black')
-#
-#           for (pname in plines) {
-#
-#             # start of index for named list
-#             if (!(pname %in% names(index_num))) index_num[[pname]] <- 1
-#
-#             current_index <- which(
-#               names(current_layer$lines[[pname]]) ==  current_facet)
-#
-#             if (length(current_index) == 0) next
-#
-#             tmp_x1 <- current_layer$lines[[pname]][[current_index]][["x1"]]
-#
-#             tmp_x2 <- ifelse(is.null(
-#               current_layer$lines[[pname]][[current_index]][["x2"]]),
-#               tmp_x1,
-#               current_layer$lines[[pname]][[current_index]][["x2"]])
-#
-#             # tmp_y1 <- 0
-#             # tmp_y2 <- -5
-#             tmp_y1 <- 0
-#
-#             tmp_y2 <- ifelse(is.null(
-#               current_layer$lines[[pname]][[current_index]][["y2"]]),
-#               0,
-#               current_layer$lines[[pname]][[current_index]][["y2"]])
-#
-#             current_layer$lines[[pname]][[current_index]][["topDraw"]] <- cnvrt_coords(
-#               tmp_x1,
-#               0)
-#
-#             current_layer$lines[[pname]][[current_index]][["botDraw"]] <- cnvrt_coords(
-#               tmp_x2,
-#               tmp_y2)
-#
-#             tmp_point_top_dev <- cnvrt_coords(
-#               current_layer$lines[[pname]][[current_index]][["topDraw"]]$dev,
-#               input = "dev")
-#
-#             tmp_point_bot_dev <- cnvrt_coords(
-#               current_layer$lines[[pname]][[current_index]][["botDraw"]]$dev,
-#               input = "dev")
-#
-#             segments(tmp_point_top_dev$usr$x,
-#                      tmp_point_top_dev$usr$y,
-#                      tmp_point_bot_dev$usr$x,
-#                      tmp_point_bot_dev$usr$y,
-#                      col = "black")
-#
-#             current_layer$lines[[pname]][[current_index]][["topDraw"]] <- cnvrt_coords(
-#               tmp_x1,
-#               tmp_y2)$dev
-#
-#             current_layer$lines[[pname]][[current_index]][["botDraw"]] <- cnvrt_coords(
-#               tmp_x2,
-#               tmp_y2)$dev
-#
-#             plot_tops[[pname]][[index_num[[pname]]]] <- cnvrt_coords(
-#               tmp_x1,
-#               tmp_y1)
-#
-#             plot_bots[[pname]][[index_num[[pname]]]] <- cnvrt_coords(
-#               tmp_x2,
-#               tmp_y2)
-#
-#             index_num[[pname]] <- index_num[[pname]] + 1
-#           }
-
-          req_draw <- TRUE
         }
 
   }
@@ -457,52 +370,6 @@ custom_print <- function(x, ...) {
         side = 1,
         line = 2,
         outer = TRUE)
-
-  # Note: final overlays, once facets are drawn/coords cached
-  if (req_draw) {
-
-    print(plot_tops)
-    print(plot_bots)
-
-    n_phase_lines <- unique(names(plot_bots))
-
-    for (pl in seq_len(length(n_phase_lines))) {
-
-      n_facets <- length(plot_tops[[n_phase_lines[pl]]])
-
-      for (plfacet in 2:n_facets) {
-
-        #pts.pre <- plot_tops[[n_phase_lines[pl]]][[plfacet - 1]]
-        pbs_pre <- plot_bots[[n_phase_lines[pl]]][[plfacet - 1]]
-
-        pts <- plot_tops[[n_phase_lines[pl]]][[plfacet]]
-        pbs <- plot_bots[[n_phase_lines[pl]]][[plfacet]]
-
-        #tmp.point.top.pre.dev <- cnvrt_coords(pts.pre$dev, input = "dev")
-        tmp_point_bot_pre_dev <- cnvrt_coords(pbs_pre$dev, input = "dev")
-
-        tmp_point_top_dev <- cnvrt_coords(pts$dev, input = "dev")
-        tmp_point_bot_dev <- cnvrt_coords(pbs$dev, input = "dev")
-
-        segments(tmp_point_bot_pre_dev$usr$x, tmp_point_bot_pre_dev$usr$y,
-                 tmp_point_bot_pre_dev$usr$x, (tmp_point_bot_pre_dev$usr$y +
-                                                 tmp_point_top_dev$usr$y) / 2,
-                 col = "black")
-
-        segments(tmp_point_bot_pre_dev$usr$x, (tmp_point_bot_pre_dev$usr$y +
-                                                 tmp_point_top_dev$usr$y) / 2,
-                 tmp_point_top_dev$usr$x, (tmp_point_bot_pre_dev$usr$y +
-                                             tmp_point_top_dev$usr$y) / 2,
-                 col = "black")
-
-        segments(tmp_point_top_dev$usr$x, (tmp_point_bot_pre_dev$usr$y +
-                                             tmp_point_top_dev$usr$y) / 2,
-                 tmp_point_top_dev$usr$x, tmp_point_top_dev$usr$y,
-                 col = "black")
-      }
-    }
-  }
-
 }
 
 student_count = 8
@@ -603,6 +470,12 @@ data_frame[data_frame$Value < 1, "Value"] <- 0
 data_frame$ClassName <- paste0("Classroom #", data_frame$Classroom)
 data_frame$GradeName <- paste0("Grade ", data_frame$Grade)
 
+data_frame$Phase <- "Baseline"
+
+data_frame[data_frame$Classroom == 1 & data_frame$Time > 2, "Phase"] <- "Intervention"
+data_frame[data_frame$Classroom == 2 & data_frame$Time > 4, "Phase"] <- "Intervention"
+data_frame[data_frame$Classroom == 3 & data_frame$Time > 7, "Phase"] <- "Intervention"
+
 library(fxl)
 
 scr_plot(
@@ -662,17 +535,17 @@ scr_plot(
       "A" = list(
         "1" = list(
           x1 = 2.5,
-          y1 = 100,
+          y1 = 110,
           y2 = 0.1
         ),
         "2" = list(
           x1 = 4.5,
-          y1 = 100,
+          y1 = 110,
           y2 = 0.1
         ),
         "3" = list(
           x1 = 7.5,
-          y1 = 100,
+          y1 = 110,
           y2 = 0.1
         )
       )
