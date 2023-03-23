@@ -305,7 +305,7 @@ print.fxlsemilog <- function(x, ...) {
       }
     }
 
-    box(bty = "l")
+    box(bty = "u")
 
     if (!is.null(x$dims[["xticklabs"]]) &&
         !is.list(x$dims[["xticklabs"]]) &&

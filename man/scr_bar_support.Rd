@@ -8,6 +8,10 @@ scr_bar_support(
   core_frame,
   color = rgb(0.8, 0.8, 0.8, alpha = 0.25),
   alpha = 1,
+  guide_line = NULL,
+  guide_line_type = 1,
+  guide_line_size = 1,
+  guide_line_color = "black",
   mapping = NULL,
   label = "",
   width = 0.8
@@ -19,6 +23,14 @@ scr_bar_support(
 \item{color}{from base}
 
 \item{alpha}{from base}
+
+\item{guide_line}{(optional) aim line for bars}
+
+\item{guide_line_type}{(optional) aim line type for bars}
+
+\item{guide_line_size}{(optional) aim line size for bars}
+
+\item{guide_line_color}{(optional) aim line color for bars}
 
 \item{mapping}{(optional) if overriding draw (i.e., different response)}
 

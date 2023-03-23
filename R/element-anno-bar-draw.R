@@ -58,6 +58,8 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
        las    = 1,
        at     = y_axis_ticks)
 
+  #abline()
+
   box(bty = "U")
 
   for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
@@ -75,11 +77,33 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
            mod_y,
            col = current_layer$color)
     }
-  }
 
-#  axis(side = 4,
-#       las = 1,
-#       at = pretty(range(c(0, current_data_slice[, as.character(local_aesthetics["y"])]))))
+    if (!is.null(current_layer[["guide_line"]])) {
+      guide_line <- current_layer[["guide_line"]]
+      guide_line_color <- current_layer[["guide_line_color"]]
+      guide_line_type <- current_layer[["guide_line_type"]]
+      guide_line_size <- current_layer[["guide_line_size"]]
+
+      # Note: have to work from primary y-axis
+
+      pre_clip_pars <- par("usr")
+
+      x1 <- pre_clip_pars[1]
+      x2 <- pre_clip_pars[2]
+      y1 <- pre_clip_pars[3]
+      y2 <- pre_clip_pars[4]
+
+      clip(x1, x2, y1, y2)
+
+      abline(h = (guide_line / 100) * max_y,
+             lwd = guide_line_size,
+             lty = guide_line_type,
+             col = guide_line_color)
+
+      clip(-1000000, 1000000,
+           -1000000, 1000000)
+    }
+  }
 
   mtext(label_y,
         side = 4,
