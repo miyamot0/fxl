@@ -23,6 +23,12 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
     current_data[, "p"] <- "0"
   }
 
+  # In case no phases are included?
+  if (!("g" %in% names(core_frame$aes))) {
+    core_frame$aes["g"] <- "g"
+    current_data[, "g"] <- "0"
+  }
+
   local_aesthetics <- list(
     "x" = as.character(core_frame$aes["x"]),
     "y" = as.character(core_frame$aes["y"])
@@ -51,6 +57,8 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
        labels = y_axis_draw,
        las    = 1,
        at     = y_axis_ticks)
+
+  box(bty = "U")
 
   for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
 

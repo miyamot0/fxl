@@ -38,12 +38,12 @@ scr_xoverride(c(0.5, 15.5),
   xtickslabs = as.character(1:15)
 ) |>
 scr_bar_support(
+ color = rgb(.8, .8, .8, alpha = 1),
+ label = "Procedural Fidelity",
  mapping = list(
    x = Session,
    y = Integrity
- ),
- color = rgb(.8, .8, .8, alpha = 1),
- label = "Procedural Fidelity"
+ )
 ) |>
 scr_lines(
   size = 1

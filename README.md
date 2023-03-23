@@ -173,9 +173,11 @@ The specific assets embedded in this work are credited below:
 
 At present, the *fxl* package is not yet part of CRAN. The package must be installed manually at this time, using the *devtools* package. Example installation instructions using *devtools* are provided in source code form below.
 
-    library(devtools)
+```         
+library(devtools)
 
-    install_github("miyamot0/fxl")
+install_github("miyamot0/fxl")
+```
 
 ## Development
 
