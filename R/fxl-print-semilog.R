@@ -139,11 +139,17 @@ print.fxlsemilog <- function(x, ...) {
          las = 1)
 
     if (facetIndex == 1) {
+      title_color <- x$labs[["title_color"]]
+      title_cex   <- x$labs[["title_cex"]]
+      title_adj   <- x$labs[["title_adj"]]
+
       mtext(x$labs[["title"]],
-            side = 3,
+            side  = 3,
             outer = TRUE,
-            adj = 0.5,
-            line = 1)
+            col   = title_color,
+            adj   = title_adj,
+            cex   = title_cex,
+            line  = 1)
     }
 
     breaks  <- as.vector(c(2:10) %o% 10^(log10(x$dims[["min.local.y"]]):log10(x$dims[["max.local.y"]])))
@@ -377,12 +383,31 @@ print.fxlsemilog <- function(x, ...) {
       }
   }
 
+  xlab_color <- x$labs[["xlab_color"]]
+  xlab_cex   <- x$labs[["xlab_cex"]]
+  xlab_adj   <- x$labs[["xlab_adj"]]
+  xlab_face  <- x$labs[["xlab_face"]]
+
+  ylab_color <- x$labs[["ylab_color"]]
+  ylab_cex   <- x$labs[["ylab_cex"]]
+  ylab_adj   <- x$labs[["ylab_adj"]]
+  ylab_face  <- x$labs[["ylab_face"]]
+
   mtext(x$labs[["ylab"]],
-        side = 2,
+        side  = 2,
+        line  = 1,
+        cex   = ylab_cex,
+        col   = ylab_color,
+        adj   = ylab_adj,
+        font  = ylab_face,
         outer = TRUE)
 
   mtext(x$labs[["xlab"]],
-        side = 1,
-        line = 2,
+        side  = 1,
+        line  = 2,
+        cex   = xlab_cex,
+        col   = xlab_color,
+        adj   = xlab_adj,
+        font  = xlab_face,
         outer = TRUE)
 }

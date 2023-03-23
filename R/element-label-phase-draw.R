@@ -56,13 +56,13 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
       )
 
       text(
-        x = temp_x,
-        y = temp_y,
-        cex = current_layer[["cex"]],
-        adj = current_layer[["adj"]],
-        font = font_c,
-        col = temp_color,
-        srt = srt,
+        x      = temp_x,
+        y      = temp_y,
+        cex    = current_layer[["cex"]],
+        adj    = current_layer[["adj"]],
+        font   = current_layer[["face"]],
+        col    = temp_color,
+        srt    = srt,
         labels = temp_label
       )
     }

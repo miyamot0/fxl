@@ -5,6 +5,7 @@
 #' @param color from base
 #' @param cex from base
 #' @param adj from base
+#' @param face like 'font' from base
 #' @param x global x position for labels
 #' @param y global y position for labels
 #' @param labels as stated
@@ -16,6 +17,7 @@ scr_label_facet <- function(core_frame,
                             color  = "black",
                             cex    = 1,
                             adj    = 0.5,
+                            face   = 1,
                             x      = NULL,
                             y      = NULL,
                             labels = NULL) {
@@ -37,6 +39,15 @@ scr_label_facet <- function(core_frame,
   )
 
   newlayer[["adj"]] <- adj
+
+  isValidNumericVector(
+    object = face,
+    name = "face",
+    length = 1
+  )
+
+  newlayer[["face"]]  <- face
+
   newlayer[["x"]] <- x
   newlayer[["y"]] <- y
   newlayer[["labels"]] <- labels

@@ -410,14 +410,28 @@ print.fxl <- function(x, ...) {
   if (!lookup && !is.null(x[["legendpars"]]))  draw_legend(x)
 
   mtext(x$labs[["title"]],
-        side = 3,
+        side  = 3,
+        cex   = x$labs[["title_cex"]],
+        col   = x$labs[["title_color"]],
+        adj   = x$labs[["title_adj"]],
+        font  = x$labs[["title_face"]],
         outer = x$labs[["outer"]])
+
   mtext(x$labs[["ylab"]],
-        side = 2,
+        side  = 2,
+        cex   = x$labs[["ylab_cex"]],
+        col   = x$labs[["ylab_color"]],
+        adj   = x$labs[["ylab_adj"]],
+        font  = x$labs[["ylab_face"]],
         outer = x$labs[["outer"]],
-        line = x$labs[["outer.y.line"]])
+        line  = x$labs[["outer.y.line"]])
+
   mtext(x$labs[["xlab"]],
-        side = 1,
+        side  = 1,
+        cex   = x$labs[["xlab_cex"]],
+        col   = x$labs[["xlab_color"]],
+        adj   = x$labs[["xlab_adj"]],
+        font  = x$labs[["xlab_face"]],
         outer = x$labs[["outer"]],
-        line = x$labs[["outer.x.line"]])
+        line  = x$labs[["outer.x.line"]])
 }

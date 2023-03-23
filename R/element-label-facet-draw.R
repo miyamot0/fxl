@@ -42,17 +42,14 @@ draw_label_facet <- function(core_frame, current_layer, facet_name) {
       current_label[["y"]], current_layer$y
     )
 
-    font_c <- ifelse(
-      "font" %in% names(current_label),
-      current_label[["font"]], 1
-    )
+    font   = current_layer[["face"]]
 
     text(
       x = temp_x,
       y = temp_y,
       cex = current_layer[["cex"]],
       adj = current_layer[["adj"]],
-      font = font_c,
+      font = font,
       labels = label
     )
   }

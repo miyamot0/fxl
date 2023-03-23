@@ -135,6 +135,21 @@ scr_plot <- function(data,
 
   core_frame[["family"]] <- family
 
+  core_frame$labs[["ylab_color"]]  <- 'black'
+  core_frame$labs[["ylab_cex"]]    <- 1
+  core_frame$labs[["ylab_adj"]]    <- 0.5
+  core_frame$labs[["ylab_face"]]   <- 1
+
+  core_frame$labs[["xlab_color"]]  <- 'black'
+  core_frame$labs[["xlab_cex"]]    <- 1
+  core_frame$labs[["xlab_adj"]]    <- 0.5
+  core_frame$labs[["xlab_face"]]   <- 1
+
+  core_frame$labs[["title_color"]] <- 'black'
+  core_frame$labs[["title_cex"]]   <- 1
+  core_frame$labs[["title_adj"]]   <- 0.5
+  core_frame$labs[["title_face"]]  <- 1
+
   class(core_frame) <- c("fxl")  # Apply a class name (to override print)
 
   if (semilog) class(core_frame) <- c("fxlsemilog")

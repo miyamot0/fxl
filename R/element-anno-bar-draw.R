@@ -8,6 +8,7 @@
 #' @param max_y top of y axis to match
 #'
 #' @export
+#' @importFrom graphics clip
 draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
 
   #TODO: throw error if values aren't bounded between 0 and 100
@@ -58,8 +59,6 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
        las    = 1,
        at     = y_axis_ticks)
 
-  #abline()
-
   box(bty = "U")
 
   for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
@@ -87,28 +86,6 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
            plot_frame$mod_y,
            col = current_layer$color)
     }
-
-    # for (row in seq_len(nrow(current_data_slice))) {
-    #
-    #   mod_y = current_data_slice[row, as.character(local_aesthetics["y"])] / 100
-    #   mod_y = mod_y * max_y
-    #
-    #   if (!is.na(current_layer["styler"])) {
-    #
-    #     plot_frame = data.frame()
-    #     plot_frame$mod_y <- mod_y
-    #
-    #     current_layer[["styler"]](plot_frame = plot_frame,
-    #                               bg = current_layer$color,
-    #                               col = current_layer$color)
-    #   } else {
-    #     rect(current_data_slice[row, as.character(local_aesthetics["x"])] - 0.25,
-    #          0,
-    #          current_data_slice[row, as.character(local_aesthetics["x"])] + 0.25,
-    #          mod_y,
-    #          col = current_layer$color)
-    #   }
-    # }
 
     if (!is.null(current_layer[["guide_line"]])) {
       guide_line <- current_layer[["guide_line"]]
