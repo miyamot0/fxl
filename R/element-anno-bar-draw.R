@@ -66,17 +66,49 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
 
     current_data_slice <- current_data[which(current_data[, as.character(core_frame$aes["p"])] == p), ]
 
-    for (row in seq_len(nrow(current_data_slice))) {
+    mod_y = (current_data_slice[, as.character(local_aesthetics["y"])] / 100) * max_y
 
-      mod_y = current_data_slice[row, as.character(local_aesthetics["y"])] / 100
-      mod_y = mod_y * max_y
+    plot_frame = data.frame(
+      Y = current_data_slice[, as.character(local_aesthetics["y"])],
+      X = current_data_slice[, as.character(local_aesthetics["x"])],
+      mod_y = mod_y,
+      max_y = max_y,
+      pct = mod_y / max_y
+    )
 
-      rect(current_data_slice[row, as.character(local_aesthetics["x"])] - 0.25,
+    if (!is.na(current_layer["styler"])) {
+      current_layer[["styler"]](plot_frame = plot_frame,
+                                bg = current_layer$color,
+                                col = current_layer$color)
+    } else {
+      rect(plot_frame$X - 0.25,
            0,
-           current_data_slice[row, as.character(local_aesthetics["x"])] + 0.25,
-           mod_y,
+           plot_frame$X + 0.25,
+           plot_frame$mod_y,
            col = current_layer$color)
     }
+
+    # for (row in seq_len(nrow(current_data_slice))) {
+    #
+    #   mod_y = current_data_slice[row, as.character(local_aesthetics["y"])] / 100
+    #   mod_y = mod_y * max_y
+    #
+    #   if (!is.na(current_layer["styler"])) {
+    #
+    #     plot_frame = data.frame()
+    #     plot_frame$mod_y <- mod_y
+    #
+    #     current_layer[["styler"]](plot_frame = plot_frame,
+    #                               bg = current_layer$color,
+    #                               col = current_layer$color)
+    #   } else {
+    #     rect(current_data_slice[row, as.character(local_aesthetics["x"])] - 0.25,
+    #          0,
+    #          current_data_slice[row, as.character(local_aesthetics["x"])] + 0.25,
+    #          mod_y,
+    #          col = current_layer$color)
+    #   }
+    # }
 
     if (!is.null(current_layer[["guide_line"]])) {
       guide_line <- current_layer[["guide_line"]]

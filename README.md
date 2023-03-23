@@ -63,7 +63,7 @@ The source code necessary to create such a figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/faplotintegrity.R)
 
-![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/fafigureintegrity.svg?raw=true){alt="Gilroy et al 2019"}
+![](man/figures/fafigureintegrity.svg)
 
 ### Reversal Design, Concurrent across Participants
 

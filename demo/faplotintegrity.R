@@ -62,6 +62,23 @@ data_frame$Integrity <- sample(
   replace = TRUE
 )
 
+bar_styler <- function(data_frame, ...) {
+  input_list <- list(...)
+
+  local_frame <- input_list[['plot_frame']]
+  local_frame$col <- 'orange'
+
+  local_frame[local_frame$pct >= .95, 'col'] <- 'green'
+  local_frame[local_frame$pct < .95 & local_frame$pct >= .80, 'col'] <- 'lightgreen'
+  local_frame[local_frame$pct < .80, 'col'] <- 'orange'
+
+  rect(local_frame$X - 0.25,
+       0,
+       local_frame$X + 0.25,
+       local_frame$mod_y,
+       col = local_frame$col)
+}
+
 scr_plot(
   data_frame,
   aesthetics = var_map(
@@ -97,6 +114,7 @@ scr_bar_support(
  guide_line_color = 'blue',
  guide_line_type = 2,
  guide_line_size = 1,
+ styler = bar_styler,
  label = "Procedural Fidelity",
  mapping = list(
    x = Session,

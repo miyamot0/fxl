@@ -11,6 +11,7 @@
 #' @param guide_line_color (optional) aim line color for bars
 #' @param mapping (optional) if overriding draw (i.e., different response)
 #' @param label description for bar
+#' @param styler a lambda function that returns dynamic styling parameters
 #' @param width width of bar
 #'
 #' @export
@@ -25,6 +26,7 @@ scr_bar_support <- function(core_frame,
                             guide_line_color = 'black',
                             mapping = NULL,
                             label = "",
+                            styler = NA,
                             width = 0.8) {
 
   #TODO: Tests for remaining params
@@ -57,6 +59,7 @@ scr_bar_support <- function(core_frame,
   )
 
   newlayer[["width"]] <- width
+  newlayer[["styler"]] <- styler
   newlayer[["aesthetics"]] <- NA
 
   if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)

@@ -14,6 +14,7 @@ scr_bar_support(
   guide_line_color = "black",
   mapping = NULL,
   label = "",
+  styler = NA,
   width = 0.8
 )
 }
@@ -35,6 +36,8 @@ scr_bar_support(
 \item{mapping}{(optional) if overriding draw (i.e., different response)}
 
 \item{label}{description for bar}
+
+\item{styler}{a lambda function that returns dynamic styling parameters}
 
 \item{width}{width of bar}
 }
