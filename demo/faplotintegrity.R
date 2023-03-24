@@ -125,7 +125,7 @@ scr_lines(
   size = 1
 ) |>
 scr_points(
-  cex = 2,
+  cex = 3,
   pch = list(
     "Control" = 21,
     "Attention" = 22,
@@ -180,17 +180,9 @@ scr_legend(
   cex = 1.25, # text size scale
   text_col = "black", # text color
   horiz = FALSE, # list items vertically
-  box_lty = 1)
-
-# |>
-#   scr_save(name = "fafigureintegrity.svg",
-#            format = "svg",
-#            units = "in",
-#            height = 6,
-#            width = 9) |>
-#   scr_save(name = "fafigureintegrity.png",
-#            format = "png",
-#            units = "in",
-#            res = 300,
-#            height = 6,
-#            width = 9)
+  box_lty = 1) |>
+  scr_save(name = "../man/figures/fafigureintegrity.svg",
+           format = "svg",
+           units = "in",
+           height = 7.5,
+           width = 9)

@@ -43,20 +43,22 @@ scr_yoverride(
   ),
   ydelta = 5
 ) |>
-scr_points(
-  cex = 2
-) |>
-scr_points(
-  cex = 2,
-  pch = 2,
+scr_lines() |>
+scr_lines(
+  lty = 2,
   mapping = list(
     x = Session,
     y = Reinforcers
   )
 ) |>
-scr_lines() |>
-scr_lines(
-  lty = 2,
+scr_points(
+  cex = 2.4
+) |>
+scr_points(
+  cex = 2,
+  pch = 24,
+  color = c("black"),
+  fill = c("white"),
   mapping = list(
     x = Session,
     y = Reinforcers
@@ -191,23 +193,25 @@ scr_legend(
              "Reinforcers Produced"),
   col = c("black",
           "black"),
-  pt_bg = c("black",
-            "black"),
   lty = c(1,
           2),
   pch = c(19,
-          2),
+          24),
   bg = c("black",
          "black"),
+  pt_bg = c("black",
+            "white"),
   bty = "n",
   pt_cex = 2.25,
   cex = 1.25,
   text_col = "black",
   horiz = FALSE,
   box_lty = 0
-) |>
-  scr_save(name = "../man/figures/concurrentfigure.svg",
-           format = "svg",
-           units = "in",
-           height = 6,
-           width = 9)
+)
+
+# |>
+#   scr_save(name = "../man/figures/concurrentfigure.svg",
+#            format = "svg",
+#            units = "in",
+#            height = 6,
+#            width = 9)

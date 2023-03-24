@@ -31,15 +31,15 @@ scr_plot(
     y = ORF
   ),
   omi = c(
-    0.0,
+    0.5,
     0.35,
-    0.2,
+    0.5,
     0.25
   ),
   mai = c(
     0.0,
     0.25,
-    0.1,
+    0.0,
     0.25
   ),
   semilog = TRUE
@@ -198,7 +198,10 @@ scr_plot(
     )
   ) |>
   scr_legend(
-    position = "topright", # Specify legend location
+    position = list(
+      x = 0.75,
+      y = 1250
+    ), # Specify legend location
     legend = c(
       "Median Expectation: Oral Reading Fluency (ORF) - Words Correct",
       "Oral Reading Fluency (ORF) - Words Correct",
@@ -229,8 +232,8 @@ scr_plot(
       21
     ),
     bty = "y",
-    pt_cex = 2.25,
-    cex = 1.5,
+    pt_cex = 2,
+    cex = 1.25,
     text_col = "black",
     horiz = FALSE,
     box_lty = 1

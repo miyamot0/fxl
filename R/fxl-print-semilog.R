@@ -323,7 +323,7 @@ print.fxlsemilog <- function(x, ...) {
     if (!is.null(x[["legendpars"]])) {
       if (lookup && x$legendpars[["panel"]] ==  current_facet) {
         draw_legend(x)
-      } else if (lookup && is.na(x$legendpars[["panel"]])) {
+      } else if (is.na(x$legendpars[["panel"]])) {
         draw_legend(x)
       }
     }
