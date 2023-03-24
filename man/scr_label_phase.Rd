@@ -9,6 +9,7 @@ scr_label_phase(
   color = "black",
   cex = 1,
   adj = 0.5,
+  face = 1,
   x = NULL,
   y = NULL,
   facet = NULL,
@@ -23,6 +24,8 @@ scr_label_phase(
 \item{cex}{from base}
 
 \item{adj}{from base}
+
+\item{face}{like 'font' from base}
 
 \item{x}{location}
 

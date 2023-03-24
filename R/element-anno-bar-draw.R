@@ -8,6 +8,7 @@
 #' @param max_y top of y axis to match
 #'
 #' @export
+#' @importFrom graphics clip
 draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
 
   #TODO: throw error if values aren't bounded between 0 and 100
@@ -21,6 +22,12 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
   if (!("p" %in% names(core_frame$aes))) {
     core_frame$aes["p"] <- "p"
     current_data[, "p"] <- "0"
+  }
+
+  # In case no phases are included?
+  if (!("g" %in% names(core_frame$aes))) {
+    core_frame$aes["g"] <- "g"
+    current_data[, "g"] <- "0"
   }
 
   local_aesthetics <- list(
@@ -52,26 +59,60 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
        las    = 1,
        at     = y_axis_ticks)
 
+  box(bty = "U")
+
   for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
 
     current_data_slice <- current_data[which(current_data[, as.character(core_frame$aes["p"])] == p), ]
 
-    for (row in seq_len(nrow(current_data_slice))) {
+    mod_y = (current_data_slice[, as.character(local_aesthetics["y"])] / 100) * max_y
 
-      mod_y = current_data_slice[row, as.character(local_aesthetics["y"])] / 100
-      mod_y = mod_y * max_y
+    plot_frame = data.frame(
+      Y = current_data_slice[, as.character(local_aesthetics["y"])],
+      X = current_data_slice[, as.character(local_aesthetics["x"])],
+      mod_y = mod_y,
+      max_y = max_y,
+      pct = mod_y / max_y
+    )
 
-      rect(current_data_slice[row, as.character(local_aesthetics["x"])] - 0.25,
+    if (!is.na(current_layer["styler"])) {
+      current_layer[["styler"]](plot_frame = plot_frame,
+                                bg = current_layer$color,
+                                col = current_layer$color)
+    } else {
+      rect(plot_frame$X - 0.25,
            0,
-           current_data_slice[row, as.character(local_aesthetics["x"])] + 0.25,
-           mod_y,
+           plot_frame$X + 0.25,
+           plot_frame$mod_y,
            col = current_layer$color)
     }
-  }
 
-#  axis(side = 4,
-#       las = 1,
-#       at = pretty(range(c(0, current_data_slice[, as.character(local_aesthetics["y"])]))))
+    if (!is.null(current_layer[["guide_line"]])) {
+      guide_line <- current_layer[["guide_line"]]
+      guide_line_color <- current_layer[["guide_line_color"]]
+      guide_line_type <- current_layer[["guide_line_type"]]
+      guide_line_size <- current_layer[["guide_line_size"]]
+
+      # Note: have to work from primary y-axis
+
+      pre_clip_pars <- par("usr")
+
+      x1 <- pre_clip_pars[1]
+      x2 <- pre_clip_pars[2]
+      y1 <- pre_clip_pars[3]
+      y2 <- pre_clip_pars[4]
+
+      clip(x1, x2, y1, y2)
+
+      abline(h = (guide_line / 100) * max_y,
+             lwd = guide_line_size,
+             lty = guide_line_type,
+             col = guide_line_color)
+
+      clip(-1000000, 1000000,
+           -1000000, 1000000)
+    }
+  }
 
   mtext(label_y,
         side = 4,

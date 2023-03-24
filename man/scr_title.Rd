@@ -4,12 +4,20 @@
 \alias{scr_title}
 \title{scrtitle}
 \usage{
-scr_title(core_frame, var)
+scr_title(core_frame, var, color = "black", cex = 1, adj = 0.5, face = 1)
 }
 \arguments{
 \item{core_frame}{fxl object}
 
 \item{var}{string}
+
+\item{color}{from base}
+
+\item{cex}{from base}
+
+\item{adj}{from base}
+
+\item{face}{like 'font' from base}
 }
 \description{
 Override the title

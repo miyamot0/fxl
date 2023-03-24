@@ -4,12 +4,28 @@
 \alias{scr_ylabel}
 \title{ylabel}
 \usage{
-scr_ylabel(core_frame, var, line = 0)
+scr_ylabel(
+  core_frame,
+  var,
+  color = "black",
+  cex = 1,
+  adj = 0.5,
+  face = 1,
+  line = 0
+)
 }
 \arguments{
 \item{core_frame}{fxl object}
 
 \item{var}{string}
+
+\item{color}{from base}
+
+\item{cex}{from base}
+
+\item{adj}{from base}
+
+\item{face}{like 'font' from base}
 
 \item{line}{line width}
 }

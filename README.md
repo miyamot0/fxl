@@ -63,7 +63,7 @@ The source code necessary to create such a figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/faplotintegrity.R)
 
-![Gilroy et al 2019](https://github.com/miyamot0/fxl/blob/main/man/figures/fafigureintegrity.svg?raw=true){alt="Gilroy et al 2019"}
+![](man/figures/fafigureintegrity.svg)
 
 ### Reversal Design, Concurrent across Participants
 
@@ -173,9 +173,11 @@ The specific assets embedded in this work are credited below:
 
 At present, the *fxl* package is not yet part of CRAN. The package must be installed manually at this time, using the *devtools* package. Example installation instructions using *devtools* are provided in source code form below.
 
-    library(devtools)
+```         
+library(devtools)
 
-    install_github("miyamot0/fxl")
+install_github("miyamot0/fxl")
+```
 
 ## Development
 

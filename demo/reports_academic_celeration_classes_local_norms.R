@@ -112,7 +112,6 @@ data_frame[data_frame$Classroom == 2 & data_frame$Time > intervention_starts[2],
 data_frame[data_frame$Classroom == 3 & data_frame$Time > intervention_starts[3], "Phase"] <- "Intervention"
 
 data_frame <- data_frame[data_frame$Time > 0, ]
-data_frame$Time  <- data_frame$Time + rnorm(nrow(data_frame), 0, .125)
 data_frame$Value <- data_frame$Value * (1 + rnorm(nrow(data_frame), 0, .01))
 
 data_frame[data_frame$Value < 1, "Value"] <- 0
@@ -121,17 +120,39 @@ point_styler <- function(data_frame, ...) {
   input_list <- list(...)
   local_frame <- data_frame
 
-  local_frame[local_frame$Y > 40, 'col'] <- 'green'
-  local_frame[local_frame$Y < 40 & local_frame$Y > 10, 'col'] <- 'orange'
-  local_frame[local_frame$Y < 11, 'col'] <- 'red'
+  x_vals <- sort(unique(local_frame$X))
 
-  local_frame$cex <- 2 + local_frame$Y / 40
+  for (x in x_vals) {
+    loop_local_frame <- local_frame[local_frame$X == x, ]
+    loop_local_frame$col <- 'green'
 
-  points(local_frame$X, local_frame$Y,
-         pch = input_list[["pch"]],
-         cex = local_frame$cex,
-         bg  = local_frame$col,
-         col = input_list[["col"]])
+    quantiles <- as.numeric(quantile(loop_local_frame$Y, probs = c(0, 0.2, 0.5, 0.8, 0.9)))
+
+    for (row in seq_len(nrow(loop_local_frame))) {
+      row_value <- loop_local_frame[row, 'Y']
+
+      color <- 'green'
+      color <- ifelse(row_value < quantiles[5], 'lightgreen', color)
+      color <- ifelse(row_value < quantiles[4], 'yellow', color)
+      color <- ifelse(row_value < quantiles[3], 'orange', color)
+      color <- ifelse(row_value < quantiles[2], 'red', color)
+
+      loop_local_frame[row, 'col'] <- color
+
+      if (sum(quantiles) == 0) {
+        # Note: on the zero axis
+        loop_local_frame[row, 'col'] <- 'red'
+      }
+    }
+
+    alpha_value <- 0.4
+
+    points(loop_local_frame$X, loop_local_frame$Y,
+           pch = input_list[["pch"]],
+           cex = input_list[["cex"]],
+           bg  = alpha(loop_local_frame$col, alpha_value),
+           col = alpha(input_list[["col"]], alpha_value))
+  }
 }
 
 scr_plot(
@@ -151,16 +172,16 @@ scr_plot(
   ),
   mai = c(
     0.0,
-    0.5,
+    0.25,
     0,
     0.25
   ),
   semilog = TRUE
 ) |>
-  scr_title("Semi-log Chart: Grade-level Acquisition in Schools") |>
+  scr_title("Grade-level Acquisition in Schools: Moving Classroom Norms") |>
   scr_xlabel("Weeks of Classroom Instruction") |>
   scr_ylabel("Oral Reading Fluency") |>
-  scr_yoverride(c(1, 100)) |>
+  scr_yoverride(c(1, 200)) |>
   scr_xoverride(c(1, 24)) |>
   scr_lines(
     color = "#000005",
@@ -175,8 +196,9 @@ scr_plot(
   scr_label_facet(
     cex = 1.5,
     adj = 1,
-    y = 1.35,
+    y = 1.5,
     x = 24,
+    face = 2,
     labels = list(
       "1" = list(
         label = "Classroom #1"
@@ -192,8 +214,9 @@ scr_plot(
   scr_label_phase(
     cex = 1.5,
     adj = 0.5,
-    y = 78,
+    y = 178,
     facet = '1',
+    face = 2,
     labels = list(
       "Baseline" = list(
         x = 2.5
@@ -208,17 +231,17 @@ scr_plot(
       "A" = list(
         "1" = list(
           x1 = 4.5,
-          y1 = 110,
+          y1 = 225,
           y2 = 0.1
         ),
         "2" = list(
           x1 = 8.5,
-          y1 = 110,
+          y1 = 225,
           y2 = 0.1
         ),
         "3" = list(
           x1 = 12.5,
-          y1 = 110,
+          y1 = 225,
           y2 = 0.1
         )
       )
@@ -227,13 +250,13 @@ scr_plot(
   scr_legend(
     position = list(
       x = 0.5,
-      y = 105
+      y = 250
     ),
     panel = '3',
     legend = c(
-      "On Target Reader",
-      "Emerging Reader",
-      "At-Risk Reader"
+      ">=90 %ile",
+      "=50 %ile",
+      "<=20 %ile"
     ),
     col = c(
       "black",
@@ -256,9 +279,9 @@ scr_plot(
       21,
       21
     ), # marker types (ordered)
-    bty = "n", # remove border
+    bty = "y", # remove border
     pt_cex = 2.25, # point size scale
-    cex = 1.5, # text size scale
+    cex = 1.25, # text size scale
     text_col = "black", # text color
     horiz = FALSE, # list items vertically
     box_lty = 1
@@ -266,7 +289,7 @@ scr_plot(
 
 # |>
 #   scr_save(
-#     name = "../man/figures/celeration_classwide.svg",
+#     name = "../man/figures/celeration_classwide_local_norms.svg",
 #     format = "svg",
 #     units = "in",
 #     width = 9,

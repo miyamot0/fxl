@@ -77,6 +77,7 @@ scr_legend(
   text_col = "black",
   horiz = FALSE,
   box_lty = 0)
+
 # |>
 #   scr_save(name = "../man/figures/fafigure.svg",
 #            format = "svg",

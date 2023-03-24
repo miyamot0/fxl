@@ -9,6 +9,7 @@ scr_label_facet(
   color = "black",
   cex = 1,
   adj = 0.5,
+  face = 1,
   x = NULL,
   y = NULL,
   labels = NULL
@@ -22,6 +23,8 @@ scr_label_facet(
 \item{cex}{from base}
 
 \item{adj}{from base}
+
+\item{face}{like 'font' from base}
 
 \item{x}{global x position for labels}
 
