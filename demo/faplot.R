@@ -82,5 +82,5 @@ scr_legend(
 #   scr_save(name = "../man/figures/fafigure.svg",
 #            format = "svg",
 #            units = "in",
-#            height = 6,
+#            height = 5,
 #            width = 9)
