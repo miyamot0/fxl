@@ -24,8 +24,7 @@ scr_brackets <- function(core_frame,
                          code = 2,
                          lwd = 1,
                          lty = 1) {
-
-  #TODO: Tests for remaining params
+  # TODO: Tests for remaining params
 
   newlayer <- list()
   newlayer[["type"]] <- "brackets"

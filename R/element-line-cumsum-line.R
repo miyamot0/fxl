@@ -17,7 +17,6 @@ scr_cumsum_lines <- function(core_frame,
                              color = "black",
                              size = 1,
                              mapping) {
-
   newlayer <- list()
   newlayer[["type"]] <- "cum_sum_lines"
 
@@ -42,5 +41,4 @@ scr_cumsum_lines <- function(core_frame,
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 
   core_frame
-
 }

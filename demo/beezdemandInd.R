@@ -1,10 +1,10 @@
 library(fxl)
 
-if ('here' %in% installed.packages()) {
+if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
 
-#N>  override print in beez object
+# N>  override print in beez object
 
 results <- FitCurves(
   apt,
@@ -29,30 +29,35 @@ x_points <- seq(
 pre_pop <- rep(NA, length(results$id) * length(x_points))
 
 pre_pop <- matrix(pre_pop,
-                nrow = length(results$id),
-                ncol = length(x_points))
+  nrow = length(results$id),
+  ncol = length(x_points)
+)
 
 pre_pop <- as.data.frame(pre_pop)
 
 colnames(pre_pop) <- as.character(x_points)
 
-#results <- cbind(results, pre_pop)
+# results <- cbind(results, pre_pop)
 
-for (row_num in seq_len(nrow(results)))
+for (row_num in seq_len(nrow(results))) {
   pre_pop[row_num, ] <- log10(results[row_num, "Q0d"]) +
     results[row_num, "K"] * exp(
       (-results[row_num, "Alpha"] *
-      results[row_num, "Q0d"] *
-      x_points) - 1)
+        results[row_num, "Q0d"] *
+        x_points) - 1
+    )
+}
 
 pre_pop$id <- results$id
 
 library(tidyverse)
 
 pre_pop_gather <- pre_pop %>%
-  gather(Price, Demand, - id) %>%
-  mutate(Price = as.numeric(Price),
-         Demand = as.numeric(Demand))
+  gather(Price, Demand, -id) %>%
+  mutate(
+    Price = as.numeric(Price),
+    Demand = as.numeric(Demand)
+  )
 
 # ggplot(pre_pop_gather, aes(Price, Demand, group = id)) +
 #   geom_line() +
@@ -67,4 +72,4 @@ scr_plot(pre_pop_gather,
     y = Demand
   )
 ) %>%
-scr_xoverride(xticks = c(0.01, 0.1, 1, 10, 100, 1000))
+  scr_xoverride(xticks = c(0.01, 0.1, 1, 10, 100, 1000))

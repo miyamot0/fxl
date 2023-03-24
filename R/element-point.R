@@ -19,7 +19,6 @@ scr_points <- function(core_frame,
                        cex = 1,
                        styler = NA,
                        mapping) {
-
   newlayer <- list()
   newlayer[["type"]] <- "point"
   newlayer[["pch"]] <- pch
@@ -29,7 +28,7 @@ scr_points <- function(core_frame,
   newlayer[["styler"]] <- styler
   newlayer[["aesthetics"]] <- NA
 
-  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
+  if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 

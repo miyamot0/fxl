@@ -18,18 +18,18 @@
 #' @importFrom rlang enexprs
 scr_bar_support <- function(core_frame,
                             color = rgb(.8, .8, .8,
-                                        alpha = 0.25),
+                              alpha = 0.25
+                            ),
                             alpha = 1,
                             guide_line = NULL,
                             guide_line_type = 1,
                             guide_line_size = 1,
-                            guide_line_color = 'black',
+                            guide_line_color = "black",
                             mapping = NULL,
                             label = "",
                             styler = NA,
                             width = 0.8) {
-
-  #TODO: Tests for remaining params
+  # TODO: Tests for remaining params
 
   newlayer <- list()
   newlayer[["type"]] <- "bar_support"
@@ -62,10 +62,9 @@ scr_bar_support <- function(core_frame,
   newlayer[["styler"]] <- styler
   newlayer[["aesthetics"]] <- NA
 
-  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
+  if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 
   core_frame
-
 }

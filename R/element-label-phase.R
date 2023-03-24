@@ -16,15 +16,14 @@
 #'
 #' @export
 scr_label_phase <- function(core_frame,
-                            color  = "black",
-                            cex    = 1,
-                            adj    = 0.5,
-                            face   = 1,
-                            x      = NULL,
-                            y      = NULL,
-                            facet  = NULL,
+                            color = "black",
+                            cex = 1,
+                            adj = 0.5,
+                            face = 1,
+                            x = NULL,
+                            y = NULL,
+                            facet = NULL,
                             labels = NULL) {
-
   newlayer <- list()
   newlayer[["type"]] <- "phase_label"
   newlayer[["color"]] <- color
@@ -49,7 +48,7 @@ scr_label_phase <- function(core_frame,
     length = 1
   )
 
-  newlayer[["face"]]  <- face
+  newlayer[["face"]] <- face
 
   newlayer[["x"]] <- x
   newlayer[["y"]] <- y

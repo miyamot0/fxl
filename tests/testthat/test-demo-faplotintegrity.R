@@ -1,4 +1,3 @@
-
 data <- Gilroyetal2019
 
 set.seed(65535)
@@ -33,12 +32,12 @@ describe("FA Plot with Integrity", {
         )
       ) |>
         scr_yoverride(c(-.175, 5),
-                      yticks = c(0, 1, 2, 3, 4, 5),
-                      ytickslabs = c("0", "1", "2", "3", "4", "5")
+          yticks = c(0, 1, 2, 3, 4, 5),
+          ytickslabs = c("0", "1", "2", "3", "4", "5")
         ) |>
         scr_xoverride(c(0.5, 15.5),
-                      xticks = 1:15,
-                      xtickslabs = as.character(1:15)
+          xticks = 1:15,
+          xtickslabs = as.character(1:15)
         ) |>
         scr_bar_support(
           mapping = list(
@@ -97,8 +96,9 @@ describe("FA Plot with Integrity", {
           cex = 1.25, # text size scale
           text_col = "black", # text color
           horiz = FALSE, # list items vertically
-          box_lty = 1) |>
-    print()
-  )
+          box_lty = 1
+        ) |>
+        print()
+    )
   })
 })

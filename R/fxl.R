@@ -39,20 +39,23 @@ library(rlang)
 #' @export
 scr_plot <- function(data,
                      aesthetics = NULL,
-                     mai = c(0.375,
-                             0.375,
-                             0.25,
-                             0.25),
-                     omi = c(0.25,
-                             0.25,
-                             0.25,
-                             0.25),
+                     mai = c(
+                       0.375,
+                       0.375,
+                       0.25,
+                       0.25
+                     ),
+                     omi = c(
+                       0.25,
+                       0.25,
+                       0.25,
+                       0.25
+                     ),
                      xaxs = "i",
                      yaxs = "i",
                      ncol = 1,
                      family = "sans",
                      semilog = FALSE) {
-
   # Type checks
   isValidDataFrame(
     object = data,
@@ -60,7 +63,7 @@ scr_plot <- function(data,
   )
   isValidAestheticMapping(
     aesthetics,
-    name = 'aesthetics'
+    name = "aesthetics"
   )
   isValidNumericVector(
     object = mai,
@@ -98,7 +101,7 @@ scr_plot <- function(data,
   core_frame[["layers"]] <- list() # Layers for drawing
   core_frame[["aes"]] <- enexpr(aesthetics) # Mappings
   core_frame[["data"]] <- data # Stored data
-  core_frame[["dims"]] <- list(# Global dimensions
+  core_frame[["dims"]] <- list( # Global dimensions
     global.max.x = max(
       data[[as.character(core_frame$aes["x"])]],
       na.rm = TRUE
@@ -115,16 +118,16 @@ scr_plot <- function(data,
       data[[as.character(core_frame$aes["y"])]],
       na.rm = TRUE
     ),
-    mai    = mai,
-    omi    = omi,
-    xaxs   = xaxs,
-    yaxs   = yaxs,
-    ncol   = ncol,
+    mai = mai,
+    omi = omi,
+    xaxs = xaxs,
+    yaxs = yaxs,
+    ncol = ncol,
     xdelta = 1,
     ydelta = 1
   )
 
-  core_frame[["labs"]] <- list(# Presumed labels, blank title by default
+  core_frame[["labs"]] <- list( # Presumed labels, blank title by default
     xlab         = as.character(core_frame$aes["x"]),
     ylab         = as.character(core_frame$aes["y"]),
     outer        = TRUE,
@@ -135,22 +138,22 @@ scr_plot <- function(data,
 
   core_frame[["family"]] <- family
 
-  core_frame$labs[["ylab_color"]]  <- 'black'
-  core_frame$labs[["ylab_cex"]]    <- 1
-  core_frame$labs[["ylab_adj"]]    <- 0.5
-  core_frame$labs[["ylab_face"]]   <- 1
+  core_frame$labs[["ylab_color"]] <- "black"
+  core_frame$labs[["ylab_cex"]] <- 1
+  core_frame$labs[["ylab_adj"]] <- 0.5
+  core_frame$labs[["ylab_face"]] <- 1
 
-  core_frame$labs[["xlab_color"]]  <- 'black'
-  core_frame$labs[["xlab_cex"]]    <- 1
-  core_frame$labs[["xlab_adj"]]    <- 0.5
-  core_frame$labs[["xlab_face"]]   <- 1
+  core_frame$labs[["xlab_color"]] <- "black"
+  core_frame$labs[["xlab_cex"]] <- 1
+  core_frame$labs[["xlab_adj"]] <- 0.5
+  core_frame$labs[["xlab_face"]] <- 1
 
-  core_frame$labs[["title_color"]] <- 'black'
-  core_frame$labs[["title_cex"]]   <- 1
-  core_frame$labs[["title_adj"]]   <- 0.5
-  core_frame$labs[["title_face"]]  <- 1
+  core_frame$labs[["title_color"]] <- "black"
+  core_frame$labs[["title_cex"]] <- 1
+  core_frame$labs[["title_adj"]] <- 0.5
+  core_frame$labs[["title_face"]] <- 1
 
-  class(core_frame) <- c("fxl")  # Apply a class name (to override print)
+  class(core_frame) <- c("fxl") # Apply a class name (to override print)
 
   if (semilog) class(core_frame) <- c("fxlsemilog")
 

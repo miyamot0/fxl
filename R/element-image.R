@@ -13,9 +13,9 @@ scr_images <- function(core_frame,
                        image,
                        cex = 1,
                        mapping) {
-
-  if (missing(image))
-    stop('must specify image to draw')
+  if (missing(image)) {
+    stop("must specify image to draw")
+  }
 
   newlayer <- list()
   newlayer[["type"]] <- "image"
@@ -23,7 +23,7 @@ scr_images <- function(core_frame,
   newlayer[["cex"]] <- cex
   newlayer[["aesthetics"]] <- NA
 
-  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
+  if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 

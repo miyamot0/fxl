@@ -1,4 +1,3 @@
-
 #' isValidDataFrame
 #'
 #' @param object dataframe (hopefully)
@@ -7,15 +6,19 @@
 #' @export
 isValidDataFrame <- function(object = NULL, name = NULL) {
   if (is.null(object)) {
-    stop(paste("Parameter:",
-               name,
-               "should NOT be set to a null value."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "should NOT be set to a null value."
+    ))
   }
 
   if (is.data.frame(object) && nrow(as.data.frame(object)) == 0) {
-    stop(paste("Parameter:",
-               name,
-               "contains no data."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "contains no data."
+    ))
   }
 }
 
@@ -27,27 +30,33 @@ isValidDataFrame <- function(object = NULL, name = NULL) {
 #' @export
 isValidAestheticMapping <- function(object = NULL, name = NULL) {
   if (is.null(object)) {
-    stop(paste("Parameter:",
-               name,
-               "cannot be set to a null value."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "cannot be set to a null value."
+    ))
   }
 
   aes <- enexpr(object)
 
   if (!("x" %in% names(aes))) {
-    stop(paste("Parameter:",
-               name,
-               "must contain a mapping for x [",
-               names(aes),
-               "]"))
+    stop(paste(
+      "Parameter:",
+      name,
+      "must contain a mapping for x [",
+      names(aes),
+      "]"
+    ))
   }
 
   if (!("y" %in% names(aes))) {
-    stop(paste("Parameter:",
-               name,
-               "must contain a mapping for y [",
-               names(aes),
-               "]"))
+    stop(paste(
+      "Parameter:",
+      name,
+      "must contain a mapping for y [",
+      names(aes),
+      "]"
+    ))
   }
 }
 
@@ -60,31 +69,39 @@ isValidAestheticMapping <- function(object = NULL, name = NULL) {
 #' @export
 isValidNumericVector <- function(object = NULL, length = -1, name = NULL) {
   if (is.null(object)) {
-    stop(paste("Parameter:",
-               name,
-               "should NOT be set to a null value."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "should NOT be set to a null value."
+    ))
   }
 
   if (!is.vector(object)) {
-    stop(paste("Parameter:",
-               name,
-               "should be a vector."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "should be a vector."
+    ))
   }
 
   if (!is.numeric(object)) {
-    stop(paste("Parameter:",
-               name,
-               "should be of a numeric type."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "should be of a numeric type."
+    ))
   }
 
   if (length != -1 && length(object) != length) {
-    stop(paste("Parameter:",
-               name,
-               "should have",
-               length,
-               "entries but has",
-               length(object),
-               "."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "should have",
+      length,
+      "entries but has",
+      length(object),
+      "."
+    ))
   }
 }
 
@@ -97,15 +114,19 @@ isValidNumericVector <- function(object = NULL, length = -1, name = NULL) {
 #' @export
 isValidCharacterVector <- function(object = NULL, length = -1, name = NULL) {
   if (is.null(object)) {
-    stop(paste("Parameter:",
-               name,
-               "should NOT be set to a null value."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "should NOT be set to a null value."
+    ))
   }
 
   if (!is.character(object)) {
-    stop(paste("Parameter:",
-               name,
-               "should be of a character type."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "should be of a character type."
+    ))
   }
 
   # if (length != -1 && length(object) != length) {
@@ -129,25 +150,31 @@ isValidCharacterVector <- function(object = NULL, length = -1, name = NULL) {
 #' @export
 isValidLogicalVector <- function(object = NULL, length = -1, name = NULL) {
   if (is.null(object)) {
-    stop(paste("Parameter:",
-               name,
-               "should NOT be set to a null value."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "should NOT be set to a null value."
+    ))
   }
 
   if (!is.logical(object)) {
-    stop(paste("Parameter:",
-               name,
-               "should be of a logical type."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "should be of a logical type."
+    ))
   }
 
   if (length != -1 && length(object) != length) {
-    stop(paste("Parameter:",
-               name,
-               "should have",
-               length,
-               "entries but has",
-               length(object),
-               "."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "should have",
+      length,
+      "entries but has",
+      length(object),
+      "."
+    ))
   }
 }
 
@@ -159,14 +186,18 @@ isValidLogicalVector <- function(object = NULL, length = -1, name = NULL) {
 #' @export
 isValidAXSCharacter <- function(object = NULL, name = NULL) {
   if (!is.character(object)) {
-    stop(paste("Parameter:",
-               name,
-               "must be a single-character value."))
+    stop(paste(
+      "Parameter:",
+      name,
+      "must be a single-character value."
+    ))
   }
 
   if (is.character(object) && !(object == "i" || object == "r")) {
-    stop(paste("Parameter:",
-               name,
-               "must be set to either \"i\" or \"r\""))
+    stop(paste(
+      "Parameter:",
+      name,
+      "must be set to either \"i\" or \"r\""
+    ))
   }
 }

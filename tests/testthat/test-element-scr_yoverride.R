@@ -1,4 +1,3 @@
-
 describe("scr_yoverride", {
   it("Should render as normal", {
     expect_error(
@@ -70,7 +69,8 @@ describe("scr_yoverride", {
           )
         ) |>
         print(),
-      NA)
+      NA
+    )
   })
 
   it("xdraws assert: char type", {
@@ -134,7 +134,8 @@ describe("scr_yoverride", {
           ydraws = TRUE
         ) |>
         print(),
-      "Parameter: ydraws should be of a character type.")
+      "Parameter: ydraws should be of a character type."
+    )
   })
 
   it("var assert: present", {
@@ -171,7 +172,8 @@ describe("scr_yoverride", {
           )
         ) |>
         print(),
-      "argument \"var\" is missing, with no default")
+      "argument \"var\" is missing, with no default"
+    )
   })
 
   it("var assert: length", {
@@ -209,7 +211,8 @@ describe("scr_yoverride", {
           )
         ) |>
         print(),
-      "Parameter: scr_yoverride should have 2 entries but has 3 .")
+      "Parameter: scr_yoverride should have 2 entries but has 3 ."
+    )
   })
 
   it("ytickslabs: number", {
@@ -278,6 +281,7 @@ describe("scr_yoverride", {
           )
         ) |>
         print(),
-      "Parameter: ytickslabs should be of a character type.")
+      "Parameter: ytickslabs should be of a character type."
+    )
   })
 })

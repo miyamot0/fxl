@@ -31,12 +31,14 @@
 #' @export
 cnvrt_coords <- function(x,
                          y = NULL,
-                         input = c("usr",
-                                   "plt",
-                                   "fig",
-                                   "dev",
-                                   "tdev")) {
-  #warning("this function is now depricated, use grconvertX instead")
+                         input = c(
+                           "usr",
+                           "plt",
+                           "fig",
+                           "dev",
+                           "tdev"
+                         )) {
+  # warning("this function is now depricated, use grconvertX instead")
   input <- match.arg(input)
   xy <- xy.coords(x, y, recycle = TRUE)
 
@@ -45,8 +47,10 @@ cnvrt_coords <- function(x,
   cfig <- par("fig")
   cdin <- par("din")
   comi <- par("omi")
-  cdev <- c(comi[2] / cdin[1], (cdin[1] - comi[4]) / cdin[1],
-            comi[1] / cdin[2], (cdin[2] - comi[3]) / cdin[2])
+  cdev <- c(
+    comi[2] / cdin[1], (cdin[1] - comi[4]) / cdin[1],
+    comi[1] / cdin[2], (cdin[2] - comi[3]) / cdin[2]
+  )
 
   if (input == "usr") {
     usr <- xy

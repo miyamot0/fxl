@@ -27,7 +27,6 @@ scr_xoverride <- function(core_frame,
                           xlabeloffset = NULL,
                           xtickslabs = NULL,
                           xticksadj = 1) {
-
   if (is.null(var)) {
     stop(paste("scr_xoverride: var must not be set to null."))
   }
@@ -40,8 +39,8 @@ scr_xoverride <- function(core_frame,
       name = "scr_xoverride"
     )
 
-    core_frame$dims[["global.min.x"]] <- {{var[1]}}
-    core_frame$dims[["global.max.x"]] <- {{var[2]}}
+    core_frame$dims[["global.min.x"]] <- {{ var[1] }}
+    core_frame$dims[["global.max.x"]] <- {{ var[2] }}
   } else {
     stop(paste("scr_xoverride: var must be a vector"))
   }

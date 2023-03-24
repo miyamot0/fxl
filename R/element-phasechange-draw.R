@@ -12,7 +12,6 @@
 draw_scr_plines <- function(core_frame, current_layer, facet_name) {
   if (as.character(facet_name) %in% names(current_layer$lines)) {
     for (key in names(current_layer$lines[[facet_name]])) {
-
       l_lty <- current_layer[["lty"]]
       l_x1 <- current_layer$lines[[facet_name]][[key]][["x1"]]
       l_x2 <- ifelse(
@@ -31,18 +30,19 @@ draw_scr_plines <- function(core_frame, current_layer, facet_name) {
 
       temp_y1 <- ifelse(
         l_y1 == 0, -((as.numeric(core_frame$dims[["max.local.y"]]) -
-                        as.numeric(core_frame$dims[["min.local.y"]])) *
-                       0.04), current_layer$lines[[facet_name]][[key]][["y1"]]
+          as.numeric(core_frame$dims[["min.local.y"]])) *
+          0.04), current_layer$lines[[facet_name]][[key]][["y1"]]
       )
 
       temp_y2 <- ifelse(
         l_y2 == 0, -((as.numeric(core_frame$dims[["max.local.y"]]) -
-                        as.numeric(core_frame$dims[["min.local.y"]])) *
-                       0.04), l_y2
+          as.numeric(core_frame$dims[["min.local.y"]])) *
+          0.04), l_y2
       )
 
-      if ("lty" %in% names(current_layer$lines[[facet_name]][[key]]))
+      if ("lty" %in% names(current_layer$lines[[facet_name]][[key]])) {
         l_lty <- current_layer$lines[[facet_name]][[key]]$lty
+      }
 
       lines(
         c(l_x1, l_x2),

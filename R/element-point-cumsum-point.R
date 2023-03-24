@@ -17,7 +17,6 @@ scr_cumsum_points <- function(core_frame,
                               fill = "black",
                               cex = 1,
                               mapping) {
-
   newlayer <- list()
   newlayer[["type"]] <- "cum_sum_points"
   newlayer[["pch"]] <- pch
@@ -26,10 +25,9 @@ scr_cumsum_points <- function(core_frame,
   newlayer[["cex"]] <- cex
   newlayer[["aesthetics"]] <- NA
 
-  if (!missing(mapping))  newlayer[["aesthetics"]] <- enexpr(mapping)
+  if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 
   core_frame
-
 }

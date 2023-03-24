@@ -2,27 +2,27 @@
 
 # Faux XL Charting in R (fxl)
 
-The *fxl* package was designed to support transparent, replicable, and efficently-drawn figures that feature conventions common in applied behavior analysis. 
+The *fxl* package was designed to support transparent, replicable, and efficently-drawn figures that feature conventions common in applied behavior analysis.
 
-The goals of the package are to: 
+The goals of the package are to:
 
-- Provide an dedicated interface to conventions that are not natively supported in any existing software (e.g., precise phase change lines) 
+-   Provide an dedicated interface to conventions that are not natively supported in any existing software (e.g., precise phase change lines)
 
-- Assist in clinical work by automating aspects of research and practice that rely on visual analysis and single-case research designs. The commands, code structure, and features are designed with the unique needs of behavior analysts, educational consultants, and other professionals that use single-case research designs as part of their work.
+-   Assist in clinical work by automating aspects of research and practice that rely on visual analysis and single-case research designs. The commands, code structure, and features are designed with the unique needs of behavior analysts, educational consultants, and other professionals that use single-case research designs as part of their work.
 
-- Generate publication-quality figures in formats and densities that exceed traditional tools (e.g., MS Excel, GP Prism).
+-   Generate publication-quality figures in formats and densities that exceed traditional tools (e.g., MS Excel, GP Prism).
 
 Some highlighted features of the *fxl* package include:
 
-- Support for natively rendering all common single-case research designs (e.g. reversal/withdrawal, multiple baselines, alternating treatments, and changing criterion) from straight-forward R syntax.
+-   Support for natively rendering all common single-case research designs (e.g. reversal/withdrawal, multiple baselines, alternating treatments, and changing criterion) from straight-forward R syntax.
 
-- Conventions and methods that streamline and automate the visualization of common assessments (e.g. functional analysis, concurrent chains) directly from R syntax.
+-   Conventions and methods that streamline and automate the visualization of common assessments (e.g. functional analysis, concurrent chains) directly from R syntax.
 
-- Native support for drawing of cross-panel phase change lines -- YES, actual support for phase change lines. No manual construction, no repeated adjustments, and no hacky macros that make your machine insecure.
+-   Native support for drawing of cross-panel phase change lines -- YES, actual support for phase change lines. No manual construction, no repeated adjustments, and no hacky macros that make your machine insecure.
 
-- Intuitive mapping approach that communicates how to prepare individual subplots/facets (e.g., targets, participants), separate data series in terms of phases (e.g., baseline, treatment 1, treatment 2), and the sequencing of individual sessions (e.g., T'ed with early termination).
+-   Intuitive mapping approach that communicates how to prepare individual subplots/facets (e.g., targets, participants), separate data series in terms of phases (e.g., baseline, treatment 1, treatment 2), and the sequencing of individual sessions (e.g., T'ed with early termination).
 
-- Extensive options for various chart annotations that consistent with how behavior analysts visually communicate events such as schedule thinning, demand fading, and other common events (e.g., arrows, brackets, style condition changes).
+-   Extensive options for various chart annotations that consistent with how behavior analysts visually communicate events such as schedule thinning, demand fading, and other common events (e.g., arrows, brackets, style condition changes).
 
 ## Current Version
 
@@ -52,9 +52,9 @@ Some highlighted features of the *fxl* package include:
 
 ### Custom Experimental Designs (e.g., Multiple Baseline + Reversal)
 
-The figure below is generated from data featured in a single-subject evaluation conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) and redrawn using *fxl*. 
+The figure below is generated from data featured in a single-subject evaluation conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) and redrawn using *fxl*.
 
-The goal of this study was to demonstrate how an operant behavioral economic approach can be used in conjunction with functional communication training. There was two functions to address per functional analysis and three demonstrations of control were accomplished using a combination of multiple base and reversals. 
+The goal of this study was to demonstrate how an operant behavioral economic approach can be used in conjunction with functional communication training. There was two functions to address per functional analysis and three demonstrations of control were accomplished using a combination of multiple base and reversals.
 
 The figure illustrated below uses *fxl* to illustrate a combination of multiple baseline features as well as a reversal. This figure features dynamic phase change lines, phase change lines varying in style, annotated text and arrows/brackets, and facet/phase labels.
 
@@ -66,7 +66,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ### Alternating Treatment Design/Functional Analysis
 
-The figure below illustrates the results of functional analysis. These data were also featured in the study conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) and drawn using *fxl*.  The functional analysis conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) was designed to experimentally determine the function of an autistic child's aggressive behavior towards their family. 
+The figure below illustrates the results of functional analysis. These data were also featured in the study conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) and drawn using *fxl*. The functional analysis conducted by [Gilroy et al. (2019)](https://doi.org/10.1080/17518423.2019.1646342) was designed to experimentally determine the function of an autistic child's aggressive behavior towards their family.
 
 This figure visualizes multiple data series that each represent a distinct condition and a legend is used to communicate what each type of data series reflects. Markers and lines feature customization, and for the example included below, correspond with the conventions common in functional analyses in published works.
 
@@ -78,9 +78,9 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ### Custom Functional Analysis (i.e., integrated display of behavior and procedural integrity)
 
-As an added layer of functionality, multiple layers of related data may be drawn on a single feature. In the case of functional analyses conducted by non-behavior analysts (e.g., caregivers), the degree to which non-professionals implement functional analysis procedures is directly related to how the learner behaves in those conditions. That is, rates of behavior may be *elevated or depressed* not because of the programmed contingencies but instead the *deviations* from those contingencies. 
+As an added layer of functionality, multiple layers of related data may be drawn on a single feature. In the case of functional analyses conducted by non-behavior analysts (e.g., caregivers), the degree to which non-professionals implement functional analysis procedures is directly related to how the learner behaves in those conditions. That is, rates of behavior may be *elevated or depressed* not because of the programmed contingencies but instead the *deviations* from those contingencies.
 
-Additional information related to the functional analysis (e.g., percentage correct implementation) can be drawn alongside behavior rates using the *fxl* package. 
+Additional information related to the functional analysis (e.g., percentage correct implementation) can be drawn alongside behavior rates using the *fxl* package.
 
 The source code necessary to create such a figure is provided below (data included in the package).
 
@@ -90,7 +90,7 @@ The source code necessary to create such a figure is provided below (data includ
 
 ### Concurrent Reversal Design across Participants
 
-The figure below is built using data featured in a single-subject research design conducted by [Gilroy et al. (2021)](https://doi.org/10.1002/jaba.826) and drawn using *fxl*. 
+The figure below is built using data featured in a single-subject research design conducted by [Gilroy et al. (2021)](https://doi.org/10.1002/jaba.826) and drawn using *fxl*.
 
 The goal of this study was to explore how unit price and price elasticity affects work output in the context of behavioral intervention. The figure illustrated below is drawn using *fxl* to illustrate a combination of individual reversals, visualized in a way to facilitate visual analysis across phases and participants to evaluate how degrees of demand elasticity influence rates of behavior emitted across schedules. This figure features dynamic phase change lines across participants, multiple target lines/markers, and facet/phase labels.
 
@@ -100,9 +100,9 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ![Gilroy et al 2021](man/figures/concurrentfigure.svg)
 
-### Fully Customizable Markers and Plot Elements 
+### Fully Customizable Markers and Plot Elements
 
-The *fxl* package allows for custom images to be used as markers in research designs. Occasionally, a lighter and more friendly presentation may assist with communicating individual performance (e.g., performance feedback for younger learners). Specifically, an RGML file (i.e., an R [G]raphical [M]arkup [L]anguage file that uses the XML standard) is used to instruct R how to draw images. Images can be supplied by the user and can feature either vector-based or rasters. 
+The *fxl* package allows for custom images to be used as markers in research designs. Occasionally, a lighter and more friendly presentation may assist with communicating individual performance (e.g., performance feedback for younger learners). Specifically, an RGML file (i.e., an R [G]raphical [M]arkup [L]anguage file that uses the XML standard) is used to instruct R how to draw images. Images can be supplied by the user and can feature either vector-based or rasters.
 
 The two examples featured below demonstrate this functionality and the source code necessary to re-create them is provided as well (all data included in the package).
 
@@ -116,7 +116,7 @@ The two examples featured below demonstrate this functionality and the source co
 
 ### Multiple Probe/Multiple Baseline Design
 
-The figure below is built from data featured in [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004) and drawn using *fxl*. 
+The figure below is built from data featured in [Gilroy et al. (2015)](https://doi.org/10.1016/j.rasd.2015.04.004) and drawn using *fxl*.
 
 The goal of this study was to explore whether a relational training procedure could be used to teach autistic children to demonstrate behavior consistent with Theory of Mind (i.e., derived relational responding via deictic frames). The figure illustrated below uses *fxl* to illustrate a multiple probe design, whereby the three demonstrations of control take place across participants through the systematic introduction of the independent variable (i.e., relational training procedure). This figure features dynamic phase change lines across participants, dynamically positioned phase change labels, and facet labels.
 
@@ -128,7 +128,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ### Concurrent Choice/Initial Link Selections
 
-The figure below was generated using data featured in [Lozy et al. (2020)](https://doi.org/10.1002/jaba.677) and drawn using *fxl*. 
+The figure below was generated using data featured in [Lozy et al. (2020)](https://doi.org/10.1002/jaba.677) and drawn using *fxl*.
 
 The goals of this study were to compare outcomes and preferences from two different methods of teaching letter--sound correspondence and word recognition in preschool children. The figure illustrated below uses *fxl* to illustrate the results of concurrent chain procedures across each participant. This figure features multiple panels specific to participants (i.e., multiple rows and columns), dynamic phase change lines across participants, and facet/phase labels that indicate conditions varying across participants.
 
@@ -140,7 +140,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ### Silverman-Styled Dot Plots
 
-The figure below is designed using data featured in [Koffarnus et al. (2011)](https://doi.org/10.1093/alcalc/agr057) and furnished by the lead author of the study. The figure below was redrawn using *fxl* with the supplied data. 
+The figure below is designed using data featured in [Koffarnus et al. (2011)](https://doi.org/10.1093/alcalc/agr057) and furnished by the lead author of the study. The figure below was redrawn using *fxl* with the supplied data.
 
 The goal of this study was to draw comparisons between three different structured work training programs that were designed to address substance use behavior. The plot styles used in this figure, originally popularized by Kenneth Silverman, are fully supported in *fxl*. Specifically, this type of figure communicates outcomes and/or behavior status using styled dots whereby each increment on the ordinate reflects a distinct individual (e.g., 5 vs. 6 on y-axis) and each on the abscissa a measure of behavior for each unit change in time (e.g., 3 vs. 4 on x-axis). This figure illustrates individual participant data, across groups, over the course of an experimental trial.
 
@@ -152,7 +152,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ### Multilevel Modeling of Fixed Effects in Single Case Designs
 
-The figure below using data featured in [Gelino et al. (2022)](https://doi.org/10.1002/jaba.967). The *fxl* was used to generate the figures used in this publication. 
+The figure below using data featured in [Gelino et al. (2022)](https://doi.org/10.1002/jaba.967). The *fxl* was used to generate the figures used in this publication.
 
 The goal of this study was to evaluate outcomes from a policy initiative designed to curb cigarette smoking behavior on a large college campus. In addition to visualizing population-level estimates across multiple targeted sites, the *fxl* package was used to draw the fitted estimates from multilevel modeling in *R* atop the empirical data.
 
@@ -164,7 +164,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ### Celeration (Semi-logarithmic) Charts - Individualized
 
-Celeration charts are not often observed outside of niche applications in behavior analysis. However, semi-logarithmic charts (i.e., partial elasticity) are quite common in many other domains (e.g., economics). Part of the challenge associated with the use of celeration charts is the handling of zero values, which is not easily remedied in traditional spreadsheet software. 
+Celeration charts are not often observed outside of niche applications in behavior analysis. However, semi-logarithmic charts (i.e., partial elasticity) are quite common in many other domains (e.g., economics). Part of the challenge associated with the use of celeration charts is the handling of zero values, which is not easily remedied in traditional spreadsheet software.
 
 The figure below illustrates a hypothetical example of group-wide progress monitoring using celeration charts (i.e., reading indicators). This is visualized using a combination of line annotations, phase change labels, and other features illustrating the logarithmic scaling.
 
@@ -186,7 +186,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ## Referenced Works (F/OSS software)
 
-The fxl package incorporates a number of open-source projects to work properly. Specifically, the core design and overall engine was modeled from Hadley Wickham's *ggplot*. Attempts were made to accomplish the features in this package within *ggplot* proper; however, doing so was not straightforward and would have required deviating from low-level functionality built into *ggplot*. 
+The fxl package incorporates a number of open-source projects to work properly. Specifically, the core design and overall engine was modeled from Hadley Wickham's *ggplot*. Attempts were made to accomplish the features in this package within *ggplot* proper; however, doing so was not straightforward and would have required deviating from low-level functionality built into *ggplot*.
 
 The *TeachingDemos* package was referenced for code that translates coordinates from multiple view devices.
 
@@ -210,11 +210,11 @@ The specific assets embedded in this work are credited below:
 
 ## Installation
 
-At present, the *fxl* package is not yet featured as a part of CRAN. This is purely due to the rapid cycle of growth of features being added to the project. The package must be installed manually at this time using the *devtools* package. 
+At present, the *fxl* package is not yet featured as a part of CRAN. This is purely due to the rapid cycle of growth of features being added to the project. The package must be installed manually at this time using the *devtools* package.
 
 Example installation instructions using *devtools* are provided in source code form below.
 
-```
+```         
 library(devtools)
 
 install_github("miyamot0/fxl")

@@ -14,7 +14,6 @@ scr_plines <- function(core_frame,
                        lwd = 1,
                        lty = 1,
                        col = "black") {
-
   newlayer <- list()
   newlayer[["type"]] <- "phase_lines"
   newlayer[["lines"]] <- lines

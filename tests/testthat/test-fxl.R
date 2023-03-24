@@ -1,4 +1,3 @@
-
 current_data <- data.frame(
   sessions = seq_len(5),
   behavior = seq_len(5)
@@ -8,12 +7,13 @@ describe("scr_plot", {
   describe("data input", {
     it("Should PASS if data is a dataframe", {
       expect_error(
-        scr_plot(data = current_data,
-                 aesthetics = var_map(
-                   x = sessions,
-                   y = behavior
-                 ),
-                ),
+        scr_plot(
+          data = current_data,
+          aesthetics = var_map(
+            x = sessions,
+            y = behavior
+          ),
+        ),
         NA
       )
     })
@@ -23,7 +23,7 @@ describe("scr_plot", {
         scr_plot(aesthetics = var_map(
           x = sessions,
           y = behavior
-        ),),
+        ), ),
         "argument \"data\" is missing, with no default"
       )
     })
@@ -35,7 +35,8 @@ describe("scr_plot", {
           aesthetics = var_map(
             x = sessions,
             y = behavior
-          )),
+          )
+        ),
         "Parameter: data should NOT be set to a null value."
       )
     })
@@ -50,7 +51,8 @@ describe("scr_plot", {
           aesthetics = var_map(
             x = sessions,
             y = behavior
-          )),
+          )
+        ),
         "Parameter: data contains no data."
       )
     })
@@ -64,20 +66,24 @@ describe("scr_plot", {
 
     it("Should fail if aesthetics [y] MISSING", {
       expect_error(
-        scr_plot(data = current_data,
-                 aesthetics = var_map(
-                   x = sessions
-                 )),
+        scr_plot(
+          data = current_data,
+          aesthetics = var_map(
+            x = sessions
+          )
+        ),
         "Parameter: aesthetics must contain a mapping for y."
       )
     })
 
     it("Should fail if aesthetics [x] MISSING", {
       expect_error(
-        scr_plot(data = current_data,
-                 aesthetics = var_map(
-                   y = behavior
-                 )),
+        scr_plot(
+          data = current_data,
+          aesthetics = var_map(
+            y = behavior
+          )
+        ),
         "Parameter: aesthetics must contain a mapping for x."
       )
     })
@@ -366,7 +372,7 @@ describe("scr_plot", {
           ),
           semilog = c(TRUE, TRUE)
         ) |>
-        scr_xoverride(14),
+          scr_xoverride(14),
         "Parameter: scr_xoverride should have 2 entries but has 1 ."
       )
     })

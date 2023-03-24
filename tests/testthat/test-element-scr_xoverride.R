@@ -1,4 +1,3 @@
-
 describe("scr_xoverride", {
   it("Should render as normal", {
     expect_error(
@@ -70,7 +69,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      NA)
+      NA
+    )
   })
 
   it("xdraws assert: char type", {
@@ -133,7 +133,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xdraws should be of a character type.")
+      "Parameter: xdraws should be of a character type."
+    )
   })
 
   it("var assert: present", {
@@ -201,7 +202,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "argument \"var\" is missing, with no default")
+      "argument \"var\" is missing, with no default"
+    )
   })
 
   it("var assert: length", {
@@ -270,7 +272,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: scr_xoverride should have 2 entries but has 3 .")
+      "Parameter: scr_xoverride should have 2 entries but has 3 ."
+    )
   })
 
   it("xrotation: char type", {
@@ -344,7 +347,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xrotation should be of a numeric type.")
+      "Parameter: xrotation should be of a numeric type."
+    )
   })
 
   it("xticklabs: number", {
@@ -414,7 +418,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xtickslabs should be of a character type.")
+      "Parameter: xtickslabs should be of a character type."
+    )
   })
 
   it("xlabeloffset: logical", {
@@ -483,7 +488,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xlabeloffset should be of a numeric type.")
+      "Parameter: xlabeloffset should be of a numeric type."
+    )
   })
 
   it("xtickscex: logical", {
@@ -552,6 +558,7 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xtickscex should be of a numeric type.")
+      "Parameter: xtickscex should be of a numeric type."
+    )
   })
 })

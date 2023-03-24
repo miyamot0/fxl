@@ -1,15 +1,17 @@
 library(fxl)
 
-if ('here' %in% installed.packages()) {
+if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
 
 koffarnus_et_al_mod <- KoffarnusEtAl2011
-koffarnus_et_al_mod$facet = ifelse(koffarnus_et_al_mod$ID < 40,
-                                   "1",
-                                   ifelse(koffarnus_et_al_mod$ID > 83,
-                                          "3",
-                                          "2"))
+koffarnus_et_al_mod$facet <- ifelse(koffarnus_et_al_mod$ID < 40,
+  "1",
+  ifelse(koffarnus_et_al_mod$ID > 83,
+    "3",
+    "2"
+  )
+)
 
 scr_plot(
   koffarnus_et_al_mod,
@@ -17,7 +19,8 @@ scr_plot(
     x = X,
     y = ID,
     p = Code,
-    facet = facet),
+    facet = facet
+  ),
   mai = c(
     0.0,
     0.0,
@@ -31,19 +34,24 @@ scr_plot(
     0.0
   )
 ) |>
-  scr_yoverride(list(# manually override y-axis and tick interval
-    "1" = list(
-      y0 = 0,
-      y1 = 40,
-      yticks = c(5, 10, 15, 20, 25, 30, 35)),
-    "2" = list(
-      y0 = 40,
-      y1 = 83,
-      yticks = c(40, 45, 50, 55, 60, 65, 70, 75, 80)),
-    "3" = list(
-      y0 = 82,
-      y1 = 127,
-      yticks = c(85, 90, 95, 100, 105, 110, 115, 120, 125))),
+  scr_yoverride(
+    list( # manually override y-axis and tick interval
+      "1" = list(
+        y0 = 0,
+        y1 = 40,
+        yticks = c(5, 10, 15, 20, 25, 30, 35)
+      ),
+      "2" = list(
+        y0 = 40,
+        y1 = 83,
+        yticks = c(40, 45, 50, 55, 60, 65, 70, 75, 80)
+      ),
+      "3" = list(
+        y0 = 82,
+        y1 = 127,
+        yticks = c(85, 90, 95, 100, 105, 110, 115, 120, 125)
+      )
+    ),
     ydelta = 5
   ) |>
   scr_ylabel("Participant Number", line = 3) |>
@@ -68,15 +76,16 @@ scr_plot(
       "1" = 22,
       "2" = 22
     ),
-    fill = list(# override point marker colors (match FA conventions)
+    fill = list( # override point marker colors (match FA conventions)
       "0" = "black",
       "1" = "white",
       "2" = rgb(.8,
-                .8,
-                .8,
-                alpha = 0.75)
+        .8,
+        .8,
+        alpha = 0.75
+      )
     ),
-    color = list(# override point marker colors (match FA conventions)
+    color = list( # override point marker colors (match FA conventions)
       "0" = "transparent",
       "1" = "black",
       "2" = "transparent"
@@ -86,7 +95,7 @@ scr_plot(
     cex = 1.25,
     adj = 0,
     x = 1,
-    labels = list(# list of labels to draw (will use assigned key for label)
+    labels = list( # list of labels to draw (will use assigned key for label)
       "1" = list(
         y = 43.5,
         label = "Unpaid Training (n = 39)"
@@ -122,9 +131,10 @@ scr_plot(
       "white",
       "black",
       rgb(.8,
-          .8,
-          .8,
-          alpha = 0.75)
+        .8,
+        .8,
+        alpha = 0.75
+      )
     ),
     lty = NULL,
     pch = c(
@@ -136,16 +146,19 @@ scr_plot(
     cex = 1.5,
     pt_cex = c(1, 1, 0.5),
     horiz = TRUE,
-    box_lty = 0)
-
-#|>
-# scr_save(name = "silvermanfigure.png",
-#          format = "png",
-#          units = "in",
-#          height = 11,
-#          res = 500,
-#          width = 9) |>
-# scr_save(name = "silvermanfigure.svg",
-#          format = "svg",
-#          height = 11,
-#          width = 9)
+    box_lty = 0
+  ) |>
+  scr_save(
+    name = "silvermanfigure.png",
+    format = "png",
+    units = "in",
+    height = 11,
+    res = 500,
+    width = 9
+  ) |>
+  scr_save(
+    name = "silvermanfigure.svg",
+    format = "svg",
+    height = 11,
+    width = 9
+  )
