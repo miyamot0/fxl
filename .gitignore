@@ -15,3 +15,7 @@ tests/testthat/test.pdf
 tests/testthat/test.png
 tests/testthat/test.svg
 tests/testthat/test.tiff
+
+man/figures/*.png
+
+tests/testthat/testdraws/*
