@@ -38,7 +38,7 @@ img {
 ```
 # The rationale for *fxl* and Novel Methods
 
-Single-case research designs involve the presentation of empirical data across experimental conditions to visually draw inferences regarding the effects of environmental manipulations on observed behavior. The empirical data featured in these designs are presented using various that have been shaped by decades of research and practice in behavior analysis. Many of these conventions are highly specialized and are not natively supported in any existing software package (e.g., phase change lines being drawn across multiple individual plots). Even though methods exist for accommodating these conventions in spreadsheet software, these are all tedious and effortful and subsequent modifications typically require additional human interaction to edit. Various scripts and macros have been suggested to streamline these efforts; however, these are at best incomplete at best and a security threat at worst. Indeed, most organizations disable the use of macros by default for all users. The *fxl* package was designed to meet this gap in available and accessible tools.
+Single-case research designs involve the presentation of empirical data across experimental conditions to visually draw inferences regarding the effects of environmental manipulations on observed behavior. The empirical data featured in these designs are presented using various conventions that have been shaped by decades of research and practice in behavior analysis. Many of these conventions are highly specialized and are not natively supported in any existing software package (e.g., phase change lines being drawn across multiple individual plots). Even though methods exist for accommodating these conventions in spreadsheet software, these are all tedious and effortful and subsequent modifications typically require additional human interaction to edit. Various scripts and macros have been suggested to streamline these efforts; however, these are at best incomplete at best and a security threat at worst. Indeed, most organizations disable the use of macros by default for all users. The *fxl* package was designed to meet this gap in available and accessible tools.
 
 ## Primary Goals of *fxl* Package
 
@@ -120,41 +120,7 @@ Note: The *order* in which the layers are added are relevant. That is, those lay
 
 #### Data Layers
 
-Across each of the data layers, there is a corresponding *x* and *y* argument at minimum. However, there are various options and overrides available.
-
-##### Data Layer Settings
-
-###### Color (*color*)
-
-TODO
-
-###### Line Type (*lty*)
-
-TODO
-
-###### Line Width (*size*)
-
-TODO
-
-###### Aesthetices (*mapping*)
-
-TODO
-
-##### Points: *scr_points*
-
-TODO
-
-##### Lines: *scr_lines*
-
-TODO
-
-##### Images: *scr_images*
-
-TODO
-
-##### Example:
-
-An example that builds from the previous example and adds points and lines is provided below:
+Across each of the data layers, there is a corresponding *x* and *y* argument at minimum. However, there are various options and overrides available. An example that builds from the previous example and adds points and lines is provided below:
 
 ```{r structure_layers, fig.width=8, fig.height=4}
 scr_plot(
@@ -172,11 +138,95 @@ scr_plot(
 
 As an added note, it warrants stating clearly that the sequence (i.e., the call must begin with *scr_plot*) and chain of calls are relevant to how the program works (i.e., all are linked together by the native *R* pipe operator '\|\>'). The pipe operator should be used to connect calls in the sequence; however, the historical '%\>%' operator from *magittr* could also be used if desired (but is not generally recommended). Additionally, the *order* of layers is also relevant because layers added earlier with be drawn earlier (i.e., lower *z-index*) and layers added later will be drawn later (i.e., higher *z-index*).
 
-### Customizing Labels and Axes
+##### Points: *scr_points*
 
-The default behavior of the drawing engine is to draw axes using the names supplied to x-y coordinate variables and use the domains and ranges specified by the data supplied. Occasionally, the visualization of these data may be more understandable to set to a different set of extremes (i.e., round to a number maximum divisible by 10; e.g., 100 instead of 97). Various calls exist to override the range of axes (i.e., *scr_xoverride*, *scr_yoverride*), the labels for those axes (i.e., *scr_xlabel*, *scr_ylabel*), and the title of the overall figure (i.e., *scr_title*).
+At the most basic levels, data can be visualized with markers by using the *scr_points* layer and add this to the core plotting object.
 
-An example that builds from the previous examples and customizes the axes titles, ticks, and figure title is provided below:
+##### Cumulative Sum Points: *scr_cumsum_points*
+
+TODO
+
+##### Lines: *scr_lines*
+
+Often complemented by markers, data can be visualized with markers by using the *scr_lines* layer and add this to the core plotting object.
+
+##### Cumulative Sum Lines: *scr_cumsum_lines*
+
+TODO
+
+##### Images: *scr_images*
+
+As an alternative to built-in markers, data can be visualized with markers by using the *scr_images* layer and add this to the core plotting object.
+
+##### Bars: *scr_bar_support*
+
+TODO
+
+#### Annotation Layers
+
+##### Text (within panels): *scr_label_phase*
+
+TODO:
+
+##### Phase Changes (within panels): *scr_plines*
+
+TODO:
+
+##### Text (across panels): *scr_label_facet*
+
+TODO:
+
+##### Phase Changes (across panels): *scr_plines_mbd*
+
+TODO:
+
+##### Legend: *scr_legend*
+
+TODO:
+
+##### Arrows: *scr_arrows*
+
+TODO:
+
+##### Brackets: *scr_brackets*
+
+TODO:
+
+##### Aim Lines: *scr_guide_line*
+
+TODO:
+
+#### Plotting Overrides
+
+##### Title: *scr_title*
+
+scr_xlabel
+
+scr_ylabel
+
+scr_xoverride
+
+scr_yoverride
+
+TODO:
+
+#### Layer Aesthetics
+
+##### Color (*color*)
+
+TODO
+
+##### Line Type (*lty*)
+
+TODO
+
+##### Line Width (*size*)
+
+TODO
+
+##### Aesthetices (*mapping*)
+
+TODO
 
 ```{r structure_labels, fig.width=8, fig.height=4}
 scr_plot(
@@ -202,6 +252,16 @@ scr_plot(
   scr_ylabel("Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
   scr_title("Rates of Acquisition across Participants")
 ```
+
+## TODO: Descriptive Guide (Use Case 1)
+
+
+### Customizing Labels and Axes
+
+The default behavior of the drawing engine is to draw axes using the names supplied to x-y coordinate variables and use the domains and ranges specified by the data supplied. Occasionally, the visualization of these data may be more understandable to set to a different set of extremes (i.e., round to a number maximum divisible by 10; e.g., 100 instead of 97). Various calls exist to override the range of axes (i.e., *scr_xoverride*, *scr_yoverride*), the labels for those axes (i.e., *scr_xlabel*, *scr_ylabel*), and the title of the overall figure (i.e., *scr_title*).
+
+An example that builds from the previous examples and customizes the axes titles, ticks, and figure title is provided below:
+
 
 ### Drawing Phase Change Lines and Phase Labels
 
