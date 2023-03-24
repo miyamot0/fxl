@@ -174,14 +174,14 @@ scr_plot(
     box_lty = 1
   ) |>
   scr_save(
-    name = "semilogfigure.svg",
+    name = "../man/figures/semilogfigure.svg",
     format = "svg",
     units = "in",
     height = 6,
     width = 9
   ) |>
   scr_save(
-    name = "semilogfigure.png",
+    name = "../man/figures/semilogfigure.png",
     format = "png",
     units = "in",
     height = 6,

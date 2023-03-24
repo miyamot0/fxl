@@ -183,6 +183,9 @@ describe("Concurrent Plot Style", {
             "Charles" = list(
               x1 = 19.5,
               y1 = 20
+            ),
+            "Sham" = list(
+
             )
           )
         )) |>

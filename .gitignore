@@ -19,3 +19,5 @@ tests/testthat/test.tiff
 man/figures/*.png
 
 tests/testthat/testdraws/*
+
+coverage

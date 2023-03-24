@@ -14,3 +14,4 @@ files_in_dir <- files_in_dir[files_in_dir != "beezdemandInd.R"]
 files_in_dir <- files_in_dir[files_in_dir != "atd_concurrentoperant.R"]
 
 lapply(files_in_dir, function(x) try(source(x)))
+

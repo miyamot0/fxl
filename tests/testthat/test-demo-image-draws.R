@@ -122,4 +122,279 @@ describe("Image Draw Layer", {
         print()
     )
   })
+
+  it("Should render as normal without phases", {
+    expect_no_error(
+      scr_plot(dataFrame,
+               aesthetics = var_map(
+                 x = Time,
+                 y = Control,
+                 facet = Facet
+               ),
+               mai = c(0.375, 0.375, 0.1, 0.1),
+               omi = c(0.25, 0.25, 0.25, 0.25)
+      ) |>
+        scr_xoverride(
+          c(0.4, 32),
+          xticks = c(1, 5, 10, 15, 20, 25, 30)
+        ) |>
+        scr_yoverride(c(-0.5, 20),
+                      yticks = c(0, 5, 10, 15, 20),
+                      ydelta = 5
+        ) |>
+        scr_lines() |>
+        scr_lines(mapping = var_map(
+          x = Time,
+          y = TreatA,
+          p = Phase
+        )) |>
+        scr_lines(mapping = var_map(
+          x = Time,
+          y = TreatB
+        )) |>
+        scr_plines(
+          lty = 1,
+          lines = list(
+            "P1" = list(
+              "A" = list(
+                x1 = 6.5,
+                y1 = 20,
+                y2 = -0.5
+              ),
+              "B" = list(
+                x1 = 20.5,
+                y1 = 20,
+                y2 = -0.5
+              ),
+              "C" = list(
+                x1 = 26.5,
+                y1 = 20,
+                y2 = -0.5
+              )
+            )
+          )
+        ) |>
+        scr_images(
+          cex = 0.08,
+          image = skinner
+        ) |>
+        scr_images(
+          cex = 0.075,
+          image = dragon,
+          mapping = var_map(
+            x = Time,
+            y = TreatA
+          )
+        ) |>
+        scr_images(
+          cex = 0.065,
+          image = scorpion,
+          mapping = var_map(
+            x = Time,
+            y = TreatB
+          )
+        ) |>
+        scr_label_phase(
+          facet = "P1",
+          cex = 1.25,
+          adj = 0.5,
+          y = 20,
+          labels = list(
+            "Baseline" = list(x = 3.5),
+            "Alternating Treatments" = list(x = 13.5),
+            "Baseline2" = list(
+              x = 23.5,
+              label = "Baseline"
+            ),
+            "Best Treatment" = list(x = 30)
+          )
+        ) |>
+        scr_xlabel("Session") |>
+        scr_ylabel("          Work Output") |>
+        print()
+    )
+  })
+
+  it("Should render as normal without facets", {
+    expect_no_error(
+      scr_plot(dataFrame,
+               aesthetics = var_map(
+                 x = Time,
+                 y = Control
+               ),
+               mai = c(0.375, 0.375, 0.1, 0.1),
+               omi = c(0.25, 0.25, 0.25, 0.25)
+      ) |>
+        scr_xoverride(
+          c(0.4, 32),
+          xticks = c(1, 5, 10, 15, 20, 25, 30)
+        ) |>
+        scr_yoverride(c(-0.5, 20),
+                      yticks = c(0, 5, 10, 15, 20),
+                      ydelta = 5
+        ) |>
+        scr_lines() |>
+        scr_lines(mapping = var_map(
+          x = Time,
+          y = TreatA,
+          p = Phase
+        )) |>
+        scr_lines(mapping = var_map(
+          x = Time,
+          y = TreatB
+        )) |>
+        scr_plines(
+          lty = 1,
+          lines = list(
+            "P1" = list(
+              "A" = list(
+                x1 = 6.5,
+                y1 = 20,
+                y2 = -0.5
+              ),
+              "B" = list(
+                x1 = 20.5,
+                y1 = 20,
+                y2 = -0.5
+              ),
+              "C" = list(
+                x1 = 26.5,
+                y1 = 20,
+                y2 = -0.5
+              )
+            )
+          )
+        ) |>
+        scr_images(
+          cex = 0.08,
+          image = skinner
+        ) |>
+        scr_images(
+          cex = 0.075,
+          image = dragon,
+          mapping = var_map(
+            x = Time,
+            y = TreatA
+          )
+        ) |>
+        scr_images(
+          cex = 0.065,
+          image = scorpion,
+          mapping = var_map(
+            x = Time,
+            y = TreatB
+          )
+        ) |>
+        scr_label_phase(
+          facet = "P1",
+          cex = 1.25,
+          adj = 0.5,
+          y = 20,
+          labels = list(
+            "Baseline" = list(x = 3.5),
+            "Alternating Treatments" = list(x = 13.5),
+            "Baseline2" = list(
+              x = 23.5,
+              label = "Baseline"
+            ),
+            "Best Treatment" = list(x = 30)
+          )
+        ) |>
+        scr_xlabel("Session") |>
+        scr_ylabel("          Work Output") |>
+        print()
+    )
+  })
+
+
+    it("Should FAIL without an image", {
+    expect_error(
+      scr_plot(dataFrame,
+               aesthetics = var_map(
+                 x = Time,
+                 y = Control,
+                 p = Phase,
+                 facet = Facet
+               ),
+               mai = c(0.375, 0.375, 0.1, 0.1),
+               omi = c(0.25, 0.25, 0.25, 0.25)
+      ) |>
+        scr_xoverride(
+          c(0.4, 32),
+          xticks = c(1, 5, 10, 15, 20, 25, 30)
+        ) |>
+        scr_yoverride(c(-0.5, 20),
+                      yticks = c(0, 5, 10, 15, 20),
+                      ydelta = 5
+        ) |>
+        scr_lines() |>
+        scr_lines(mapping = var_map(
+          x = Time,
+          y = TreatA,
+          p = Phase
+        )) |>
+        scr_lines(mapping = var_map(
+          x = Time,
+          y = TreatB
+        )) |>
+        scr_plines(
+          lty = 1,
+          lines = list(
+            "P1" = list(
+              "A" = list(
+                x1 = 6.5,
+                y1 = 20,
+                y2 = -0.5
+              ),
+              "B" = list(
+                x1 = 20.5,
+                y1 = 20,
+                y2 = -0.5
+              ),
+              "C" = list(
+                x1 = 26.5,
+                y1 = 20,
+                y2 = -0.5
+              )
+            )
+          )
+        ) |>
+        scr_images(
+          cex = 0.08,
+        ) |>
+        scr_images(
+          cex = 0.075,
+          mapping = var_map(
+            x = Time,
+            y = TreatA
+          )
+        ) |>
+        scr_images(
+          cex = 0.065,
+          mapping = var_map(
+            x = Time,
+            y = TreatB
+          )
+        ) |>
+        scr_label_phase(
+          facet = "P1",
+          cex = 1.25,
+          adj = 0.5,
+          y = 20,
+          labels = list(
+            "Baseline" = list(x = 3.5),
+            "Alternating Treatments" = list(x = 13.5),
+            "Baseline2" = list(
+              x = 23.5,
+              label = "Baseline"
+            ),
+            "Best Treatment" = list(x = 30)
+          )
+        ) |>
+        scr_xlabel("Session") |>
+        scr_ylabel("          Work Output") |>
+        print(),
+      "Must specify an image to draw."
+    )
+  })
 })

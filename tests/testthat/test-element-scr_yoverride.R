@@ -73,7 +73,7 @@ describe("scr_yoverride", {
     )
   })
 
-  it("xdraws assert: char type", {
+  it("ydraws assert: char type", {
     expect_error(
       scr_plot(
         data = LozyEtAl2020,
@@ -135,6 +135,39 @@ describe("scr_yoverride", {
         ) |>
         print(),
       "Parameter: ydraws should be of a character type."
+    )
+  })
+
+  it("ydraws assert: null type", {
+    expect_error(
+      scr_plot(
+        data = LozyEtAl2020,
+        aesthetics = var_map(
+          x = Session,
+          y = KM,
+          p = Phase,
+          facet = Participant
+        ),
+        ncol = 2,
+        mai = c(0.3, 0.3, 0.0, 0.1),
+        omi = c(0.25, 0.25, 0.1, 0)
+      ) |>
+        scr_xoverride(
+          c(1, 30),
+          xticks = list(
+            "Eli" = c(1, 5, 10, 15),
+            "Ari" = c(1, 10, 20, 30),
+            "Al" = c(1, 5, 10, 15),
+            "Ry" = c(1, 5, 10, 15),
+            "Eva" = c(1, 5, 10, 15),
+            "Cali" = c(1, 5, 10, 15)
+          )
+        ) |>
+        scr_yoverride(NULL,
+          ydraws = TRUE
+        ) |>
+        print(),
+      "scr_yoverride: cannot be set to a null value."
     )
   })
 

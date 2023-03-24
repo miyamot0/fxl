@@ -14,7 +14,7 @@ scr_images <- function(core_frame,
                        cex = 1,
                        mapping) {
   if (missing(image)) {
-    stop("must specify image to draw")
+    stop("Must specify an image to draw.")
   }
 
   newlayer <- list()

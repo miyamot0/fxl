@@ -36,7 +36,6 @@ img {
 }
 </style>
 ```
-
 # The rationale for *fxl* and Novel Methods
 
 Single-case research designs involve the presentation of empirical data across experimental conditions to visually draw inferences regarding the effects of environmental manipulations on observed behavior. The empirical data featured in these designs are presented using various that have been shaped by decades of research and practice in behavior analysis. Many of these conventions are highly specialized and are not natively supported in any existing software package (e.g., phase change lines being drawn across multiple individual plots). Even though methods exist for accommodating these conventions in spreadsheet software, these are all tedious and effortful and subsequent modifications typically require additional human interaction to edit. Various scripts and macros have been suggested to streamline these efforts; however, these are at best incomplete at best and a security threat at worst. Indeed, most organizations disable the use of macros by default for all users. The *fxl* package was designed to meet this gap in available and accessible tools.
@@ -71,9 +70,9 @@ The *fxl* package was constructed to use a functional approach to *R* and makes 
 
 The decision not to simply build upon the well-established *ggplot2* package was one that was not made lightly or at haste. Indeed, I tried, and certain conventions in single case design and visual analysis simply are so idiosyncratic that no existing plotting system could accommodate all of them natively. I got about 80% of where I needed to get with *ggplot2*, but ultimately, I had to create a custom approach to design an approach that would be useful for single case design users.
 
-The high degree of overlap in terms of workflow (i.e., functional style), function calls (e.g., scr_\*), and features was deliberate and there were several reasons for doing so. First, the initial design used *ggplot2* as a base and focused on extending the package to support conventions common in single-case research designs. However, low-level conventions regarding how individual facets were drawn limited options for drawing cross-plot features (e.g., staggered phase change lines across plots). Considerable work was done here, but a dedicated drawing algorithm using base *R* methods needed to be developed to fully incorporate all desired plotting features. Simply put, the functionality didn't seem to exist (without a deep re-write) and the project reached a point where it was easier to make something specific rather than making something designed to be very general (i.e., *ggplot2* into something so specialized). 
+The high degree of overlap in terms of workflow (i.e., functional style), function calls (e.g., scr\_\*), and features was deliberate and there were several reasons for doing so. First, the initial design used *ggplot2* as a base and focused on extending the package to support conventions common in single-case research designs. However, low-level conventions regarding how individual facets were drawn limited options for drawing cross-plot features (e.g., staggered phase change lines across plots). Considerable work was done here, but a dedicated drawing algorithm using base *R* methods needed to be developed to fully incorporate all desired plotting features. Simply put, the functionality didn't seem to exist (without a deep re-write) and the project reached a point where it was easier to make something specific rather than making something designed to be very general (i.e., *ggplot2* into something so specialized).
 
-Second, the pragmatic and stylistic features of *ggplot2* (to whatever degree helpful) were deliberately maintained to assist users of *ggplot2* in using the package. To be clear, this was not done to create an alternative or competitor to *ggplot2*. If functionality for drawing annotations across multiple plots in a figure (i.e., staggered phase change lines, free drawing of text/shapes/images) were to be added to *ggplot2*, I'd merge all of this into an extension because that would be easier to manage over time. 
+Second, the pragmatic and stylistic features of *ggplot2* (to whatever degree helpful) were deliberately maintained to assist users of *ggplot2* in using the package. To be clear, this was not done to create an alternative or competitor to *ggplot2*. If functionality for drawing annotations across multiple plots in a figure (i.e., staggered phase change lines, free drawing of text/shapes/images) were to be added to *ggplot2*, I'd merge all of this into an extension because that would be easier to manage over time.
 
 ### Core Plotting Object
 
@@ -141,15 +140,15 @@ TODO
 
 TODO
 
-##### Points: *scr_points* 
+##### Points: *scr_points*
 
 TODO
 
-##### Lines: *scr_lines* 
+##### Lines: *scr_lines*
 
 TODO
 
-##### Images: *scr_images* 
+##### Images: *scr_images*
 
 TODO
 
