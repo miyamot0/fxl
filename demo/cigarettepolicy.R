@@ -1,6 +1,10 @@
-library(fxl) # core plotting methods
-#library(extrafont) # using custom font
+library(fxl)
 
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
+
+#library(extrafont) # using custom font
 #extrafont::choose_font("Open Sans")
 
 newFrame <- GelinoEtAl2022

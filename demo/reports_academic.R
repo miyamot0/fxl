@@ -1,5 +1,9 @@
 library(fxl)
 
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
+
 needFluency <- SimulatedAcademicFluency[SimulatedAcademicFluency$Times > 160 &
                                           SimulatedAcademicFluency$pred < 40 &
                                           SimulatedAcademicFluency$pred > 10, 'index']

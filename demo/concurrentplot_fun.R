@@ -1,4 +1,9 @@
-library(fxl) # core plotting methods
+library(fxl)
+
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
+
 library(grImport)
 
 data <- Gilroyetal2021

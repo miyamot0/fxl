@@ -1,5 +1,9 @@
 library(fxl)
 
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
+
 # labelList <- list()
 # labelList[[fluencyString]] <- list(
 #   x = 130,

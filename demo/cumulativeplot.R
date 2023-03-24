@@ -1,4 +1,8 @@
-library(fxl) # core plotting methods
+library(fxl)
+
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
 
 scr_plot(
   data = LozyEtAl2020,

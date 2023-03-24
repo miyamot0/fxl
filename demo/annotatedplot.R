@@ -1,4 +1,8 @@
-library(fxl) # core plotting methods
+library(fxl)
+
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
 
 current_data <- Gilroyetal2019Tx
 current_data$Condition <- paste0(current_data$Condition, current_data$PhaseNum)

@@ -1,3 +1,9 @@
+library(fxl)
+
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
+
 data <- Gilroyetal2015
 
 scr_plot(

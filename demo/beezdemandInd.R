@@ -1,6 +1,8 @@
-library(beezdemand)
+library(fxl)
 
-apt
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
 
 #N>  override print in beez object
 

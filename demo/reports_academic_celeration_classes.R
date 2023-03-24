@@ -1,5 +1,8 @@
-
 library(fxl)
+
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
 
 set.seed(65535)
 
@@ -262,13 +265,18 @@ scr_plot(
     text_col = "black", # text color
     horiz = FALSE, # list items vertically
     box_lty = 1
+  ) |>
+  scr_save(
+    name = "../man/figures/celeration_classwide.svg",
+    format = "svg",
+    units = "in",
+    width = 9,
+    height = 7.5
+  ) |>
+  scr_save(
+    name = "../man/figures/celeration_classwide.png",
+    format = "png",
+    units = "in",
+    width = 9,
+    height = 7.5
   )
-
-# |>
-#   scr_save(
-#     name = "../man/figures/celeration_classwide.svg",
-#     format = "svg",
-#     units = "in",
-#     width = 9,
-#     height = 7.5
-#   )

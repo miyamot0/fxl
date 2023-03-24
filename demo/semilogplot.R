@@ -1,4 +1,8 @@
-library(fxl) # core plotting methods
+library(fxl)
+
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
 
 min_x <- 1
 max_x <- 30

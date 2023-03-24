@@ -1,5 +1,8 @@
-
 library(fxl)
+
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
 
 set.seed(65535)
 

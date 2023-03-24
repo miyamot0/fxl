@@ -1,4 +1,8 @@
-library(fxl)   # core plotting methods
+library(fxl)
+
+if ('here' %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
 
 dragon <- readPicture("../man/figures/dragon-cairo.ps.xml")
 scorpion <- readPicture("../man/figures/scorpion-cairo.ps.xml")
