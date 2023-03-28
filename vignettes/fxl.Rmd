@@ -86,19 +86,19 @@ The *x* argument represents the domain of the data (e.g., sessions, days) and is
 
 The *y* argument represents the ordinate of the data (e.g., frequency, rate of behavior) and is a required argument. The core object will return an error if this is not set within the aesthetics object (i.e., *var_map*). The entry is simply the name of the column in the data frame.
 
-#### Optional: p
+#### Optional: p [Phases]
 
 The *p* argument represents the phases that correspond with *x* and *y* coordinates (e.g., baseline, intervention). This is an optional argument, given that there are multiple ways that different lines/points can be drawn upon plots/figures. Normally, this is most useful for distinguishing between *sets* of data points that are similar but disconnected in a figure (e.g., different baseline periods in an A-B-A-B reversal design). The entry is simply the name of the column in the data frame.
 
-#### Optional: facet
+#### Optional: facet [Participants, Targets, Subplots]
 
 The *facet* argument represents the individual *panels* or *subplots* within the greater figure. That is, these are typically distinguished by varying participants/classrooms (i.e., multiple baseline across subjects) or varying targets/settings (e.g., multiple baseline within an individual). This is critical for visualizing baseline logic but the facet argument is an optional one because not all designs require more than one facet. The entry is simply the name of the column in the data frame.
 
-#### Example:
+#### Example Core Plotting Object:
 
 An example of this is provided below:
 
-```{r structure_core, fig.width=7, fig.height=4}
+```{r structure_core, fig.width=7, fig.height=4, warning=FALSE}
 suppressPackageStartupMessages(library(fxl))
 
 scr_plot(
@@ -140,93 +140,103 @@ As an added note, it warrants stating clearly that the sequence (i.e., the call 
 
 ##### Points: *scr_points*
 
-At the most basic levels, data can be visualized with markers by using the *scr_points* layer and add this to the core plotting object.
+At the most basic levels, data can be visualized with markers by using the *scr_points* layer and add this to the core plotting object. If the basic aesthetics are not overridden (i.e., *mapping*), this layer will draw the standard *x* and *y* references.
 
 ##### Cumulative Sum Points: *scr_cumsum_points*
 
-TODO
+Related, but distinct from *scr_points*, the *scr_cumsum_points* layer will draw points that cumulatively increase in value as data is added to the series (i.e., *y* data builds upon the prior). If the basic aesthetics are not overridden (i.e., *mapping*), this layer will draw the standard *x* and *y* references.
 
 ##### Lines: *scr_lines*
 
-Often complemented by markers, data can be visualized with markers by using the *scr_lines* layer and add this to the core plotting object.
+Often complemented by markers, data can be visualized with markers by using the *scr_lines* layer and add this to the core plotting object. If the basic aesthetics are not overridden (i.e., *mapping*), this layer will draw the standard *x* and *y* references.
 
 ##### Cumulative Sum Lines: *scr_cumsum_lines*
 
-TODO
+Related, but distinct from *scr_lines*, the *scr_cumsum_lines* layer will draw lines that cumulatively increase in value as data is added to the series (i.e., *y* data builds upon the prior). If the basic aesthetics are not overridden (i.e., *mapping*), this layer will draw the standard *x* and *y* references.
 
 ##### Images: *scr_images*
 
-As an alternative to built-in markers, data can be visualized with markers by using the *scr_images* layer and add this to the core plotting object.
+As an alternative to built-in markers, data can be visualized with markers by using the *scr_images* layer and add this to the core plotting object. These images must be valid RGML images, which R needs to draw vector-based content in the plotting area. If the basic aesthetics are not overridden (i.e., *mapping*), this layer will draw the standard *x* and *y* references.
 
 ##### Bars: *scr_bar_support*
 
-TODO
+The *scr_bar_support* layer is a *support* layer. That is, this provides supporting data that *complements* the primary data. Generally, double y-axis plots are often considered too prone to visual misrepresentation and not formally supported, but this is supported in *fxl* to allow for the concurrent representation of percentage data along with other forms of data. Specifically, this is most relevant to displays wherein procedural fidelity is critical to the interpretation of the primary *x*/*y* data.
 
 #### Annotation Layers
 
 ##### Text (within panels): *scr_label_phase*
 
-TODO:
-
-##### Phase Changes (within panels): *scr_plines*
-
-TODO:
+The *scr_label_phase* layer provides a means to draw labels (e.g., "Baseline", "Intervention") in a specific plot (i.e., "Participant 1"). For example, it is often customary to provide phase labels within the topmost panel of a multi panel figure as opposed to draw those labels in each panel.
 
 ##### Text (across panels): *scr_label_facet*
 
-TODO:
+The *scr_label_facet* layer provides a means to draw labels (e.g., "Participant 1", "Participant 2") across respective plots in a figure. For example, it is often customary to provide facet labels within each panel of a multi panel figure to indicate which data refers to respective participants/targets/settings.
+
+##### Phase Changes (within panels): *scr_plines*
+
+Phase change lines are critical to highlighting anticipated contrasts between conditions in single case research designs. The *scr_plines* layer relates to phase change lines that are *within* individual participants alone. That is, these are not phase change lines that cut across multiple plots. For example, these may be most common in cases where a dashed phase change line is introduced to highlight a slight alteration to a specific phase (e.g., introduce a small environmental change).
 
 ##### Phase Changes (across panels): *scr_plines_mbd*
 
-TODO:
-
-##### Legend: *scr_legend*
-
-TODO:
+The *scr_plines_mbd* layer relates to phase change lines that are *across* individual panels. That is, these are phase change lines that cut across multiple plots to illustrate a shared environmental change. These conentions are the traditional means of illustrating experimental control in a multiple panel design and are illustrated with solid, unbroken lines.
 
 ##### Arrows: *scr_arrows*
 
-TODO:
+A common convention in single case designs is to mark up data using arrows and labels in lieu of a formal legend. The *scr_arrows* layer is used to draw arrows upon the respective (sub)plots convey information to the analyst.
 
 ##### Brackets: *scr_brackets*
 
-TODO:
+Another common convention in single case designs is to mark up runs of data using brackets and labels. For example, this is common in displays that convey progression in various procedures (e.g., demand fading). The *scr_brackets* layer is used to draw brackets upon the respective (sub)plots convey information to the analyst regarding some progression (e.g., demand fading from 1 to 6).
 
 ##### Aim Lines: *scr_guide_line*
 
-TODO:
+Various single case designs in education mark up future (or projected) runs of data using aim lines. For example, this is common in displays that communicate a desired response to educational intervention (e.g., reading fluency expected at the end of the year). The *scr_guide_line* layer is used to draw lines upon the respective (sub)plots convey information to the analyst regarding some idealized rate of change from a certain point in time to another (e.g., beginning of intervention to end of school year).
+
+##### Legend: *scr_legend*
+
+The traditional means of orienting the analyst to data in single case research designs rely on legends to communicate what markers and lines corresponded with on a figure. The *scr_legend* layer is used to draw bespoke legends to communicate respective information on the figure.
 
 #### Plotting Overrides
 
-##### Title: *scr_title*
+##### Title: *scr_title* 
 
-scr_xlabel
+The *scr_title* overrides the default figure title with custom formatting, text, and aesthetics.
 
-scr_ylabel
+##### Label: *scr_xlabel*
 
-scr_xoverride
+The *scr_xlabel* overrides the default, common x axis with custom formatting, text, and aesthetics.
 
-scr_yoverride
+##### Label: *scr_ylabel* 
 
-TODO:
+The *scr_ylabel* overrides the default, common y axis with custom formatting, text, and aesthetics.
 
-#### Layer Aesthetics
+##### Ticks: *scr_xoverride* 
+
+The *scr_xoverride* overrides the tick marks and tick labels for (sub)plots in a greater figure.
+
+##### Ticks: *scr_yoverride* 
+
+The *scr_yoverride* overrides the tick marks and tick labels for (sub)plots in a greater figure.
+
+#### General Layer Aesthetics
 
 ##### Color (*color*)
 
-TODO
+The colors of text, lines, and markers can be overridden (typically 'black' by default) by specifying the *color* in the layer call.
 
 ##### Line Type (*lty*)
 
-TODO
+The line type (typically solid or '1') can be overridden by specifying the *lty* in the layer call.
 
 ##### Line Width (*size*)
 
-TODO
+The line width (typically 1) can be overridden by specifying the *size* in the layer call.
 
-##### Aesthetices (*mapping*)
+##### Aesthetics (*mapping*)
 
-TODO
+Generally, the primary aesthetics (e.g., *x*, *y*, *p*, *facet*) are carried forward into specific layers (e.g., points, lines). The aesthetics for a *specific layer* can be overridden by specifying a particular *mapping* for a respective layer.
+
+An example of this is provided below:
 
 ```{r structure_labels, fig.width=8, fig.height=4}
 scr_plot(
@@ -253,174 +263,13 @@ scr_plot(
   scr_title("Rates of Acquisition across Participants")
 ```
 
-## TODO: Descriptive Guide (Use Case 1)
+# Publication Quality Examples using *fxl* 
 
+Several examples using *fxl* and data from peer-reviewed works are provided in the sections below. The source code necessary to reproduce all figures here is provided in the 'demo' folder of the source repository.
 
-### Customizing Labels and Axes
+## Gilroy et al. (2021) - Operant Behavioral Economics
 
-The default behavior of the drawing engine is to draw axes using the names supplied to x-y coordinate variables and use the domains and ranges specified by the data supplied. Occasionally, the visualization of these data may be more understandable to set to a different set of extremes (i.e., round to a number maximum divisible by 10; e.g., 100 instead of 97). Various calls exist to override the range of axes (i.e., *scr_xoverride*, *scr_yoverride*), the labels for those axes (i.e., *scr_xlabel*, *scr_ylabel*), and the title of the overall figure (i.e., *scr_title*).
-
-An example that builds from the previous examples and customizes the axes titles, ticks, and figure title is provided below:
-
-
-### Drawing Phase Change Lines and Phase Labels
-
-Single-case design conventions require clear delineations between conditions to visualize behavior in the presence/absence of specific ecological manipulations. Both the styling and positioning of these features are central to how single-case data are typically presented. The *fxl* package features several methods that allow a high level of flexibility in these regards.
-
-The *scr_label_facet* method provides a way to label individual facets. Specifically, this is a feature used to present the reader with information about how different panels relate to one another. For example, the three panels in a figure may refer to three distinct individuals and labels would be necessary to distinguish one participant from another.
-
-The *scr_label_phase* method draws text like the previous call; however, this method draws text annotations *within* a panel/facet. This is a more common convention used in single-case design whereby the labels for shared phases across a design are drawn on the topmost panel only. As such, this call is distinct from the prior one in that the user must specify *which panel* to draw the text upon as well as where.
-
-The *scr_plines_mbd* is perhaps the most specialized of all the methods included in *fxl*. This method provides a means of drawing lines that distinguish phases within and between facets. Specifically, a list of line lists is used to specify how the user wants to distinguish phases across the entirety of the figure. These are typically very useful when demonstrations of control are performed using a lagged introduction of the independent variable (i.e., multiple baseline design).
-
-An example that builds from the previous examples and each of these conventions is provided below:
-
-```{r structure_lines, fig.width=8, fig.height=4}
-scr_plot(
-  Gilroyetal2015,
-  aesthetics = var_map(
-    x = Session,
-    y = Responding,
-    p = Condition,
-    facet = Participant
-  )
-) |>
-  scr_points(cex = 2) |>
-  scr_lines(size = 1) |>
-  scr_xoverride(c(0.25, 27.5),
-    xticks = 1:27,
-    xtickslabs = as.character(1:27)
-  ) |>
-  scr_yoverride(c(-5, 105),
-    yticks = c(0, 50, 100),
-    ytickslabs = as.character(c(0, 50, 100)),
-  ) |>
-  scr_label_facet( # Draw a label for each facet (i.e., plot)
-    cex = 1.5,
-    adj = 1,
-    y = 25, # Specify a common height for all labels
-    labels = list(
-      "Andrew" = list(x = 27), "Brian" = list(x = 27), "Charles" = list(x = 27)
-    ) # Labels to draw, for each respective facet, with specific args (i.e., x)
-  ) |>
-  scr_label_phase(
-    facet = "Andrew", # plot labels on specific facet
-    cex = 1.25,
-    adj = 0.5,
-    y = 120,
-    labels = list( # list of labels to draw (will use assigned key for label)
-      "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
-      "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
-    )
-  ) |>
-  scr_plines_mbd(
-    lines = list( # plot linked phase lines (note: drawn from top through bottom)
-      "A" = list(
-        "Andrew" = list(x1 = 4.5, y1 = 100),
-        "Brian" = list(x1 = 11.5, y1 = 100),
-        "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
-      ),
-      "B" = list(
-        "Andrew" = list(x1 = 13.5, y1 = 100),
-        "Brian" = list(x1 = 20.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-      ),
-      "C" = list(
-        "Andrew" = list(x1 = 23.5, y1 = 100),
-        "Brian" = list(x1 = 23.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-      )
-    )
-  ) |>
-  scr_xlabel("Session") |>
-  scr_ylabel("Percent Accuracy") |>
-  scr_title("Rates of Acquisition across Participants")
-```
-
-### Saving Figure Output
-
-The user can choose to save the output of *fxl* printed to the screen by using the *scr_save* method and specifying the relevant arguments. The options for drawing figures and saving to file afforded by the *R* ecosystem are numerous and various vector and raster options exist. Users can specify the format of the image, its dimensions, and various other format-specific arguments (e.g., pixel density for rasters).
-
-An example that completes the previous examples and saves the figure to a file is provided below:
-
-```{r structure_save, eval=FALSE}
-scr_plot(
-  Gilroyetal2015,
-  aesthetics = var_map(
-    x = Session,
-    y = Responding,
-    p = Condition,
-    facet = Participant
-  )
-) |>
-  scr_points(cex = 2) |>
-  scr_lines(size = 1) |>
-  scr_xoverride(c(0.25, 27.5),
-    xticks = 1:27,
-    xtickslabs = as.character(1:27)
-  ) |>
-  scr_yoverride(c(-5, 105),
-    yticks = c(0, 50, 100),
-    ytickslabs = as.character(c(0, 50, 100)),
-  ) |>
-  scr_label_facet(
-    cex = 1.5,
-    adj = 1,
-    y = 25,
-    labels = list(
-      "Andrew" = list(x = 27),
-      "Brian" = list(x = 27),
-      "Charles" = list(x = 27)
-    )
-  ) |>
-  scr_label_phase(
-    facet = "Andrew",
-    cex = 1.25,
-    adj = 0.5,
-    y = 120,
-    labels = list(
-      "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
-      "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
-    )
-  ) |>
-  scr_plines_mbd(
-    lines = list(
-      "A" = list(
-        "Andrew" = list(x1 = 4.5, y1 = 100),
-        "Brian" = list(x1 = 11.5, y1 = 100),
-        "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
-      ),
-      "B" = list(
-        "Andrew" = list(x1 = 13.5, y1 = 100),
-        "Brian" = list(x1 = 20.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-      ),
-      "C" = list(
-        "Andrew" = list(x1 = 23.5, y1 = 100),
-        "Brian" = list(x1 = 23.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-      )
-    )
-  ) |>
-  scr_xlabel("Session") |>
-  scr_ylabel("Percent Accuracy") |>
-  scr_title("Rates of Acquisition across Participants") |>
-  scr_save(
-    name = "NewFileName.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
-  ) # Save options for figure
-```
-
-# Publication-quality *fxl* Examples
-
-Several examples of figures constructed using *fxl* and data from peer-reviewed works are provided in the sections below. The source code necessary to reproduce all figures here is provided in the 'demo' folder of the source repository.
-
-## Gilroy et al. (2021)
-
-### Results in Concurrent Reversal Design
+This example uses a concurrent reversal design to systematically evaluating how different types of reinforcement schedules derived from demand assessments influence learner performance.
 
 ```{r ex_gilroy_et_al_2021, fig.width=9, fig.height=6, echo=FALSE}
 data <- Gilroyetal2021
@@ -648,9 +497,9 @@ scr_plot(
   )
 ```
 
-## Gilroy et al. (2019)
+## Gilroy et al. (2019) - Functional Communication Training
 
-### Results of Functional Analysis
+This example features a functional analysis figure as well as a hybrid design that combines a multiple baseline approach and a reversal to establish multiple instances of experimental control.
 
 ```{r ex_gilroy_et_al_at, fig.width=9, fig.height=6, echo=FALSE}
 data <- Gilroyetal2019
@@ -742,8 +591,6 @@ scr_plot(
     width = 9
   )
 ```
-
-### Results in Modified Multiple Baseline Design
 
 ```{r ex_gilroy_et_al_mbd, fig.width=9, fig.height=6, echo=FALSE}
 current_data <- Gilroyetal2019Tx
@@ -1132,9 +979,9 @@ scr_plot(current_data,
   )
 ```
 
-## Gilroy et al. (2015)
+## Gilroy et al. (2015) - Derived Relational Responding
 
-### Results in Multiple Baseline Design
+This example uses a multiple baseline design (multiple probe, specifically) to establish multiple instances of experimental control.
 
 ```{r ex_gilroy_et_al_2015, fig.width=9, fig.height=6, echo=FALSE}
 data <- Gilroyetal2015
@@ -1277,17 +1124,9 @@ scr_plot(
 
 Apart from research applications and the benefits afforded by a purely programmatic means of building, generating, and archiving figures, these benefits also extend to various types of clinical applications as well. That is, any type of regularly collected data and form of educational programming that is common across students or cases can be visualized in a way that (1) reduces redundancy and eliminates the need for individual spreadsheets, (2) can be updated moment-to-moment with either the click of a button or as an automated process (e.g., run every morning before classes start), or (3) facilitates an overall view of the individual's behavior on its own and in comparison to the rest of the class/caseload.
 
-## Integration with Quarto/RMarkdown
-
 The ability to generate up-to-date reports and present data ready for visual analysis assists analysts in using data to inform their decisions as well as to learn more about present needs. Reports can be used to facilitate high-level reviews of behavior change (e.g., across center, school, grade level) as well as inspection of individual-level response to intervention and progress monitoring.
 
-TODO
-
-### High Level Example: Schoolwide Support
-
-TODO
-
-### High Level Example: Classroom Academics
+### Schoolwide/Multi-class Academic Monitoring
 
 ```{r academics_grouped, fig.width=9, fig.height=8, echo=FALSE}
 needFluency <- SimulatedAcademicFluency[SimulatedAcademicFluency$Times > 160 &
@@ -1468,7 +1307,7 @@ scr_plot(
   )
 ```
 
-### Low Level Inspection
+### Individualized Inspection of Student Learning
 
 ```{r academics_individual, fig.width=9, fig.height=8, echo=FALSE}
 hypotheticalReadingFluency <- data.frame(
@@ -1699,12 +1538,168 @@ scr_plot(
     text_col = "black",
     horiz = FALSE,
     box_lty = 1
-  ) |>
-  scr_save(
-    name = "../man/figures/celeration_academic_rti.svg",
-    format = "svg",
-    units = "in",
-    height = 7,
-    width = 9
   )
 ```
+
+# Descriptive Use Case #1
+
+TODO
+
+### Customizing Labels and Axes
+
+The default behavior of the drawing engine is to draw axes using the names supplied to x-y coordinate variables and use the domains and ranges specified by the data supplied. Occasionally, the visualization of these data may be more understandable to set to a different set of extremes (i.e., round to a number maximum divisible by 10; e.g., 100 instead of 97). Various calls exist to override the range of axes (i.e., *scr_xoverride*, *scr_yoverride*), the labels for those axes (i.e., *scr_xlabel*, *scr_ylabel*), and the title of the overall figure (i.e., *scr_title*).
+
+An example that builds from the previous examples and customizes the axes titles, ticks, and figure title is provided below:
+
+### Drawing Phase Change Lines and Phase Labels
+
+Single-case design conventions require clear delineations between conditions to visualize behavior in the presence/absence of specific ecological manipulations. Both the styling and positioning of these features are central to how single-case data are typically presented. The *fxl* package features several methods that allow a high level of flexibility in these regards.
+
+The *scr_label_facet* method provides a way to label individual facets. Specifically, this is a feature used to present the reader with information about how different panels relate to one another. For example, the three panels in a figure may refer to three distinct individuals and labels would be necessary to distinguish one participant from another.
+
+The *scr_label_phase* method draws text like the previous call; however, this method draws text annotations *within* a panel/facet. This is a more common convention used in single-case design whereby the labels for shared phases across a design are drawn on the topmost panel only. As such, this call is distinct from the prior one in that the user must specify *which panel* to draw the text upon as well as where.
+
+The *scr_plines_mbd* is perhaps the most specialized of all the methods included in *fxl*. This method provides a means of drawing lines that distinguish phases within and between facets. Specifically, a list of line lists is used to specify how the user wants to distinguish phases across the entirety of the figure. These are typically very useful when demonstrations of control are performed using a lagged introduction of the independent variable (i.e., multiple baseline design).
+
+An example that builds from the previous examples and each of these conventions is provided below:
+
+```{r structure_lines, fig.width=8, fig.height=4}
+scr_plot(
+  Gilroyetal2015,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  )
+) |>
+  scr_points(cex = 2) |>
+  scr_lines(size = 1) |>
+  scr_xoverride(c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |>
+  scr_yoverride(c(-5, 105),
+    yticks = c(0, 50, 100),
+    ytickslabs = as.character(c(0, 50, 100)),
+  ) |>
+  scr_label_facet( # Draw a label for each facet (i.e., plot)
+    cex = 1.5,
+    adj = 1,
+    y = 25, # Specify a common height for all labels
+    labels = list(
+      "Andrew" = list(x = 27), "Brian" = list(x = 27), "Charles" = list(x = 27)
+    ) # Labels to draw, for each respective facet, with specific args (i.e., x)
+  ) |>
+  scr_label_phase(
+    facet = "Andrew", # plot labels on specific facet
+    cex = 1.25,
+    adj = 0.5,
+    y = 120,
+    labels = list( # list of labels to draw (will use assigned key for label)
+      "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
+      "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
+    )
+  ) |>
+  scr_plines_mbd(
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+      "A" = list(
+        "Andrew" = list(x1 = 4.5, y1 = 100),
+        "Brian" = list(x1 = 11.5, y1 = 100),
+        "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
+      ),
+      "B" = list(
+        "Andrew" = list(x1 = 13.5, y1 = 100),
+        "Brian" = list(x1 = 20.5, y1 = 100),
+        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+      ),
+      "C" = list(
+        "Andrew" = list(x1 = 23.5, y1 = 100),
+        "Brian" = list(x1 = 23.5, y1 = 100),
+        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+      )
+    )
+  ) |>
+  scr_xlabel("Session") |>
+  scr_ylabel("Percent Accuracy") |>
+  scr_title("Rates of Acquisition across Participants")
+```
+
+### Saving Figure Output
+
+The user can choose to save the output of *fxl* printed to the screen by using the *scr_save* method and specifying the relevant arguments. The options for drawing figures and saving to file afforded by the *R* ecosystem are numerous and various vector and raster options exist. Users can specify the format of the image, its dimensions, and various other format-specific arguments (e.g., pixel density for rasters).
+
+An example that completes the previous examples and saves the figure to a file is provided below:
+
+```{r structure_save, eval=FALSE}
+scr_plot(
+  Gilroyetal2015,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  )
+) |>
+  scr_points(cex = 2) |>
+  scr_lines(size = 1) |>
+  scr_xoverride(c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |>
+  scr_yoverride(c(-5, 105),
+    yticks = c(0, 50, 100),
+    ytickslabs = as.character(c(0, 50, 100)),
+  ) |>
+  scr_label_facet(
+    cex = 1.5,
+    adj = 1,
+    y = 25,
+    labels = list(
+      "Andrew" = list(x = 27),
+      "Brian" = list(x = 27),
+      "Charles" = list(x = 27)
+    )
+  ) |>
+  scr_label_phase(
+    facet = "Andrew",
+    cex = 1.25,
+    adj = 0.5,
+    y = 120,
+    labels = list(
+      "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
+      "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
+    )
+  ) |>
+  scr_plines_mbd(
+    lines = list(
+      "A" = list(
+        "Andrew" = list(x1 = 4.5, y1 = 100),
+        "Brian" = list(x1 = 11.5, y1 = 100),
+        "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
+      ),
+      "B" = list(
+        "Andrew" = list(x1 = 13.5, y1 = 100),
+        "Brian" = list(x1 = 20.5, y1 = 100),
+        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+      ),
+      "C" = list(
+        "Andrew" = list(x1 = 23.5, y1 = 100),
+        "Brian" = list(x1 = 23.5, y1 = 100),
+        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+      )
+    )
+  ) |>
+  scr_xlabel("Session") |>
+  scr_ylabel("Percent Accuracy") |>
+  scr_title("Rates of Acquisition across Participants") |>
+  scr_save(
+    name = "NewFileName.svg",
+    format = "svg",
+    units = "in",
+    height = 6,
+    width = 9
+  ) # Save options for figure
+```
+
+# 

@@ -10,6 +10,7 @@ files_in_dir <- list.files(
 )
 
 files_in_dir <- files_in_dir[files_in_dir != "run_all_demos.R"]
+files_in_dir <- files_in_dir[files_in_dir != "run_coverage.R"]
 files_in_dir <- files_in_dir[files_in_dir != "beezdemandInd.R"]
 files_in_dir <- files_in_dir[files_in_dir != "atd_concurrentoperant.R"]
 

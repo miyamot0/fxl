@@ -395,7 +395,7 @@ scr_plot(current_data,
     width = 9
   ) |>
   scr_save(
-    name = "../man/figures/annotatedplot.svg",
+    name = "../man/figures/annotatedplot.png",
     format = "png",
     res = 600,
     height = 6,

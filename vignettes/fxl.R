@@ -1,4 +1,4 @@
-## ----structure_core, fig.width=7, fig.height=4--------------------------------
+## ----structure_core, fig.width=7, fig.height=4, warning=FALSE-----------------
 suppressPackageStartupMessages(library(fxl))
 
 scr_plot(
@@ -47,137 +47,6 @@ scr_plot(
   scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
   scr_ylabel("Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
   scr_title("Rates of Acquisition across Participants")
-
-## ----structure_lines, fig.width=8, fig.height=4-------------------------------
-scr_plot(
-  Gilroyetal2015,
-  aesthetics = var_map(
-    x = Session,
-    y = Responding,
-    p = Condition,
-    facet = Participant
-  )
-) |>
-  scr_points(cex = 2) |>
-  scr_lines(size = 1) |>
-  scr_xoverride(c(0.25, 27.5),
-    xticks = 1:27,
-    xtickslabs = as.character(1:27)
-  ) |>
-  scr_yoverride(c(-5, 105),
-    yticks = c(0, 50, 100),
-    ytickslabs = as.character(c(0, 50, 100)),
-  ) |>
-  scr_label_facet( # Draw a label for each facet (i.e., plot)
-    cex = 1.5,
-    adj = 1,
-    y = 25, # Specify a common height for all labels
-    labels = list(
-      "Andrew" = list(x = 27), "Brian" = list(x = 27), "Charles" = list(x = 27)
-    ) # Labels to draw, for each respective facet, with specific args (i.e., x)
-  ) |>
-  scr_label_phase(
-    facet = "Andrew", # plot labels on specific facet
-    cex = 1.25,
-    adj = 0.5,
-    y = 120,
-    labels = list( # list of labels to draw (will use assigned key for label)
-      "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
-      "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
-    )
-  ) |>
-  scr_plines_mbd(
-    lines = list( # plot linked phase lines (note: drawn from top through bottom)
-      "A" = list(
-        "Andrew" = list(x1 = 4.5, y1 = 100),
-        "Brian" = list(x1 = 11.5, y1 = 100),
-        "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
-      ),
-      "B" = list(
-        "Andrew" = list(x1 = 13.5, y1 = 100),
-        "Brian" = list(x1 = 20.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-      ),
-      "C" = list(
-        "Andrew" = list(x1 = 23.5, y1 = 100),
-        "Brian" = list(x1 = 23.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-      )
-    )
-  ) |>
-  scr_xlabel("Session") |>
-  scr_ylabel("Percent Accuracy") |>
-  scr_title("Rates of Acquisition across Participants")
-
-## ----structure_save, eval=FALSE-----------------------------------------------
-#  scr_plot(
-#    Gilroyetal2015,
-#    aesthetics = var_map(
-#      x = Session,
-#      y = Responding,
-#      p = Condition,
-#      facet = Participant
-#    )
-#  ) |>
-#    scr_points(cex = 2) |>
-#    scr_lines(size = 1) |>
-#    scr_xoverride(c(0.25, 27.5),
-#      xticks = 1:27,
-#      xtickslabs = as.character(1:27)
-#    ) |>
-#    scr_yoverride(c(-5, 105),
-#      yticks = c(0, 50, 100),
-#      ytickslabs = as.character(c(0, 50, 100)),
-#    ) |>
-#    scr_label_facet(
-#      cex = 1.5,
-#      adj = 1,
-#      y = 25,
-#      labels = list(
-#        "Andrew" = list(x = 27),
-#        "Brian" = list(x = 27),
-#        "Charles" = list(x = 27)
-#      )
-#    ) |>
-#    scr_label_phase(
-#      facet = "Andrew",
-#      cex = 1.25,
-#      adj = 0.5,
-#      y = 120,
-#      labels = list(
-#        "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
-#        "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
-#      )
-#    ) |>
-#    scr_plines_mbd(
-#      lines = list(
-#        "A" = list(
-#          "Andrew" = list(x1 = 4.5, y1 = 100),
-#          "Brian" = list(x1 = 11.5, y1 = 100),
-#          "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
-#        ),
-#        "B" = list(
-#          "Andrew" = list(x1 = 13.5, y1 = 100),
-#          "Brian" = list(x1 = 20.5, y1 = 100),
-#          "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-#        ),
-#        "C" = list(
-#          "Andrew" = list(x1 = 23.5, y1 = 100),
-#          "Brian" = list(x1 = 23.5, y1 = 100),
-#          "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-#        )
-#      )
-#    ) |>
-#    scr_xlabel("Session") |>
-#    scr_ylabel("Percent Accuracy") |>
-#    scr_title("Rates of Acquisition across Participants") |>
-#    scr_save(
-#      name = "NewFileName.svg",
-#      format = "svg",
-#      units = "in",
-#      height = 6,
-#      width = 9
-#    ) # Save options for figure
 
 ## ----ex_gilroy_et_al_2021, fig.width=9, fig.height=6, echo=FALSE--------------
 data <- Gilroyetal2021
@@ -1423,12 +1292,136 @@ scr_plot(
     text_col = "black",
     horiz = FALSE,
     box_lty = 1
-  ) |>
-  scr_save(
-    name = "../man/figures/celeration_academic_rti.svg",
-    format = "svg",
-    units = "in",
-    height = 7,
-    width = 9
   )
+
+## ----structure_lines, fig.width=8, fig.height=4-------------------------------
+scr_plot(
+  Gilroyetal2015,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  )
+) |>
+  scr_points(cex = 2) |>
+  scr_lines(size = 1) |>
+  scr_xoverride(c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |>
+  scr_yoverride(c(-5, 105),
+    yticks = c(0, 50, 100),
+    ytickslabs = as.character(c(0, 50, 100)),
+  ) |>
+  scr_label_facet( # Draw a label for each facet (i.e., plot)
+    cex = 1.5,
+    adj = 1,
+    y = 25, # Specify a common height for all labels
+    labels = list(
+      "Andrew" = list(x = 27), "Brian" = list(x = 27), "Charles" = list(x = 27)
+    ) # Labels to draw, for each respective facet, with specific args (i.e., x)
+  ) |>
+  scr_label_phase(
+    facet = "Andrew", # plot labels on specific facet
+    cex = 1.25,
+    adj = 0.5,
+    y = 120,
+    labels = list( # list of labels to draw (will use assigned key for label)
+      "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
+      "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
+    )
+  ) |>
+  scr_plines_mbd(
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+      "A" = list(
+        "Andrew" = list(x1 = 4.5, y1 = 100),
+        "Brian" = list(x1 = 11.5, y1 = 100),
+        "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
+      ),
+      "B" = list(
+        "Andrew" = list(x1 = 13.5, y1 = 100),
+        "Brian" = list(x1 = 20.5, y1 = 100),
+        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+      ),
+      "C" = list(
+        "Andrew" = list(x1 = 23.5, y1 = 100),
+        "Brian" = list(x1 = 23.5, y1 = 100),
+        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+      )
+    )
+  ) |>
+  scr_xlabel("Session") |>
+  scr_ylabel("Percent Accuracy") |>
+  scr_title("Rates of Acquisition across Participants")
+
+## ----structure_save, eval=FALSE-----------------------------------------------
+#  scr_plot(
+#    Gilroyetal2015,
+#    aesthetics = var_map(
+#      x = Session,
+#      y = Responding,
+#      p = Condition,
+#      facet = Participant
+#    )
+#  ) |>
+#    scr_points(cex = 2) |>
+#    scr_lines(size = 1) |>
+#    scr_xoverride(c(0.25, 27.5),
+#      xticks = 1:27,
+#      xtickslabs = as.character(1:27)
+#    ) |>
+#    scr_yoverride(c(-5, 105),
+#      yticks = c(0, 50, 100),
+#      ytickslabs = as.character(c(0, 50, 100)),
+#    ) |>
+#    scr_label_facet(
+#      cex = 1.5,
+#      adj = 1,
+#      y = 25,
+#      labels = list(
+#        "Andrew" = list(x = 27),
+#        "Brian" = list(x = 27),
+#        "Charles" = list(x = 27)
+#      )
+#    ) |>
+#    scr_label_phase(
+#      facet = "Andrew",
+#      cex = 1.25,
+#      adj = 0.5,
+#      y = 120,
+#      labels = list(
+#        "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
+#        "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
+#      )
+#    ) |>
+#    scr_plines_mbd(
+#      lines = list(
+#        "A" = list(
+#          "Andrew" = list(x1 = 4.5, y1 = 100),
+#          "Brian" = list(x1 = 11.5, y1 = 100),
+#          "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
+#        ),
+#        "B" = list(
+#          "Andrew" = list(x1 = 13.5, y1 = 100),
+#          "Brian" = list(x1 = 20.5, y1 = 100),
+#          "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+#        ),
+#        "C" = list(
+#          "Andrew" = list(x1 = 23.5, y1 = 100),
+#          "Brian" = list(x1 = 23.5, y1 = 100),
+#          "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+#        )
+#      )
+#    ) |>
+#    scr_xlabel("Session") |>
+#    scr_ylabel("Percent Accuracy") |>
+#    scr_title("Rates of Acquisition across Participants") |>
+#    scr_save(
+#      name = "NewFileName.svg",
+#      format = "svg",
+#      units = "in",
+#      height = 6,
+#      width = 9
+#    ) # Save options for figure
 
