@@ -582,13 +582,6 @@ scr_plot(
     text_col = "black",
     horiz = FALSE,
     box_lty = 0
-  ) |>
-  scr_save(
-    name = "../man/figures/fafigure.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
   )
 ```
 
@@ -1110,14 +1103,7 @@ scr_plot(
   ) |>
   scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
   scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
-  scr_title("Rates of Acquisition across Participants") |>
-  scr_save(
-    name = "../man/figures/multiplebaselinefigure.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
-  )
+  scr_title("Rates of Acquisition across Participants")
 ```
 
 # Automation of *fxl* in Clinical Reports
@@ -1298,13 +1284,6 @@ scr_plot(
     cex = 1,
     adj = 0,
     labels = labelList2
-  ) |>
-  scr_save(
-    name = "../man/figures/celeration_academic.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
   )
 
 ```
@@ -1545,17 +1524,75 @@ scr_plot(
 
 ```
 
+\pagebreak
+
 # Descriptive Use Cases
 
 Descriptive use cases are provided here to provide 'from the ground up' demonstrations of how to use *fxl* to generate visual figures. A range of use cases will be provided to demonstrate the research and clinical applications of the package. 
 
 ## Use Case Number 1: Basic Treatment Evaluation with Reversal Design
 
+The most fundamental and applicable design is the reversal design, which has strong representation in both clinical and applied contexts. In clinical contexts, this is often the quickest means of evaluating whether a particular treatment has the desired effect on specific behavior. 
+
+To be consistent with behavior analytic conventions this type of figure would involve featuring:
+
+- One or more data layers with markers and lines
+
+- Phase change lines
+
+- Phase labels
+
+- Informative axis labels
+
+- Series annotations and/or a figure legend
+
+A short tutorial regarding the design and execution of each convention is provided in the section below.
+
 ### Data Import
 
-TODO
+The data relevant to the figure must be imported in R in the form of a data frame prior to generating a plotting object. By default, *fxl* works with *wide* data because this is generally how most folks trained to work within spreadsheets arrange and organize their data (i.e., individual data series have their own columns).
+
+An example of this data formatting is provided below:
+
+```{r use_case_1_load}
+
+use_case_1 <- data.frame(
+  Session = seq_len(16),
+  Target = c(
+    runif(3, 10, 20),
+    runif(3, 0, 10),
+    runif(3, 10, 20),
+    runif(7, 10, 20)
+  ),
+  Phase = c(
+    rep("Baseline", 3),
+    rep("Intervention", 3),
+    rep("Baseline2", 3),
+    rep("Intervention2", 7)
+  ),
+  Participant = rep("1", 16)
+)
+
+head(use_case_1, 3)
+
+```
+
+In this example, there is a column specific to the x-axis (Session) and the y-axis (Target) as well as a variable to speaks to data embedded within a specific condition (Phase). The Phase factor must have *unique* tags for each phase (i.e., "baseline" vs "baseline2"), otherwise it would try to connect points between two phases that were not temporally connected (i.e., connecting the last point of the first baseline to the first point of the second baseline).
 
 ### Mapping Aesthetics to Data
+
+```{r use_case_1_map}
+
+scr_plot(
+  use_case_1,
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  )
+)
+
+```
 
 TODO
 
