@@ -1129,6 +1129,7 @@ The ability to generate up-to-date reports and present data ready for visual ana
 ### Schoolwide/Multi-class Academic Monitoring
 
 ```{r academics_grouped, fig.width=9, fig.height=8, echo=FALSE}
+
 needFluency <- SimulatedAcademicFluency[SimulatedAcademicFluency$Times > 160 &
   SimulatedAcademicFluency$pred < 40 &
   SimulatedAcademicFluency$pred > 10, "index"]
@@ -1305,11 +1306,13 @@ scr_plot(
     height = 6,
     width = 9
   )
+
 ```
 
 ### Individualized Inspection of Student Learning
 
 ```{r academics_individual, fig.width=9, fig.height=8, echo=FALSE}
+
 hypotheticalReadingFluency <- data.frame(
   Time   = c(1, 30, 60, 90, 120, 150, 180, 210, 240),
   BM_ORF = c(73, NA, NA, NA, 105, NA, NA, NA, 114),
@@ -1539,13 +1542,106 @@ scr_plot(
     horiz = FALSE,
     box_lty = 1
   )
+
 ```
 
-# Descriptive Use Case #1
+# Descriptive Use Cases
+
+Descriptive use cases are provided here to provide 'from the ground up' demonstrations of how to use *fxl* to generate visual figures. A range of use cases will be provided to demonstrate the research and clinical applications of the package. 
+
+## Use Case Number 1: Basic Treatment Evaluation with Reversal Design
+
+### Data Import
 
 TODO
 
-### Customizing Labels and Axes
+### Mapping Aesthetics to Data
+
+TODO
+
+### Adding Primary Data Layers
+
+TODO
+
+### Adding Phase Labels
+
+TODO
+
+### Adding Phase Change Lines
+
+TODO
+
+### Customizing Title, Axes Labels
+
+TODO
+
+### Saving Figure Output
+
+TODO
+
+## Use Case Number 2: Multiple Baseline Research Study
+
+### Data Import
+
+TODO
+
+### Mapping Aesthetics to Data
+
+TODO
+
+### Adding Primary Data Layers
+
+TODO
+
+### Adding Phase Labels
+
+TODO
+
+### Adding Phase Change Lines
+
+TODO
+
+### Customizing Title, Axes Labels
+
+TODO
+
+### Saving Figure Output
+
+## Use Case Number 3: Classwide Evaluation with Automated Individual Output
+
+### Data Import
+
+TODO
+
+### Mapping Aesthetics to Data
+
+TODO
+
+### Adding Primary Data Layers
+
+TODO
+
+### Adding Phase Labels
+
+TODO
+
+### Adding Phase Change Lines
+
+TODO
+
+### Customizing Title, Axes Labels
+
+TODO
+
+### Saving Figure Output
+
+TODO
+
+TODO
+
+# OLD
+
+TODO
 
 The default behavior of the drawing engine is to draw axes using the names supplied to x-y coordinate variables and use the domains and ranges specified by the data supplied. Occasionally, the visualization of these data may be more understandable to set to a different set of extremes (i.e., round to a number maximum divisible by 10; e.g., 100 instead of 97). Various calls exist to override the range of axes (i.e., *scr_xoverride*, *scr_yoverride*), the labels for those axes (i.e., *scr_xlabel*, *scr_ylabel*), and the title of the overall figure (i.e., *scr_title*).
 
@@ -1562,144 +1658,3 @@ The *scr_label_phase* method draws text like the previous call; however, this me
 The *scr_plines_mbd* is perhaps the most specialized of all the methods included in *fxl*. This method provides a means of drawing lines that distinguish phases within and between facets. Specifically, a list of line lists is used to specify how the user wants to distinguish phases across the entirety of the figure. These are typically very useful when demonstrations of control are performed using a lagged introduction of the independent variable (i.e., multiple baseline design).
 
 An example that builds from the previous examples and each of these conventions is provided below:
-
-```{r structure_lines, fig.width=8, fig.height=4}
-scr_plot(
-  Gilroyetal2015,
-  aesthetics = var_map(
-    x = Session,
-    y = Responding,
-    p = Condition,
-    facet = Participant
-  )
-) |>
-  scr_points(cex = 2) |>
-  scr_lines(size = 1) |>
-  scr_xoverride(c(0.25, 27.5),
-    xticks = 1:27,
-    xtickslabs = as.character(1:27)
-  ) |>
-  scr_yoverride(c(-5, 105),
-    yticks = c(0, 50, 100),
-    ytickslabs = as.character(c(0, 50, 100)),
-  ) |>
-  scr_label_facet( # Draw a label for each facet (i.e., plot)
-    cex = 1.5,
-    adj = 1,
-    y = 25, # Specify a common height for all labels
-    labels = list(
-      "Andrew" = list(x = 27), "Brian" = list(x = 27), "Charles" = list(x = 27)
-    ) # Labels to draw, for each respective facet, with specific args (i.e., x)
-  ) |>
-  scr_label_phase(
-    facet = "Andrew", # plot labels on specific facet
-    cex = 1.25,
-    adj = 0.5,
-    y = 120,
-    labels = list( # list of labels to draw (will use assigned key for label)
-      "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
-      "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
-    )
-  ) |>
-  scr_plines_mbd(
-    lines = list( # plot linked phase lines (note: drawn from top through bottom)
-      "A" = list(
-        "Andrew" = list(x1 = 4.5, y1 = 100),
-        "Brian" = list(x1 = 11.5, y1 = 100),
-        "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
-      ),
-      "B" = list(
-        "Andrew" = list(x1 = 13.5, y1 = 100),
-        "Brian" = list(x1 = 20.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-      ),
-      "C" = list(
-        "Andrew" = list(x1 = 23.5, y1 = 100),
-        "Brian" = list(x1 = 23.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-      )
-    )
-  ) |>
-  scr_xlabel("Session") |>
-  scr_ylabel("Percent Accuracy") |>
-  scr_title("Rates of Acquisition across Participants")
-```
-
-### Saving Figure Output
-
-The user can choose to save the output of *fxl* printed to the screen by using the *scr_save* method and specifying the relevant arguments. The options for drawing figures and saving to file afforded by the *R* ecosystem are numerous and various vector and raster options exist. Users can specify the format of the image, its dimensions, and various other format-specific arguments (e.g., pixel density for rasters).
-
-An example that completes the previous examples and saves the figure to a file is provided below:
-
-```{r structure_save, eval=FALSE}
-scr_plot(
-  Gilroyetal2015,
-  aesthetics = var_map(
-    x = Session,
-    y = Responding,
-    p = Condition,
-    facet = Participant
-  )
-) |>
-  scr_points(cex = 2) |>
-  scr_lines(size = 1) |>
-  scr_xoverride(c(0.25, 27.5),
-    xticks = 1:27,
-    xtickslabs = as.character(1:27)
-  ) |>
-  scr_yoverride(c(-5, 105),
-    yticks = c(0, 50, 100),
-    ytickslabs = as.character(c(0, 50, 100)),
-  ) |>
-  scr_label_facet(
-    cex = 1.5,
-    adj = 1,
-    y = 25,
-    labels = list(
-      "Andrew" = list(x = 27),
-      "Brian" = list(x = 27),
-      "Charles" = list(x = 27)
-    )
-  ) |>
-  scr_label_phase(
-    facet = "Andrew",
-    cex = 1.25,
-    adj = 0.5,
-    y = 120,
-    labels = list(
-      "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
-      "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
-    )
-  ) |>
-  scr_plines_mbd(
-    lines = list(
-      "A" = list(
-        "Andrew" = list(x1 = 4.5, y1 = 100),
-        "Brian" = list(x1 = 11.5, y1 = 100),
-        "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
-      ),
-      "B" = list(
-        "Andrew" = list(x1 = 13.5, y1 = 100),
-        "Brian" = list(x1 = 20.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-      ),
-      "C" = list(
-        "Andrew" = list(x1 = 23.5, y1 = 100),
-        "Brian" = list(x1 = 23.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-      )
-    )
-  ) |>
-  scr_xlabel("Session") |>
-  scr_ylabel("Percent Accuracy") |>
-  scr_title("Rates of Acquisition across Participants") |>
-  scr_save(
-    name = "NewFileName.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
-  ) # Save options for figure
-```
-
-# 
