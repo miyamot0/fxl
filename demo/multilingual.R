@@ -39,6 +39,24 @@ scr_plot(current_data,
     xticks = x_ticks,
     xtickslabs = as.character(x_ticks)
   ) |>
+  scr_rect(
+    facet = "1",
+    x1 = 7.5,
+    x2 = 10,
+    y1 = -0.09,
+    y2 = 1,
+    fill = "gray",
+    color = "gray"
+  ) |>
+  scr_rect(
+    facet = "2",
+    x1 = 22.5,
+    x2 = 25,
+    y1 = -0.09,
+    y2 = 1,
+    fill = "gray",
+    color = "gray"
+  ) |>
   scr_ylabel("Accuracy") |>
   scr_lines() |>
   scr_points(
@@ -86,7 +104,7 @@ scr_plot(current_data,
           y2 = -0.1
         ),
         "2" = list(
-          x1 = 23.5,
+          x1 = 22.5,
           y1 = 1,
           y2 = -0.1
         ),
@@ -118,15 +136,15 @@ scr_plot(current_data,
   ) |>
   scr_label_phase(
     facet = "1",
-    cex = 1.5,
+    cex = 1,
     adj = 0.5,
-    y = 1.2,
+    y = 1,
     labels = list(
       "Baseline" = list(
         x = 3.5
       ),
       "Intervention" = list(
-        x = 12
+        x = 19
       )
     )
   )  |>
