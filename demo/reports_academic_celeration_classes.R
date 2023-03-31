@@ -225,7 +225,7 @@ scr_plot(
   scr_legend(
     position = list(
       x = 0.5,
-      y = 105
+      y = 125
     ),
     panel = "3",
     legend = c(

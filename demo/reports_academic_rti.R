@@ -27,7 +27,6 @@ hypotheticalReadingFluency <- data.frame(
   MAZ    = c(6, 6, 7, 8, 8, NA, NA, NA, NA)
 )
 
-
 scr_plot(
   hypotheticalReadingFluency,
   aesthetics = var_map(
@@ -64,7 +63,7 @@ scr_plot(
     )
   ) |>
   scr_title("Response-to-Intervention: Core Reading Indicators") |>
-  scr_xlabel("Days Into Academic School Year") |>
+  scr_xlabel("Months of Academic School Year (2022-2023)") |>
   scr_ylabel("Fluency") |>
   scr_guide_line(
     lty = 1,
@@ -208,8 +207,8 @@ scr_plot(
   ) |>
   scr_legend(
     position = list(
-      x = 0.75,
-      y = 1250
+      x = 0.5,
+      y = 1050
     ), # Specify legend location
     legend = c(
       "Median Expectation: Oral Reading Fluency (ORF) - Words Correct",
@@ -242,7 +241,7 @@ scr_plot(
       23,
       21
     ),
-    bty = "y",
+    bty = "n",
     pt_cex = 2,
     cex = 1.25,
     text_col = "black",
