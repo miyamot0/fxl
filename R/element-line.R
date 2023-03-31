@@ -1,4 +1,3 @@
-
 #' scr_lines
 #'
 #' @param core_frame fxl object
@@ -16,7 +15,6 @@ scr_lines <- function(core_frame,
                       color = "black",
                       size = 1,
                       mapping) {
-
   newlayer <- list()
   newlayer[["type"]] <- "line"
 

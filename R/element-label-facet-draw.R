@@ -14,7 +14,7 @@ draw_label_facet <- function(core_frame, current_layer, facet_name) {
     stop("No facet name provided")
   }
 
-  current_label <- ''
+  current_label <- ""
 
   if (is.na(facet_name) & length(names(current_layer$labels)) != 1) {
     current_label <- current_layer$labels[[1]]
@@ -31,7 +31,6 @@ draw_label_facet <- function(core_frame, current_layer, facet_name) {
   }
 
   if (label == "" || label == facet_name || custom_label == TRUE) {
-
     temp_x <- ifelse(
       !is.null(current_label[["x"]]),
       current_label[["x"]], current_layer$x
@@ -42,7 +41,7 @@ draw_label_facet <- function(core_frame, current_layer, facet_name) {
       current_label[["y"]], current_layer$y
     )
 
-    font   = current_layer[["face"]]
+    font <- current_layer[["face"]]
 
     text(
       x = temp_x,

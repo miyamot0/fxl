@@ -1,4 +1,3 @@
-
 set.seed(65535)
 
 participants <- seq_len(3)
@@ -46,7 +45,7 @@ for (p in participants) {
     CTB = rates
   )
 
-  new_p_shuffled = new_p[sample(1:nrow(new_p)), ]
+  new_p_shuffled <- new_p[sample(1:nrow(new_p)), ]
   new_p_shuffled$Session <- 1:nrow(new_p)
 
   data_frame <- rbind(
@@ -64,18 +63,19 @@ data_frame$Integrity <- sample(
 bar_styler <- function(data_frame, ...) {
   input_list <- list(...)
 
-  local_frame <- input_list[['plot_frame']]
-  local_frame$col <- 'orange'
+  local_frame <- input_list[["plot_frame"]]
+  local_frame$col <- "orange"
 
-  local_frame[local_frame$pct >= .95, 'col'] <- 'green'
-  local_frame[local_frame$pct < .95 & local_frame$pct >= .80, 'col'] <- 'lightgreen'
-  local_frame[local_frame$pct < .80, 'col'] <- 'orange'
+  local_frame[local_frame$pct >= .95, "col"] <- "green"
+  local_frame[local_frame$pct < .95 & local_frame$pct >= .80, "col"] <- "lightgreen"
+  local_frame[local_frame$pct < .80, "col"] <- "orange"
 
   rect(local_frame$X - 0.25,
-       0,
-       local_frame$X + 0.25,
-       local_frame$mod_y,
-       col = local_frame$col)
+    0,
+    local_frame$X + 0.25,
+    local_frame$mod_y,
+    col = local_frame$col
+  )
 }
 
 describe("FA Plot with Integrity", {
@@ -103,17 +103,17 @@ describe("FA Plot with Integrity", {
         )
       ) |>
         scr_yoverride(c(-.175, 5),
-                      yticks = c(0, 1, 2, 3, 4, 5),
-                      ytickslabs = c("0", "1", "2", "3", "4", "5")
+          yticks = c(0, 1, 2, 3, 4, 5),
+          ytickslabs = c("0", "1", "2", "3", "4", "5")
         ) |>
         scr_xoverride(c(0.5, 16.5),
-                      xticks = 1:16,
-                      xtickslabs = as.character(1:16)
+          xticks = 1:16,
+          xtickslabs = as.character(1:16)
         ) |>
         scr_bar_support(
           color = rgb(.8, .8, .8, alpha = 1),
           guide_line = 80,
-          guide_line_color = 'blue',
+          guide_line_color = "blue",
           guide_line_type = 2,
           guide_line_size = 1,
           styler = bar_styler,
@@ -182,8 +182,9 @@ describe("FA Plot with Integrity", {
           cex = 1.25, # text size scale
           text_col = "black", # text color
           horiz = FALSE, # list items vertically
-          box_lty = 1) |>
-    print()
-  )
+          box_lty = 1
+        ) |>
+        print()
+    )
   })
 })

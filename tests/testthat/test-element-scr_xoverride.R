@@ -1,4 +1,3 @@
-
 describe("scr_xoverride", {
   it("Should render as normal", {
     expect_error(
@@ -70,7 +69,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      NA)
+      NA
+    )
   })
 
   it("xdraws assert: char type", {
@@ -133,7 +133,67 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xdraws should be of a character type.")
+      "Parameter: xdraws should be of a character type."
+    )
+  })
+
+  it("var assert: null", {
+    expect_error(
+      scr_plot(
+        data = LozyEtAl2020,
+        aesthetics = var_map(
+          x = Session,
+          y = KM,
+          p = Phase,
+          facet = Participant
+        ),
+        ncol = 2,
+        mai = c(0.3, 0.3, 0.0, 0.1),
+        omi = c(0.25, 0.25, 0.1, 0)
+      ) |>
+        scr_xoverride(NULL) |>
+        scr_yoverride(
+          list(
+            "Eli" = list(
+              y0 = 0,
+              y1 = 15,
+              yticks = c(0, 5, 10, 15)
+            ),
+            "Ari" = list(
+              y0 = 0,
+              y1 = 15,
+              yticks = c(0, 5, 10, 15)
+            ),
+            "Al" = list(
+              y0 = 0,
+              y1 = 8,
+              yticks = c(0, 2, 4, 6, 8)
+            ),
+            "Ry" = list(
+              y0 = 0,
+              y1 = 8,
+              yticks = c(0, 2, 4, 6, 8)
+            ),
+            "Eva" = list(
+              y0 = 0,
+              y1 = 8,
+              yticks = c(0, 2, 4, 6, 8)
+            ),
+            "Cali" = list(
+              y0 = 0,
+              y1 = 8,
+              yticks = c(0, 2, 4, 6, 8)
+            )
+          ),
+          ydraws = c(
+            "Eli",
+            "Al",
+            "Eva"
+          )
+        ) |>
+        print(),
+      "scr_xoverride: var must not be set to null."
+    )
   })
 
   it("var assert: present", {
@@ -201,7 +261,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "argument \"var\" is missing, with no default")
+      "argument \"var\" is missing, with no default"
+    )
   })
 
   it("var assert: length", {
@@ -270,7 +331,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: scr_xoverride should have 2 entries but has 3 .")
+      "Parameter: scr_xoverride should have 2 entries but has 3 ."
+    )
   })
 
   it("xrotation: char type", {
@@ -344,7 +406,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xrotation should be of a numeric type.")
+      "Parameter: xrotation should be of a numeric type."
+    )
   })
 
   it("xticklabs: number", {
@@ -414,7 +477,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xtickslabs should be of a character type.")
+      "Parameter: xtickslabs should be of a character type."
+    )
   })
 
   it("xlabeloffset: logical", {
@@ -483,7 +547,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xlabeloffset should be of a numeric type.")
+      "Parameter: xlabeloffset should be of a numeric type."
+    )
   })
 
   it("xtickscex: logical", {
@@ -552,6 +617,7 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xtickscex should be of a numeric type.")
+      "Parameter: xtickscex should be of a numeric type."
+    )
   })
 })

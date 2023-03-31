@@ -15,15 +15,14 @@
 scr_title <- function(core_frame,
                       var,
                       color = "black",
-                      cex   = 1,
-                      adj   = 0.5,
-                      face  = 1) {
-
-  core_frame$labs[["title"]]       <- {{ var }}
+                      cex = 1,
+                      adj = 0.5,
+                      face = 1) {
+  core_frame$labs[["title"]] <- {{ var }}
   core_frame$labs[["title_color"]] <- color
-  core_frame$labs[["title_cex"]]   <- cex
-  core_frame$labs[["title_adj"]]   <- adj
-  core_frame$labs[["title_face"]]  <- face
+  core_frame$labs[["title_cex"]] <- cex
+  core_frame$labs[["title_adj"]] <- adj
+  core_frame$labs[["title_face"]] <- face
 
   core_frame
 }

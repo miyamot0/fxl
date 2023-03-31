@@ -1,5 +1,9 @@
 library(fxl)
 
+if ("here" %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
+
 # labelList <- list()
 # labelList[[fluencyString]] <- list(
 #   x = 130,
@@ -14,13 +18,13 @@ library(fxl)
 # )
 
 hypotheticalReadingFluency <- data.frame(
-  Time   = c( 1, 30, 60, 90,  120, 150, 180,  210, 240),
-  BM_ORF = c(73, NA, NA, NA,  105, NA,  NA,   NA,  114),
-  ORF    = c(60, 64, 68, 72,  74,  NA,  NA,   NA,  NA),
-  BM_WRF = c(40, NA, NA, NA,  50,  NA,  NA,   NA,  55),
-  WRF    = c(32, 33, 35, 36,  38,  NA,  NA,   NA,  NA),
-  BM_MAZ = c(8,  NA, NA, NA,  12,  NA,  NA,   NA,  15.5),
-  MAZ    = c(6,  6,  7,  8,   8,   NA,  NA,   NA,  NA)
+  Time   = c(1, 30, 60, 90, 120, 150, 180, 210, 240),
+  BM_ORF = c(73, NA, NA, NA, 105, NA, NA, NA, 114),
+  ORF    = c(60, 64, 68, 72, 74, NA, NA, NA, NA),
+  BM_WRF = c(40, NA, NA, NA, 50, NA, NA, NA, 55),
+  WRF    = c(32, 33, 35, 36, 38, NA, NA, NA, NA),
+  BM_MAZ = c(8, NA, NA, NA, 12, NA, NA, NA, 15.5),
+  MAZ    = c(6, 6, 7, 8, 8, NA, NA, NA, NA)
 )
 
 
@@ -46,18 +50,19 @@ scr_plot(
 ) |>
   scr_yoverride(c(1, 1000)) |>
   scr_xoverride(c(1, 243),
-                xticks = c(1, 30, 60, 90, 120, 150, 180, 210, 240),
-                xtickslabs = c(
-                  'September',
-                  'October',
-                  'November',
-                  'December',
-                  'January',
-                  'February',
-                  'March',
-                  'April',
-                  'May'
-                )) |>
+    xticks = c(1, 30, 60, 90, 120, 150, 180, 210, 240),
+    xtickslabs = c(
+      "September",
+      "October",
+      "November",
+      "December",
+      "January",
+      "February",
+      "March",
+      "April",
+      "May"
+    )
+  ) |>
   scr_title("Response-to-Intervention: Core Reading Indicators") |>
   scr_xlabel("Days Into Academic School Year") |>
   scr_ylabel("Fluency") |>
@@ -95,7 +100,7 @@ scr_plot(
   ) |>
   scr_points(
     pch = 23,
-    fill = 'green',
+    fill = "green",
     cex = 3,
     mapping = var_map(
       x = Time,
@@ -104,7 +109,7 @@ scr_plot(
   ) |>
   scr_points(
     pch = 23,
-    fill = 'orange',
+    fill = "orange",
     cex = 3,
     mapping = var_map(
       x = Time,
@@ -113,7 +118,7 @@ scr_plot(
   ) |>
   scr_points(
     pch = 23,
-    fill = 'blue',
+    fill = "blue",
     cex = 3,
     mapping = var_map(
       x = Time,
@@ -123,31 +128,35 @@ scr_plot(
   scr_lines(size = 1) |>
   scr_points(
     pch = 21,
-    fill = 'green',
+    fill = "green",
     cex = 3
   ) |>
-  scr_lines(color = 'black',
-            mapping = var_map(
-              x = Time,
-              y = WRF
-            )) |>
+  scr_lines(
+    color = "black",
+    mapping = var_map(
+      x = Time,
+      y = WRF
+    )
+  ) |>
   scr_points(
     pch = 21,
-    fill = 'orange',
+    fill = "orange",
     cex = 3,
     mapping = var_map(
       x = Time,
       y = WRF
     )
   ) |>
-  scr_lines(color = 'black',
-            mapping = var_map(
-              x = Time,
-              y = MAZ
-            )) |>
+  scr_lines(
+    color = "black",
+    mapping = var_map(
+      x = Time,
+      y = MAZ
+    )
+  ) |>
   scr_points(
     pch = 21,
-    fill = 'blue',
+    fill = "blue",
     cex = 3,
     mapping = var_map(
       x = Time,
@@ -211,9 +220,11 @@ scr_plot(
       "Maze (MAZ)"
     ),
     col = c("black", "black", "black", "black", "black", "black"),
-    pt_bg = c("green", "green",
-              "orange", "orange",
-              "blue", "blue"),
+    pt_bg = c(
+      "green", "green",
+      "orange", "orange",
+      "blue", "blue"
+    ),
     bg = "white",
     lty = c(
       NA,
@@ -238,8 +249,17 @@ scr_plot(
     horiz = FALSE,
     box_lty = 1
   ) |>
-  scr_save(name = "../man/figures/celeration_academic_rti.svg",
-           format = "svg",
-           units = "in",
-           height = 7,
-           width = 9)
+  scr_save(
+    name = "../man/figures/celeration_academic_rti.svg",
+    format = "svg",
+    units = "in",
+    height = 7,
+    width = 9
+  ) |>
+  scr_save(
+    name = "../man/figures/celeration_academic_rti.png",
+    format = "png",
+    res = 600,
+    height = 7,
+    width = 9
+  )

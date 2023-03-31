@@ -18,7 +18,6 @@ scr_yoverride <- function(core_frame,
                           yticks = NULL,
                           ydraws = NULL,
                           ytickslabs = NULL) {
-
   if (is.null(var)) {
     stop(paste("scr_yoverride: cannot be set to a null value."))
   }
@@ -31,12 +30,10 @@ scr_yoverride <- function(core_frame,
       name = "scr_yoverride"
     )
 
-    core_frame$dims[["global.min.y"]] <- {{var[1]}}
-    core_frame$dims[["global.max.y"]] <- {{var[2]}}
-
+    core_frame$dims[["global.min.y"]] <- {{ var[1] }}
+    core_frame$dims[["global.max.y"]] <- {{ var[2] }}
   } else {
     core_frame$dims[["local.dims"]] <- var
-
   }
 
   isValidNumericVector(

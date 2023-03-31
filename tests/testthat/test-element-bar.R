@@ -1,4 +1,3 @@
-
 current_data <- Gilroyetal2019
 
 current_data$Integrity <- sample(
@@ -31,12 +30,12 @@ describe("scr_bar_support", {
         )
       ) |>
         scr_yoverride(c(-.175, 5),
-                      yticks = c(0, 1, 2, 3, 4, 5),
-                      ytickslabs = c("0", "1", "2", "3", "4", "5")
+          yticks = c(0, 1, 2, 3, 4, 5),
+          ytickslabs = c("0", "1", "2", "3", "4", "5")
         ) |>
         scr_xoverride(c(0.5, 15.5),
-                      xticks = 1:15,
-                      xtickslabs = as.character(1:15)
+          xticks = 1:15,
+          xtickslabs = as.character(1:15)
         ) |>
         scr_bar_support(
           mapping = list(
@@ -93,12 +92,12 @@ describe("scr_bar_support", {
         )
       ) |>
         scr_yoverride(c(-.175, 5),
-                      yticks = c(0, 1, 2, 3, 4, 5),
-                      ytickslabs = c("0", "1", "2", "3", "4", "5")
+          yticks = c(0, 1, 2, 3, 4, 5),
+          ytickslabs = c("0", "1", "2", "3", "4", "5")
         ) |>
         scr_xoverride(c(0.5, 15.5),
-                      xticks = 1:15,
-                      xtickslabs = as.character(1:15)
+          xticks = 1:15,
+          xtickslabs = as.character(1:15)
         ) |>
         scr_bar_support(
           mapping = list(
@@ -154,12 +153,12 @@ describe("scr_bar_support", {
         )
       ) |>
         scr_yoverride(c(-.175, 5),
-                      yticks = c(0, 1, 2, 3, 4, 5),
-                      ytickslabs = c("0", "1", "2", "3", "4", "5")
+          yticks = c(0, 1, 2, 3, 4, 5),
+          ytickslabs = c("0", "1", "2", "3", "4", "5")
         ) |>
         scr_xoverride(c(0.5, 15.5),
-                      xticks = 1:15,
-                      xtickslabs = as.character(1:15)
+          xticks = 1:15,
+          xtickslabs = as.character(1:15)
         ) |>
         scr_bar_support(
           mapping = list(

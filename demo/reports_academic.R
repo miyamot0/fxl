@@ -1,14 +1,18 @@
 library(fxl)
 
+if ("here" %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
+
 needFluency <- SimulatedAcademicFluency[SimulatedAcademicFluency$Times > 160 &
-                                          SimulatedAcademicFluency$pred < 40 &
-                                          SimulatedAcademicFluency$pred > 10, 'index']
+  SimulatedAcademicFluency$pred < 40 &
+  SimulatedAcademicFluency$pred > 10, "index"]
 
 needAccuracy <- SimulatedAcademicFluency[SimulatedAcademicFluency$Times > 160 &
-                                           SimulatedAcademicFluency$pred < 10, 'index']
+  SimulatedAcademicFluency$pred < 10, "index"]
 
-fluencyString <- paste("Consider Fluency Intervention:", paste(needFluency, collapse = ', '))
-accuracyString <- paste("Consider Accuracy Intervention:", paste(needAccuracy, collapse = ', '))
+fluencyString <- paste("Consider Fluency Intervention:", paste(needFluency, collapse = ", "))
+accuracyString <- paste("Consider Accuracy Intervention:", paste(needAccuracy, collapse = ", "))
 
 labelList <- list()
 labelList[[fluencyString]] <- list(
@@ -18,9 +22,9 @@ labelList[[fluencyString]] <- list(
 )
 labelList2 <- list()
 labelList2[[accuracyString]] <- list(
- x = 130,
- y = .115,
- color = "red"
+  x = 130,
+  y = .115,
+  color = "red"
 )
 
 scr_plot(
@@ -46,16 +50,17 @@ scr_plot(
 ) |>
   scr_yoverride(c(0.1, 100)) |>
   scr_xoverride(c(1, 183),
-                xticks = c(1, 30, 60, 90, 120, 150, 180),
-                xtickslabs = c(
-                  'September',
-                  'October',
-                  'November',
-                  'December',
-                  'January',
-                  'February',
-                  'March'
-                )) |>
+    xticks = c(1, 30, 60, 90, 120, 150, 180),
+    xtickslabs = c(
+      "September",
+      "October",
+      "November",
+      "December",
+      "January",
+      "February",
+      "March"
+    )
+  ) |>
   scr_title("Addition Sums to 12: Monthly Class-wide Screening") |>
   scr_xlabel("Days Into Academic School Year") |>
   scr_ylabel("Digits Correct Per Minute (DCPM)") |>
@@ -155,7 +160,7 @@ scr_plot(
   scr_lines() |>
   scr_points(
     pch = 21,
-    fill = 'white',
+    fill = "white",
     cex = 1.5
   ) |>
   scr_label_phase(
@@ -168,8 +173,17 @@ scr_plot(
     adj = 0,
     labels = labelList2
   ) |>
-  scr_save(name = "../man/figures/celeration_academic.svg",
-           format = "svg",
-           units = "in",
-           height = 6,
-           width = 9)
+  scr_save(
+    name = "../man/figures/celeration_academic.svg",
+    format = "svg",
+    units = "in",
+    height = 6,
+    width = 9
+  ) |>
+  scr_save(
+    name = "../man/figures/celeration_academic.png",
+    format = "png",
+    res = 600,
+    height = 6,
+    width = 9
+  )

@@ -27,7 +27,6 @@ scr_xoverride <- function(core_frame,
                           xlabeloffset = NULL,
                           xtickslabs = NULL,
                           xticksadj = 1) {
-
   if (is.null(var)) {
     stop(paste("scr_xoverride: var must not be set to null."))
   }
@@ -40,10 +39,8 @@ scr_xoverride <- function(core_frame,
       name = "scr_xoverride"
     )
 
-    core_frame$dims[["global.min.x"]] <- {{var[1]}}
-    core_frame$dims[["global.max.x"]] <- {{var[2]}}
-  } else {
-    stop(paste("scr_xoverride: var must be a vector"))
+    core_frame$dims[["global.min.x"]] <- {{ var[1] }}
+    core_frame$dims[["global.max.x"]] <- {{ var[2] }}
   }
 
   isValidNumericVector(
@@ -88,10 +85,6 @@ scr_xoverride <- function(core_frame,
       name = "xrotation",
       length = 1
     )
-
-    if (is.logical(xrotation)) {
-      stop(paste("xrotation: should not be a logical"))
-    }
   }
 
   core_frame$dims[["xlab.rotation"]] <- xrotation
@@ -102,10 +95,6 @@ scr_xoverride <- function(core_frame,
       name = "xlabeloffset",
       length = 1
     )
-
-    if (is.logical(xlabeloffset)) {
-      stop(paste("xlabeloffset: should not be a logical"))
-    }
   }
 
   core_frame$dims[["xlab.offset"]] <- xlabeloffset

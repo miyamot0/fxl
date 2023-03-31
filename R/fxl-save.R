@@ -22,27 +22,30 @@ scr_save <- function(core_frame,
                      width = 8,
                      height = 4,
                      res = 600) {
-
   if (format == "tiff") {
     tiff(name,
-         units = units,
-         width = width,
-         height = height,
-         res = res)
+      units = units,
+      width = width,
+      height = height,
+      res = res
+    )
   } else if (format == "png") {
     png(name,
-        units = units,
-        width = width,
-        height = height,
-        res = res)
+      units = units,
+      width = width,
+      height = height,
+      res = res
+    )
   } else if (format == "svg") {
     svg(name,
-        width = width,
-        height = height)
+      width = width,
+      height = height
+    )
   } else {
     pdf(name,
-        width = width,
-        height = height)
+      width = width,
+      height = height
+    )
   }
 
   print(core_frame)

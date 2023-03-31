@@ -10,9 +10,13 @@
 #'
 #' @export
 draw_lines <- function(core_frame, current_layer, facet_name) {
-  if (is.na(facet_name)) current_data <- core_frame$data
-  else current_data <- core_frame$data[
-    which(core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name), ]
+  if (is.na(facet_name)) {
+    current_data <- core_frame$data
+  } else {
+    current_data <- core_frame$data[
+      which(core_frame$data[, as.character(core_frame$aes["facet"])] == facet_name),
+    ]
+  }
 
   # In case no phases are included?
   if (!("p" %in% names(core_frame$aes))) {
@@ -30,7 +34,8 @@ draw_lines <- function(core_frame, current_layer, facet_name) {
     for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
       current_data_slice <- current_data[
         which(current_data[, as.character(core_frame$aes["p"])] == p &
-                current_data[, as.character(core_frame$aes["g"])] == g), ]
+          current_data[, as.character(core_frame$aes["g"])] == g),
+      ]
 
       local_aesthetics <- list(
         "x"   = as.character(core_frame$aes["x"]),
@@ -49,7 +54,7 @@ draw_lines <- function(core_frame, current_layer, facet_name) {
         Y = current_data_slice[, as.character(local_aesthetics["y"])]
       )
 
-      plot_frame <- plot_frame[!is.na(plot_frame$X) & !is.na(plot_frame$Y),]
+      plot_frame <- plot_frame[!is.na(plot_frame$X) & !is.na(plot_frame$Y), ]
 
       lines(
         plot_frame$X,

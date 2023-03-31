@@ -1,12 +1,19 @@
-
 library(fxl)
+
+if ("here" %in% installed.packages()) {
+  setwd(paste(here::here("demo")))
+}
+
+if ("scales" %in% installed.packages()) {
+  library(scales)
+}
 
 set.seed(65535)
 
-student_count = 8
-class_count = 3
-grade_count = 1
-run_time = 24
+student_count <- 8
+class_count <- 3
+grade_count <- 1
+run_time <- 24
 
 data_frame <- data.frame(
   Student = numeric(student_count * class_count * grade_count),
@@ -23,37 +30,34 @@ data_frame <- data.frame(
 intervention_starts <- c(4, 8, 12)
 
 bl_starts_value <- runif(student_count * class_count * grade_count, 0, 8)
-bl_grd_growth   <- c(0, 5, 10)
-bl_rates_value  <- runif(student_count * class_count * grade_count, 0, 0.725)
-bl_var_value    <- rnorm(student_count * class_count * grade_count, 4, 1.25)
-bl_otrs_value   <- runif(class_count, 5, 10)
+bl_grd_growth <- c(0, 5, 10)
+bl_rates_value <- runif(student_count * class_count * grade_count, 0, 0.725)
+bl_var_value <- rnorm(student_count * class_count * grade_count, 4, 1.25)
+bl_otrs_value <- runif(class_count, 5, 10)
 
-row_number   <- 1
+row_number <- 1
 class_number <- 1
 
 for (grade in seq_len(grade_count)) {
-
   grd_adjustment <- (grade - 1) * bl_grd_growth[grade]
 
   for (class in seq_len(class_count)) {
-
     otr_value <- bl_otrs_value[class]
 
     for (student in seq_len(student_count)) {
-
-      bl_value  <- bl_starts_value[row_number] + grd_adjustment
-      lx_value  <- bl_rates_value[row_number]
+      bl_value <- bl_starts_value[row_number] + grd_adjustment
+      lx_value <- bl_rates_value[row_number]
       var_value <- bl_var_value[row_number]
 
-      data_frame[row_number, "Student"]   = row_number
-      data_frame[row_number, "Classroom"] = class_number
-      data_frame[row_number, "Grade"]     = grade
-      data_frame[row_number, "Time"]      = 0
-      data_frame[row_number, "Baseline"]  = bl_value
-      data_frame[row_number, "Lx"]        = lx_value
-      data_frame[row_number, "Value"]     = bl_value
-      data_frame[row_number, "OTRs"]      = otr_value
-      data_frame[row_number, "Var"]       = var_value
+      data_frame[row_number, "Student"] <- row_number
+      data_frame[row_number, "Classroom"] <- class_number
+      data_frame[row_number, "Grade"] <- grade
+      data_frame[row_number, "Time"] <- 0
+      data_frame[row_number, "Baseline"] <- bl_value
+      data_frame[row_number, "Lx"] <- lx_value
+      data_frame[row_number, "Value"] <- bl_value
+      data_frame[row_number, "OTRs"] <- otr_value
+      data_frame[row_number, "Var"] <- var_value
 
       row_number <- row_number + 1
     }
@@ -63,22 +67,20 @@ for (grade in seq_len(grade_count)) {
 }
 
 for (student in seq_len(row_number - 1)) {
+  student_og <- data_frame[data_frame[["Student"]] == student & data_frame[["Time"]] == 0, ]
 
-  student_og  <- data_frame[data_frame[["Student"]] == student & data_frame[["Time"]] == 0,]
+  student_lx <- student_og[1, "Lx"]
+  student_bl <- student_og[1, "Baseline"]
+  student_otr <- student_og[1, "OTRs"]
+  student_var <- student_og[1, "Var"]
+  student_cls <- student_og[1, "Classroom"]
+  student_grd <- student_og[1, "Grade"]
 
-  student_lx   <- student_og[1, "Lx"]
-  student_bl   <- student_og[1, "Baseline"]
-  student_otr  <- student_og[1, "OTRs"]
-  student_var  <- student_og[1, "Var"]
-  student_cls  <- student_og[1, "Classroom"]
-  student_grd  <- student_og[1, "Grade"]
-
-  noise_error  <- rnorm(run_time, 0, student_var)
+  noise_error <- rnorm(run_time, 0, student_var)
 
   for (time in seq_len(run_time)) {
-
     time_score <- time - intervention_starts[student_cls]
-    time_sign  <- ifelse(time_score > 0, 1, 0)
+    time_sign <- ifelse(time_score > 0, 1, 0)
 
     yhat <- student_bl + time_score * student_lx * student_otr * time_sign + noise_error[time]
 
@@ -94,11 +96,10 @@ for (student in seq_len(row_number - 1)) {
       Var = student_var
     )
 
-    data_frame = rbind(
+    data_frame <- rbind(
       data_frame,
       new_data
     )
-
   }
 }
 
@@ -124,34 +125,35 @@ point_styler <- function(data_frame, ...) {
 
   for (x in x_vals) {
     loop_local_frame <- local_frame[local_frame$X == x, ]
-    loop_local_frame$col <- 'green'
+    loop_local_frame$col <- "green"
 
     quantiles <- as.numeric(quantile(loop_local_frame$Y, probs = c(0, 0.2, 0.5, 0.8, 0.9)))
 
     for (row in seq_len(nrow(loop_local_frame))) {
-      row_value <- loop_local_frame[row, 'Y']
+      row_value <- loop_local_frame[row, "Y"]
 
-      color <- 'green'
-      color <- ifelse(row_value < quantiles[5], 'lightgreen', color)
-      color <- ifelse(row_value < quantiles[4], 'yellow', color)
-      color <- ifelse(row_value < quantiles[3], 'orange', color)
-      color <- ifelse(row_value < quantiles[2], 'red', color)
+      color <- "green"
+      color <- ifelse(row_value < quantiles[5], "lightgreen", color)
+      color <- ifelse(row_value < quantiles[4], "yellow", color)
+      color <- ifelse(row_value < quantiles[3], "orange", color)
+      color <- ifelse(row_value < quantiles[2], "red", color)
 
-      loop_local_frame[row, 'col'] <- color
+      loop_local_frame[row, "col"] <- color
 
       if (sum(quantiles) == 0) {
         # Note: on the zero axis
-        loop_local_frame[row, 'col'] <- 'red'
+        loop_local_frame[row, "col"] <- "red"
       }
     }
 
     alpha_value <- 0.4
 
     points(loop_local_frame$X, loop_local_frame$Y,
-           pch = input_list[["pch"]],
-           cex = input_list[["cex"]],
-           bg  = alpha(loop_local_frame$col, alpha_value),
-           col = alpha(input_list[["col"]], alpha_value))
+      pch = input_list[["pch"]],
+      cex = input_list[["cex"]],
+      bg  = alpha(loop_local_frame$col, alpha_value),
+      col = alpha(input_list[["col"]], alpha_value)
+    )
   }
 }
 
@@ -215,7 +217,7 @@ scr_plot(
     cex = 1.5,
     adj = 0.5,
     y = 178,
-    facet = '1',
+    facet = "1",
     face = 2,
     labels = list(
       "Baseline" = list(
@@ -227,7 +229,7 @@ scr_plot(
     )
   ) |>
   scr_plines_mbd(
-    lines = list(# plot linked phase lines (note: drawn from top through bottom)
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
       "A" = list(
         "1" = list(
           x1 = 4.5,
@@ -252,7 +254,7 @@ scr_plot(
       x = 0.5,
       y = 250
     ),
-    panel = '3',
+    panel = "3",
     legend = c(
       ">=90 %ile",
       "=50 %ile",
@@ -285,13 +287,18 @@ scr_plot(
     text_col = "black", # text color
     horiz = FALSE, # list items vertically
     box_lty = 1
+  ) |>
+  scr_save(
+    name = "../man/figures/celeration_classwide_local_norms.svg",
+    format = "svg",
+    units = "in",
+    width = 9,
+    height = 7.5
+  ) |>
+  scr_save(
+    name = "../man/figures/celeration_classwide_local_norms.png",
+    format = "png",
+    res = 600,
+    width = 9,
+    height = 7.5
   )
-
-# |>
-#   scr_save(
-#     name = "../man/figures/celeration_classwide_local_norms.svg",
-#     format = "svg",
-#     units = "in",
-#     width = 9,
-#     height = 7.5
-#   )

@@ -16,16 +16,15 @@
 scr_ylabel <- function(core_frame,
                        var,
                        color = "black",
-                       cex   = 1,
-                       adj   = 0.5,
-                       face  = 1,
+                       cex = 1,
+                       adj = 0.5,
+                       face = 1,
                        line = 0) {
-
-  core_frame$labs[["ylab"]]       <- {{ var }}
+  core_frame$labs[["ylab"]] <- {{ var }}
   core_frame$labs[["ylab_color"]] <- color
-  core_frame$labs[["ylab_cex"]]   <- cex
-  core_frame$labs[["ylab_adj"]]   <- adj
-  core_frame$labs[["ylab_face"]]  <- face
+  core_frame$labs[["ylab_cex"]] <- cex
+  core_frame$labs[["ylab_adj"]] <- adj
+  core_frame$labs[["ylab_face"]] <- face
 
   isValidNumericVector(
     object = line,

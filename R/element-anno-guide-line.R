@@ -18,8 +18,7 @@ scr_guide_line <- function(core_frame,
                            color = "red",
                            lty = 1,
                            lwd = 1) {
-
-  #TODO: Tests for remaining params
+  # TODO: Tests for remaining params
 
   newlayer <- list()
   newlayer[["type"]] <- "guide_line"
