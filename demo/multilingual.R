@@ -25,8 +25,8 @@ scr_plot(current_data,
       p = Phase,
       facet = Facet
     ),
-    mai = c(0.375, 0.375, 0.25, 0.25),
-    omi = c(0.25,  0.25,  0.25, 0.25)
+    mai = c(0.0625, 0.25,  0.25, 0.25),
+    omi = c(0.5,    0.25,  0.25, 0.25)
   ) |>
   scr_yoverride(
     c(-.1, 1),
@@ -57,7 +57,18 @@ scr_plot(current_data,
     fill = "gray",
     color = "gray"
   ) |>
+  scr_rect(
+    facet = "3",
+    x1 = 40.5,
+    x2 = 43,
+    y1 = -0.09,
+    y2 = 1,
+    fill = "gray",
+    color = "gray"
+  ) |>
   scr_ylabel("Accuracy") |>
+  scr_xlabel("Session",
+             line = 2) |>
   scr_lines() |>
   scr_points(
     pch = 23,
@@ -119,7 +130,7 @@ scr_plot(current_data,
   scr_label_facet(
     cex = 1.5,
     adj = 1,
-    y = 1.2,
+    y = 1,
     face = 2,
     x = 60,
     labels = list(
@@ -145,9 +156,29 @@ scr_plot(current_data,
       ),
       "Intervention" = list(
         x = 19
+      ),
+      "Errorless Training" = list(
+        x = 18,
+        y = 0.35
       )
     )
-  )  |>
+  ) |>
+  scr_arrows(
+    facet = "1",
+    length = 0.075,
+    code = 1,
+    color = 'black',
+    lty = 1,
+    lwd = 1,
+    arrows = list(
+      "A" = list(
+        x0 = 10.5,
+        y0 = 0.35,
+        x1 = 13,
+        y1 = 0.35
+      )
+    )
+  ) |>
   scr_legend(
     panel = "1",
     position = "right", # Specify legend location
