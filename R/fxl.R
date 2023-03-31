@@ -114,10 +114,7 @@ scr_plot <- function(data,
       data[[as.character(core_frame$aes["y"])]],
       na.rm = TRUE
     ),
-    global.min.y = min(
-      data[[as.character(core_frame$aes["y"])]],
-      na.rm = TRUE
-    ),
+    global.min.y = 0,
     mai = mai,
     omi = omi,
     xaxs = xaxs,

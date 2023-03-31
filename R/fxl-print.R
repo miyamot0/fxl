@@ -97,8 +97,6 @@ print.fxl <- function(x, ...) {
     )) {
       x_axis_ticks <- x$dims[["xticks"]][[current_facet]]
 
-      # x$dims[["min.local.x"]] <- min(
-      #  as.numeric(x$dims[["xticks"]][[current_facet]]))
       x$dims[["max.local.x"]] <- max(
         as.numeric(x$dims[["xticks"]][[current_facet]])
       )
@@ -143,7 +141,7 @@ print.fxl <- function(x, ...) {
       )
 
       x$dims[["max.local.y"]] <- ifelse(is.null(
-        x$dims[["global.min.y"]]
+        x$dims[["global.max.y"]]
       ),
       max(x$data[[as.character(x$aes["y"])]]),
       x$dims[["global.max.y"]]
@@ -153,12 +151,16 @@ print.fxl <- function(x, ...) {
         x$dims[["max.local.y"]],
         by = x$dims[["ydelta"]]
       )
+
+      y_axis_draw <- as.character(y_axis_ticks)
     }
 
     if (!is.null(x$dims[["yticks"]]) && !is.list(
       x$dims[["yticks"]]
     )) {
       y_axis_ticks <- as.integer(x$dims[["yticks"]])
+
+      y_axis_draw <- as.character(y_axis_ticks)
     }
 
     plot(NULL,
