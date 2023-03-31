@@ -246,22 +246,20 @@ describe("Image Draw Layer", {
         scr_plines(
           lty = 1,
           lines = list(
-            "P1" = list(
-              "A" = list(
-                x1 = 6.5,
-                y1 = 20,
-                y2 = -0.5
-              ),
-              "B" = list(
-                x1 = 20.5,
-                y1 = 20,
-                y2 = -0.5
-              ),
-              "C" = list(
-                x1 = 26.5,
-                y1 = 20,
-                y2 = -0.5
-              )
+            "A" = list(
+              x1 = 6.5,
+              y1 = 20,
+              y2 = -0.5
+            ),
+            "B" = list(
+              x1 = 20.5,
+              y1 = 20,
+              y2 = -0.5
+            ),
+            "C" = list(
+              x1 = 26.5,
+              y1 = 20,
+              y2 = -0.5
             )
           )
         ) |>
@@ -306,8 +304,7 @@ describe("Image Draw Layer", {
     )
   })
 
-
-    it("Should FAIL without an image", {
+  it("Should FAIL without an image", {
     expect_error(
       scr_plot(dataFrame,
                aesthetics = var_map(

@@ -26,11 +26,13 @@ Some highlighted features of the *fxl* package include:
 
 ## Current Version
 
-0.5.0 (beta)
+0.5.1 (beta)
 
 ## Changelog
 
--   0.5.0 - Support for dynamic point/bar colors, sizes, etc. via lambda.
+-   0.5.1 - Fixes for instances w/o facets, imagines. Added example to vignette
+
+-   0.5.0 - Support for dynamic point/bar colors, sizes, etc. via lambda
 
 -   0.4.3 - Vignette and example figure expansion
 
@@ -42,7 +44,7 @@ Some highlighted features of the *fxl* package include:
 
 -   0.3.1 - Updates for padding, margins, rich expression mappings
 
--   0.3.0 - Add in demo for completed silverman-style plot
+-   0.3.0 - Add in demo for completed Silverman-style plot
 
 -   0.2.0 - Add in various demos (e.g., multiple baseline, annotated reversal)
 

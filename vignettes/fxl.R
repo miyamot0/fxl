@@ -354,13 +354,6 @@ scr_plot(
     text_col = "black",
     horiz = FALSE,
     box_lty = 0
-  ) |>
-  scr_save(
-    name = "../man/figures/fafigure.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
   )
 
 ## ----ex_gilroy_et_al_mbd, fig.width=9, fig.height=6, echo=FALSE---------------
@@ -876,16 +869,10 @@ scr_plot(
   ) |>
   scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
   scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
-  scr_title("Rates of Acquisition across Participants") |>
-  scr_save(
-    name = "../man/figures/multiplebaselinefigure.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
-  )
+  scr_title("Rates of Acquisition across Participants")
 
 ## ----academics_grouped, fig.width=9, fig.height=8, echo=FALSE-----------------
+
 needFluency <- SimulatedAcademicFluency[SimulatedAcademicFluency$Times > 160 &
   SimulatedAcademicFluency$pred < 40 &
   SimulatedAcademicFluency$pred > 10, "index"]
@@ -1054,16 +1041,11 @@ scr_plot(
     cex = 1,
     adj = 0,
     labels = labelList2
-  ) |>
-  scr_save(
-    name = "../man/figures/celeration_academic.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
   )
 
+
 ## ----academics_individual, fig.width=9, fig.height=8, echo=FALSE--------------
+
 hypotheticalReadingFluency <- data.frame(
   Time   = c(1, 30, 60, 90, 120, 150, 180, 210, 240),
   BM_ORF = c(73, NA, NA, NA, 105, NA, NA, NA, 114),
@@ -1294,134 +1276,383 @@ scr_plot(
     box_lty = 1
   )
 
-## ----structure_lines, fig.width=8, fig.height=4-------------------------------
+
+## ----use_case_1_load----------------------------------------------------------
+
+use_case_1 <- data.frame(
+  Session = seq_len(16),
+  Target = c(
+    runif(3, 10, 20),
+    runif(3, 0, 10),
+    runif(3, 10, 20),
+    runif(7, 2, 8)
+  ),
+  Phase = c(
+    rep("Baseline", 3),
+    rep("Intervention", 3),
+    rep("Baseline2", 3),
+    rep("Intervention2", 7)
+  ),
+  Participant = rep("1", 16)
+)
+
+head(use_case_1, 3)
+
+
+## ----use_case_1_map, fig.width=9, fig.height=6--------------------------------
+
 scr_plot(
-  Gilroyetal2015,
+  use_case_1,
   aesthetics = var_map(
     x = Session,
-    y = Responding,
-    p = Condition,
-    facet = Participant
+    y = Target,
+    p = Phase
   )
-) |>
-  scr_points(cex = 2) |>
-  scr_lines(size = 1) |>
-  scr_xoverride(c(0.25, 27.5),
-    xticks = 1:27,
-    xtickslabs = as.character(1:27)
-  ) |>
-  scr_yoverride(c(-5, 105),
-    yticks = c(0, 50, 100),
-    ytickslabs = as.character(c(0, 50, 100)),
-  ) |>
-  scr_label_facet( # Draw a label for each facet (i.e., plot)
-    cex = 1.5,
-    adj = 1,
-    y = 25, # Specify a common height for all labels
-    labels = list(
-      "Andrew" = list(x = 27), "Brian" = list(x = 27), "Charles" = list(x = 27)
-    ) # Labels to draw, for each respective facet, with specific args (i.e., x)
-  ) |>
-  scr_label_phase(
-    facet = "Andrew", # plot labels on specific facet
-    cex = 1.25,
-    adj = 0.5,
-    y = 120,
-    labels = list( # list of labels to draw (will use assigned key for label)
-      "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
-      "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
+)
+
+
+## ----use_case_1_series, fig.width=9, fig.height=6-----------------------------
+
+scr_plot(use_case_1,
+    aesthetics = var_map(
+      x = Session,
+      y = Target,
+      p = Phase
     )
   ) |>
-  scr_plines_mbd(
-    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+  scr_lines() |>
+  scr_points()
+
+
+## ----use_case_1_series_2, fig.width=9, fig.height=6---------------------------
+
+scr_plot(use_case_1,
+    aesthetics = var_map(
+      x = Session,
+      y = Target,
+      p = Phase
+    ),
+    mai = c(
+      0.375,
+      0.5,
+      0.175,
+      0.1
+    ),
+    omi = c(
+      0.25,
+      0.25,
+      0.25,
+      0.25
+    )
+  ) |>
+  scr_xoverride(
+    c(0.5, 16.5),
+    xticks = 1:16
+  ) |>
+  scr_yoverride(
+    c(-0.5, 20),
+    yticks = c(0, 5, 10, 15, 20),
+    ydelta = 5
+  ) |>
+  scr_lines() |>
+  scr_points()
+
+
+## ----use_case_1_series_3, fig.width=9, fig.height=6---------------------------
+
+scr_plot(use_case_1,
+    aesthetics = var_map(
+      x = Session,
+      y = Target,
+      p = Phase
+    ),
+    mai = c(
+      0.375,
+      0.5,
+      0.175,
+      0.1
+    ),
+    omi = c(
+      0.25,
+      0.25,
+      0.25,
+      0.25
+    )
+  ) |>
+  scr_xoverride(
+    c(0.5, 16.5),
+    xticks = 1:16
+  ) |>
+  scr_yoverride(
+    c(-0.5, 20),
+    yticks = c(0, 5, 10, 15, 20),
+    ydelta = 5
+  ) |>
+  scr_lines() |>
+  scr_points() |>
+  scr_plines(
+    lty = 1,
+    lines = list(
       "A" = list(
-        "Andrew" = list(x1 = 4.5, y1 = 100),
-        "Brian" = list(x1 = 11.5, y1 = 100),
-        "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
+        x1 = 3.5,
+        y1 = 20,
+        y2 = -0.5
       ),
       "B" = list(
-        "Andrew" = list(x1 = 13.5, y1 = 100),
-        "Brian" = list(x1 = 20.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+        x1 = 6.5,
+        y1 = 20,
+        y2 = -0.5
       ),
       "C" = list(
-        "Andrew" = list(x1 = 23.5, y1 = 100),
-        "Brian" = list(x1 = 23.5, y1 = 100),
-        "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
+        x1 = 9.5,
+        y1 = 20,
+        y2 = -0.5
+      )
+    )
+  )
+
+
+## ----use_case_1_series_4, fig.width=9, fig.height=6---------------------------
+
+scr_plot(use_case_1,
+    aesthetics = var_map(
+      x = Session,
+      y = Target,
+      p = Phase
+    ),
+    mai = c(
+      0.375,
+      0.5,
+      0.175,
+      0.1
+    ),
+    omi = c(
+      0.25,
+      0.25,
+      0.25,
+      0.25
+    )
+  ) |>
+  scr_xoverride(
+    c(0.5, 16.5),
+    xticks = 1:16
+  ) |>
+  scr_yoverride(
+    c(-0.5, 20),
+    yticks = c(0, 5, 10, 15, 20),
+    ydelta = 5
+  ) |>
+  scr_lines() |>
+  scr_points() |>
+  scr_plines(
+    lty = 1,
+    lines = list(
+      "A" = list(
+        x1 = 3.5,
+        y1 = 20,
+        y2 = -0.5
+      ),
+      "B" = list(
+        x1 = 6.5,
+        y1 = 20,
+        y2 = -0.5
+      ),
+      "C" = list(
+        x1 = 9.5,
+        y1 = 20,
+        y2 = -0.5
       )
     )
   ) |>
-  scr_xlabel("Session") |>
-  scr_ylabel("Percent Accuracy") |>
-  scr_title("Rates of Acquisition across Participants")
+  scr_label_phase(
+    cex = 1,
+    face = 2,
+    adj = 0.5,
+    y = 20,
+    labels = list(
+      "A" = list(
+        x = 2,
+        label = "Baseline"
+      ),
+      "B" = list(
+        x = 5,
+        label = "Intervention"
+      ),
+      "C" = list(
+        x = 8,
+        label = "Baseline"
+      ),
+      "D" = list(
+        x = 13,
+        label = "Intervention"
+      )
+    )
+  ) 
 
-## ----structure_save, eval=FALSE-----------------------------------------------
-#  scr_plot(
-#    Gilroyetal2015,
-#    aesthetics = var_map(
-#      x = Session,
-#      y = Responding,
-#      p = Condition,
-#      facet = Participant
-#    )
-#  ) |>
-#    scr_points(cex = 2) |>
-#    scr_lines(size = 1) |>
-#    scr_xoverride(c(0.25, 27.5),
-#      xticks = 1:27,
-#      xtickslabs = as.character(1:27)
-#    ) |>
-#    scr_yoverride(c(-5, 105),
-#      yticks = c(0, 50, 100),
-#      ytickslabs = as.character(c(0, 50, 100)),
-#    ) |>
-#    scr_label_facet(
-#      cex = 1.5,
-#      adj = 1,
-#      y = 25,
-#      labels = list(
-#        "Andrew" = list(x = 27),
-#        "Brian" = list(x = 27),
-#        "Charles" = list(x = 27)
-#      )
-#    ) |>
-#    scr_label_phase(
-#      facet = "Andrew",
-#      cex = 1.25,
-#      adj = 0.5,
-#      y = 120,
-#      labels = list(
-#        "Baseline" = list(x = 2.5), "Treatment" = list(x = 9),
-#        "Maintenance" = list(x = 19), "Generalization" = list(x = 26)
-#      )
-#    ) |>
-#    scr_plines_mbd(
-#      lines = list(
-#        "A" = list(
-#          "Andrew" = list(x1 = 4.5, y1 = 100),
-#          "Brian" = list(x1 = 11.5, y1 = 100),
-#          "Charles" = list(x1 = 18.5, y1 = 100, y2 = -5)
-#        ),
-#        "B" = list(
-#          "Andrew" = list(x1 = 13.5, y1 = 100),
-#          "Brian" = list(x1 = 20.5, y1 = 100),
-#          "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-#        ),
-#        "C" = list(
-#          "Andrew" = list(x1 = 23.5, y1 = 100),
-#          "Brian" = list(x1 = 23.5, y1 = 100),
-#          "Charles" = list(x1 = 23.5, y1 = 100, y2 = -5)
-#        )
-#      )
-#    ) |>
-#    scr_xlabel("Session") |>
-#    scr_ylabel("Percent Accuracy") |>
-#    scr_title("Rates of Acquisition across Participants") |>
-#    scr_save(
-#      name = "NewFileName.svg",
-#      format = "svg",
-#      units = "in",
-#      height = 6,
-#      width = 9
-#    ) # Save options for figure
+
+## ----use_case_1_series_5, fig.width=9, fig.height=6---------------------------
+
+scr_plot(use_case_1,
+    aesthetics = var_map(
+      x = Session,
+      y = Target,
+      p = Phase
+    ),
+    mai = c(
+      0.375,
+      0.5,
+      0.175,
+      0.1
+    ),
+    omi = c(
+      0.25,
+      0.25,
+      0.25,
+      0.25
+    )
+  ) |>
+  scr_xoverride(
+    c(0.5, 16.5),
+    xticks = 1:16
+  ) |>
+  scr_yoverride(
+    c(-0.5, 20),
+    yticks = c(0, 5, 10, 15, 20),
+    ydelta = 5
+  ) |>
+  scr_lines() |>
+  scr_points() |>
+  scr_plines(
+    lty = 1,
+    lines = list(
+      "A" = list(
+        x1 = 3.5,
+        y1 = 20,
+        y2 = -0.5
+      ),
+      "B" = list(
+        x1 = 6.5,
+        y1 = 20,
+        y2 = -0.5
+      ),
+      "C" = list(
+        x1 = 9.5,
+        y1 = 20,
+        y2 = -0.5
+      )
+    )
+  ) |>
+  scr_label_phase(
+    adj = 0.5,
+    y = 20,
+    labels = list(
+      "A" = list(
+        x = 2,
+        label = "Baseline"
+      ),
+      "B" = list(
+        x = 5,
+        label = "Intervention"
+      ),
+      "C" = list(
+        x = 8,
+        label = "Baseline"
+      ),
+      "D" = list(
+        x = 13,
+        label = "Intervention"
+      )
+    )
+  ) |>
+  scr_xlabel("Daily Sessions") |>
+  scr_ylabel("Rates of Target Behavior (per Minute)") |>
+  scr_title("Use Case #1",
+            face = 2)
+
+
+## ----use_case_1_series_6, fig.width=9, fig.height=6---------------------------
+
+scr_plot(use_case_1,
+    aesthetics = var_map(
+      x = Session,
+      y = Target,
+      p = Phase
+    ),
+    mai = c(
+      0.375,
+      0.5,
+      0.175,
+      0.1
+    ),
+    omi = c(
+      0.25,
+      0.25,
+      0.25,
+      0.25
+    )
+  ) |>
+  scr_xoverride(
+    c(0.5, 16.5),
+    xticks = 1:16
+  ) |>
+  scr_yoverride(
+    c(-0.5, 20),
+    yticks = c(0, 5, 10, 15, 20),
+    ydelta = 5
+  ) |>
+  scr_lines() |>
+  scr_points() |>
+  scr_plines(
+    lty = 1,
+    lines = list(
+      "A" = list(
+        x1 = 3.5,
+        y1 = 20,
+        y2 = -0.5
+      ),
+      "B" = list(
+        x1 = 6.5,
+        y1 = 20,
+        y2 = -0.5
+      ),
+      "C" = list(
+        x1 = 9.5,
+        y1 = 20,
+        y2 = -0.5
+      )
+    )
+  ) |>
+  scr_label_phase(
+    adj = 0.5,
+    y = 20,
+    labels = list(
+      "A" = list(
+        x = 2,
+        label = "Baseline"
+      ),
+      "B" = list(
+        x = 5,
+        label = "Intervention"
+      ),
+      "C" = list(
+        x = 8,
+        label = "Baseline"
+      ),
+      "D" = list(
+        x = 13,
+        label = "Intervention"
+      )
+    )
+  ) |>
+  scr_xlabel("Daily Sessions") |>
+  scr_ylabel("Rates of Target Behavior (per Minute)") |>
+  scr_title("Use Case #1",
+            face = 2) |>
+  scr_save(name = "test_draws/Use Case 1.png",
+    units = "in",
+    width = 9,
+    height = 6,
+    format = "png"
+  )
+
 
