@@ -6,6 +6,7 @@
 #' @param fill from base
 #' @param cex from base
 #' @param styler a lambda function that returns dynamic styling parameters
+#' @param data (optional) if overriding data
 #' @param mapping (optional) if overriding draw (i.e., different response)
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
@@ -18,6 +19,7 @@ scr_points <- function(core_frame,
                        fill = "black",
                        cex = 1,
                        styler = NA,
+                       data = NA,
                        mapping) {
   newlayer <- list()
   newlayer[["type"]] <- "point"
@@ -26,6 +28,7 @@ scr_points <- function(core_frame,
   newlayer[["fill"]] <- fill
   newlayer[["cex"]] <- cex
   newlayer[["styler"]] <- styler
+  newlayer[["data"]] <- data
   newlayer[["aesthetics"]] <- NA
 
   if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)

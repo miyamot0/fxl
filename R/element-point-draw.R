@@ -20,6 +20,17 @@ draw_points <- function(core_frame, current_layer, facet_name, zero_axis = FALSE
     ), ]
   }
 
+  if (!is.na(current_layer["data"])) {
+    current_data <- current_layer$data
+
+    if (!is.na(facet_name)) {
+      current_data <- current_data[which(
+        current_data[, as.character(core_frame$aes["facet"])] ==
+          facet_name
+      ), ]
+    }
+  }
+
   # In case no phases are included?
   if (!("p" %in% names(core_frame$aes))) {
     core_frame$aes["p"] <- "p"
@@ -37,6 +48,8 @@ draw_points <- function(core_frame, current_layer, facet_name, zero_axis = FALSE
       y = as.character(current_layer$aesthetics["y"])
     )
   }
+
+
 
   for (p in unique(current_data[, as.character(core_frame$aes["p"])])) {
     current_data_slice <- current_data[which(
