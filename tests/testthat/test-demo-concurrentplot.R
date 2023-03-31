@@ -227,28 +227,28 @@ describe("Concurrent Plot Style", {
           box_lty = 0
         ) |>
         scr_save(
-          name = "testdraws/test.svg",
+          name = "test.svg",
           format = "svg",
           units = "in",
           height = 6,
           width = 9
         ) |>
         scr_save(
-          name = "testdraws/test.png",
+          name = "test.png",
           format = "png",
           units = "in",
           height = 6,
           width = 9
         ) |>
         scr_save(
-          name = "testdraws/test.tiff",
+          name = "test.tiff",
           format = "tiff",
           units = "in",
           height = 6,
           width = 9
         ) |>
         scr_save(
-          name = "testdraws/test.pdf",
+          name = "test.pdf",
           format = "pdf",
           units = "in",
           height = 6,
