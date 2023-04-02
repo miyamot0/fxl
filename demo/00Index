@@ -18,3 +18,4 @@ atd_example_fun                                 R code for drawing plot
 mbl                                             R code for drawing plot
 run_all_demos                                   R code for drawing plot
 run_coverage                                    R code for drawing plot
+greyed_training                                 R code for drawing plot

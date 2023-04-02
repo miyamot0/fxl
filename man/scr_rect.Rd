@@ -14,14 +14,6 @@ scr_rect(core_frame, rects = NULL, color = "black", fill = "black")
 \item{color}{from base}
 
 \item{fill}{from base}
-
-\item{x1}{from base}
-
-\item{x2}{from base}
-
-\item{y1}{from base}
-
-\item{y2}{from base}
 }
 \description{
 scr_rect

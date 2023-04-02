@@ -4,10 +4,6 @@
 #' @param rects list of keyed entries to be drawn on respective facets
 #' @param color from base
 #' @param fill from base
-#' @param x1 from base
-#' @param x2 from base
-#' @param y1 from base
-#' @param y2 from base
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'

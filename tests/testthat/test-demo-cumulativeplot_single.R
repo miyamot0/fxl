@@ -1,4 +1,3 @@
-
 lozy_et_al_single <- LozyEtAl2020
 lozy_et_al_single <- lozy_et_al_single[lozy_et_al_single$Participant == "Eli", ]
 
@@ -48,7 +47,8 @@ describe("Cumulative Plot Style", {
             "Joe" = list(
               y = 2
             )
-        )) |>
+          )
+        ) |>
         scr_label_phase(
           cex = 1.25,
           adj = 0.5,

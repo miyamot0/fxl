@@ -12,7 +12,6 @@
 #' @export
 draw_rect <- function(core_frame, current_layer, facet_name, zero_axis = FALSE) {
   for (rname in names(current_layer$rects)) {
-
     if (rname == facet_name) {
       current_rect <- current_layer$rects[[rname]]
       current_col <- current_layer$color
@@ -27,12 +26,14 @@ draw_rect <- function(core_frame, current_layer, facet_name, zero_axis = FALSE) 
         current_fill <- current_rect[["fill"]]
       }
 
-      rect(xleft   = as.numeric(current_rect[["x0"]]),
-           xright  = as.numeric(current_rect[["x1"]]),
-           ybottom = as.numeric(current_rect[["y0"]]),
-           ytop    = as.numeric(current_rect[["y1"]]),
-           col     = current_fill,
-           border  = current_col)
+      rect(
+        xleft = as.numeric(current_rect[["x0"]]),
+        xright = as.numeric(current_rect[["x1"]]),
+        ybottom = as.numeric(current_rect[["y0"]]),
+        ytop = as.numeric(current_rect[["y1"]]),
+        col = current_fill,
+        border = current_col
+      )
     }
   }
 }

@@ -872,7 +872,6 @@ scr_plot(
   scr_title("Rates of Acquisition across Participants")
 
 ## ----academics_grouped, fig.width=9, fig.height=8, echo=FALSE-----------------
-
 needFluency <- SimulatedAcademicFluency[SimulatedAcademicFluency$Times > 160 &
   SimulatedAcademicFluency$pred < 40 &
   SimulatedAcademicFluency$pred > 10, "index"]
@@ -1043,9 +1042,7 @@ scr_plot(
     labels = labelList2
   )
 
-
 ## ----academics_individual, fig.width=9, fig.height=8, echo=FALSE--------------
-
 hypotheticalReadingFluency <- data.frame(
   Time   = c(1, 30, 60, 90, 120, 150, 180, 210, 240),
   BM_ORF = c(73, NA, NA, NA, 105, NA, NA, NA, 114),
@@ -1276,9 +1273,7 @@ scr_plot(
     box_lty = 1
   )
 
-
 ## ----use_case_1_load----------------------------------------------------------
-
 use_case_1 <- data.frame(
   Session = seq_len(16),
   Target = c(
@@ -1298,9 +1293,7 @@ use_case_1 <- data.frame(
 
 head(use_case_1, 3)
 
-
 ## ----use_case_1_map, fig.width=9, fig.height=6--------------------------------
-
 scr_plot(
   use_case_1,
   aesthetics = var_map(
@@ -1310,41 +1303,37 @@ scr_plot(
   )
 )
 
-
 ## ----use_case_1_series, fig.width=9, fig.height=6-----------------------------
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  )
+) |>
   scr_lines() |>
   scr_points()
 
-
 ## ----use_case_1_series_2, fig.width=9, fig.height=6---------------------------
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    ),
-    mai = c(
-      0.375,
-      0.5,
-      0.175,
-      0.1
-    ),
-    omi = c(
-      0.25,
-      0.25,
-      0.25,
-      0.25
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  ),
+  mai = c(
+    0.375,
+    0.5,
+    0.175,
+    0.1
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  )
+) |>
   scr_xoverride(
     c(0.5, 16.5),
     xticks = 1:16
@@ -1357,28 +1346,26 @@ scr_plot(use_case_1,
   scr_lines() |>
   scr_points()
 
-
 ## ----use_case_1_series_3, fig.width=9, fig.height=6---------------------------
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    ),
-    mai = c(
-      0.375,
-      0.5,
-      0.175,
-      0.1
-    ),
-    omi = c(
-      0.25,
-      0.25,
-      0.25,
-      0.25
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  ),
+  mai = c(
+    0.375,
+    0.5,
+    0.175,
+    0.1
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  )
+) |>
   scr_xoverride(
     c(0.5, 16.5),
     xticks = 1:16
@@ -1411,28 +1398,26 @@ scr_plot(use_case_1,
     )
   )
 
-
 ## ----use_case_1_series_4, fig.width=9, fig.height=6---------------------------
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    ),
-    mai = c(
-      0.375,
-      0.5,
-      0.175,
-      0.1
-    ),
-    omi = c(
-      0.25,
-      0.25,
-      0.25,
-      0.25
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  ),
+  mai = c(
+    0.375,
+    0.5,
+    0.175,
+    0.1
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  )
+) |>
   scr_xoverride(
     c(0.5, 16.5),
     xticks = 1:16
@@ -1487,30 +1472,28 @@ scr_plot(use_case_1,
         label = "Intervention"
       )
     )
-  ) 
-
+  )
 
 ## ----use_case_1_series_5, fig.width=9, fig.height=6---------------------------
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    ),
-    mai = c(
-      0.375,
-      0.5,
-      0.175,
-      0.1
-    ),
-    omi = c(
-      0.25,
-      0.25,
-      0.25,
-      0.25
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  ),
+  mai = c(
+    0.375,
+    0.5,
+    0.175,
+    0.1
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  )
+) |>
   scr_xoverride(
     c(0.5, 16.5),
     xticks = 1:16
@@ -1567,30 +1550,29 @@ scr_plot(use_case_1,
   scr_xlabel("Daily Sessions") |>
   scr_ylabel("Rates of Target Behavior (per Minute)") |>
   scr_title("Use Case #1",
-            face = 2)
-
+    face = 2
+  )
 
 ## ----use_case_1_series_6, fig.width=9, fig.height=6---------------------------
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    ),
-    mai = c(
-      0.375,
-      0.5,
-      0.175,
-      0.1
-    ),
-    omi = c(
-      0.25,
-      0.25,
-      0.25,
-      0.25
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  ),
+  mai = c(
+    0.375,
+    0.5,
+    0.175,
+    0.1
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  )
+) |>
   scr_xoverride(
     c(0.5, 16.5),
     xticks = 1:16
@@ -1647,12 +1629,515 @@ scr_plot(use_case_1,
   scr_xlabel("Daily Sessions") |>
   scr_ylabel("Rates of Target Behavior (per Minute)") |>
   scr_title("Use Case #1",
-            face = 2) |>
-  scr_save(name = "test_draws/Use Case 1.png",
+    face = 2
+  ) |>
+  scr_save(
+    name = "use_case_1.png",
     units = "in",
     width = 9,
     height = 6,
     format = "png"
   )
 
+## ----use_case_2_load----------------------------------------------------------
+use_case_2 <- Gilroyetal2015
+
+head(use_case_2, 3)
+
+## ----use_case_2_map, fig.width=9, fig.height=6--------------------------------
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  )
+
+## ----use_case_2_series, fig.width=9, fig.height=6-----------------------------
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  ) |>
+  scr_lines() |>
+  scr_points(cex = 2)
+
+## ----use_case_2_series_3, fig.width=9, fig.height=6---------------------------
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  ) |>
+  scr_lines() |>
+  scr_points(cex = 2) |>
+  scr_plines_mbd(
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+      "A" = list(
+        "Andrew" = list(
+          x1 = 4.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 11.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 18.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "B" = list(
+        "Andrew" = list(
+          x1 = 13.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 20.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "C" = list(
+        "Andrew" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      )
+    )
+  )
+
+## ----use_case_2_series_4, fig.width=9, fig.height=6---------------------------
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  ) |>
+  scr_lines() |>
+  scr_points(cex = 2) |>
+  scr_plines_mbd(
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+      "A" = list(
+        "Andrew" = list(
+          x1 = 4.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 11.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 18.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "B" = list(
+        "Andrew" = list(
+          x1 = 13.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 20.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "C" = list(
+        "Andrew" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      )
+    )
+  ) |>
+  scr_label_facet(
+    cex = 1.5, # plot labels across facets (not within a single facet)
+    adj = 1,
+    y = 10,
+    labels = list( # list of labels to draw (will use assigned key for label)
+      "Andrew" = list(
+        x = 27
+      ),
+      "Brian" = list(
+        x = 27
+      ),
+      "Charles" = list(
+        x = 27
+      )
+    )
+  ) |>
+  scr_label_phase(
+    facet = "Andrew", # plot labels on specific facet
+    cex = 1.25,
+    adj = 0.5,
+    y = 107,
+    labels = list( # list of labels to draw (will use assigned key for label)
+      "Baseline" = list(
+        x = 2.5
+      ),
+      "Treatment" = list(
+        x = 9
+      ),
+      "Maintenance" = list(
+        x = 19
+      ),
+      "Generalization" = list(
+        x = 26
+      )
+    )
+  )
+
+## ----use_case_2_series_5, fig.width=9, fig.height=6---------------------------
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  ) |>
+  scr_lines() |>
+  scr_points(cex = 2) |>
+  scr_plines_mbd(
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+      "A" = list(
+        "Andrew" = list(
+          x1 = 4.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 11.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 18.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "B" = list(
+        "Andrew" = list(
+          x1 = 13.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 20.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "C" = list(
+        "Andrew" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      )
+    )
+  ) |> # plot lines, using x/y from aesthetics
+  scr_label_phase(
+    facet = "Andrew", # plot labels on specific facet
+    cex = 1.25,
+    adj = 0.5,
+    y = 107,
+    labels = list( # list of labels to draw (will use assigned key for label)
+      "Baseline" = list(
+        x = 2.5
+      ),
+      "Treatment" = list(
+        x = 9
+      ),
+      "Maintenance" = list(
+        x = 19
+      ),
+      "Generalization" = list(
+        x = 26
+      )
+    )
+  ) |>
+  scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
+  scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
+  scr_title("Rates of Acquisition across Participants",
+    face = 2
+  )
+
+## ----use_case_2_series_6, fig.width=9, fig.height=6---------------------------
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  ) |>
+  scr_lines() |>
+  scr_points(cex = 2) |>
+  scr_plines_mbd(
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+      "A" = list(
+        "Andrew" = list(
+          x1 = 4.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 11.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 18.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "B" = list(
+        "Andrew" = list(
+          x1 = 13.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 20.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "C" = list(
+        "Andrew" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      )
+    )
+  ) |> # plot lines, using x/y from aesthetics
+  scr_label_phase(
+    facet = "Andrew", # plot labels on specific facet
+    cex = 1.25,
+    adj = 0.5,
+    y = 107,
+    labels = list( # list of labels to draw (will use assigned key for label)
+      "Baseline" = list(
+        x = 2.5
+      ),
+      "Treatment" = list(
+        x = 9
+      ),
+      "Maintenance" = list(
+        x = 19
+      ),
+      "Generalization" = list(
+        x = 26
+      )
+    )
+  ) |>
+  scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
+  scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
+  scr_title("Rates of Acquisition across Participants",
+    face = 2
+  ) |>
+  scr_save(
+    name = "use_case_2.png",
+    units = "in",
+    width = 9,
+    height = 6,
+    format = "png"
+  )
 

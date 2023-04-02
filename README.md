@@ -26,9 +26,11 @@ Some highlighted features of the *fxl* package include:
 
 ## Current Version
 
-0.5.1 (beta)
+0.5.2 (beta)
 
 ## Changelog
+
+-   0.5.2 - Introduction of *scr_rect*, added use case 2 to vignette (multiple baseline)
 
 -   0.5.1 - Fixes for instances w/o facets, imagines. Added example to vignette
 
