@@ -4,14 +4,12 @@
 \alias{scr_rect}
 \title{scr_rect}
 \usage{
-scr_rect(core_frame, rects = NULL, facet = NA, color = "black", fill = "black")
+scr_rect(core_frame, rects = NULL, color = "black", fill = "black")
 }
 \arguments{
 \item{core_frame}{fxl object}
 
 \item{rects}{list of keyed entries to be drawn on respective facets}
-
-\item{facet}{the facet which will be drawn upon}
 
 \item{color}{from base}
 

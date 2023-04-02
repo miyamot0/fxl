@@ -11,10 +11,10 @@
 #'
 #' @export
 draw_rect <- function(core_frame, current_layer, facet_name, zero_axis = FALSE) {
-  if (!is.na(current_layer$facet) & current_layer$facet == facet_name) {
-    for (rindex in seq_len(length(current_layer$rects))) {
-      current_rect <- current_layer$rects[[rindex]]
+  for (rname in names(current_layer$rects)) {
 
+    if (rname == facet_name) {
+      current_rect <- current_layer$rects[[rname]]
       current_col <- current_layer$color
 
       if ("color" %in% names(current_rect)) {
@@ -33,31 +33,6 @@ draw_rect <- function(core_frame, current_layer, facet_name, zero_axis = FALSE) 
            ytop    = as.numeric(current_rect[["y1"]]),
            col     = current_fill,
            border  = current_col)
-    }
-  } else if (!is.na(facet_name)) {
-    for (rname in names(current_layer$rects)) {
-
-      if (rname == facet_name) {
-        current_rect <- current_layer$rects[[rname]]
-        current_col <- current_layer$color
-
-        if ("color" %in% names(current_rect)) {
-          current_col <- current_rect[["color"]]
-        }
-
-        current_fill <- current_layer$fill
-
-        if ("fill" %in% names(current_rect)) {
-          current_fill <- current_rect[["fill"]]
-        }
-
-        rect(xleft   = as.numeric(current_rect[["x0"]]),
-             xright  = as.numeric(current_rect[["x1"]]),
-             ybottom = as.numeric(current_rect[["y0"]]),
-             ytop    = as.numeric(current_rect[["y1"]]),
-             col     = current_fill,
-             border  = current_col)
-      }
     }
   }
 }

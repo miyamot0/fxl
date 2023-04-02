@@ -2,7 +2,6 @@
 #'
 #' @param core_frame fxl object
 #' @param rects list of keyed entries to be drawn on respective facets
-#' @param facet the facet which will be drawn upon
 #' @param color from base
 #' @param fill from base
 #' @param x1 from base
@@ -16,7 +15,6 @@
 #' @importFrom rlang enexprs
 scr_rect <- function(core_frame,
                      rects = NULL,
-                     facet = NA,
                      color = "black",
                      fill = "black") {
   newlayer <- list()
@@ -24,7 +22,6 @@ scr_rect <- function(core_frame,
   newlayer[["rects"]] <- rects
   newlayer[["color"]] <- color
   newlayer[["fill"]] <- fill
-  newlayer[["facet"]] <- facet
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 
