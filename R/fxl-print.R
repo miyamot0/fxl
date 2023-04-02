@@ -335,6 +335,14 @@ print.fxl <- function(x, ...) {
           )
         }
 
+        if (current_layer$type == "rectangle") {
+          draw_rect(
+            x,
+            current_layer,
+            current_facet
+          )
+        }
+
         if (current_layer$type == "mbd_phase_lines") {
           plines <- names(current_layer$lines)
 

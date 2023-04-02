@@ -11,6 +11,7 @@ scr_points(
   fill = "black",
   cex = 1,
   styler = NA,
+  data = NA,
   mapping
 )
 }
@@ -26,6 +27,8 @@ scr_points(
 \item{cex}{from base}
 
 \item{styler}{a lambda function that returns dynamic styling parameters}
+
+\item{data}{(optional) if overriding data}
 
 \item{mapping}{(optional) if overriding draw (i.e., different response)}
 }

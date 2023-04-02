@@ -128,6 +128,16 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ![Gilroy et al 2015](man/figures/multiplebaselinefigure.svg)
 
+### Multiple Baseline Design with Annotations
+
+Oftentimes there is a need to 'grey out' portions of a single-case figure to indicate that a certain event or procedure took place. For example, throughout the course of a research design, there may be periods of time where procedures have taken place but the dependent variable of interest is not captured (e.g., training sessions prior to formally introducing and independent variable). This is often appreciated to communicate to the analyst that something did or did not take place immediately prior to collecting information related to intervention (e.g., training prior to intervention vs. proceeding immediately from baseline to intervention). An example of such is illustrated below and drawn using *fxl*.
+
+The source code necessary to re-create the figure is provided below (data included in the package).
+
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/greyed_training.R)
+
+![Annotated MBD](man/figures/training_off_main_graph.svg)
+
 ### Concurrent Choice/Initial Link Selections
 
 The figure below was generated using data featured in [Lozy et al. (2020)](https://doi.org/10.1002/jaba.677) and drawn using *fxl*.

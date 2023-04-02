@@ -252,7 +252,7 @@ scr_plot(
   scr_legend(
     position = list(
       x = 0.5,
-      y = 250
+      y = 125
     ),
     panel = "3",
     legend = c(
@@ -281,7 +281,7 @@ scr_plot(
       21,
       21
     ), # marker types (ordered)
-    bty = "y", # remove border
+    bty = "n", # remove border
     pt_cex = 2.25, # point size scale
     cex = 1.25, # text size scale
     text_col = "black", # text color
