@@ -7,7 +7,7 @@ current_data$Integrity <- sample(
 )
 
 describe("scr_bar_support", {
-  it("Should fail at length: alpha", {
+  it("Should fail at: alpha", {
     expect_error(
       scr_plot(
         data,
@@ -65,11 +65,11 @@ describe("scr_bar_support", {
           )
         ) |>
         print(),
-      "Parameter: alpha should NOT be set to a null value."
+      "alpha must not be NULL"
     )
   })
 
-  it("Should fail at type: label", {
+  it("Should fail at label2", {
     expect_error(
       scr_plot(
         data,
@@ -126,7 +126,8 @@ describe("scr_bar_support", {
           )
         ) |>
         print(),
-      "Parameter: label should be of a character type."
+      "Error ('label'): was of type numeric, check the data type supplied",
+      fixed = TRUE
     )
   })
 
@@ -188,7 +189,7 @@ describe("scr_bar_support", {
           )
         ) |>
         print(),
-      "Parameter: width should NOT be set to a null value."
+      "width must not be NULL"
     )
   })
 })

@@ -198,7 +198,7 @@ The traditional means of orienting the analyst to data in single case research d
 
 #### Plotting Overrides
 
-##### Title: *scr_title* 
+##### Title: *scr_title*
 
 The *scr_title* overrides the default figure title with custom formatting, text, and aesthetics.
 
@@ -206,15 +206,15 @@ The *scr_title* overrides the default figure title with custom formatting, text,
 
 The *scr_xlabel* overrides the default, common x axis with custom formatting, text, and aesthetics.
 
-##### Label: *scr_ylabel* 
+##### Label: *scr_ylabel*
 
 The *scr_ylabel* overrides the default, common y axis with custom formatting, text, and aesthetics.
 
-##### Ticks: *scr_xoverride* 
+##### Ticks: *scr_xoverride*
 
 The *scr_xoverride* overrides the tick marks and tick labels for (sub)plots in a greater figure.
 
-##### Ticks: *scr_yoverride* 
+##### Ticks: *scr_yoverride*
 
 The *scr_yoverride* overrides the tick marks and tick labels for (sub)plots in a greater figure.
 
@@ -263,7 +263,7 @@ scr_plot(
   scr_title("Rates of Acquisition across Participants")
 ```
 
-# Publication Quality Examples using *fxl* 
+# Publication Quality Examples using *fxl*
 
 Several examples using *fxl* and data from peer-reviewed works are provided in the sections below. The source code necessary to reproduce all figures here is provided in the 'demo' folder of the source repository.
 
@@ -1524,23 +1524,23 @@ scr_plot(
 
 # Descriptive Use Cases
 
-Descriptive use cases are provided here to provide 'from the ground up' demonstrations of how to use *fxl* to generate visual figures. A range of use cases will be provided to demonstrate the research and clinical applications of the package. 
+Descriptive use cases are provided here to provide 'from the ground up' demonstrations of how to use *fxl* to generate visual figures. A range of use cases will be provided to demonstrate the research and clinical applications of the package.
 
 ## Use Case Number 1: Basic Treatment Evaluation with Reversal Design
 
-The most fundamental and applicable design is the reversal design, which has strong representation in both clinical and applied contexts. In clinical contexts, this is often the quickest means of evaluating whether a particular treatment has the desired effect on specific behavior. 
+The most fundamental and applicable design is the reversal design, which has strong representation in both clinical and applied contexts. In clinical contexts, this is often the quickest means of evaluating whether a particular treatment has the desired effect on specific behavior.
 
 To be consistent with behavior analytic conventions this type of figure would involve featuring:
 
-- One or more data layers with markers and lines
+-   One or more data layers with markers and lines
 
-- Phase change lines
+-   Phase change lines
 
-- Phase labels
+-   Phase labels
 
-- Informative axis labels
+-   Informative axis labels
 
-- Series annotations and/or a figure legend
+-   Series annotations and/or a figure legend
 
 A short tutorial regarding the design and execution of each convention is provided in the section below.
 
@@ -1702,7 +1702,7 @@ scr_plot(use_case_1,
 
 ### Adding Phase Labels
 
-The figure can be made more descriptive by drawing text in certain areas to designate which phases correspond with certain changes in the environment. Adding labels to the figure can be done by drawing them within a single plot (i.e., *scr_label_phase*) or individually across multiple facets (i.e., *scr_label_facet*). Since there is only one subplot in this figure, the *scr_label_phase* call is more appropriate. 
+The figure can be made more descriptive by drawing text in certain areas to designate which phases correspond with certain changes in the environment. Adding labels to the figure can be done by drawing them within a single plot (i.e., *scr_label_phase*) or individually across multiple facets (i.e., *scr_label_facet*). Since there is only one subplot in this figure, the *scr_label_phase* call is more appropriate.
 
 The current figure involves four phases, two instances of baseline and intervention, respectively. Labels are drawn using a series of key-ed list elements, with each element corresponding to a unique label. Note: since we have repeated instances of similar conditions, we must override the *label* argument in the key-ed entry within each of the items.
 
@@ -1785,7 +1785,7 @@ scr_plot(use_case_1,
 
 ### Customizing Title, Axes Labels
 
-As a final point of styling this figure, the specific labels for each axis can be customized to better suit the desired theme. Generally, there are three primary features that might need adjustment: *scr_xlabel*, *scr_ylabel*, and *scr_title*. Each of these corresponds to the respective label. 
+As a final point of styling this figure, the specific labels for each axis can be customized to better suit the desired theme. Generally, there are three primary features that might need adjustment: *scr_xlabel*, *scr_ylabel*, and *scr_title*. Each of these corresponds to the respective label.
 
 An example customizing these features is provided in the section below.
 
@@ -1871,7 +1871,7 @@ scr_plot(use_case_1,
 
 ### Saving Figure Output
 
-After the desired design is complete, the figure drawn within R can be saved in any number of formats (e.g., rasters, vectors) depending on the need (e.g., insert into an educational report, saved to include in manuscript). It is important to think carefully about the dimensions supplied for the output. That is, smaller figures will present as "cramped" and may not provide sufficient space in the plane to include suitable text sizes. 
+After the desired design is complete, the figure drawn within R can be saved in any number of formats (e.g., rasters, vectors) depending on the need (e.g., insert into an educational report, saved to include in manuscript). It is important to think carefully about the dimensions supplied for the output. That is, smaller figures will present as "cramped" and may not provide sufficient space in the plane to include suitable text sizes.
 
 An example that outputs the current figure to a PNG-type file is provided in the section below.
 
@@ -1972,17 +1972,17 @@ The multiple baseline design is among the most common research designs used in e
 
 To be consistent with behavior analytic conventions this type of figure would involve featuring:
 
-- One or more data layers with markers and lines
+-   One or more data layers with markers and lines
 
-- Phase change lines
+-   Phase change lines
 
-- Phase labels
+-   Phase labels
 
-- Informative axis labels
+-   Informative axis labels
 
-- Series annotations and/or a figure legend
+-   Series annotations and/or a figure legend
 
-- Phase change lines that distinguish conditions within as well as between individual subplots.
+-   Phase change lines that distinguish conditions within as well as between individual subplots.
 
 A short tutorial regarding the design and execution of each convention is provided in the section below.
 
@@ -2171,7 +2171,7 @@ scr_plot(
 
 ### Adding Facet and Phase Labels
 
-The figure can be made more descriptive by drawing text in certain areas to designate which phases correspond with certain changes in the environment and which facets (i.e., sub-plots) correspond with specific participants/targets. Adding labels to the figure can be done by drawing them within a single plot (i.e., *scr_label_phase*) or individually across multiple facets (i.e., *scr_label_facet*). Since there are three subplots in this figure, the *scr_label_phase* and *scr_label_facet* calls are more necessary. 
+The figure can be made more descriptive by drawing text in certain areas to designate which phases correspond with certain changes in the environment and which facets (i.e., sub-plots) correspond with specific participants/targets. Adding labels to the figure can be done by drawing them within a single plot (i.e., *scr_label_phase*) or individually across multiple facets (i.e., *scr_label_facet*). Since there are three subplots in this figure, the *scr_label_phase* and *scr_label_facet* calls are more necessary.
 
 The current figure features three participants (i.e., "Andrew", "Brian", "Charles") and the plots are illustrated in that order. The *scr_label_facet* is called with a *labels* argument and the named lists must correspond with the values for the subplot (e.g., "Andrew"). Each of these arguments must feature information regarding *where* to draw that label. Note: it is possible to set a general *x* or *y* argument in the overall layer as well as to override the *label* argument in the named list (i.e., if differing from the name for the list/facet).
 
@@ -2300,7 +2300,7 @@ scr_plot(
 
 ### Customizing Title, Axes Labels
 
-As a final point of styling this figure, the specific labels for each axis can be customized to better suit the desired theme. Generally, there are three primary features that might need adjustment: *scr_xlabel*, *scr_ylabel*, and *scr_title*. Each of these corresponds to the respective label. 
+As a final point of styling this figure, the specific labels for each axis can be customized to better suit the desired theme. Generally, there are three primary features that might need adjustment: *scr_xlabel*, *scr_ylabel*, and *scr_title*. Each of these corresponds to the respective label.
 
 An example customizing these features is provided in the section below.
 
@@ -2416,7 +2416,7 @@ scr_plot(
 
 ### Saving Figure Output
 
-After the desired design is complete, the figure drawn within R can be saved in any number of formats (e.g., rasters, vectors) depending on the need (e.g., insert into an educational report, saved to include in manuscript). It is important to think carefully about the dimensions supplied for the output. That is, smaller figures will present as "cramped" and may not provide sufficient space in the plane to include suitable text sizes. 
+After the desired design is complete, the figure drawn within R can be saved in any number of formats (e.g., rasters, vectors) depending on the need (e.g., insert into an educational report, saved to include in manuscript). It is important to think carefully about the dimensions supplied for the output. That is, smaller figures will present as "cramped" and may not provide sufficient space in the plane to include suitable text sizes.
 
 An example that outputs the current figure to a PNG-type file is provided in the section below.
 

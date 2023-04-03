@@ -150,7 +150,7 @@ scr_plot <- function(data,
   core_frame$labs[["title_adj"]] <- 0.5
   core_frame$labs[["title_face"]] <- 1
 
-  class(core_frame) <- c("fxl") # Apply a class name (to override print)
+  class(core_frame) <- c("fxl")
 
   if (semilog) class(core_frame) <- c("fxlsemilog")
 

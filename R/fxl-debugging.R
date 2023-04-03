@@ -201,3 +201,30 @@ isValidAXSCharacter <- function(object = NULL, name = NULL) {
     ))
   }
 }
+
+#' assert_input_type
+#'
+#' @param object some type of object
+#' @param types list of object types acceptable
+#' @param tag var to reference in error message
+assert_input_type <- function(object, types = character(0), tag = "") {
+  if (is.null(object)) stop(paste(tag,
+                                "must not be NULL"))
+
+  if (is.na(object)) stop(paste(tag,
+                                "must not be NA"))
+
+  if (class(types) != "character") stop("types must be based in characters")
+
+  if (is.vector(object)) {
+    if (!(class(object) %in% types))
+      stop(paste0("Error ('", tag, "'): was of type ",
+                  class(object),
+                  ", check the data type supplied"))
+  } else {
+    if (class(object) != types)
+      stop(paste0("Error ('", tag, "'): was of type ",
+                  class(object),
+                  ", check the data type supplied"))
+  }
+}

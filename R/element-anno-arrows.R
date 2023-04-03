@@ -26,47 +26,33 @@ scr_arrows <- function(core_frame,
                        code = 2,
                        lwd = 1,
                        lty = 1) {
-  # TODO: Tests for remaining params
+
 
   newlayer <- list()
   newlayer[["type"]] <- "arrows"
   newlayer[["facet"]] <- facet
+
+  if (!is.list(arrows)) {
+    stop("arrows must be a list")
+  }
   newlayer[["arrows"]] <- arrows
+
+  assert_input_type(color, "character", "color")
   newlayer[["color"]] <- color
 
-  isValidNumericVector(
-    object = length,
-    name = "length"
-  )
-
+  assert_input_type(length, "numeric", "length")
   newlayer[["length"]] <- length
 
-  isValidNumericVector(
-    object = angle,
-    name = "angle"
-  )
-
+  assert_input_type(angle, "numeric", "angle")
   newlayer[["angle"]] <- angle
 
-  isValidNumericVector(
-    object = code,
-    name = "code"
-  )
-
+  assert_input_type(code, "numeric", "code")
   newlayer[["code"]] <- code
 
-  isValidNumericVector(
-    object = lwd,
-    name = "lwd"
-  )
-
+  assert_input_type(lwd, "numeric", "lwd")
   newlayer[["lwd"]] <- lwd
 
-  isValidNumericVector(
-    object = lty,
-    name = "lty"
-  )
-
+  assert_input_type(lty, "numeric", "lty")
   newlayer[["lty"]] <- lty
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer

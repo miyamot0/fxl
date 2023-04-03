@@ -45,7 +45,7 @@ describe("scr_arrows", {
           )
         ) |>
         print(),
-      "Parameter: length should NOT be set to a null value."
+      "length must not be NULL"
     )
   })
 
@@ -90,7 +90,7 @@ describe("scr_arrows", {
           )
         ) |>
         print(),
-      "Parameter: angle should NOT be set to a null value."
+      "angle must not be NULL"
     )
   })
 
@@ -135,7 +135,7 @@ describe("scr_arrows", {
           )
         ) |>
         print(),
-      "Parameter: code should NOT be set to a null value."
+      "code must not be NULL"
     )
   })
 
@@ -180,7 +180,7 @@ describe("scr_arrows", {
           )
         ) |>
         print(),
-      "Parameter: lwd should NOT be set to a null value."
+      "lwd must not be NULL"
     )
   })
 
@@ -225,7 +225,7 @@ describe("scr_arrows", {
           )
         ) |>
         print(),
-      "Parameter: lty should NOT be set to a null value."
+      "lty must not be NULL"
     )
   })
 })
