@@ -18,12 +18,13 @@ scr_anno_rect <- function(core_frame,
   newlayer[["type"]] <- "rectangle"
 
   # TODO: check for appropriate facet options
-  # newlayer[["facet"]] <- facet
-
   # TODO: check for custom objects
   newlayer[["rects"]] <- rects
 
+  assert_input_type(color, "character", "color")
   newlayer[["color"]] <- color
+
+  assert_input_type(fill, "character", "fill")
   newlayer[["fill"]] <- fill
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer

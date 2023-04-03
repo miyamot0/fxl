@@ -29,21 +29,14 @@ scr_anno_guide_line <- function(core_frame,
   # TODO: check for custom objects
   newlayer[["coords"]] <- coords
 
-  newlayer[["col"]] <- color
+  assert_input_type(color, "character", "color")
+  newlayer[["color"]] <- color
 
-  isValidNumericVector(
-    object = lty,
-    name = "lty"
-  )
-
-  newlayer[["lty"]] <- lty
-
-  isValidNumericVector(
-    object = lwd,
-    name = "lwd"
-  )
-
+  assert_input_type(lwd, "numeric", "lwd")
   newlayer[["lwd"]] <- lwd
+
+  assert_input_type(lty, "numeric", "lty")
+  newlayer[["lty"]] <- lty
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 
