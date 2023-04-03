@@ -406,7 +406,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xrotation should be of a numeric type."
+      "Error ('xrotation'): was of type logical, check the data type supplied",
+      fixed = TRUE
     )
   })
 
@@ -547,7 +548,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xlabeloffset should be of a numeric type."
+      "Error ('xlabeloffset'): was of type logical, check the data type supplied",
+      fixed = TRUE
     )
   })
 
@@ -617,7 +619,8 @@ describe("scr_xoverride", {
           )
         ) |>
         print(),
-      "Parameter: xtickscex should be of a numeric type."
+      "Error ('xtickscex'): was of type logical, check the data type supplied",
+      fixed = TRUE
     )
   })
 })
