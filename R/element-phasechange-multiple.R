@@ -8,8 +8,11 @@
 #' @export
 scr_plines_mbd <- function(core_frame,
                            lines = NULL) {
+
   newlayer <- list()
   newlayer[["type"]] <- "mbd_phase_lines"
+
+  # TODO: error checking
   newlayer[["lines"]] <- lines
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer

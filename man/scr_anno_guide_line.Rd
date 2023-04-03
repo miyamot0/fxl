@@ -8,7 +8,7 @@ scr_anno_guide_line(
   core_frame,
   coords,
   facet = NA,
-  color = "red",
+  color = "black",
   lty = 1,
   lwd = 1
 )

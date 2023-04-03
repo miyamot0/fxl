@@ -17,12 +17,23 @@ scr_cumsum_points <- function(core_frame,
                               fill = "black",
                               cex = 1,
                               mapping) {
+
   newlayer <- list()
   newlayer[["type"]] <- "cum_sum_points"
+
+  assert_input_type(pch, "numeric", "pch")
   newlayer[["pch"]] <- pch
+
+  assert_input_type(color, "character", "color")
   newlayer[["color"]] <- color
+
+  assert_input_type(fill, "character", "fill")
   newlayer[["fill"]] <- fill
+
+  assert_input_type(cex, "numeric", "cex")
   newlayer[["cex"]] <- cex
+
+  # TODO: error checking
   newlayer[["aesthetics"]] <- NA
 
   if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)

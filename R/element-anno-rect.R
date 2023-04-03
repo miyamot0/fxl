@@ -18,6 +18,8 @@ scr_anno_rect <- function(core_frame,
   newlayer[["type"]] <- "rectangle"
 
   # TODO: check for appropriate facet options
+  # newlayer[["facet"]] <- facet
+
   # TODO: check for custom objects
   newlayer[["rects"]] <- rects
 

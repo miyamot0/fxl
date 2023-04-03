@@ -15,10 +15,9 @@
 scr_anno_guide_line <- function(core_frame,
                            coords,
                            facet = NA,
-                           color = "red",
+                           color = "black",
                            lty = 1,
                            lwd = 1) {
-  # TODO: Tests for remaining params
 
   newlayer <- list()
   newlayer[["type"]] <- "guide_line"

@@ -27,6 +27,8 @@ scr_xoverride <- function(core_frame,
                           xlabeloffset = NULL,
                           xtickslabs = NULL,
                           xticksadj = 1) {
+
+  # Null check
   if (is.null(var)) {
     stop(paste("scr_xoverride: var must not be set to null."))
   }
@@ -42,9 +44,6 @@ scr_xoverride <- function(core_frame,
     core_frame$dims[["global.min.x"]] <- {{ var[1] }}
     core_frame$dims[["global.max.x"]] <- {{ var[2] }}
   }
-
-  assert_input_type(xdelta, "numeric", "xdelta")
-  core_frame$dims[["xdelta"]] <- xdelta
 
   if (!is.null(xticks) && is.numeric(xticks)) {
     isValidNumericVector(
@@ -72,6 +71,9 @@ scr_xoverride <- function(core_frame,
   }
 
   core_frame$dims[["xdraws"]] <- xdraws
+
+  assert_input_type(xdelta, "numeric", "xdelta")
+  core_frame$dims[["xdelta"]] <- xdelta
 
   if (!is.null(xrotation)) assert_input_type(xrotation, "numeric", "xrotation")
   core_frame$dims[["xlab.rotation"]] <- xrotation

@@ -20,10 +20,20 @@ scr_ylabel <- function(core_frame,
                        adj = 0.5,
                        face = 1,
                        line = 0) {
+
+  assert_input_type({{ var }}, "character", "ylab")
   core_frame$labs[["ylab"]] <- {{ var }}
+
+  assert_input_type(color, "character", "color")
   core_frame$labs[["ylab_color"]] <- color
+
+  assert_input_type(cex, "numeric", "cex")
   core_frame$labs[["ylab_cex"]] <- cex
+
+  assert_input_type(adj, "numeric", "adj")
   core_frame$labs[["ylab_adj"]] <- adj
+
+  assert_input_type(face, "numeric", "face")
   core_frame$labs[["ylab_face"]] <- face
 
   isValidNumericVector(
