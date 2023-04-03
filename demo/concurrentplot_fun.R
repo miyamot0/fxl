@@ -226,7 +226,7 @@ scr_plot(
       )
     )
   ) |>
-  scr_arrows(
+  scr_anno_arrows(
     facet = "John",
     length = 0.1,
     arrows = list(

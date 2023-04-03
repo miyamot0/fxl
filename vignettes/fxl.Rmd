@@ -180,17 +180,17 @@ Phase change lines are critical to highlighting anticipated contrasts between co
 
 The *scr_plines_mbd* layer relates to phase change lines that are *across* individual panels. That is, these are phase change lines that cut across multiple plots to illustrate a shared environmental change. These conentions are the traditional means of illustrating experimental control in a multiple panel design and are illustrated with solid, unbroken lines.
 
-##### Arrows: *scr_arrows*
+##### Arrows: *scr_anno_arrows*
 
-A common convention in single case designs is to mark up data using arrows and labels in lieu of a formal legend. The *scr_arrows* layer is used to draw arrows upon the respective (sub)plots convey information to the analyst.
+A common convention in single case designs is to mark up data using arrows and labels in lieu of a formal legend. The *scr_anno_arrows* layer is used to draw arrows upon the respective (sub)plots convey information to the analyst.
 
-##### Brackets: *scr_brackets*
+##### Brackets: *scr_anno_brackets*
 
-Another common convention in single case designs is to mark up runs of data using brackets and labels. For example, this is common in displays that convey progression in various procedures (e.g., demand fading). The *scr_brackets* layer is used to draw brackets upon the respective (sub)plots convey information to the analyst regarding some progression (e.g., demand fading from 1 to 6).
+Another common convention in single case designs is to mark up runs of data using brackets and labels. For example, this is common in displays that convey progression in various procedures (e.g., demand fading). The *scr_anno_brackets* layer is used to draw brackets upon the respective (sub)plots convey information to the analyst regarding some progression (e.g., demand fading from 1 to 6).
 
-##### Aim Lines: *scr_guide_line*
+##### Aim Lines: *scr_anno_guide_line*
 
-Various single case designs in education mark up future (or projected) runs of data using aim lines. For example, this is common in displays that communicate a desired response to educational intervention (e.g., reading fluency expected at the end of the year). The *scr_guide_line* layer is used to draw lines upon the respective (sub)plots convey information to the analyst regarding some idealized rate of change from a certain point in time to another (e.g., beginning of intervention to end of school year).
+Various single case designs in education mark up future (or projected) runs of data using aim lines. For example, this is common in displays that communicate a desired response to educational intervention (e.g., reading fluency expected at the end of the year). The *scr_anno_guide_line* layer is used to draw lines upon the respective (sub)plots convey information to the analyst regarding some idealized rate of change from a certain point in time to another (e.g., beginning of intervention to end of school year).
 
 ##### Legend: *scr_legend*
 
@@ -849,7 +849,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_arrows(
+  scr_anno_arrows(
     facet = "Attention",
     length = 0.1,
     arrows = list(
@@ -873,7 +873,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_arrows(
+  scr_anno_arrows(
     facet = "Demand",
     length = 0.1,
     arrows = list(
@@ -897,7 +897,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_brackets(
+  scr_anno_brackets(
     facet = "Attention",
     length = 0.1,
     brackets = list(
@@ -916,7 +916,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_brackets(
+  scr_anno_brackets(
     facet = "Demand",
     length = 0.1,
     brackets = list(
@@ -941,7 +941,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 3,
     facet = "Attention",
@@ -958,7 +958,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 3,
     facet = "Demand",
@@ -1175,7 +1175,7 @@ scr_plot(
   scr_title("Addition Sums to 12: Monthly Class-wide Screening") |>
   scr_xlabel("Days Into Academic School Year") |>
   scr_ylabel("Digits Correct Per Minute (DCPM)") |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "green",
     lty = 1,
     lwd = 2,
@@ -1206,7 +1206,7 @@ scr_plot(
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "orange",
     lty = 1,
     lwd = 2,
@@ -1237,7 +1237,7 @@ scr_plot(
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 1,
     lwd = 2,
@@ -1338,7 +1338,7 @@ scr_plot(
   scr_title("Response-to-Intervention: Core Reading Indicators") |>
   scr_xlabel("Days Into Academic School Year") |>
   scr_ylabel("Fluency") |>
-  scr_guide_line(
+  scr_anno_guide_line(
     lty = 1,
     coords = list(
       "ORF" = list(

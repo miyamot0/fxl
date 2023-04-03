@@ -620,7 +620,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_arrows(
+  scr_anno_arrows(
     facet = "Attention",
     length = 0.1,
     arrows = list(
@@ -644,7 +644,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_arrows(
+  scr_anno_arrows(
     facet = "Demand",
     length = 0.1,
     arrows = list(
@@ -668,7 +668,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_brackets(
+  scr_anno_brackets(
     facet = "Attention",
     length = 0.1,
     brackets = list(
@@ -687,7 +687,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_brackets(
+  scr_anno_brackets(
     facet = "Demand",
     length = 0.1,
     brackets = list(
@@ -712,7 +712,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 3,
     facet = "Attention",
@@ -729,7 +729,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 3,
     facet = "Demand",
@@ -932,7 +932,7 @@ scr_plot(
   scr_title("Addition Sums to 12: Monthly Class-wide Screening") |>
   scr_xlabel("Days Into Academic School Year") |>
   scr_ylabel("Digits Correct Per Minute (DCPM)") |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "green",
     lty = 1,
     lwd = 2,
@@ -963,7 +963,7 @@ scr_plot(
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "orange",
     lty = 1,
     lwd = 2,
@@ -994,7 +994,7 @@ scr_plot(
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 1,
     lwd = 2,
@@ -1092,7 +1092,7 @@ scr_plot(
   scr_title("Response-to-Intervention: Core Reading Indicators") |>
   scr_xlabel("Days Into Academic School Year") |>
   scr_ylabel("Fluency") |>
-  scr_guide_line(
+  scr_anno_guide_line(
     lty = 1,
     coords = list(
       "ORF" = list(

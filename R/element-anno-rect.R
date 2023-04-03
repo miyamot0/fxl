@@ -1,4 +1,4 @@
-#' scr_rect
+#' scr_anno_rect
 #'
 #' @param core_frame fxl object
 #' @param rects list of keyed entries to be drawn on respective facets
@@ -9,13 +9,20 @@
 #'
 #' @export
 #' @importFrom rlang enexprs
-scr_rect <- function(core_frame,
+scr_anno_rect <- function(core_frame,
                      rects = NULL,
                      color = "black",
                      fill = "black") {
+
   newlayer <- list()
   newlayer[["type"]] <- "rectangle"
+
+  # TODO: check for appropriate facet options
+  # newlayer[["facet"]] <- facet
+
+  # TODO: check for custom objects
   newlayer[["rects"]] <- rects
+
   newlayer[["color"]] <- color
   newlayer[["fill"]] <- fill
 

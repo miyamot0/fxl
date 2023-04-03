@@ -1,4 +1,4 @@
-#' scr_guide_line
+#' scr_anno_guide_line
 #'
 #' This is an annotation illustrating an aim/reduction line
 #'
@@ -12,7 +12,7 @@
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @export
-scr_guide_line <- function(core_frame,
+scr_anno_guide_line <- function(core_frame,
                            coords,
                            facet = NA,
                            color = "red",
@@ -22,9 +22,14 @@ scr_guide_line <- function(core_frame,
 
   newlayer <- list()
   newlayer[["type"]] <- "guide_line"
-  newlayer[["coords"]] <- coords
-  newlayer[["col"]] <- color
+
+  # TODO: check for appropriate facet options
   newlayer[["facet"]] <- facet
+
+  # TODO: check for custom objects
+  newlayer[["coords"]] <- coords
+
+  newlayer[["col"]] <- color
 
   isValidNumericVector(
     object = lty,

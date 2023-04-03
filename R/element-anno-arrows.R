@@ -1,4 +1,4 @@
-#' scr_arrows
+#' scr_anno_arrows
 #'
 #' Add a layer with arrows to direct attention on the plot
 #'
@@ -17,7 +17,7 @@
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @export
-scr_arrows <- function(core_frame,
+scr_anno_arrows <- function(core_frame,
                        arrows = NULL,
                        facet = NULL,
                        color = "black",
@@ -30,11 +30,11 @@ scr_arrows <- function(core_frame,
 
   newlayer <- list()
   newlayer[["type"]] <- "arrows"
+
+  # TODO: check for appropriate facet options
   newlayer[["facet"]] <- facet
 
-  if (!is.list(arrows)) {
-    stop("arrows must be a list")
-  }
+  # TODO: check for custom objects
   newlayer[["arrows"]] <- arrows
 
   assert_input_type(color, "character", "color")

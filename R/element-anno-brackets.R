@@ -1,4 +1,4 @@
-#' scr_brackets
+#' scr_anno_brackets
 #'
 #' Add a layer with brackets on plot
 #'
@@ -15,7 +15,7 @@
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @export
-scr_brackets <- function(core_frame,
+scr_anno_brackets <- function(core_frame,
                          brackets = NULL,
                          facet = NULL,
                          color = "black",
@@ -24,47 +24,33 @@ scr_brackets <- function(core_frame,
                          code = 2,
                          lwd = 1,
                          lty = 1) {
-  # TODO: Tests for remaining params
 
   newlayer <- list()
   newlayer[["type"]] <- "brackets"
+
+  # TODO: check for appropriate facet options
   newlayer[["facet"]] <- facet
+
+  # TODO: check for custom objects
   newlayer[["brackets"]] <- brackets
+
+  assert_input_type(color, "character", "color")
   newlayer[["color"]] <- color
+
+  assert_input_type(length, "numeric", "length")
   newlayer[["length"]] <- length
 
-  isValidNumericVector(
-    object = length,
-    name = "length"
-  )
-
+  assert_input_type(angle, "numeric", "angle")
   newlayer[["angle"]] <- angle
 
-  isValidNumericVector(
-    object = angle,
-    name = "angle"
-  )
-
+  assert_input_type(code, "numeric", "code")
   newlayer[["code"]] <- code
 
-  isValidNumericVector(
-    object = code,
-    name = "code"
-  )
-
+  assert_input_type(lwd, "numeric", "lwd")
   newlayer[["lwd"]] <- lwd
 
-  isValidNumericVector(
-    object = lwd,
-    name = "lwd"
-  )
-
+  assert_input_type(lty, "numeric", "lty")
   newlayer[["lty"]] <- lty
-
-  isValidNumericVector(
-    object = lty,
-    name = "lty"
-  )
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 

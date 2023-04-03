@@ -120,7 +120,7 @@ describe("MBL Greyed out Plot Style", {
           c(0, n_sessions),
           xticks = x_ticks
         ) |>
-        scr_rect(
+        scr_anno_rect(
           rects = list(
             "1" = list(
               x0 = pl_change[1],
@@ -249,7 +249,7 @@ describe("MBL Greyed out Plot Style", {
             )
           )
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "1",
           length = 0.075,
           code = 1,
@@ -325,7 +325,7 @@ describe("MBL Greyed out Plot Style", {
           c(0, n_sessions),
           xticks = x_ticks
         ) |>
-        scr_rect(
+        scr_anno_rect(
           rects = list(
             "1" = list(
               x0 = pl_change[1],
@@ -452,7 +452,7 @@ describe("MBL Greyed out Plot Style", {
             )
           )
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "1",
           length = 0.075,
           code = 1,
