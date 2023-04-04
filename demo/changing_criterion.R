@@ -110,17 +110,17 @@ scr_label_phase(
     "C" = list(
       x = 14.5,
       y = 42,
-      label = 54
+      label = 48
     ),
     "D" = list(
       x = 18.5,
       y = 30,
-      label = 42
+      label = 36
     ),
     "E" = list(
       x = 22.5,
       y = 42,
-      label = 54
+      label = 48
     )
   )
 ) |>
