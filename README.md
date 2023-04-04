@@ -140,6 +140,16 @@ The source code necessary to re-create the figure is provided below (data includ
 
 ![Annotated MBD](man/figures/training_off_main_graph.svg)
 
+### Changing Criterion Design with Annotations
+
+The changing criterion design is another popular approach for parametrically evaluating the effects of some independent variable (e.g., reinforcement schedule) on behavior. The figure below simulates the use of the design and features a baseline phase, individual phases depicting levels of an independent variable (e.g., Fixed Ratio [FR]24 vs FR36). In addition to features common in other designs, this figure features annotations that reflect the level of behavior necessary to produce access to the reinforcer (e.g., an underlying line below the observed data). This added layer, the *scr_criterion_lines* call, involves specifying a styled line (e.g., *x1*, *x2*, *level*) using named lists. The result of which is a series of annotations that correspond to each phase and can be styled in terms of line color (*color*), width (*size*), and other features (e.g., linetype [*lty*]).
+
+The source code necessary to re-create the figure is provided below (data included in the package).
+
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/changing_criterion.R)
+
+![Annotated MBD](man/figures/changing_criterion.svg)
+
 ### Concurrent Choice/Initial Link Selections
 
 The figure below was generated using data featured in [Lozy et al. (2020)](https://doi.org/10.1002/jaba.677) and drawn using *fxl*.

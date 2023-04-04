@@ -319,6 +319,14 @@ print.fxl <- function(x, ...) {
           )
         }
 
+        if (current_layer$type == "criterion_line") {
+          draw_scr_criterion(
+            x,
+            current_layer,
+            current_facet
+          )
+        }
+
         if (current_layer$type == "point") {
           draw_points(
             x,

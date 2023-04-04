@@ -283,8 +283,24 @@ print.fxlsemilog <- function(x, ...) {
           draw_label_facet(x, current_layer, current_facet)
         }
 
+        if (current_layer$type == "criterion_line") {
+          draw_scr_criterion(
+            x,
+            current_layer,
+            current_facet
+          )
+        }
+
         if (current_layer$type == "point") {
           draw_points(x, current_layer, current_facet)
+        }
+
+        if (current_layer$type == "criterion_line") {
+          scr_criterion_lines(
+            x,
+            current_layer,
+            current_facet
+          )
         }
 
         if (current_layer$type == "mbd_phase_lines") {
