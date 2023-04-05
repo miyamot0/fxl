@@ -54,7 +54,7 @@ scr_xoverride <- function(core_frame,
 
   core_frame$dims[["xticks"]] <- xticks
 
-  if (!is.null(xtickslabs)) {
+  if (!is.null(xtickslabs) & !is.list(xtickslabs)) {
     isValidCharacterVector(
       object = xtickslabs,
       name = "xtickslabs"

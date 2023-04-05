@@ -9,6 +9,7 @@
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @export print.fxl
+#' @importFrom graphics layout
 #' @export
 print.fxl <- function(x, ...) {
   # Holders for phase coords
@@ -37,14 +38,15 @@ print.fxl <- function(x, ...) {
     x[["family"]]
   )
 
-  if (!is.na(x[["layout"]]) &
-      !is.na(x[["layout_h"]]) &
+  if (!is.na(x[["layout"]]) &&
+      !is.na(x[["layout_h"]]) &&
       !is.na(x[["layout_v"]])) {
 
-    # TODO: Edit this, to dynamic layout
+    layout(x[["layout"]],
+           x[["layout_h"]],
+           x[["layout_v"]])
 
     par(
-      mfrow = c(n_facets_draw, n_cols), # Dynamic facet numbers/cols
       family = font_family,
       omi = x[["dims"]][["omi"]],
       mai = x[["dims"]][["mai"]],
@@ -55,7 +57,7 @@ print.fxl <- function(x, ...) {
 
   } else {
     par(
-      mfrow = c(n_facets_draw, n_cols), # Dynamic facet numbers/cols
+      mfrow = c(n_facets_draw, n_cols),
       family = font_family,
       omi = x[["dims"]][["omi"]],
       mai = x[["dims"]][["mai"]],
@@ -66,7 +68,7 @@ print.fxl <- function(x, ...) {
 
   }
 
-  for (facetIndex in 1:n_facets) { # Print placeholders
+  for (facetIndex in 1:n_facets) {
 
     # Defaults, per data
     current_facet <- NA
@@ -206,6 +208,12 @@ print.fxl <- function(x, ...) {
       !is.list(x$dims[["xticklabs"]]) &&
       x_axis_draw) {
       x_axis_draw <- x$dims[["xticklabs"]]
+    }
+
+    if (!is.null(x$dims[["xticklabs"]]) && is.list(
+      x$dims[["xticklabs"]]
+    )) {
+      x_axis_draw <- x$dims[["xticklabs"]][[current_facet]]
     }
 
     if (!is.null(x$dims[["yticklabs"]]) &&

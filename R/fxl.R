@@ -166,14 +166,11 @@ scr_plot <- function(data,
   core_frame$labs[["title_adj"]] <- 0.5
   core_frame$labs[["title_face"]] <- 1
 
+  core_frame[["layout"]] <- layout
+  core_frame[["layout_h"]] <- layout_h
+  core_frame[["layout_v"]] <- layout_v
+
   class(core_frame) <- c("fxl")
-
-  if (!is.na(layout)) {
-    core_frame[["layout"]] <- layout
-    core_frame[["layout_h"]] <- layout_h
-    core_frame[["layout_v"]] <- layout_v
-  }
-
 
   if (semilog) {
     class(core_frame) <- c("fxlsemilog")
