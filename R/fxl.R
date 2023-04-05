@@ -33,6 +33,9 @@ library(rlang)
 #' @param ncol TODO
 #' @param family font family
 #' @param bty TODO
+#' @param layout TODO
+#' @param layout_h TODO
+#' @param layout_v TODO
 #' @param semi_color_major_y TODO
 #' @param semi_color_midpoint_y TODO
 #' @param semi_color_minor_y TODO
@@ -61,6 +64,9 @@ scr_plot <- function(data,
                      ncol = 1,
                      family = "sans",
                      bty = "l",
+                     layout = NA,
+                     layout_h = NA,
+                     layout_v = NA,
                      semi_color_major_y = "blue",
                      semi_color_midpoint_y = "blue",
                      semi_color_minor_y = "lightgray",
@@ -161,6 +167,13 @@ scr_plot <- function(data,
   core_frame$labs[["title_face"]] <- 1
 
   class(core_frame) <- c("fxl")
+
+  if (!is.na(layout)) {
+    core_frame[["layout"]] <- layout
+    core_frame[["layout_h"]] <- layout_h
+    core_frame[["layout_v"]] <- layout_v
+  }
+
 
   if (semilog) {
     class(core_frame) <- c("fxlsemilog")

@@ -37,15 +37,34 @@ print.fxl <- function(x, ...) {
     x[["family"]]
   )
 
-  par(
-    mfrow = c(n_facets_draw, n_cols), # Dynamic facet numbers/cols
-    family = font_family,
-    omi = x[["dims"]][["omi"]],
-    mai = x[["dims"]][["mai"]],
-    xaxs = x[["dims"]][["xaxs"]],
-    yaxs = x[["dims"]][["yaxs"]],
-    xpd = NA
-  )
+  if (!is.na(x[["layout"]]) &
+      !is.na(x[["layout_h"]]) &
+      !is.na(x[["layout_v"]])) {
+
+    # TODO: Edit this, to dynamic layout
+
+    par(
+      mfrow = c(n_facets_draw, n_cols), # Dynamic facet numbers/cols
+      family = font_family,
+      omi = x[["dims"]][["omi"]],
+      mai = x[["dims"]][["mai"]],
+      xaxs = x[["dims"]][["xaxs"]],
+      yaxs = x[["dims"]][["yaxs"]],
+      xpd = NA
+    )
+
+  } else {
+    par(
+      mfrow = c(n_facets_draw, n_cols), # Dynamic facet numbers/cols
+      family = font_family,
+      omi = x[["dims"]][["omi"]],
+      mai = x[["dims"]][["mai"]],
+      xaxs = x[["dims"]][["xaxs"]],
+      yaxs = x[["dims"]][["yaxs"]],
+      xpd = NA
+    )
+
+  }
 
   for (facetIndex in 1:n_facets) { # Print placeholders
 
