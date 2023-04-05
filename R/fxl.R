@@ -32,6 +32,11 @@ library(rlang)
 #' @param yaxs y axis formatting, relative to hanging space
 #' @param ncol TODO
 #' @param family font family
+#' @param bty TODO
+#' @param semi_color_major_y TODO
+#' @param semi_color_midpoint_y TODO
+#' @param semi_color_minor_y TODO
+#' @param semi_color_major_x TODO
 #' @param semilog determine if this is a semilog type of plot
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
@@ -55,6 +60,11 @@ scr_plot <- function(data,
                      yaxs = "i",
                      ncol = 1,
                      family = "sans",
+                     bty = "l",
+                     semi_color_major_y = "blue",
+                     semi_color_midpoint_y = "blue",
+                     semi_color_minor_y = "lightgray",
+                     semi_color_major_x = "lightgray",
                      semilog = FALSE) {
   # Type checks
   isValidDataFrame(
@@ -152,7 +162,24 @@ scr_plot <- function(data,
 
   class(core_frame) <- c("fxl")
 
-  if (semilog) class(core_frame) <- c("fxlsemilog")
+  if (semilog) {
+    class(core_frame) <- c("fxlsemilog")
+
+    assert_input_type(semi_color_major_y, "character", "semi_color_major_y")
+    core_frame[["semi_color_major_y"]] <- semi_color_major_y
+
+    assert_input_type(semi_color_midpoint_y, "character", "semi_color_midpoint_y")
+    core_frame[["semi_color_midpoint_y"]] <- semi_color_midpoint_y
+
+    assert_input_type(semi_color_minor_y, "character", "semi_color_minor_y")
+    core_frame[["semi_color_minor_y"]] <- semi_color_minor_y
+
+    assert_input_type(semi_color_major_x, "character", "semi_color_major_x")
+    core_frame[["semi_color_major_x"]] <- semi_color_major_x
+
+    assert_input_type(bty, "character", "bty")
+    core_frame[["bty"]] <- bty
+  }
 
   core_frame
 }

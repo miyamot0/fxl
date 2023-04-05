@@ -13,6 +13,11 @@ scr_plot(
   yaxs = "i",
   ncol = 1,
   family = "sans",
+  bty = "l",
+  semi_color_major_y = "blue",
+  semi_color_midpoint_y = "blue",
+  semi_color_minor_y = "lightgray",
+  semi_color_major_x = "lightgray",
   semilog = FALSE
 )
 }
@@ -32,6 +37,16 @@ scr_plot(
 \item{ncol}{TODO}
 
 \item{family}{font family}
+
+\item{bty}{TODO}
+
+\item{semi_color_major_y}{TODO}
+
+\item{semi_color_midpoint_y}{TODO}
+
+\item{semi_color_minor_y}{TODO}
+
+\item{semi_color_major_x}{TODO}
 
 \item{semilog}{determine if this is a semilog type of plot}
 }

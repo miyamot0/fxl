@@ -29,7 +29,7 @@ scr_anno_guide_line <- function(core_frame,
   newlayer[["coords"]] <- coords
 
   assert_input_type(color, "character", "color")
-  newlayer[["color"]] <- color
+  newlayer[["col"]] <- color
 
   assert_input_type(lwd, "numeric", "lwd")
   newlayer[["lwd"]] <- lwd
