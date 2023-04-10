@@ -48,12 +48,8 @@ scr_label_phase <- function(core_frame,
   if (!is.null(facet)) assert_input_type(facet, "character", "facet")
   newlayer[["facet"]] <- facet
 
-  # TODO: need to handle vector AND named lists
   if (!is.list(labels)) {
-    isValidCharacterVector(
-      object = labels,
-      name = "labels"
-    )
+    assert_input_type(labels, "character", "labels")
   }
 
   newlayer[["labels"]] <- labels

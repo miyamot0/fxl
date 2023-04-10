@@ -76,13 +76,14 @@ isValidNumericVector <- function(object = NULL, length = -1, name = NULL) {
     ))
   }
 
-  if (!is.vector(object)) {
-    stop(paste(
-      "Parameter:",
-      name,
-      "should be a vector."
-    ))
-  }
+  # Note: even a single num is basically vector of 1
+  # if (!is.vector(object)) {
+  #   stop(paste(
+  #     "Parameter:",
+  #     name,
+  #     "should be a vector."
+  #   ))
+  # }
 
   if (!is.numeric(object)) {
     stop(paste(

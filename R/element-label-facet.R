@@ -41,12 +41,8 @@ scr_label_facet <- function(core_frame,
   if (!is.null(y)) assert_input_type(y, "numeric", "y")
   newlayer[["y"]] <- y
 
-  # TODO: need to handle vector AND named lists
   if (!is.list(labels)) {
-    isValidCharacterVector(
-      object = labels,
-      name = "labels"
-    )
+    assert_input_type(labels, "character", "labels")
   }
 
   newlayer[["labels"]] <- labels

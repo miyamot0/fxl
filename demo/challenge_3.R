@@ -1,6 +1,8 @@
 library(fxl)
 library(tidyverse)
 
+## TODO: add to examples once final data imported
+
 if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
