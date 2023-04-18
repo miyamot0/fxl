@@ -6,7 +6,7 @@ if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
 
-read_data <- read.csv("../data/MathCombined.csv") %>%
+read_data <- Challenge4Data %>%
   mutate(Participant =  factor(Participant,
                           levels = c("Hamza", "Ivory", "Brynley", "Logan"))) %>%
   arrange(Participant)

@@ -5,9 +5,7 @@ if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
 
-read_data <- read.csv("../data/2005.SPR.34.2.220.csv")
-
-read_data_wide <- read_data %>%
+read_data_wide <- Challenge1Data %>%
   spread(OutcomeName, Y) %>%
   rename(Teacher = `Percentage of Treatment Steps Implemented by Teacher`,
          Student = `Percentage of Intervals of Off-Task Behavior by Student`) %>%

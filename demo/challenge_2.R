@@ -5,7 +5,7 @@ if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
 
-read_data <- read.csv("../data/Writing.csv")
+read_data <- Challenge2Data
 
 scr_plot(read_data,
          aesthetics = var_map(
