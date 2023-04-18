@@ -65,7 +65,7 @@ scr_plot(
   scr_title("Response-to-Intervention: Core Reading Indicators") |>
   scr_xlabel("Months of Academic School Year (2022-2023)") |>
   scr_ylabel("Fluency") |>
-  scr_guide_line(
+  scr_anno_guide_line(
     lty = 1,
     coords = list(
       "ORF" = list(

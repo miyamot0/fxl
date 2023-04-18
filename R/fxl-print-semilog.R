@@ -183,50 +183,50 @@ print.fxlsemilog <- function(x, ...) {
       labels = NA
     )
 
+    local_y_ticks_major <-  c(
+      0.1,
+      as.vector(c(1) %o%
+                  10^(
+                    log10(
+                      x$dims[["min.local.y"]]
+                    ):log10(
+                      x$dims[["max.local.y"]]
+                    )))
+    )
+
+    if (!is.null(x$dims[["yticks"]]) && !is.list(
+      x$dims[["yticks"]]
+    )) {
+
+      local_y_ticks_major <- as.integer(x$dims[["yticks"]])
+    }
+
+    local_y_ticks_major_labs <- as.character(local_y_ticks_major)
+
+    if (!is.null(x$dims[["ytickslabs"]]) && !is.list(
+      x$dims[["ytickslabs"]]
+    )) {
+
+      local_y_ticks_major_labs <- as.character(x$dims[["ytickslabs"]])
+    }
+
     axis(2,
-      at = c(
-        0.1,
-        as.vector(c(1) %o%
-          10^(
-            log10(
-              x$dims[["min.local.y"]]
-            ):log10(
-              x$dims[["max.local.y"]]
-            )))
-      ),
+      at = local_y_ticks_major,
       las = 1,
       tcl = par("tcl"),
-      labels = c(
-        0.1,
-        as.vector(c(1) %o%
-          10^(
-            log10(
-              x$dims[["min.local.y"]]
-            ):log10(
-              x$dims[["max.local.y"]]
-            )))
-      )
+      labels = local_y_ticks_major_labs
     )
 
     abline(
       h = c(0.1, breaks),
       lty = 1,
-      col = "lightgray"
+      col = x[["semi_color_minor_y"]]
     )
 
     abline(
-      h = c(
-        0.1,
-        as.vector(c(1) %o%
-          10^(
-            log10(
-              x$dims[["min.local.y"]]
-            ):log10(
-              x$dims[["max.local.y"]]
-            )))
-      ),
+      h = local_y_ticks_major,
       lty = 1,
-      col = "blue"
+      col = x[["semi_color_major_y"]]
     )
 
     abline(
@@ -241,13 +241,13 @@ print.fxlsemilog <- function(x, ...) {
             )))
       ),
       lty = 3,
-      col = "blue"
+      col = x[["semi_color_midpoint_y"]]
     )
 
     abline(
       v = x_axis_ticks,
       lty = 1,
-      col = "lightgray"
+      col = x[["semi_color_major_x"]]
     )
 
     if (length(x[["layers"]]) > 0) {
@@ -279,12 +279,36 @@ print.fxlsemilog <- function(x, ...) {
           draw_label_phase(x, current_layer, current_facet)
         }
 
+        if (current_layer$type == "phase_lines") {
+          draw_scr_plines(
+            x,
+            current_layer,
+            current_facet
+          )
+        }
+
         if (current_layer$type == "facet_label") {
           draw_label_facet(x, current_layer, current_facet)
         }
 
+        if (current_layer$type == "criterion_line") {
+          draw_scr_criterion(
+            x,
+            current_layer,
+            current_facet
+          )
+        }
+
         if (current_layer$type == "point") {
           draw_points(x, current_layer, current_facet)
+        }
+
+        if (current_layer$type == "criterion_line") {
+          scr_criterion_lines(
+            x,
+            current_layer,
+            current_facet
+          )
         }
 
         if (current_layer$type == "mbd_phase_lines") {
@@ -366,7 +390,7 @@ print.fxlsemilog <- function(x, ...) {
       }
     }
 
-    box(bty = "u")
+    box(bty = x[["bty"]])
 
     if (!is.null(x$dims[["xticklabs"]]) &&
       !is.list(x$dims[["xticklabs"]]) &&
@@ -434,14 +458,29 @@ print.fxlsemilog <- function(x, ...) {
           draw_points(x, current_layer, current_facet, zero_axis = TRUE)
         }
 
+        if (current_layer$type == "phase_lines") {
+          draw_scr_plines(
+            x,
+            current_layer,
+            current_facet
+          )
+        }
+
         if (current_layer$type == "mbd_phase_lines") {
           tmp_x1 <- current_layer$lines[[pname]][[current_index]][["x1"]]
 
-          abline(
-            v = tmp_x1,
-            lty = 1,
-            col = "black"
-          )
+          if (current_index == length(current_layer$lines[[pname]])) {
+            lines(x = c(tmp_x1, tmp_x1),
+                  y = c(0, par('usr')[4]),
+                  lty = 1,
+                  col = "black")
+          } else {
+            abline(
+              v = tmp_x1,
+              lty = 1,
+              col = "black"
+            )
+          }
         }
       }
     }

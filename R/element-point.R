@@ -21,14 +21,29 @@ scr_points <- function(core_frame,
                        styler = NA,
                        data = NA,
                        mapping) {
+
   newlayer <- list()
   newlayer[["type"]] <- "point"
+
+  # TODO: error check
   newlayer[["pch"]] <- pch
+
+  # TODO: error check
   newlayer[["color"]] <- color
+
+  # TODO: error check
   newlayer[["fill"]] <- fill
+
+  # TODO: error check
   newlayer[["cex"]] <- cex
+
+  # TODO: error check
   newlayer[["styler"]] <- styler
+
+  # TODO: error check
   newlayer[["data"]] <- data
+
+  # TODO: error check
   newlayer[["aesthetics"]] <- NA
 
   if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)

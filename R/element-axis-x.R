@@ -27,6 +27,8 @@ scr_xoverride <- function(core_frame,
                           xlabeloffset = NULL,
                           xtickslabs = NULL,
                           xticksadj = 1) {
+
+  # Null check
   if (is.null(var)) {
     stop(paste("scr_xoverride: var must not be set to null."))
   }
@@ -43,14 +45,6 @@ scr_xoverride <- function(core_frame,
     core_frame$dims[["global.max.x"]] <- {{ var[2] }}
   }
 
-  isValidNumericVector(
-    object = xdelta,
-    name = "xdelta",
-    length = 1
-  )
-
-  core_frame$dims[["xdelta"]] <- xdelta
-
   if (!is.null(xticks) && is.numeric(xticks)) {
     isValidNumericVector(
       object = xticks,
@@ -60,7 +54,7 @@ scr_xoverride <- function(core_frame,
 
   core_frame$dims[["xticks"]] <- xticks
 
-  if (!is.null(xtickslabs)) {
+  if (!is.null(xtickslabs) & !is.list(xtickslabs)) {
     isValidCharacterVector(
       object = xtickslabs,
       name = "xtickslabs"
@@ -76,47 +70,21 @@ scr_xoverride <- function(core_frame,
     )
   }
 
-
   core_frame$dims[["xdraws"]] <- xdraws
 
-  if (!is.null(xrotation)) {
-    isValidNumericVector(
-      object = xrotation,
-      name = "xrotation",
-      length = 1
-    )
-  }
+  assert_input_type(xdelta, "numeric", "xdelta")
+  core_frame$dims[["xdelta"]] <- xdelta
 
+  if (!is.null(xrotation)) assert_input_type(xrotation, "numeric", "xrotation")
   core_frame$dims[["xlab.rotation"]] <- xrotation
 
-  if (!is.null(xlabeloffset)) {
-    isValidNumericVector(
-      object = xlabeloffset,
-      name = "xlabeloffset",
-      length = 1
-    )
-  }
-
+  if (!is.null(xlabeloffset))  assert_input_type(xlabeloffset, "numeric", "xlabeloffset")
   core_frame$dims[["xlab.offset"]] <- xlabeloffset
 
-  if (!is.null(xtickscex)) {
-    isValidNumericVector(
-      object = xtickscex,
-      name = "xtickscex",
-      length = 1
-    )
-  }
-
+  if (!is.null(xtickscex))  assert_input_type(xtickscex, "numeric", "xtickscex")
   core_frame$dims[["xlab.cex"]] <- xtickscex
 
-  if (!is.null(xticksadj)) {
-    isValidNumericVector(
-      object = xticksadj,
-      name = "xticksadj",
-      length = 1
-    )
-  }
-
+  if (!is.null(xticksadj))  assert_input_type(xticksadj, "numeric", "xticksadj")
   core_frame$dims[["xticklabs.offset"]] <- xticksadj
 
   core_frame

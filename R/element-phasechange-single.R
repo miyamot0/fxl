@@ -14,12 +14,21 @@ scr_plines <- function(core_frame,
                        lwd = 1,
                        lty = 1,
                        col = "black") {
+
   newlayer <- list()
   newlayer[["type"]] <- "phase_lines"
-  newlayer[["lines"]] <- lines
+
+  assert_input_type(lwd, "numeric", "lwd")
   newlayer[["lwd"]] <- lwd
+
+  assert_input_type(lty, "numeric", "lty")
   newlayer[["lty"]] <- lty
+
+  assert_input_type(col, "character", "col")
   newlayer[["col"]] <- col
+
+  # TODO: error checking
+  newlayer[["lines"]] <- lines
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer
 

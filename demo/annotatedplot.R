@@ -267,7 +267,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_arrows(
+  scr_anno_arrows(
     facet = "Attention",
     length = 0.1,
     arrows = list(
@@ -291,7 +291,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_arrows(
+  scr_anno_arrows(
     facet = "Demand",
     length = 0.1,
     arrows = list(
@@ -315,7 +315,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_brackets(
+  scr_anno_brackets(
     facet = "Attention",
     length = 0.1,
     brackets = list(
@@ -334,7 +334,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_brackets(
+  scr_anno_brackets(
     facet = "Demand",
     length = 0.1,
     brackets = list(
@@ -359,7 +359,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 3,
     facet = "Attention",
@@ -376,7 +376,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 3,
     facet = "Demand",

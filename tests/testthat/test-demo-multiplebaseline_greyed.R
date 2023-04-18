@@ -1,17 +1,19 @@
-
 set.seed(65535)
 
 n_sessions <- 80
 n_targets <- 4
 var_targets <- runif(n_targets,
-                     min = 0.1,
-                     max = 0.25)
+  min = 0.1,
+  max = 0.25
+)
 bl_targets <- runif(n_targets,
-                    min = 0,
-                    max = 0.2)
+  min = 0,
+  max = 0.2
+)
 pl_shifts <- runif(n_targets,
-                   min = 0.4,
-                   max = 0.8)
+  min = 0.4,
+  max = 0.8
+)
 
 pl_change <- c(15, 30, 45, 60)
 
@@ -30,7 +32,7 @@ for (t in seq_len(n_sessions)) {
   session_target <- ifelse(session_target > 4, 1, session_target)
 
   rel_var <- var_targets[session_target]
-  rel_bl  <- bl_targets[session_target]
+  rel_bl <- bl_targets[session_target]
   rel_pls <- pl_shifts[session_target]
   rel_plc <- pl_change[session_target]
 
@@ -64,24 +66,28 @@ main_data_frame_backup <- main_data_frame
 t <- 1
 
 for (t in seq_len(n_targets)) {
-  rel_facet = as.character(t)
+  rel_facet <- as.character(t)
   rel_plc <- pl_change[t]
   rel_top <- rel_plc + (n_targets * 3)
 
-  main_data_frame <- subset(main_data_frame,
-                            !(Facet == rel_facet &
-                                Session >= rel_plc &
-                                Session < rel_top))
+  main_data_frame <- subset(
+    main_data_frame,
+    !(Facet == rel_facet &
+      Session >= rel_plc &
+      Session < rel_top)
+  )
 }
 
-gen_session <- c(5,6,7,8,
-                 17,18,19,20,
-                 25,26,27,28,
-                 37,38,39,40,
-                 45,46,47,48,
-                 57,58,59,60,
-                 65,66,67,68,
-                 77,78,79,80)
+gen_session <- c(
+  5, 6, 7, 8,
+  17, 18, 19, 20,
+  25, 26, 27, 28,
+  37, 38, 39, 40,
+  45, 46, 47, 48,
+  57, 58, 59, 60,
+  65, 66, 67, 68,
+  77, 78, 79, 80
+)
 
 main_data_frame[main_data_frame$Session %in% gen_session, "Therapist"] <- "Generalization"
 
@@ -90,16 +96,19 @@ x_ticks <- c(1, (1:16) * 5)
 describe("MBL Greyed out Plot Style", {
   it("Should render as normal", {
     expect_no_error(
-      scr_plot(subset(main_data_frame,
-                      Therapist == "Primary"),
-               aesthetics = var_map(
-                 x = Session,
-                 y = Percentage,
-                 p = Phase,
-                 facet = Facet
-               ),
-               mai = c(0.125, 0.375,  0.25, 0.25),
-               omi = c(0.5,    0.25,  0.25, 0.25)
+      scr_plot(
+        subset(
+          main_data_frame,
+          Therapist == "Primary"
+        ),
+        aesthetics = var_map(
+          x = Session,
+          y = Percentage,
+          p = Phase,
+          facet = Facet
+        ),
+        mai = c(0.125, 0.375, 0.25, 0.25),
+        omi = c(0.5, 0.25, 0.25, 0.25)
       ) |>
         scr_yoverride(
           c(-10, 100),
@@ -111,7 +120,7 @@ describe("MBL Greyed out Plot Style", {
           c(0, n_sessions),
           xticks = x_ticks
         ) |>
-        scr_rect(
+        scr_anno_rect(
           rects = list(
             "1" = list(
               x0 = pl_change[1],
@@ -145,23 +154,26 @@ describe("MBL Greyed out Plot Style", {
         ) |>
         scr_ylabel("Accuracy") |>
         scr_xlabel("Session",
-                   line = 2) |>
+          line = 2
+        ) |>
         scr_lines() |>
         scr_points(
           pch = 23,
           cex = 2,
-          fill = 'white'
+          fill = "white"
         ) |>
         scr_points(
           pch = 22,
           cex = 2,
-          fill = 'green',
+          fill = "green",
           mapping = list(
             x = Session,
             y = Percentage
           ),
-          data = subset(main_data_frame,
-                        Therapist == "Generalization")
+          data = subset(
+            main_data_frame,
+            Therapist == "Generalization"
+          )
         ) |>
         scr_plines_mbd(
           lines = list(
@@ -237,11 +249,11 @@ describe("MBL Greyed out Plot Style", {
             )
           )
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "1",
           length = 0.075,
           code = 1,
-          color = 'black',
+          color = "black",
           lty = 1,
           lwd = 1,
           arrows = list(
@@ -289,16 +301,19 @@ describe("MBL Greyed out Plot Style", {
 
   it("Should specific to facet", {
     expect_no_error(
-      scr_plot(subset(main_data_frame,
-                      Therapist == "Primary"),
-               aesthetics = var_map(
-                 x = Session,
-                 y = Percentage,
-                 p = Phase,
-                 facet = Facet
-               ),
-               mai = c(0.125, 0.375,  0.25, 0.25),
-               omi = c(0.5,    0.25,  0.25, 0.25)
+      scr_plot(
+        subset(
+          main_data_frame,
+          Therapist == "Primary"
+        ),
+        aesthetics = var_map(
+          x = Session,
+          y = Percentage,
+          p = Phase,
+          facet = Facet
+        ),
+        mai = c(0.125, 0.375, 0.25, 0.25),
+        omi = c(0.5, 0.25, 0.25, 0.25)
       ) |>
         scr_yoverride(
           c(-10, 100),
@@ -310,7 +325,7 @@ describe("MBL Greyed out Plot Style", {
           c(0, n_sessions),
           xticks = x_ticks
         ) |>
-        scr_rect(
+        scr_anno_rect(
           rects = list(
             "1" = list(
               x0 = pl_change[1],
@@ -342,23 +357,26 @@ describe("MBL Greyed out Plot Style", {
         ) |>
         scr_ylabel("Accuracy") |>
         scr_xlabel("Session",
-                   line = 2) |>
+          line = 2
+        ) |>
         scr_lines() |>
         scr_points(
           pch = 23,
           cex = 2,
-          fill = 'white'
+          fill = "white"
         ) |>
         scr_points(
           pch = 22,
           cex = 2,
-          fill = 'green',
+          fill = "green",
           mapping = list(
             x = Session,
             y = Percentage
           ),
-          data = subset(main_data_frame,
-                        Therapist == "Generalization")
+          data = subset(
+            main_data_frame,
+            Therapist == "Generalization"
+          )
         ) |>
         scr_plines_mbd(
           lines = list(
@@ -434,11 +452,11 @@ describe("MBL Greyed out Plot Style", {
             )
           )
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "1",
           length = 0.075,
           code = 1,
-          color = 'black',
+          color = "black",
           lty = 1,
           lwd = 1,
           arrows = list(

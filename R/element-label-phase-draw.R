@@ -10,7 +10,9 @@
 #'
 #' @export
 draw_label_phase <- function(core_frame, current_layer, facet_name) {
-  if (!is.na(facet_name) && !is.na(current_layer$facet) && current_layer$facet == facet_name) {
+  if (!is.na(facet_name) &&
+      !is.na(current_layer$facet) &&
+      current_layer$facet == facet_name) {
     for (lindex in seq_len(length(current_layer$labels))) {
       label <- names(current_layer$labels)[lindex]
 
@@ -33,7 +35,7 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
 
       font_c <- ifelse(
         "font" %in% names(current_label),
-        current_label[["font"]], 1
+        current_label[["font"]], current_layer$face
       )
 
       srt <- ifelse(
@@ -41,9 +43,19 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
         current_label[["srt"]], 0
       )
 
+      adj <- ifelse(
+        "adj" %in% names(current_label),
+        current_label[["adj"]], current_layer$adj
+      )
+
+      cex <- ifelse(
+        "cex" %in% names(current_label),
+        current_label[["cex"]], current_layer$cex
+      )
+
       temp_color <- ifelse(
         "color" %in% names(current_label),
-        current_label[["color"]], "black"
+        current_label[["color"]], current_layer$color
       )
 
       temp_label <- ifelse(
@@ -54,9 +66,9 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
       text(
         x      = temp_x,
         y      = temp_y,
-        cex    = current_layer[["cex"]],
-        adj    = current_layer[["adj"]],
-        font   = current_layer[["face"]],
+        cex    = cex,
+        adj    = adj,
+        font   = font_c,
         col    = temp_color,
         srt    = srt,
         labels = temp_label
@@ -87,7 +99,7 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
 
       font_c <- ifelse(
         "font" %in% names(current_label),
-        current_label[["font"]], 1
+        current_label[["font"]], current_layer$face
       )
 
       srt <- ifelse(
@@ -95,9 +107,19 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
         current_label[["srt"]], 0
       )
 
+      adj <- ifelse(
+        "adj" %in% names(current_label),
+        current_label[["adj"]], current_layer$adj
+      )
+
+      cex <- ifelse(
+        "cex" %in% names(current_label),
+        current_label[["cex"]], current_layer$cex
+      )
+
       temp_color <- ifelse(
         "color" %in% names(current_label),
-        current_label[["color"]], "black"
+        current_label[["color"]], current_layer$color
       )
 
       temp_label <- ifelse(
@@ -108,9 +130,9 @@ draw_label_phase <- function(core_frame, current_layer, facet_name) {
       text(
         x      = temp_x,
         y      = temp_y,
-        cex    = current_layer[["cex"]],
-        adj    = current_layer[["adj"]],
-        font   = current_layer[["face"]],
+        cex    = cex,
+        adj    = adj,
+        font   = font_c,
         col    = temp_color,
         srt    = srt,
         labels = temp_label

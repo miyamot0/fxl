@@ -90,7 +90,7 @@ describe("Semi Log Plot Style", {
             )
           )
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           length = 0.1,
           arrows = list(
             "A" = list(
@@ -107,7 +107,7 @@ describe("Semi Log Plot Style", {
             )
           )
         ) |>
-        scr_brackets(
+        scr_anno_brackets(
           length = 0.1,
           brackets = list(
             "A" = list(
@@ -118,7 +118,7 @@ describe("Semi Log Plot Style", {
             )
           )
         ) |>
-        scr_guide_line(
+        scr_anno_guide_line(
           color = "black",
           lty = 1,
           coords = list(

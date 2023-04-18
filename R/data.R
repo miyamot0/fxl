@@ -46,3 +46,15 @@
 #' Plotting data for Hypothetical Academic MTSS
 #'
 "SimulatedAcademicFluency"
+
+#' Plotting data Challenge 1
+#'
+"Challenge1Data"
+
+#' Plotting data Challenge 2
+#'
+"Challenge2Data"
+
+#' Plotting data Challenge 4
+#'
+"Challenge4Data"

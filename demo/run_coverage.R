@@ -18,7 +18,7 @@ if ("here" %in% installed.packages()) {
     require(covr)
 
     report(
-      file = 'fxl-coverage-report.html'
+      file = "fxl-coverage-report.html"
     )
   }
 }

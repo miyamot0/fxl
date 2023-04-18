@@ -19,8 +19,14 @@ scr_images <- function(core_frame,
 
   newlayer <- list()
   newlayer[["type"]] <- "image"
+
+  # TODO: check for custom objects
   newlayer[["image"]] <- image
+
+  assert_input_type(cex, "numeric", "cex")
   newlayer[["cex"]] <- cex
+
+  # TODO: check for custom objects
   newlayer[["aesthetics"]] <- NA
 
   if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)

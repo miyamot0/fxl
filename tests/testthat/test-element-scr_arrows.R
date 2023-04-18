@@ -4,7 +4,7 @@ current_data$Function <- current_data$Participant
 current_data$AFCR <- current_data$FCR
 current_data$EFCR <- current_data$FCR2
 
-describe("scr_arrows", {
+describe("scr_anno_arrows", {
   it("Should fail at length", {
     expect_error(
       scr_plot(current_data,
@@ -20,7 +20,7 @@ describe("scr_arrows", {
         scr_lines(
           size = 1
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "Attention",
           length = NULL,
           arrows = list(
@@ -45,7 +45,7 @@ describe("scr_arrows", {
           )
         ) |>
         print(),
-      "Parameter: length should NOT be set to a null value."
+      "length must not be NULL"
     )
   })
 
@@ -64,7 +64,7 @@ describe("scr_arrows", {
         scr_lines(
           size = 1
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "Attention",
           length = 0.1,
           angle = NULL,
@@ -90,7 +90,7 @@ describe("scr_arrows", {
           )
         ) |>
         print(),
-      "Parameter: angle should NOT be set to a null value."
+      "angle must not be NULL"
     )
   })
 
@@ -109,7 +109,7 @@ describe("scr_arrows", {
         scr_lines(
           size = 1
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "Attention",
           length = 0.1,
           code = NULL,
@@ -135,7 +135,7 @@ describe("scr_arrows", {
           )
         ) |>
         print(),
-      "Parameter: code should NOT be set to a null value."
+      "code must not be NULL"
     )
   })
 
@@ -154,7 +154,7 @@ describe("scr_arrows", {
         scr_lines(
           size = 1
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "Attention",
           length = 0.1,
           lwd = NULL,
@@ -180,7 +180,7 @@ describe("scr_arrows", {
           )
         ) |>
         print(),
-      "Parameter: lwd should NOT be set to a null value."
+      "lwd must not be NULL"
     )
   })
 
@@ -199,7 +199,7 @@ describe("scr_arrows", {
         scr_lines(
           size = 1
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "Attention",
           length = 0.1,
           lty = NULL,
@@ -225,7 +225,7 @@ describe("scr_arrows", {
           )
         ) |>
         print(),
-      "Parameter: lty should NOT be set to a null value."
+      "lty must not be NULL"
     )
   })
 })

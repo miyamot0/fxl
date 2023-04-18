@@ -26,33 +26,32 @@ scr_label_phase <- function(core_frame,
                             labels = NULL) {
   newlayer <- list()
   newlayer[["type"]] <- "phase_label"
+
+  assert_input_type(color, "character", "color")
   newlayer[["color"]] <- color
 
-  isValidNumericVector(
-    object = cex,
-    name = "cex"
-  )
-
+  assert_input_type(cex, "numeric", "cex")
   newlayer[["cex"]] <- cex
 
-  isValidNumericVector(
-    object = adj,
-    name = "adj"
-  )
-
+  assert_input_type(adj, "numeric", "adj")
   newlayer[["adj"]] <- adj
 
-  isValidNumericVector(
-    object = face,
-    name = "face",
-    length = 1
-  )
-
+  assert_input_type(face, "numeric", "face")
   newlayer[["face"]] <- face
 
+  if (!is.null(x)) assert_input_type(x, "numeric", "x")
   newlayer[["x"]] <- x
+
+  if (!is.null(y)) assert_input_type(y, "numeric", "y")
   newlayer[["y"]] <- y
+
+  if (!is.null(facet)) assert_input_type(facet, "character", "facet")
   newlayer[["facet"]] <- facet
+
+  if (!is.list(labels)) {
+    assert_input_type(labels, "character", "labels")
+  }
+
   newlayer[["labels"]] <- labels
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer

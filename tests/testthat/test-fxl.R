@@ -6,15 +6,20 @@ current_data <- data.frame(
 describe("scr_plot", {
   describe("data input", {
     it("Should PASS if data is a dataframe", {
-      expect_error(
+      expect_no_error(
         scr_plot(
           data = current_data,
           aesthetics = var_map(
             x = sessions,
             y = behavior
           ),
-        ),
-        NA
+          layout = matrix(c(1),
+                          nrow = 1,
+                          ncol = 1,
+                          byrow = TRUE),
+          layout_h = c(1),
+          layout_v = c(1)
+        )
       )
     })
 

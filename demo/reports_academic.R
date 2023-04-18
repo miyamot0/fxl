@@ -64,7 +64,7 @@ scr_plot(
   scr_title("Addition Sums to 12: Monthly Class-wide Screening") |>
   scr_xlabel("Days Into Academic School Year") |>
   scr_ylabel("Digits Correct Per Minute (DCPM)") |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "green",
     lty = 1,
     lwd = 2,
@@ -95,7 +95,7 @@ scr_plot(
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "orange",
     lty = 1,
     lwd = 2,
@@ -126,7 +126,7 @@ scr_plot(
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 1,
     lwd = 2,

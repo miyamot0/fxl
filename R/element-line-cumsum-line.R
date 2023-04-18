@@ -17,23 +17,20 @@ scr_cumsum_lines <- function(core_frame,
                              color = "black",
                              size = 1,
                              mapping) {
+
   newlayer <- list()
   newlayer[["type"]] <- "cum_sum_lines"
 
-  isValidNumericVector(
-    object = lty,
-    name = "lty"
-  )
-
+  assert_input_type(lty, "numeric", "lty")
   newlayer[["lty"]] <- lty
+
+  assert_input_type(color, "character", "color")
   newlayer[["color"]] <- color
 
-  isValidNumericVector(
-    object = size,
-    name = "size"
-  )
-
+  assert_input_type(size, "numeric", "size")
   newlayer[["size"]] <- size
+
+  # TODO: error checking
   newlayer[["aesthetics"]] <- NA
 
   if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)

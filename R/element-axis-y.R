@@ -18,6 +18,8 @@ scr_yoverride <- function(core_frame,
                           yticks = NULL,
                           ydraws = NULL,
                           ytickslabs = NULL) {
+
+  # Null check
   if (is.null(var)) {
     stop(paste("scr_yoverride: cannot be set to a null value."))
   }
@@ -36,21 +38,7 @@ scr_yoverride <- function(core_frame,
     core_frame$dims[["local.dims"]] <- var
   }
 
-  isValidNumericVector(
-    object = ydelta,
-    name = "ydelta",
-    length = 1
-  )
-
-  core_frame$dims[["ydelta"]] <- ydelta
-
-  if (!is.null(yticks)) {
-    isValidNumericVector(
-      object = yticks,
-      name = "yticks"
-    )
-  }
-
+  # TODO: Error check for named lists OR vector
   core_frame$dims[["yticks"]] <- yticks
 
   if (!is.null(ytickslabs)) {
@@ -59,7 +47,6 @@ scr_yoverride <- function(core_frame,
       name = "ytickslabs"
     )
   }
-
   core_frame$dims[["yticklabs"]] <- ytickslabs
 
   if (!is.null(ydraws)) {
@@ -70,6 +57,9 @@ scr_yoverride <- function(core_frame,
   }
 
   core_frame$dims[["ydraws"]] <- ydraws
+
+  assert_input_type(ydelta, "numeric", "ydelta")
+  core_frame$dims[["ydelta"]] <- ydelta
 
   core_frame
 }

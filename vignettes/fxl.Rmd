@@ -180,17 +180,17 @@ Phase change lines are critical to highlighting anticipated contrasts between co
 
 The *scr_plines_mbd* layer relates to phase change lines that are *across* individual panels. That is, these are phase change lines that cut across multiple plots to illustrate a shared environmental change. These conentions are the traditional means of illustrating experimental control in a multiple panel design and are illustrated with solid, unbroken lines.
 
-##### Arrows: *scr_arrows*
+##### Arrows: *scr_anno_arrows*
 
-A common convention in single case designs is to mark up data using arrows and labels in lieu of a formal legend. The *scr_arrows* layer is used to draw arrows upon the respective (sub)plots convey information to the analyst.
+A common convention in single case designs is to mark up data using arrows and labels in lieu of a formal legend. The *scr_anno_arrows* layer is used to draw arrows upon the respective (sub)plots convey information to the analyst.
 
-##### Brackets: *scr_brackets*
+##### Brackets: *scr_anno_brackets*
 
-Another common convention in single case designs is to mark up runs of data using brackets and labels. For example, this is common in displays that convey progression in various procedures (e.g., demand fading). The *scr_brackets* layer is used to draw brackets upon the respective (sub)plots convey information to the analyst regarding some progression (e.g., demand fading from 1 to 6).
+Another common convention in single case designs is to mark up runs of data using brackets and labels. For example, this is common in displays that convey progression in various procedures (e.g., demand fading). The *scr_anno_brackets* layer is used to draw brackets upon the respective (sub)plots convey information to the analyst regarding some progression (e.g., demand fading from 1 to 6).
 
-##### Aim Lines: *scr_guide_line*
+##### Aim Lines: *scr_anno_guide_line*
 
-Various single case designs in education mark up future (or projected) runs of data using aim lines. For example, this is common in displays that communicate a desired response to educational intervention (e.g., reading fluency expected at the end of the year). The *scr_guide_line* layer is used to draw lines upon the respective (sub)plots convey information to the analyst regarding some idealized rate of change from a certain point in time to another (e.g., beginning of intervention to end of school year).
+Various single case designs in education mark up future (or projected) runs of data using aim lines. For example, this is common in displays that communicate a desired response to educational intervention (e.g., reading fluency expected at the end of the year). The *scr_anno_guide_line* layer is used to draw lines upon the respective (sub)plots convey information to the analyst regarding some idealized rate of change from a certain point in time to another (e.g., beginning of intervention to end of school year).
 
 ##### Legend: *scr_legend*
 
@@ -198,7 +198,7 @@ The traditional means of orienting the analyst to data in single case research d
 
 #### Plotting Overrides
 
-##### Title: *scr_title* 
+##### Title: *scr_title*
 
 The *scr_title* overrides the default figure title with custom formatting, text, and aesthetics.
 
@@ -206,15 +206,15 @@ The *scr_title* overrides the default figure title with custom formatting, text,
 
 The *scr_xlabel* overrides the default, common x axis with custom formatting, text, and aesthetics.
 
-##### Label: *scr_ylabel* 
+##### Label: *scr_ylabel*
 
 The *scr_ylabel* overrides the default, common y axis with custom formatting, text, and aesthetics.
 
-##### Ticks: *scr_xoverride* 
+##### Ticks: *scr_xoverride*
 
 The *scr_xoverride* overrides the tick marks and tick labels for (sub)plots in a greater figure.
 
-##### Ticks: *scr_yoverride* 
+##### Ticks: *scr_yoverride*
 
 The *scr_yoverride* overrides the tick marks and tick labels for (sub)plots in a greater figure.
 
@@ -263,7 +263,7 @@ scr_plot(
   scr_title("Rates of Acquisition across Participants")
 ```
 
-# Publication Quality Examples using *fxl* 
+# Publication Quality Examples using *fxl*
 
 Several examples using *fxl* and data from peer-reviewed works are provided in the sections below. The source code necessary to reproduce all figures here is provided in the 'demo' folder of the source repository.
 
@@ -849,7 +849,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_arrows(
+  scr_anno_arrows(
     facet = "Attention",
     length = 0.1,
     arrows = list(
@@ -873,7 +873,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_arrows(
+  scr_anno_arrows(
     facet = "Demand",
     length = 0.1,
     arrows = list(
@@ -897,7 +897,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_brackets(
+  scr_anno_brackets(
     facet = "Attention",
     length = 0.1,
     brackets = list(
@@ -916,7 +916,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_brackets(
+  scr_anno_brackets(
     facet = "Demand",
     length = 0.1,
     brackets = list(
@@ -941,7 +941,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 3,
     facet = "Attention",
@@ -958,7 +958,7 @@ scr_plot(current_data,
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 3,
     facet = "Demand",
@@ -1115,7 +1115,6 @@ The ability to generate up-to-date reports and present data ready for visual ana
 ### Schoolwide/Multi-class Academic Monitoring
 
 ```{r academics_grouped, fig.width=9, fig.height=8, echo=FALSE}
-
 needFluency <- SimulatedAcademicFluency[SimulatedAcademicFluency$Times > 160 &
   SimulatedAcademicFluency$pred < 40 &
   SimulatedAcademicFluency$pred > 10, "index"]
@@ -1176,7 +1175,7 @@ scr_plot(
   scr_title("Addition Sums to 12: Monthly Class-wide Screening") |>
   scr_xlabel("Days Into Academic School Year") |>
   scr_ylabel("Digits Correct Per Minute (DCPM)") |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "green",
     lty = 1,
     lwd = 2,
@@ -1207,7 +1206,7 @@ scr_plot(
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "orange",
     lty = 1,
     lwd = 2,
@@ -1238,7 +1237,7 @@ scr_plot(
       )
     )
   ) |>
-  scr_guide_line(
+  scr_anno_guide_line(
     color = "red",
     lty = 1,
     lwd = 2,
@@ -1285,13 +1284,11 @@ scr_plot(
     adj = 0,
     labels = labelList2
   )
-
 ```
 
 ### Individualized Inspection of Student Learning
 
 ```{r academics_individual, fig.width=9, fig.height=8, echo=FALSE}
-
 hypotheticalReadingFluency <- data.frame(
   Time   = c(1, 30, 60, 90, 120, 150, 180, 210, 240),
   BM_ORF = c(73, NA, NA, NA, 105, NA, NA, NA, 114),
@@ -1341,7 +1338,7 @@ scr_plot(
   scr_title("Response-to-Intervention: Core Reading Indicators") |>
   scr_xlabel("Days Into Academic School Year") |>
   scr_ylabel("Fluency") |>
-  scr_guide_line(
+  scr_anno_guide_line(
     lty = 1,
     coords = list(
       "ORF" = list(
@@ -1521,30 +1518,29 @@ scr_plot(
     horiz = FALSE,
     box_lty = 1
   )
-
 ```
 
 \pagebreak
 
 # Descriptive Use Cases
 
-Descriptive use cases are provided here to provide 'from the ground up' demonstrations of how to use *fxl* to generate visual figures. A range of use cases will be provided to demonstrate the research and clinical applications of the package. 
+Descriptive use cases are provided here to provide 'from the ground up' demonstrations of how to use *fxl* to generate visual figures. A range of use cases will be provided to demonstrate the research and clinical applications of the package.
 
 ## Use Case Number 1: Basic Treatment Evaluation with Reversal Design
 
-The most fundamental and applicable design is the reversal design, which has strong representation in both clinical and applied contexts. In clinical contexts, this is often the quickest means of evaluating whether a particular treatment has the desired effect on specific behavior. 
+The most fundamental and applicable design is the reversal design, which has strong representation in both clinical and applied contexts. In clinical contexts, this is often the quickest means of evaluating whether a particular treatment has the desired effect on specific behavior.
 
 To be consistent with behavior analytic conventions this type of figure would involve featuring:
 
-- One or more data layers with markers and lines
+-   One or more data layers with markers and lines
 
-- Phase change lines
+-   Phase change lines
 
-- Phase labels
+-   Phase labels
 
-- Informative axis labels
+-   Informative axis labels
 
-- Series annotations and/or a figure legend
+-   Series annotations and/or a figure legend
 
 A short tutorial regarding the design and execution of each convention is provided in the section below.
 
@@ -1555,7 +1551,6 @@ The data relevant to the figure must be imported in R in the form of a data fram
 An example of this data formatting is provided below:
 
 ```{r use_case_1_load}
-
 use_case_1 <- data.frame(
   Session = seq_len(16),
   Target = c(
@@ -1574,7 +1569,6 @@ use_case_1 <- data.frame(
 )
 
 head(use_case_1, 3)
-
 ```
 
 In this example, there is a column specific to the x-axis (Session) and the y-axis (Target) as well as a variable to speaks to data embedded within a specific condition (Phase). The Phase factor must have *unique* tags for each phase (i.e., "baseline" vs "baseline2"), otherwise it would try to connect points between two phases that were not temporally connected (i.e., connecting the last point of the first baseline to the first point of the second baseline).
@@ -1584,7 +1578,6 @@ In this example, there is a column specific to the x-axis (Session) and the y-ax
 The current data can be mapped using the *var_map* function to assign the x-axis variable (Session), the y-axis variable (at least a primary one; Target), and the phase identifier (Phase). The result of this, without any specific data layers, is presented below.
 
 ```{r use_case_1_map, fig.width=9, fig.height=6}
-
 scr_plot(
   use_case_1,
   aesthetics = var_map(
@@ -1593,7 +1586,6 @@ scr_plot(
     p = Phase
   )
 )
-
 ```
 
 ### Adding Primary Data Layers
@@ -1601,17 +1593,15 @@ scr_plot(
 By default, assigning the core plot alone will only create the plotting space with default labels. A simple, single series of lines and markers can be added to the core plotting object by adding the *scr_points* and *scr_lines* layers.
 
 ```{r use_case_1_series, fig.width=9, fig.height=6}
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  )
+) |>
   scr_lines() |>
   scr_points()
-
 ```
 
 ### Customizing Margins and Axes
@@ -1619,26 +1609,25 @@ scr_plot(use_case_1,
 The plotting engine will be intelligent 'guesses' as to margin sizes, but these will often have to be overridden to make the overall display more pleasing. That is, the ticks on the y-axis may need to be adjusted to become less cluttered as well (i.e., larger interval between ticks) and padding may be helpful to provide separation from the origin (i.e., 0-point). An example of this provided in the space below.
 
 ```{r use_case_1_series_2, fig.width=9, fig.height=6}
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    ),
-    mai = c(
-      0.375,
-      0.5,
-      0.175,
-      0.1
-    ),
-    omi = c(
-      0.25,
-      0.25,
-      0.25,
-      0.25
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  ),
+  mai = c(
+    0.375,
+    0.5,
+    0.175,
+    0.1
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  )
+) |>
   scr_xoverride(
     c(0.5, 16.5),
     xticks = 1:16
@@ -1650,7 +1639,6 @@ scr_plot(use_case_1,
   ) |>
   scr_lines() |>
   scr_points()
-
 ```
 
 ### Adding Phase Change Lines
@@ -1660,26 +1648,25 @@ Adding phase changes lines to the current can be done in one of two ways: adding
 The current figure involves three elements, separating the four phases, and each element is described using a specific key-ed value in the call. Note: since we extended out the bottom of the y-axis, we must add an argument (*y2* = -0.5) to make sure this matches the current floor for the figure in each of the phase change elements.
 
 ```{r use_case_1_series_3, fig.width=9, fig.height=6}
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    ),
-    mai = c(
-      0.375,
-      0.5,
-      0.175,
-      0.1
-    ),
-    omi = c(
-      0.25,
-      0.25,
-      0.25,
-      0.25
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  ),
+  mai = c(
+    0.375,
+    0.5,
+    0.175,
+    0.1
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  )
+) |>
   scr_xoverride(
     c(0.5, 16.5),
     xticks = 1:16
@@ -1711,36 +1698,34 @@ scr_plot(use_case_1,
       )
     )
   )
-
 ```
 
 ### Adding Phase Labels
 
-The figure can be made more descriptive by drawing text in certain areas to designate which phases correspond with certain changes in the environment. Adding labels to the figure can be done by drawing them within a single plot (i.e., *scr_label_phase*) or individually across multiple facets (i.e., *scr_label_facet*). Since there is only one subplot in this figure, the *scr_label_phase* call is more appropriate. 
+The figure can be made more descriptive by drawing text in certain areas to designate which phases correspond with certain changes in the environment. Adding labels to the figure can be done by drawing them within a single plot (i.e., *scr_label_phase*) or individually across multiple facets (i.e., *scr_label_facet*). Since there is only one subplot in this figure, the *scr_label_phase* call is more appropriate.
 
-The current figure involves four four phases, two instances of baseline and intervention, respectively. Labels are drawn using a series of key-ed list elements, with each element corresponding to a unique label. Note: since we have repeated instances of similar conditions, we must override the *label* argument in the key-ed entry within each of the items.
+The current figure involves four phases, two instances of baseline and intervention, respectively. Labels are drawn using a series of key-ed list elements, with each element corresponding to a unique label. Note: since we have repeated instances of similar conditions, we must override the *label* argument in the key-ed entry within each of the items.
 
 ```{r use_case_1_series_4, fig.width=9, fig.height=6}
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    ),
-    mai = c(
-      0.375,
-      0.5,
-      0.175,
-      0.1
-    ),
-    omi = c(
-      0.25,
-      0.25,
-      0.25,
-      0.25
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  ),
+  mai = c(
+    0.375,
+    0.5,
+    0.175,
+    0.1
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  )
+) |>
   scr_xoverride(
     c(0.5, 16.5),
     xticks = 1:16
@@ -1795,37 +1780,35 @@ scr_plot(use_case_1,
         label = "Intervention"
       )
     )
-  ) 
-
+  )
 ```
 
 ### Customizing Title, Axes Labels
 
-As a final point of styling this figure, the specific labels for each axis can be customized to better suit the desired theme. Generally, there are three primary features that might need adjustment: *scr_xlabel*, *scr_ylabel*, and *scr_title*. Each of these corresponds to the respective label. 
+As a final point of styling this figure, the specific labels for each axis can be customized to better suit the desired theme. Generally, there are three primary features that might need adjustment: *scr_xlabel*, *scr_ylabel*, and *scr_title*. Each of these corresponds to the respective label.
 
 An example customizing these features is provided in the section below.
 
 ```{r use_case_1_series_5, fig.width=9, fig.height=6}
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    ),
-    mai = c(
-      0.375,
-      0.5,
-      0.175,
-      0.1
-    ),
-    omi = c(
-      0.25,
-      0.25,
-      0.25,
-      0.25
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  ),
+  mai = c(
+    0.375,
+    0.5,
+    0.175,
+    0.1
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  )
+) |>
   scr_xoverride(
     c(0.5, 16.5),
     xticks = 1:16
@@ -1882,37 +1865,36 @@ scr_plot(use_case_1,
   scr_xlabel("Daily Sessions") |>
   scr_ylabel("Rates of Target Behavior (per Minute)") |>
   scr_title("Use Case #1",
-            face = 2)
-
+    face = 2
+  )
 ```
 
 ### Saving Figure Output
 
-After the desired design is complete, the figure drawn within R can be saved in any number of formats (e.g., rasters, vectors) depending on the need (e.g., insert into an educational report, saved to include in manuscript). It is important to think carefully about the dimensions supplied for the output. That is, smaller figures will present as "cramped" and may not provide sufficient space in the plane to include suitable text sizes. 
+After the desired design is complete, the figure drawn within R can be saved in any number of formats (e.g., rasters, vectors) depending on the need (e.g., insert into an educational report, saved to include in manuscript). It is important to think carefully about the dimensions supplied for the output. That is, smaller figures will present as "cramped" and may not provide sufficient space in the plane to include suitable text sizes.
 
 An example that outputs the current figure to a PNG-type file is provided in the section below.
 
 ```{r use_case_1_series_6, fig.width=9, fig.height=6}
-
 scr_plot(use_case_1,
-    aesthetics = var_map(
-      x = Session,
-      y = Target,
-      p = Phase
-    ),
-    mai = c(
-      0.375,
-      0.5,
-      0.175,
-      0.1
-    ),
-    omi = c(
-      0.25,
-      0.25,
-      0.25,
-      0.25
-    )
-  ) |>
+  aesthetics = var_map(
+    x = Session,
+    y = Target,
+    p = Phase
+  ),
+  mai = c(
+    0.375,
+    0.5,
+    0.175,
+    0.1
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  )
+) |>
   scr_xoverride(
     c(0.5, 16.5),
     xticks = 1:16
@@ -1969,17 +1951,592 @@ scr_plot(use_case_1,
   scr_xlabel("Daily Sessions") |>
   scr_ylabel("Rates of Target Behavior (per Minute)") |>
   scr_title("Use Case #1",
-            face = 2) |>
-  scr_save(name = "test_draws/Use Case 1.png",
+    face = 2
+  ) |>
+  scr_save(
+    name = "use_case_1.png",
     units = "in",
     width = 9,
     height = 6,
     format = "png"
   )
-
 ```
 
 ### Closing and Summary
 
 This use case serves as a good introduction to the *fxl* package in that the reversal design is very common across both research and applied settings. Using this example as a base, one could easily adapt this snippet and expand its elements to fits various clinical, educational, and/or research needs.
 
+## Use Case Number 2: Multiple Baseline Design across Students
+
+The multiple baseline design is among the most common research designs used in educational settings. This particular design has good utility in both research and clinical applications. However, the use of multiple concurrent (or nonconcurrent) data series presents an issue wherein most graphical charting packages do not support cross-plot conventions natively. Historically, most analysts have had to rely on over-engineered spreadsheets and highly specialized customizations to produce the desired figure.
+
+To be consistent with behavior analytic conventions this type of figure would involve featuring:
+
+-   One or more data layers with markers and lines
+
+-   Phase change lines
+
+-   Phase labels
+
+-   Informative axis labels
+
+-   Series annotations and/or a figure legend
+
+-   Phase change lines that distinguish conditions within as well as between individual subplots.
+
+A short tutorial regarding the design and execution of each convention is provided in the section below.
+
+### Data Import
+
+The data relevant to the figure must be imported in R in the form of a data frame prior to generating a plotting object. By default, *fxl* works with *wide* data because this is generally how most folks trained to work within spreadsheets arrange and organize their data (i.e., individual data series have their own columns).
+
+An example of this data formatting is provided below:
+
+```{r use_case_2_load}
+use_case_2 <- Gilroyetal2015
+
+head(use_case_2, 3)
+```
+
+In this example, there is a column specific to the x-axis (Session) and the y-axis (Responding) as well as a variable to speaks to data embedded within a specific condition (Condition). The Phase factor must have *unique* tags for each phase (i.e., "1" vs "2"), otherwise it would try to connect points between two phases that were not temporally connected (i.e., connecting the last point of the first baseline to the first point of the second baseline).
+
+### Mapping Aesthetics to Data
+
+The current data can be mapped using the *var_map* function to assign the x-axis variable (Session), the y-axis variable (at least a primary one; Responding), and the phase identifier (Condition). The result of this, without any specific data layers, is presented below.
+
+```{r use_case_2_map, fig.width=9, fig.height=6}
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  )
+```
+
+### Adding Primary Data Layers
+
+By default, assigning the core plot alone will only create the plotting space with default labels. A simple, single series of lines and markers can be added to the core plotting object by adding the *scr_points* and *scr_lines* layers.
+
+```{r use_case_2_series, fig.width=9, fig.height=6}
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  ) |>
+  scr_lines() |>
+  scr_points(cex = 2)
+```
+
+### Adding Phase Change Lines
+
+Adding phase changes lines to the current can be done in one of two ways: adding to individual facets (e.g., just in one subplot; *scr_plines*) or as an element that cuts across multiple facets (e.g., across three plots in a figure; *scr_plines_mbd*). Since the current example has three facets, illustrating a staggered introduction of some independent variable, the *scr_plines_mbd* layer is the most appropriate.
+
+The current figure involves three elements, separating the phases across the three panels, and each *cross-figure* phase change point is described using a key-ed value in the call. Specifically there are *three* phase change elements representing the ("A") boundary between baseline and intervention, ("B") intervention and maintenance, and ("C") maintenance and generalization. The specific keys for the *lines* are arbitrary; however, the lists must contain named lists that **use the facet** as the name (e.g., "Andrew", "Brian", "Charles") and include relevant *x* and *y* information. Note: since we extended out the bottom of the y-axis, we must add an argument (*y2* = -5) to the list for Charles to make sure this matches the current floor for the figure in each of the phase change elements--this generally only matters for the final plot as the connection to phases below this point generally accomplishes this without intervention.
+
+```{r use_case_2_series_3, fig.width=9, fig.height=6}
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  ) |>
+  scr_lines() |>
+  scr_points(cex = 2) |>
+  scr_plines_mbd(
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+      "A" = list(
+        "Andrew" = list(
+          x1 = 4.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 11.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 18.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "B" = list(
+        "Andrew" = list(
+          x1 = 13.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 20.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "C" = list(
+        "Andrew" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      )
+    )
+  )
+```
+
+### Adding Facet and Phase Labels
+
+The figure can be made more descriptive by drawing text in certain areas to designate which phases correspond with certain changes in the environment and which facets (i.e., sub-plots) correspond with specific participants/targets. Adding labels to the figure can be done by drawing them within a single plot (i.e., *scr_label_phase*) or individually across multiple facets (i.e., *scr_label_facet*). Since there are three subplots in this figure, the *scr_label_phase* and *scr_label_facet* calls are more necessary.
+
+The current figure features three participants (i.e., "Andrew", "Brian", "Charles") and the plots are illustrated in that order. The *scr_label_facet* is called with a *labels* argument and the named lists must correspond with the values for the subplot (e.g., "Andrew"). Each of these arguments must feature information regarding *where* to draw that label. Note: it is possible to set a general *x* or *y* argument in the overall layer as well as to override the *label* argument in the named list (i.e., if differing from the name for the list/facet).
+
+The figure features four phases across each of the facets--baseline, intervention, maintenance, and generalization. Phase labels are drawn using a series of key-ed list elements, with each element corresponding to a unique label drawn somewhere on the figure. However, since this plot involves multiple subplots in the overall figure, the analyst must specify *which* facet to draw these labels upon. That is, the *facet* argument in *scr_labels_phase* must be set to "Andrew" to specify that phase labels will be drawn on the topmost facet only.
+
+```{r use_case_2_series_4, fig.width=9, fig.height=6}
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  ) |>
+  scr_lines() |>
+  scr_points(cex = 2) |>
+  scr_plines_mbd(
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+      "A" = list(
+        "Andrew" = list(
+          x1 = 4.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 11.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 18.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "B" = list(
+        "Andrew" = list(
+          x1 = 13.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 20.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "C" = list(
+        "Andrew" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      )
+    )
+  ) |>
+  scr_label_facet(
+    cex = 1.5, # plot labels across facets (not within a single facet)
+    adj = 1,
+    y = 10,
+    labels = list( # list of labels to draw (will use assigned key for label)
+      "Andrew" = list(
+        x = 27
+      ),
+      "Brian" = list(
+        x = 27
+      ),
+      "Charles" = list(
+        x = 27
+      )
+    )
+  ) |>
+  scr_label_phase(
+    facet = "Andrew", # plot labels on specific facet
+    cex = 1.25,
+    adj = 0.5,
+    y = 107,
+    labels = list( # list of labels to draw (will use assigned key for label)
+      "Baseline" = list(
+        x = 2.5
+      ),
+      "Treatment" = list(
+        x = 9
+      ),
+      "Maintenance" = list(
+        x = 19
+      ),
+      "Generalization" = list(
+        x = 26
+      )
+    )
+  )
+```
+
+### Customizing Title, Axes Labels
+
+As a final point of styling this figure, the specific labels for each axis can be customized to better suit the desired theme. Generally, there are three primary features that might need adjustment: *scr_xlabel*, *scr_ylabel*, and *scr_title*. Each of these corresponds to the respective label.
+
+An example customizing these features is provided in the section below.
+
+```{r use_case_2_series_5, fig.width=9, fig.height=6}
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  ) |>
+  scr_lines() |>
+  scr_points(cex = 2) |>
+  scr_plines_mbd(
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+      "A" = list(
+        "Andrew" = list(
+          x1 = 4.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 11.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 18.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "B" = list(
+        "Andrew" = list(
+          x1 = 13.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 20.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "C" = list(
+        "Andrew" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      )
+    )
+  ) |> # plot lines, using x/y from aesthetics
+  scr_label_phase(
+    facet = "Andrew", # plot labels on specific facet
+    cex = 1.25,
+    adj = 0.5,
+    y = 107,
+    labels = list( # list of labels to draw (will use assigned key for label)
+      "Baseline" = list(
+        x = 2.5
+      ),
+      "Treatment" = list(
+        x = 9
+      ),
+      "Maintenance" = list(
+        x = 19
+      ),
+      "Generalization" = list(
+        x = 26
+      )
+    )
+  ) |>
+  scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
+  scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
+  scr_title("Rates of Acquisition across Participants",
+    face = 2
+  )
+```
+
+### Saving Figure Output
+
+After the desired design is complete, the figure drawn within R can be saved in any number of formats (e.g., rasters, vectors) depending on the need (e.g., insert into an educational report, saved to include in manuscript). It is important to think carefully about the dimensions supplied for the output. That is, smaller figures will present as "cramped" and may not provide sufficient space in the plane to include suitable text sizes.
+
+An example that outputs the current figure to a PNG-type file is provided in the section below.
+
+```{r use_case_2_series_6, fig.width=9, fig.height=6}
+scr_plot(
+  use_case_2,
+  aesthetics = var_map(
+    x = Session,
+    y = Responding,
+    p = Condition,
+    facet = Participant
+  ),
+  mai = c(
+    0.375,
+    0.375,
+    0.2,
+    0.0
+  ),
+  omi = c(
+    0.25,
+    0.25,
+    0.25,
+    0.1
+  )
+) |>
+  scr_xoverride(
+    c(0.25, 27.5),
+    xticks = 1:27,
+    xtickslabs = as.character(1:27)
+  ) |> # manually override x-axis (make extra room for labels)
+  scr_yoverride(
+    c(-5, 105), # manually override y-axis and tick interval (tick every 10 units)
+    yticks = seq(0, 100, by = 10),
+    ytickslabs = as.character(seq(0, 100, by = 10)),
+  ) |>
+  scr_lines() |>
+  scr_points(cex = 2) |>
+  scr_plines_mbd(
+    lines = list( # plot linked phase lines (note: drawn from top through bottom)
+      "A" = list(
+        "Andrew" = list(
+          x1 = 4.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 11.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 18.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "B" = list(
+        "Andrew" = list(
+          x1 = 13.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 20.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      ),
+      "C" = list(
+        "Andrew" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Brian" = list(
+          x1 = 23.5,
+          y1 = 100
+        ),
+        "Charles" = list(
+          x1 = 23.5,
+          y1 = 100,
+          y2 = -5
+        )
+      )
+    )
+  ) |> # plot lines, using x/y from aesthetics
+  scr_label_phase(
+    facet = "Andrew", # plot labels on specific facet
+    cex = 1.25,
+    adj = 0.5,
+    y = 107,
+    labels = list( # list of labels to draw (will use assigned key for label)
+      "Baseline" = list(
+        x = 2.5
+      ),
+      "Treatment" = list(
+        x = 9
+      ),
+      "Maintenance" = list(
+        x = 19
+      ),
+      "Generalization" = list(
+        x = 26
+      )
+    )
+  ) |>
+  scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
+  scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
+  scr_title("Rates of Acquisition across Participants",
+    face = 2
+  ) |>
+  scr_save(
+    name = "use_case_2.png",
+    units = "in",
+    width = 9,
+    height = 6,
+    format = "png"
+  )
+```
+
+### Closing and Summary
+
+This use case serves as a good expansion to using the *fxl* package because the multiple baseline design is very common in research and practice. Both researchers and clinicians can use this example and use case to fit various clinical, educational, and/or research needs.

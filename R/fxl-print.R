@@ -9,6 +9,7 @@
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @export print.fxl
+#' @importFrom graphics layout
 #' @export
 print.fxl <- function(x, ...) {
   # Holders for phase coords
@@ -37,17 +38,37 @@ print.fxl <- function(x, ...) {
     x[["family"]]
   )
 
-  par(
-    mfrow = c(n_facets_draw, n_cols), # Dynamic facet numbers/cols
-    family = font_family,
-    omi = x[["dims"]][["omi"]],
-    mai = x[["dims"]][["mai"]],
-    xaxs = x[["dims"]][["xaxs"]],
-    yaxs = x[["dims"]][["yaxs"]],
-    xpd = NA
-  )
+  if (!is.na(x[["layout"]]) &&
+      !is.na(x[["layout_h"]]) &&
+      !is.na(x[["layout_v"]])) {
 
-  for (facetIndex in 1:n_facets) { # Print placeholders
+    layout(x[["layout"]],
+           x[["layout_h"]],
+           x[["layout_v"]])
+
+    par(
+      family = font_family,
+      omi = x[["dims"]][["omi"]],
+      mai = x[["dims"]][["mai"]],
+      xaxs = x[["dims"]][["xaxs"]],
+      yaxs = x[["dims"]][["yaxs"]],
+      xpd = NA
+    )
+
+  } else {
+    par(
+      mfrow = c(n_facets_draw, n_cols),
+      family = font_family,
+      omi = x[["dims"]][["omi"]],
+      mai = x[["dims"]][["mai"]],
+      xaxs = x[["dims"]][["xaxs"]],
+      yaxs = x[["dims"]][["yaxs"]],
+      xpd = NA
+    )
+
+  }
+
+  for (facetIndex in 1:n_facets) {
 
     # Defaults, per data
     current_facet <- NA
@@ -189,6 +210,12 @@ print.fxl <- function(x, ...) {
       x_axis_draw <- x$dims[["xticklabs"]]
     }
 
+    if (!is.null(x$dims[["xticklabs"]]) && is.list(
+      x$dims[["xticklabs"]]
+    )) {
+      x_axis_draw <- x$dims[["xticklabs"]][[current_facet]]
+    }
+
     if (!is.null(x$dims[["yticklabs"]]) &&
       !is.list(x$dims[["yticklabs"]])) {
       y_axis_draw <- x$dims[["yticklabs"]]
@@ -313,6 +340,14 @@ print.fxl <- function(x, ...) {
 
         if (current_layer$type == "phase_lines") {
           draw_scr_plines(
+            x,
+            current_layer,
+            current_facet
+          )
+        }
+
+        if (current_layer$type == "criterion_line") {
+          draw_scr_criterion(
             x,
             current_layer,
             current_facet

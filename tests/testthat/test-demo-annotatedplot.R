@@ -245,7 +245,7 @@ describe("Annotated Plot", {
             )
           )
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "Attention",
           length = 0.1,
           arrows = list(
@@ -269,7 +269,7 @@ describe("Annotated Plot", {
             )
           )
         ) |>
-        scr_arrows(
+        scr_anno_arrows(
           facet = "Demand",
           length = 0.1,
           arrows = list(
@@ -293,7 +293,7 @@ describe("Annotated Plot", {
             )
           )
         ) |>
-        scr_brackets(
+        scr_anno_brackets(
           facet = "Attention",
           length = 0.1,
           brackets = list(
@@ -312,7 +312,7 @@ describe("Annotated Plot", {
             )
           )
         ) |>
-        scr_brackets(
+        scr_anno_brackets(
           facet = "Demand",
           length = 0.1,
           brackets = list(
@@ -337,7 +337,7 @@ describe("Annotated Plot", {
             )
           )
         ) |>
-        scr_guide_line(
+        scr_anno_guide_line(
           color = "red",
           lty = 3,
           facet = "Attention",
@@ -354,7 +354,7 @@ describe("Annotated Plot", {
             )
           )
         ) |>
-        scr_guide_line(
+        scr_anno_guide_line(
           color = "red",
           lty = 3,
           facet = "Demand",

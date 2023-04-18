@@ -29,37 +29,38 @@ scr_bar_support <- function(core_frame,
                             label = "",
                             styler = NA,
                             width = 0.8) {
-  # TODO: Tests for remaining params
 
   newlayer <- list()
   newlayer[["type"]] <- "bar_support"
 
-  isValidNumericVector(
-    object = alpha,
-    name = "alpha"
-  )
-
-  newlayer[["alpha"]] <- alpha
-  newlayer[["color"]] <- color
+  # TODO: error check
   newlayer[["guide_line"]] <- guide_line
+
+  assert_input_type(alpha, "numeric", "alpha")
+  newlayer[["alpha"]] <- alpha
+
+  assert_input_type(color, "character", "color")
+  newlayer[["color"]] <- color
+
+  assert_input_type(guide_line_type, "numeric", "guide_line_type")
   newlayer[["guide_line_type"]] <- guide_line_type
+
+  assert_input_type(guide_line_size, "numeric", "guide_line_size")
   newlayer[["guide_line_size"]] <- guide_line_size
+
+  assert_input_type(guide_line_color, "character", "guide_line_color")
   newlayer[["guide_line_color"]] <- guide_line_color
 
-  isValidCharacterVector(
-    object = label,
-    name = "label"
-  )
-
+  assert_input_type(label, "character", "label")
   newlayer[["label"]] <- label
 
-  isValidNumericVector(
-    object = width,
-    name = "width"
-  )
-
+  assert_input_type(width, "numeric", "width")
   newlayer[["width"]] <- width
+
+  # TODO: error check
   newlayer[["styler"]] <- styler
+
+  # TODO: error check
   newlayer[["aesthetics"]] <- NA
 
   if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)
