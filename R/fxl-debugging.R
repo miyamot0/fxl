@@ -215,7 +215,7 @@ assert_input_type <- function(object, types = character(0), tag = "") {
   if (is.na(object)) stop(paste(tag,
                                 "must not be NA"))
 
-  if (class(types) != "character") stop("types must be based in characters")
+  if (!is.character(types)) stop("types must be based in characters")
 
   if (is.vector(object)) {
     if (!(class(object) %in% types))

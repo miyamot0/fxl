@@ -15,7 +15,11 @@ reports_academic_celeration_classes             R code for drawing plot
 reports_academic_celeration_classes_local_norms R code for drawing plot
 reports_academic_rti                            R code for drawing plot
 atd_example_fun                                 R code for drawing plot
-mbl                                             R code for drawing plot
 run_all_demos                                   R code for drawing plot
 run_coverage                                    R code for drawing plot
 greyed_training                                 R code for drawing plot
+challenge_1                                     R code for drawing plot
+challenge_2                                     R code for drawing plot
+challenge_3                                     R code for drawing plot
+challenge_4                                     R code for drawing plot
+changing_criterion                              R code for drawing plot

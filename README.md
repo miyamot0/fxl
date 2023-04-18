@@ -218,7 +218,7 @@ The specific software referenced is provided credit below:
 
 -   ggplot2 - MIT Licensed. [Site](https://github.com/tidyverse/ggplot2)
 
--   TeachingDemos - Artistic 2.0 Licensed. [Site](https://cran.r-project.org/web/packages/TeachingDemos/index.html)
+-   TeachingDemos - Artistic 2.0 Licensed. [Site](https://cran.r-project.org/package=TeachingDemos)
 
 ## Referenced Works (Other Assets)
 
