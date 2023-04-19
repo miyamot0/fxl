@@ -66,7 +66,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/annotatedplot.R)
 
-![Gilroy et al 2019](man/figures/annotatedplot.svg)
+![Gilroy et al 2019](man/figures/annotatedplot.png)
 
 ### Alternating Treatment Design/Functional Analysis
 
@@ -78,7 +78,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/faplot.R)
 
-![Gilroy et al 2019](man/figures/fafigure.svg)
+![Gilroy et al 2019](man/figures/fafigure.png)
 
 ### Custom Functional Analysis (i.e., integrated display of behavior and procedural integrity)
 
@@ -90,9 +90,9 @@ The source code necessary to create such a figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/faplotintegrity.R)
 
-![Modified Functional Analysis](man/figures/fafigureintegrity.svg)
+![Modified Functional Analysis](man/figures/fafigureintegrity.png)
 
-### Concurrent Reversal Design across Participants
+## Concurrent Reversal Design across Participants
 
 The figure below is built using data featured in a single-subject research design conducted by [Gilroy et al. (2021)](https://doi.org/10.1002/jaba.826) and drawn using *fxl*.
 
@@ -102,7 +102,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/concurrentplot.R)
 
-![Gilroy et al 2021](man/figures/concurrentfigure.svg)
+![Gilroy et al 2021](man/figures/concurrentfigure.png)
 
 ### Fully Customizable Markers and Plot Elements
 
@@ -112,11 +112,11 @@ The two examples featured below demonstrate this functionality and the source co
 
 [Code to Draw Figure](demo/concurrentplot_fun.R)
 
-![Customized figure with Hearts and Stars](man/figures/concurrentfigure_fun.svg)
+![Customized figure with Hearts and Stars](man/figures/concurrentfigure_fun.png)
 
 [Code to Draw Figure](demo/atd_example_fun.R)
 
-![Customized figure with Black Scorpions and Green Dragons](man/figures/atd_example_fun.svg)
+![Customized figure with Black Scorpions and Green Dragons](man/figures/atd_example_fun.png)
 
 ### Multiple Probe/Multiple Baseline Design
 
@@ -128,7 +128,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/multiplebaselineplot.R)
 
-![Gilroy et al 2015](man/figures/multiplebaselinefigure.svg)
+![Gilroy et al 2015](man/figures/multiplebaselinefigure.png)
 
 ### Multiple Baseline Design with Annotations
 
@@ -138,7 +138,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/greyed_training.R)
 
-![Annotated MBD](man/figures/training_off_main_graph.svg)
+![Annotated MBD](man/figures/training_off_main_graph.png)
 
 ### Changing Criterion Design with Annotations
 
@@ -148,7 +148,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/changing_criterion.R)
 
-![Annotated MBD](man/figures/changing_criterion.svg)
+![Annotated MBD](man/figures/changing_criterion.png)
 
 ### Concurrent Choice/Initial Link Selections
 
@@ -160,7 +160,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/cumulativeplot.R)
 
-![Lozy et al 2020](man/figures/cumulativeplot.svg)
+![Lozy et al 2020](man/figures/cumulativeplot.png)
 
 ### Silverman-Styled Dot Plots
 
@@ -172,7 +172,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/silvermanplot.R)
 
-![Koffarnus et al 2011](man/figures/silvermanplot.svg)
+![Koffarnus et al 2011](man/figures/silvermanfigure.png)
 
 ### Multilevel Modeling of Fixed Effects in Single Case Designs
 
@@ -184,7 +184,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/cigarettepolicy.R)
 
-![Gelino et al. (2022)](man/figures/cigarettepolicy.svg)
+![Gelino et al. (2022)](man/figures/cigarettepolicy.png)
 
 ### Celeration (Semi-logarithmic) Charts - Individualized
 
@@ -196,7 +196,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/reports_academic_rti.R)
 
-![Example Celeration Figure](man/figures/celeration_academic_rti.svg)
+![Example Celeration Figure](man/figures/celeration_academic_rti.png)
 
 ### Celeration (Semi-logarithmic) Charts - Multiple (Groups/Individuals)
 
@@ -206,7 +206,7 @@ The source code necessary to re-create the figure is provided below (data includ
 
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/reports_academic_rti.R)
 
-![Example Celeration Figure](man/figures/celeration_classwide.svg)
+![Example Celeration Figure](man/figures/celeration_classwide.png)
 
 ## Referenced Works (F/OSS software)
 

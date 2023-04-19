@@ -56,7 +56,7 @@ scr_plot(
   ) |>
   scr_ylabel("Participant Number", line = 3) |>
   scr_xoverride(
-    var = c(1, 135),
+    var = c(0, 135),
     xdelta = 5,
     xticks = c(
       0, 10, 20, 30, 40, 50,
@@ -97,15 +97,15 @@ scr_plot(
     x = 1,
     labels = list( # list of labels to draw (will use assigned key for label)
       "1" = list(
-        y = 43.5,
+        y = 41.5,
         label = "Unpaid Training (n = 39)"
       ),
       "2" = list(
-        y = 86.5,
+        y = 84.5,
         label = "Paid Training (n = 42)"
       ),
       "3" = list(
-        y = 130.5,
+        y = 128.5,
         label = "Contingent Paid Training (n = 42)"
       )
     )
@@ -155,10 +155,11 @@ scr_plot(
     height = 11,
     res = 500,
     width = 9
-  ) |>
-  scr_save(
-    name = "../man/figures/silvermanfigure.svg",
-    format = "svg",
-    height = 11,
-    width = 9
   )
+# |>
+#   scr_save(
+#     name = "../man/figures/silvermanfigure.svg",
+#     format = "svg",
+#     height = 11,
+#     width = 9
+#   )
