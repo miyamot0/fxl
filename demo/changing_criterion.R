@@ -174,12 +174,12 @@ scr_plines(
     )
   )
 ) |>
-scr_save(
-  name = "../man/figures/changing_criterion.svg",
-  format = "svg",
-  height = 6,
-  width = 9
-) |>
+# scr_save(
+#   name = "../man/figures/changing_criterion.svg",
+#   format = "svg",
+#   height = 6,
+#   width = 9
+# ) |>
 scr_save(
   name = "../man/figures/changing_criterion.png",
   format = "png",
