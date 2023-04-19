@@ -2,7 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-*.png
 .DS_Store
 
 .github/*
@@ -24,8 +23,6 @@ tests/testthat/testdraws/*.pdf
 tests/testthat/testdraws/*.png
 tests/testthat/testdraws/*.svg
 tests/testthat/testdraws/*.tiff
-
-man/figures/*.png
 
 tests/testthat/testdraws/*
 
