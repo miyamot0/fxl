@@ -100,7 +100,7 @@ The goal of this study was to explore how unit price and price elasticity affect
 
 The source code necessary to re-create the figure is provided below (data included in the package).
 
-[Code to Draw Figure](https://github.com/miyamot0/fxl/demo/concurrentplot.R)
+[Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/concurrentplot.R)
 
 ![Gilroy et al 2021](man/figures/concurrentfigure.svg)
 
