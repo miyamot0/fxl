@@ -1,7 +1,7 @@
 Package: fxl
 Type: Package
 Title: Faux XL Single Case Design Charting Package
-Version: 1.5.1
+Version: 1.6.0
 Author: Shawn Gilroy <sgilroy1@lsu.edu>
 Maintainer: Shawn Gilroy <sgilroy1@lsu.edu>
 Suggests: 

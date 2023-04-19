@@ -1,5 +1,5 @@
 ## ----setup, include=FALSE-----------------------------------------------------
-knitr::opts_chunk$set(dpi = 200, fig.width = 8) 
+knitr::opts_chunk$set(dpi = 150, fig.width = 8) 
 
 ## ----structure_core, fig.width=7, fig.height=4, warning=FALSE-----------------
 suppressPackageStartupMessages(library(fxl))
@@ -1633,14 +1633,14 @@ scr_plot(use_case_1,
   scr_ylabel("Rates of Target Behavior (per Minute)") |>
   scr_title("Use Case #1",
     face = 2
-  ) |>
-  scr_save(
-    name = "use_case_1.png",
-    units = "in",
-    width = 9,
-    height = 6,
-    format = "png"
-  )
+  ) # |>
+#   scr_save(
+#     name = "use_case_1.png",
+#     units = "in",
+#     width = 9,
+#     height = 6,
+#     format = "png"
+#   )
 
 ## ----use_case_2_load----------------------------------------------------------
 use_case_2 <- Gilroyetal2015
@@ -2135,12 +2135,12 @@ scr_plot(
   scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
   scr_title("Rates of Acquisition across Participants",
     face = 2
-  ) |>
-  scr_save(
-    name = "use_case_2.png",
-    units = "in",
-    width = 9,
-    height = 6,
-    format = "png"
-  )
+  ) # |>
+#   scr_save(
+#     name = "use_case_2.png",
+#     units = "in",
+#     width = 9,
+#     height = 6,
+#     format = "png"
+#   )
 

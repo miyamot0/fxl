@@ -26,9 +26,11 @@ Some highlighted features of the *fxl* package include:
 
 ## Current Version
 
-0.5.2 (beta)
+0.6.0 (beta)
 
 ## Changelog
+
+-   0.6.0 - Initial build for CRAN
 
 -   0.5.2 - Introduction of *scr_rect*, added use case 2 to vignette (multiple baseline)
 
