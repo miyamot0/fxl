@@ -173,17 +173,17 @@ scr_plot(
     adj = 0,
     labels = labelList2
   ) |>
-  scr_save(
-    name = "../man/figures/celeration_academic.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
-  ) |>
+  # scr_save(
+  #   name = "../man/figures/celeration_academic.svg",
+  #   format = "svg",
+  #   units = "in",
+  #   height = 6,
+  #   width = 9
+  # ) |>
   scr_save(
     name = "../man/figures/celeration_academic.png",
     format = "png",
-    res = 600,
+    res = 300,
     height = 6,
     width = 9
   )

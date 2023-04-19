@@ -565,7 +565,7 @@ scr_label_phase(
 scr_save(
   name = "../man/figures/challenge_4.png",
   format = "png",
-  res = 600,
+  res = 300,
   height = 11,
   width = 9.5
 )

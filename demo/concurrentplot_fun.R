@@ -244,17 +244,17 @@ scr_plot(
       )
     )
   ) |>
-  scr_save(
-    name = "../man/figures/concurrentfigure_fun.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
-  ) |>
+  # scr_save(
+  #   name = "../man/figures/concurrentfigure_fun.svg",
+  #   format = "svg",
+  #   units = "in",
+  #   height = 6,
+  #   width = 9
+  # ) |>
   scr_save(
     name = "../man/figures/concurrentfigure_fun.png",
     format = "png",
-    res = 600,
+    res = 300,
     height = 6,
     width = 9
   )

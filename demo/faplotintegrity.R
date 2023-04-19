@@ -187,17 +187,17 @@ scr_plot(
     horiz = FALSE, # list items vertically
     box_lty = 1
   ) |>
-  scr_save(
-    name = "../man/figures/fafigureintegrity.svg",
-    format = "svg",
-    units = "in",
-    height = 7.5,
-    width = 9
-  ) |>
+  # scr_save(
+  #   name = "../man/figures/fafigureintegrity.svg",
+  #   format = "svg",
+  #   units = "in",
+  #   height = 7.5,
+  #   width = 9
+  # ) |>
   scr_save(
     name = "../man/figures/fafigureintegrity.png",
     format = "png",
-    res = 600,
+    res = 300,
     height = 6,
     width = 9
   )

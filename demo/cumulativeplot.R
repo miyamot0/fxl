@@ -265,17 +265,17 @@ scr_plot(
     horiz = FALSE,
     box_lty = 1
   ) |>
-  scr_save(
-    units = "in",
-    name = "../man/figures/cumulativeplot.svg",
-    format = "svg",
-    width = 9,
-    height = 6
-  ) |>
+  # scr_save(
+  #   units = "in",
+  #   name = "../man/figures/cumulativeplot.svg",
+  #   format = "svg",
+  #   width = 9,
+  #   height = 6
+  # ) |>
   scr_save(
     name = "../man/figures/cumulativeplot.png",
     format = "png",
-    res = 600,
+    res = 300,
     height = 6,
     width = 9
   )

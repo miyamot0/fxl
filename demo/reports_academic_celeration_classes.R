@@ -261,17 +261,18 @@ scr_plot(
     horiz = FALSE, # list items vertically
     box_lty = 1
   ) |>
-  scr_save(
-    name = "../man/figures/celeration_classwide.svg",
-    format = "svg",
-    units = "in",
-    width = 9,
-    height = 7.5
-  ) |>
+  # scr_save(
+  #   name = "../man/figures/celeration_classwide.svg",
+  #   format = "svg",
+  #   units = "in",
+  #   width = 9,
+  #   height = 7.5
+  # ) |>
   scr_save(
     name = "../man/figures/celeration_classwide.png",
     format = "png",
     units = "in",
+    res = 300,
     width = 9,
     height = 7.5
   )
