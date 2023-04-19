@@ -1,3 +1,6 @@
+## ----setup, include=FALSE-----------------------------------------------------
+knitr::opts_chunk$set(dpi = 200, fig.width = 8) 
+
 ## ----structure_core, fig.width=7, fig.height=4, warning=FALSE-----------------
 suppressPackageStartupMessages(library(fxl))
 

@@ -10,6 +10,10 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 200, fig.width = 8) 
+```
+
 ```{=html}
 <style>
 img {
