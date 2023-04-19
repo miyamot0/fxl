@@ -2,7 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-*.png
 .DS_Store
 
 .github/*
