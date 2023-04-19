@@ -296,17 +296,17 @@ scr_plot(
     horiz = FALSE,
     box_lty = 0
   ) |>
-  scr_save(
-    name = "../man/figures/training_off_main_graph.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
-  ) |>
+  # scr_save(
+  #   name = "../man/figures/training_off_main_graph.svg",
+  #   format = "svg",
+  #   units = "in",
+  #   height = 6,
+  #   width = 9
+  # ) |>
   scr_save(
     name = "../man/figures/training_off_main_graph.png",
     format = "png",
-    res = 600,
+    res = 300,
     height = 6,
     width = 9
   )

@@ -122,17 +122,17 @@ scr_plot(dataFrame,
   ) |>
   scr_xlabel("Session") |>
   scr_ylabel("          Work Output") |>
-  scr_save(
-    name = "../man/figures/atd_example_fun.svg",
-    format = "svg",
-    units = "in",
-    height = 5.5,
-    width = 11
-  ) |>
+  # scr_save(
+  #   name = "../man/figures/atd_example_fun.svg",
+  #   format = "svg",
+  #   units = "in",
+  #   height = 5.5,
+  #   width = 11
+  # ) |>
   scr_save(
     name = "../man/figures/atd_example_fun.png",
     format = "png",
-    res = 600,
+    res = 300,
     height = 6,
     width = 9
   )

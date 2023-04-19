@@ -248,17 +248,17 @@ scr_plot(
     horiz = FALSE,
     box_lty = 1
   ) |>
-  scr_save(
-    name = "../man/figures/celeration_academic_rti.svg",
-    format = "svg",
-    units = "in",
-    height = 7,
-    width = 9
-  ) |>
+  # scr_save(
+  #   name = "../man/figures/celeration_academic_rti.svg",
+  #   format = "svg",
+  #   units = "in",
+  #   height = 7,
+  #   width = 9
+  # ) |>
   scr_save(
     name = "../man/figures/celeration_academic_rti.png",
     format = "png",
-    res = 600,
+    res = 300,
     height = 7,
     width = 9
   )

@@ -291,7 +291,7 @@ scr_plot(read_data_wide,
   scr_save(
     name = "../man/figures/challenge_1.png",
     format = "png",
-    res = 600,
+    res = 300,
     height = 8,
     width = 9
   )

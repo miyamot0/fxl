@@ -10,6 +10,10 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 150, fig.width = 8) 
+```
+
 ```{=html}
 <style>
 img {
@@ -1952,14 +1956,14 @@ scr_plot(use_case_1,
   scr_ylabel("Rates of Target Behavior (per Minute)") |>
   scr_title("Use Case #1",
     face = 2
-  ) |>
-  scr_save(
-    name = "use_case_1.png",
-    units = "in",
-    width = 9,
-    height = 6,
-    format = "png"
-  )
+  ) # |>
+#   scr_save(
+#     name = "use_case_1.png",
+#     units = "in",
+#     width = 9,
+#     height = 6,
+#     format = "png"
+#   )
 ```
 
 ### Closing and Summary
@@ -2527,14 +2531,14 @@ scr_plot(
   scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
   scr_title("Rates of Acquisition across Participants",
     face = 2
-  ) |>
-  scr_save(
-    name = "use_case_2.png",
-    units = "in",
-    width = 9,
-    height = 6,
-    format = "png"
-  )
+  ) # |>
+#   scr_save(
+#     name = "use_case_2.png",
+#     units = "in",
+#     width = 9,
+#     height = 6,
+#     format = "png"
+#   )
 ```
 
 ### Closing and Summary

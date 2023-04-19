@@ -173,13 +173,13 @@ scr_plot(
     horiz = FALSE, # list items vertically
     box_lty = 1
   ) |>
-  scr_save(
-    name = "../man/figures/semilogfigure.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
-  ) |>
+  # scr_save(
+  #   name = "../man/figures/semilogfigure.svg",
+  #   format = "svg",
+  #   units = "in",
+  #   height = 6,
+  #   width = 9
+  # ) |>
   scr_save(
     name = "../man/figures/semilogfigure.png",
     format = "png",

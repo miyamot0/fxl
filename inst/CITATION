@@ -1,20 +1,11 @@
-citHeader("To cite fxl in publications use:")
-
-citEntry(
-  entry    = "Article",
-  title    = "FXL: Faux XL single-case charting package",
-  author   = person(
-    given = "Shawn",
-    middle = "P.",
-    family = "Gilroy",
-    email = "sgilroy1@lsu.edu"
-  ),
-  journal  = "",
-  year     = "2023",
-  volume   = "",
-  number   = "",
-  pages    = "",
+bibentry(
+  bibtype = "Article",
+  textVersion = "S. P. Gilroy. (2023). FXL: Faux XL single-case charting package.",
+  header = "To cite fxl in publications, please use",
+  author = "Shawn P. Gilroy",
+  title = "fxl: Faux XL single-case charting package",
+  publisher = "Under Review",
+  year = "2023",
   doi      = "10.5281/zenodo.5758834",
   url      = "https://github.com/miyamot0/fxl",
-  textVersion = paste("")
 )
