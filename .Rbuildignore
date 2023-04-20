@@ -3,3 +3,4 @@
 ^.lintr
 ^codecov\.yml$
 ^\.github$
+^\.coverage$
