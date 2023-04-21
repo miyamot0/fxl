@@ -289,7 +289,7 @@ scr_plot(
     text_col = "black", # text color
     horiz = FALSE, # list items vertically
     box_lty = 1
-  ) |>
+  )
   # scr_save(
   #   name = "../man/figures/celeration_classwide_local_norms.svg",
   #   format = "svg",
@@ -297,12 +297,12 @@ scr_plot(
   #   width = 9,
   #   height = 7.5
   # ) |>
-  scr_save(
-    name = "../man/figures/celeration_classwide_local_norms.png",
-    format = "png",
-    res = 300,
-    width = 9,
-    height = 7.5
-  )
+  # scr_save(
+  #   name = "../man/figures/celeration_classwide_local_norms.png",
+  #   format = "png",
+  #   res = 300,
+  #   width = 9,
+  #   height = 7.5
+  # )
 
 setwd(oldwd)

@@ -174,7 +174,7 @@ scr_plot(
     text_col = "black", # text color
     horiz = FALSE, # list items vertically
     box_lty = 1
-  ) |>
+  )
   # scr_save(
   #   name = "../man/figures/semilogfigure.svg",
   #   format = "svg",
@@ -182,13 +182,13 @@ scr_plot(
   #   height = 6,
   #   width = 9
   # ) |>
-  scr_save(
-    name = "../man/figures/semilogfigure.png",
-    format = "png",
-    units = "in",
-    height = 6,
-    width = 9,
-    res = 300
-  )
+  # scr_save(
+  #   name = "../man/figures/semilogfigure.png",
+  #   format = "png",
+  #   units = "in",
+  #   height = 6,
+  #   width = 9,
+  #   res = 300
+  # )
 
 setwd(oldwd)

@@ -149,7 +149,7 @@ scr_plot(
     pt_cex = c(1, 1, 0.5),
     horiz = TRUE,
     box_lty = 0
-  ) |>
+  )
   # |>
   #   scr_save(
   #     name = "../man/figures/silvermanfigure.svg",
@@ -157,13 +157,13 @@ scr_plot(
   #     height = 11,
   #     width = 9
   #   ) |>
-  scr_save(
-    name = "../man/figures/silvermanfigure.png",
-    format = "png",
-    units = "in",
-    height = 11,
-    res = 300,
-    width = 9
-  )
+  # scr_save(
+  #   name = "../man/figures/silvermanfigure.png",
+  #   format = "png",
+  #   units = "in",
+  #   height = 11,
+  #   res = 300,
+  #   width = 9
+  # )
 
 setwd(oldwd)

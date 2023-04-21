@@ -174,7 +174,7 @@ scr_plot(
     cex = 1,
     adj = 0,
     labels = labelList2
-  ) |>
+  )
   # scr_save(
   #   name = "../man/figures/celeration_academic.svg",
   #   format = "svg",
@@ -182,12 +182,12 @@ scr_plot(
   #   height = 6,
   #   width = 9
   # ) |>
-  scr_save(
-    name = "../man/figures/celeration_academic.png",
-    format = "png",
-    res = 300,
-    height = 6,
-    width = 9
-  )
+  # scr_save(
+  #   name = "../man/figures/celeration_academic.png",
+  #   format = "png",
+  #   res = 300,
+  #   height = 6,
+  #   width = 9
+  # )
 
 setwd(oldwd)

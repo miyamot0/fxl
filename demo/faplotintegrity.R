@@ -188,7 +188,7 @@ scr_plot(
     text_col = "black", # text color
     horiz = FALSE, # list items vertically
     box_lty = 1
-  ) |>
+  )
   # scr_save(
   #   name = "../man/figures/fafigureintegrity.svg",
   #   format = "svg",
@@ -196,12 +196,12 @@ scr_plot(
   #   height = 7.5,
   #   width = 9
   # ) |>
-  scr_save(
-    name = "../man/figures/fafigureintegrity.png",
-    format = "png",
-    res = 300,
-    height = 6,
-    width = 9
-  )
+  # scr_save(
+  #   name = "../man/figures/fafigureintegrity.png",
+  #   format = "png",
+  #   res = 300,
+  #   height = 6,
+  #   width = 9
+  # )
 
 setwd(oldwd)

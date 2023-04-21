@@ -67,12 +67,12 @@ final_frame$BillsRecorder <- final_frame$Bills %% 1000
 final_frame$BillsScallops <- round(final_frame$Bills/1000, 0)
 final_frame$BillsYears <- round(final_frame$RawDays/365, 0)
 
-png("../man/figures/challenge_3.png",
-    units = "in",
-    width = 11,
-    height = 8,
-    res = 600
-)
+# png("../man/figures/challenge_3.png",
+#     units = "in",
+#     width = 11,
+#     height = 8,
+#     res = 600
+# )
 
 layout_mat  <- matrix(c(1,1,
                         2,5,
@@ -309,7 +309,7 @@ legend(
   pt.bg = c("white", "black")
 )
 
-dev.off()
+# dev.off()
 
 #   scr_save(
 #     name = "../man/figures/challenge_2.png",

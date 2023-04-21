@@ -563,13 +563,13 @@ scr_label_phase(
       x = 49
     )
   )
-) |>
-scr_save(
-  name = "../man/figures/challenge_4.png",
-  format = "png",
-  res = 300,
-  height = 11,
-  width = 9.5
 )
+# scr_save(
+#   name = "../man/figures/challenge_4.png",
+#   format = "png",
+#   res = 300,
+#   height = 11,
+#   width = 9.5
+# )
 
 setwd(oldwd)

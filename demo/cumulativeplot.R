@@ -266,7 +266,7 @@ scr_plot(
     text_col = "black",
     horiz = FALSE,
     box_lty = 1
-  ) |>
+  )
   # scr_save(
   #   units = "in",
   #   name = "../man/figures/cumulativeplot.svg",
@@ -274,12 +274,12 @@ scr_plot(
   #   width = 9,
   #   height = 6
   # ) |>
-  scr_save(
-    name = "../man/figures/cumulativeplot.png",
-    format = "png",
-    res = 300,
-    height = 6,
-    width = 9
-  )
+  # scr_save(
+  #   name = "../man/figures/cumulativeplot.png",
+  #   format = "png",
+  #   res = 300,
+  #   height = 6,
+  #   width = 9
+  # )
 
 setwd(oldwd)

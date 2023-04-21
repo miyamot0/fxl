@@ -123,7 +123,7 @@ scr_plot(dataFrame,
     )
   ) |>
   scr_xlabel("Session") |>
-  scr_ylabel("          Work Output") |>
+  scr_ylabel("          Work Output")
   # scr_save(
   #   name = "../man/figures/atd_example_fun.svg",
   #   format = "svg",
@@ -131,12 +131,12 @@ scr_plot(dataFrame,
   #   height = 5.5,
   #   width = 11
   # ) |>
-  scr_save(
-    name = "../man/figures/atd_example_fun.png",
-    format = "png",
-    res = 300,
-    height = 6,
-    width = 9
-  )
+  # scr_save(
+  #   name = "../man/figures/atd_example_fun.png",
+  #   format = "png",
+  #   res = 300,
+  #   height = 6,
+  #   width = 9
+  # )
 
 setwd(oldwd)

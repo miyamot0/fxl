@@ -230,20 +230,20 @@ scr_plot(
     text_col = "black",
     horiz = FALSE,
     box_lty = 0
-  ) |>
-  scr_save(
-    name = "../man/figures/concurrentfigure.svg",
-    format = "svg",
-    units = "in",
-    height = 6,
-    width = 9
-  ) |>
-  scr_save(
-    name = "../man/figures/concurrentfigure.png",
-    format = "png",
-    res = 600,
-    height = 6,
-    width = 9
   )
+  # scr_save(
+  #   name = "../man/figures/concurrentfigure.svg",
+  #   format = "svg",
+  #   units = "in",
+  #   height = 6,
+  #   width = 9
+  # ) |>
+  # scr_save(
+  #   name = "../man/figures/concurrentfigure.png",
+  #   format = "png",
+  #   res = 600,
+  #   height = 6,
+  #   width = 9
+  # )
 
 setwd(oldwd)
