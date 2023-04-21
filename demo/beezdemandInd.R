@@ -1,5 +1,7 @@
 library(fxl)
 
+oldwd <- getwd()
+
 if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
@@ -73,3 +75,5 @@ scr_plot(pre_pop_gather,
   )
 ) %>%
   scr_xoverride(xticks = c(0.01, 0.1, 1, 10, 100, 1000))
+
+setwd(oldwd)

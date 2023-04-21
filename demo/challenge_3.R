@@ -1,6 +1,8 @@
 library(fxl)
 library(tidyverse)
 
+oldwd <- getwd()
+
 ## TODO: add to examples once final data imported
 
 if ("here" %in% installed.packages()) {
@@ -316,3 +318,5 @@ dev.off()
 #     height = 8,
 #     width = 11
 #   )
+
+setwd(oldwd)

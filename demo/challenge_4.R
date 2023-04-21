@@ -2,6 +2,8 @@ library(dplyr)
 library(fxl)
 library(scales)
 
+oldwd <- getwd()
+
 if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
@@ -569,3 +571,5 @@ scr_save(
   height = 11,
   width = 9.5
 )
+
+setwd(oldwd)

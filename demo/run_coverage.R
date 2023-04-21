@@ -1,3 +1,5 @@
+oldwd <- getwd()
+
 detach_package <- function(pkg, character.only = FALSE) {
   if (!character.only) {
     pkg <- deparse(substitute(pkg))
@@ -22,3 +24,5 @@ if ("here" %in% installed.packages()) {
     )
   }
 }
+
+setwd(oldwd)

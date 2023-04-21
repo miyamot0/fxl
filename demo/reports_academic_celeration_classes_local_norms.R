@@ -1,5 +1,7 @@
 library(fxl)
 
+oldwd <- getwd()
+
 if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
@@ -302,3 +304,5 @@ scr_plot(
     width = 9,
     height = 7.5
   )
+
+setwd(oldwd)

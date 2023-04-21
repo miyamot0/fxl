@@ -1,6 +1,8 @@
 library(fxl)
 library(tidyverse)
 
+oldwd <- getwd()
+
 if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
@@ -295,3 +297,5 @@ scr_plot(read_data_wide,
     height = 8,
     width = 9
   )
+
+setwd(oldwd)

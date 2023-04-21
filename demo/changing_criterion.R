@@ -1,5 +1,7 @@
 library(fxl)
 
+oldwd <- getwd()
+
 if ("here" %in% installed.packages()) {
   setwd(paste(here::here("demo")))
 }
@@ -188,3 +190,4 @@ scr_save(
   width = 9
 )
 
+setwd(oldwd)
