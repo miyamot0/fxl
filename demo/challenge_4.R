@@ -4,7 +4,7 @@ library(scales)
 
 oldwd <- getwd()
 
-if ("here" %in% installed.packages()) {
+if (require("here")) {
   setwd(paste(here::here("demo")))
 }
 
