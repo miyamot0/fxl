@@ -1,7 +1,7 @@
 ## ----setup, include=FALSE-----------------------------------------------------
-knitr::opts_chunk$set(dpi = 150, fig.width = 8) 
+knitr::opts_chunk$set(dpi = 75, fig.width = 8, fig.height = 4, dev = 'png')
 
-## ----structure_core, fig.width=7, fig.height=4, warning=FALSE-----------------
+## ----structure_core, warning=FALSE--------------------------------------------
 suppressPackageStartupMessages(library(fxl))
 
 scr_plot(
@@ -14,7 +14,7 @@ scr_plot(
   )
 )
 
-## ----structure_layers, fig.width=8, fig.height=4------------------------------
+## ----structure_layers---------------------------------------------------------
 scr_plot(
   Gilroyetal2015,
   aesthetics = var_map(
@@ -27,7 +27,7 @@ scr_plot(
   scr_points(cex = 2) |> # plot points, using x/y from aesthetics
   scr_lines(size = 1) # plot line, using x/y from aesthetics
 
-## ----structure_labels, fig.width=8, fig.height=4------------------------------
+## ----structure_labels---------------------------------------------------------
 scr_plot(
   Gilroyetal2015,
   aesthetics = var_map(
@@ -51,7 +51,7 @@ scr_plot(
   scr_ylabel("Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
   scr_title("Rates of Acquisition across Participants")
 
-## ----ex_gilroy_et_al_2021, fig.width=9, fig.height=6, echo=FALSE--------------
+## ----ex_gilroy_et_al_2021, echo=FALSE-----------------------------------------
 data <- Gilroyetal2021
 
 scr_plot(
@@ -276,7 +276,7 @@ scr_plot(
     box_lty = 0
   )
 
-## ----ex_gilroy_et_al_at, fig.width=9, fig.height=6, echo=FALSE----------------
+## ----ex_gilroy_et_al_at, echo=FALSE-------------------------------------------
 data <- Gilroyetal2019
 
 scr_plot(
@@ -359,7 +359,7 @@ scr_plot(
     box_lty = 0
   )
 
-## ----ex_gilroy_et_al_mbd, fig.width=9, fig.height=6, echo=FALSE---------------
+## ----ex_gilroy_et_al_mbd, echo=FALSE------------------------------------------
 current_data <- Gilroyetal2019Tx
 current_data$Condition <- paste0(current_data$Condition, current_data$PhaseNum)
 current_data$Function <- current_data$Participant
@@ -745,7 +745,7 @@ scr_plot(current_data,
     )
   )
 
-## ----ex_gilroy_et_al_2015, fig.width=9, fig.height=6, echo=FALSE--------------
+## ----ex_gilroy_et_al_2015, echo=FALSE-----------------------------------------
 data <- Gilroyetal2015
 
 scr_plot(
@@ -874,7 +874,7 @@ scr_plot(
   scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
   scr_title("Rates of Acquisition across Participants")
 
-## ----academics_grouped, fig.width=9, fig.height=8, echo=FALSE-----------------
+## ----academics_grouped, echo=FALSE--------------------------------------------
 needFluency <- SimulatedAcademicFluency[SimulatedAcademicFluency$Times > 160 &
   SimulatedAcademicFluency$pred < 40 &
   SimulatedAcademicFluency$pred > 10, "index"]
@@ -1045,7 +1045,7 @@ scr_plot(
     labels = labelList2
   )
 
-## ----academics_individual, fig.width=9, fig.height=8, echo=FALSE--------------
+## ----academics_individual, echo=FALSE-----------------------------------------
 hypotheticalReadingFluency <- data.frame(
   Time   = c(1, 30, 60, 90, 120, 150, 180, 210, 240),
   BM_ORF = c(73, NA, NA, NA, 105, NA, NA, NA, 114),
@@ -1296,7 +1296,7 @@ use_case_1 <- data.frame(
 
 head(use_case_1, 3)
 
-## ----use_case_1_map, fig.width=9, fig.height=6--------------------------------
+## ----use_case_1_map-----------------------------------------------------------
 scr_plot(
   use_case_1,
   aesthetics = var_map(
@@ -1306,7 +1306,7 @@ scr_plot(
   )
 )
 
-## ----use_case_1_series, fig.width=9, fig.height=6-----------------------------
+## ----use_case_1_series--------------------------------------------------------
 scr_plot(use_case_1,
   aesthetics = var_map(
     x = Session,
@@ -1317,7 +1317,7 @@ scr_plot(use_case_1,
   scr_lines() |>
   scr_points()
 
-## ----use_case_1_series_2, fig.width=9, fig.height=6---------------------------
+## ----use_case_1_series_2------------------------------------------------------
 scr_plot(use_case_1,
   aesthetics = var_map(
     x = Session,
@@ -1349,7 +1349,7 @@ scr_plot(use_case_1,
   scr_lines() |>
   scr_points()
 
-## ----use_case_1_series_3, fig.width=9, fig.height=6---------------------------
+## ----use_case_1_series_3------------------------------------------------------
 scr_plot(use_case_1,
   aesthetics = var_map(
     x = Session,
@@ -1401,7 +1401,7 @@ scr_plot(use_case_1,
     )
   )
 
-## ----use_case_1_series_4, fig.width=9, fig.height=6---------------------------
+## ----use_case_1_series_4------------------------------------------------------
 scr_plot(use_case_1,
   aesthetics = var_map(
     x = Session,
@@ -1477,7 +1477,7 @@ scr_plot(use_case_1,
     )
   )
 
-## ----use_case_1_series_5, fig.width=9, fig.height=6---------------------------
+## ----use_case_1_series_5------------------------------------------------------
 scr_plot(use_case_1,
   aesthetics = var_map(
     x = Session,
@@ -1556,7 +1556,7 @@ scr_plot(use_case_1,
     face = 2
   )
 
-## ----use_case_1_series_6, fig.width=9, fig.height=6---------------------------
+## ----use_case_1_series_6------------------------------------------------------
 scr_plot(use_case_1,
   aesthetics = var_map(
     x = Session,
@@ -1647,7 +1647,7 @@ use_case_2 <- Gilroyetal2015
 
 head(use_case_2, 3)
 
-## ----use_case_2_map, fig.width=9, fig.height=6--------------------------------
+## ----use_case_2_map-----------------------------------------------------------
 scr_plot(
   use_case_2,
   aesthetics = var_map(
@@ -1680,7 +1680,7 @@ scr_plot(
     ytickslabs = as.character(seq(0, 100, by = 10)),
   )
 
-## ----use_case_2_series, fig.width=9, fig.height=6-----------------------------
+## ----use_case_2_series--------------------------------------------------------
 scr_plot(
   use_case_2,
   aesthetics = var_map(
@@ -1715,7 +1715,7 @@ scr_plot(
   scr_lines() |>
   scr_points(cex = 2)
 
-## ----use_case_2_series_3, fig.width=9, fig.height=6---------------------------
+## ----use_case_2_series_3------------------------------------------------------
 scr_plot(
   use_case_2,
   aesthetics = var_map(
@@ -1799,7 +1799,7 @@ scr_plot(
     )
   )
 
-## ----use_case_2_series_4, fig.width=9, fig.height=6---------------------------
+## ----use_case_2_series_4------------------------------------------------------
 scr_plot(
   use_case_2,
   aesthetics = var_map(
@@ -1919,7 +1919,7 @@ scr_plot(
     )
   )
 
-## ----use_case_2_series_5, fig.width=9, fig.height=6---------------------------
+## ----use_case_2_series_5------------------------------------------------------
 scr_plot(
   use_case_2,
   aesthetics = var_map(
@@ -2028,7 +2028,7 @@ scr_plot(
     face = 2
   )
 
-## ----use_case_2_series_6, fig.width=9, fig.height=6---------------------------
+## ----use_case_2_series_6------------------------------------------------------
 scr_plot(
   use_case_2,
   aesthetics = var_map(
