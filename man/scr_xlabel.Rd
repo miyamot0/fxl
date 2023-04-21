@@ -29,6 +29,9 @@ scr_xlabel(
 
 \item{line}{line width}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 Override the x axis label
 }

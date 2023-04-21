@@ -26,6 +26,9 @@ scr_yoverride(
 
 \item{ytickslabs}{tick labels}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 Override the y axis (or axes) limits
 }

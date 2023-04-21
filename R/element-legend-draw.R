@@ -6,6 +6,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns nothing, run for side effects
+#'
 #' @export
 draw_legend <- function(core_frame) {
   if (is.list(core_frame$legendpars[["position"]])) {

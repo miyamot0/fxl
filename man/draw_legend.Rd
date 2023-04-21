@@ -9,6 +9,9 @@ draw_legend(core_frame)
 \arguments{
 \item{core_frame}{fxl object}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 drawing function
 }

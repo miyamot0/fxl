@@ -9,6 +9,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns nothing, run for side effects
+#'
 #' @export
 draw_points <- function(core_frame, current_layer, facet_name, zero_axis = FALSE) {
   if (is.na(facet_name)) {

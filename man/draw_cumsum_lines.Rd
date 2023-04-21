@@ -13,6 +13,12 @@ draw_cumsum_lines(core_frame, current_layer, facet_name)
 
 \item{facet_name}{name of facet}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 draw_cumsum_lines
+}
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
 }

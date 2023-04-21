@@ -13,6 +13,9 @@ draw_scr_plines(core_frame, current_layer, facet_name)
 
 \item{facet_name}{name of facet}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 drawing function
 }

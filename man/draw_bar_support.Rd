@@ -15,6 +15,12 @@ draw_bar_support(core_frame, current_layer, facet_name, max_y)
 
 \item{max_y}{top of y axis to match}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 Draw bars, but on a secondary axis
+}
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
 }

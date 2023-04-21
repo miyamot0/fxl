@@ -9,6 +9,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns nothing, run for side effects
+#'
 #' @importFrom grImport grid.symbols
 #' @importFrom graphics grconvertX
 #' @importFrom graphics grconvertY

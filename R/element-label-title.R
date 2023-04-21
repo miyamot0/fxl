@@ -11,6 +11,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns nothing, run for side effects
+#'
 #' @export
 scr_title <- function(core_frame,
                       var,

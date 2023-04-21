@@ -4,6 +4,10 @@
 #' @param current_layer layer to be drawn
 #' @param facet_name name of facet
 #'
+#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
+#'
+#' @returns nothing, run for side effects
+#'
 #' @export
 draw_cumsum_points <- function(core_frame, current_layer, facet_name) {
   if (is.na(facet_name)) {

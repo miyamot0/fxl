@@ -13,6 +13,12 @@ draw_guide_line(core_frame, current_layer, facet_name)
 
 \item{facet_name}{name of facet}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 draw_guide_line
+}
+\author{
+Shawn Gilroy <sgilroy1@lsu.edu>
 }
