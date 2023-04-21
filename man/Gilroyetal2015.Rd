@@ -5,7 +5,18 @@
 \alias{Gilroyetal2015}
 \title{Plotting data from Gilroy et al. (2015)}
 \format{
-An object of class \code{data.frame} with 40 rows and 6 columns.
+A data frame with 40 rows and 6 variables:
+\describe{
+  \item{Participant}{Participant name}
+  \item{Session}{Session number}
+  \item{Condition}{Condition name}
+  \item{Responding}{Responding rates}
+  \item{PhaseNum}{Phase number}
+  \item{LineOff}{Offset for phase line}
+}
+}
+\source{
+<doi:https://doi.org/10.1016/j.rasd.2015.04.004>
 }
 \usage{
 Gilroyetal2015

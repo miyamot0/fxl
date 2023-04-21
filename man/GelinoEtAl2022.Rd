@@ -3,14 +3,28 @@
 \docType{data}
 \name{GelinoEtAl2022}
 \alias{GelinoEtAl2022}
-\title{Plotting data from Gelino et al. (2022)}
+\title{Plotting data from Koffarnus et al. (2011)}
 \format{
-An object of class \code{data.frame} with 11 rows and 9 columns.
+A data frame with 9 rows and 1 variables:
+\describe{
+  \item{Condition}{Baseline vs. policy condition}
+  \item{Time}{Time of study}
+  \item{SC}{Slope change dummy code}
+  \item{yhat}{Predicted value from model}
+  \item{Count1}{Count for site 1}
+  \item{Count2}{Count for site 2}
+  \item{Count3}{Count for site 3}
+  \item{Count4}{Count for site 4}
+  \item{Facet}{Facet/subplot number}
+}
+}
+\source{
+<doi:https://doi.org/10.1002/jaba.967>
 }
 \usage{
 GelinoEtAl2022
 }
 \description{
-Plotting data from Gelino et al. (2022)
+Treatment data from Koffarnus et al. (2011)
 }
 \keyword{datasets}

@@ -5,12 +5,20 @@
 \alias{KoffarnusEtAl2011}
 \title{Plotting data from Koffarnus et al. (2011)}
 \format{
-An object of class \code{data.frame} with 14979 rows and 3 columns.
+A data frame with 14979 rows and 3 variables:
+\describe{
+  \item{X}{Session/day number}
+  \item{ID}{Participant ID on the Y axis}
+  \item{Code}{Status for treatment}
+}
+}
+\source{
+<doi:https://doi.org/10.1093/alcalc/agr057>
 }
 \usage{
 KoffarnusEtAl2011
 }
 \description{
-Plotting data from Koffarnus et al. (2011)
+Treatment data from Koffarnus et al. (2011)
 }
 \keyword{datasets}

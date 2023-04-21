@@ -3,14 +3,27 @@
 \docType{data}
 \name{Challenge4Data}
 \alias{Challenge4Data}
-\title{Plotting data Challenge 4}
+\title{Twitter chart challenge data 4}
 \format{
-An object of class \code{data.frame} with 189 rows and 11 columns.
+A data frame with 189 rows and 11 variables:
+\describe{
+  \item{Session}{Session number}
+  \item{Participant}{Participant name}
+  \item{Phase}{Phase name}
+  \item{Number.Writing.Fluency}{Fluency of number writing}
+  \item{Dot.Number}{Fluency of dot number skills}
+  \item{Dot.Number.Total}{Fluency of dot number skills on all sets}
+  \item{Number.Total}{Number writing fluency on all sets}
+  \item{Number.Writing.Fluency_Accuracy}{Number writing accuracy}
+  \item{Dot.Number_Accuracy}{Dot number accuracy}
+  \item{Dot.Number.Total_Accuracy}{Dot number accuracy on all sets}
+  \item{Number.Total_Accuracy}{Number writing accuracy on all sets}
+}
 }
 \usage{
 Challenge4Data
 }
 \description{
-Plotting data Challenge 4
+Twitter chart challenge data 4
 }
 \keyword{datasets}
