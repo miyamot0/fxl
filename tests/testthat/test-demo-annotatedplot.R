@@ -365,8 +365,7 @@ describe("Annotated Plot", {
               y0 = 0.1
             )
           )
-        ) |>
-        print()
+        )
     )
   })
 })

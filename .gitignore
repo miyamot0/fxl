@@ -26,4 +26,6 @@ tests/testthat/testdraws/*.tiff
 
 tests/testthat/testdraws/*
 
+tests/testthat/_snaps
+
 coverage
