@@ -8,6 +8,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns a layer to the core plotting object
+#'
 #' @export
 scr_plines <- function(core_frame,
                        lines = NULL,

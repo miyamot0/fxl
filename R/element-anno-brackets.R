@@ -14,6 +14,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns a layer to the core plotting object
+#'
 #' @export
 scr_anno_brackets <- function(core_frame,
                          brackets = NULL,
