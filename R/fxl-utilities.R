@@ -28,6 +28,7 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>, Greg Snow <538280@@gmail.com>
 #'
+#' @returns Transformation of coordinates from local plot to figure space for phase changes
 #' @export
 cnvrt_coords <- function(x,
                          y = NULL,

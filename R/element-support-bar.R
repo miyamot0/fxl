@@ -14,6 +14,8 @@
 #' @param styler a lambda function that returns dynamic styling parameters
 #' @param width width of bar
 #'
+#' @returns a layer to the core plotting object
+#'
 #' @export
 #' @importFrom rlang enexprs
 scr_bar_support <- function(core_frame,

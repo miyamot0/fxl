@@ -35,6 +35,9 @@ scr_anno_arrows(
 
 \item{lty}{from base}
 }
+\value{
+a layer to the core plotting object
+}
 \description{
 Add a layer with arrows to direct attention on the plot
 }

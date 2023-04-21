@@ -10,6 +10,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns a layer to the core plotting object
+#'
 #' @export
 #' @importFrom rlang enexprs
 scr_cumsum_lines <- function(core_frame,

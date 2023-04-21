@@ -1,6 +1,8 @@
 library(fxl)
 
-if ("here" %in% installed.packages()) {
+oldwd <- getwd()
+
+if (require("here")) {
   setwd(paste(here::here("demo")))
 }
 
@@ -130,7 +132,7 @@ scr_plot(
   ) |>
   scr_xlabel("Session") |> # Override x-axis label (bottom only shown by default)
   scr_ylabel("      Percent Accuracy") |> # Override y-axis label (centered, leftmost label)
-  scr_title("Rates of Acquisition across Participants") |>
+  scr_title("Rates of Acquisition across Participants")
   # scr_save(
   #   name = "../man/figures/multiplebaselinefigure.svg",
   #   format = "svg",
@@ -138,10 +140,12 @@ scr_plot(
   #   height = 6,
   #   width = 9
   # ) |>
-  scr_save(
-    name = "../man/figures/multiplebaselinefigure.png",
-    format = "png",
-    res = 300,
-    height = 6,
-    width = 9
-  )
+  # scr_save(
+  #   name = "../man/figures/multiplebaselinefigure.png",
+  #   format = "png",
+  #   res = 300,
+  #   height = 6,
+  #   width = 9
+  # )
+
+setwd(oldwd)

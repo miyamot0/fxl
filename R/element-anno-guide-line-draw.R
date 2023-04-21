@@ -4,6 +4,10 @@
 #' @param current_layer layer to be drawn
 #' @param facet_name name of facet
 #'
+#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
+#'
+#' @returns nothing, run for side effects
+#'
 #' @export
 draw_guide_line <- function(core_frame, current_layer, facet_name) {
   is_facet_name_na <- is.na(facet_name)

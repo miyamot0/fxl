@@ -7,6 +7,10 @@
 #' @param facet_name name of facet
 #' @param max_y top of y axis to match
 #'
+#' @author Shawn Gilroy <sgilroy1@@lsu.edu>
+#'
+#' @returns nothing, run for side effects
+#'
 #' @export
 #' @importFrom graphics clip
 draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {

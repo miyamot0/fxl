@@ -13,6 +13,9 @@ cnvrt_coords(x, y = NULL, input = c("usr", "plt", "fig", "dev", "tdev"))
 
 \item{input}{device}
 }
+\value{
+Transformation of coordinates from local plot to figure space for phase changes
+}
 \description{
 Pulled from the TeachingDemos package (GPLv2+ Licensed)
 }

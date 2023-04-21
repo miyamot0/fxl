@@ -1,7 +1,9 @@
 library(fxl)
 library(tidyverse)
 
-if ("here" %in% installed.packages()) {
+oldwd <- getwd()
+
+if (require("here")) {
   setwd(paste(here::here("demo")))
 }
 
@@ -326,12 +328,13 @@ scr_plot(read_data,
         y1 = 5
       )
     )
-  ) |>
-  scr_save(
-    name = "../man/figures/challenge_2.png",
-    format = "png",
-    res = 300,
-    height = 8,
-    width = 11
   )
+  # scr_save(
+  #   name = "../man/figures/challenge_2.png",
+  #   format = "png",
+  #   res = 300,
+  #   height = 8,
+  #   width = 11
+  # )
 
+setwd(oldwd)

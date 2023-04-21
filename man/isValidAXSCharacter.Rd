@@ -11,6 +11,9 @@ isValidAXSCharacter(object = NULL, name = NULL)
 
 \item{name}{parameter name}
 }
+\value{
+no return value, run for side effects
+}
 \description{
 isValidAXSCharacter
 }

@@ -1,6 +1,8 @@
 library(fxl)
 
-if ("here" %in% installed.packages()) {
+oldwd <- getwd()
+
+if (require("here")) {
   setwd(paste(here::here("demo")))
 }
 
@@ -247,7 +249,7 @@ scr_plot(
     text_col = "black",
     horiz = FALSE,
     box_lty = 1
-  ) |>
+  )
   # scr_save(
   #   name = "../man/figures/celeration_academic_rti.svg",
   #   format = "svg",
@@ -255,10 +257,12 @@ scr_plot(
   #   height = 7,
   #   width = 9
   # ) |>
-  scr_save(
-    name = "../man/figures/celeration_academic_rti.png",
-    format = "png",
-    res = 300,
-    height = 7,
-    width = 9
-  )
+  # scr_save(
+  #   name = "../man/figures/celeration_academic_rti.png",
+  #   format = "png",
+  #   res = 300,
+  #   height = 7,
+  #   width = 9
+  # )
+
+setwd(oldwd)

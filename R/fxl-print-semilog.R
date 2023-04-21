@@ -9,6 +9,9 @@
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @export print.fxlsemilog
+#'
+#' @returns no return, executed for side effects
+#'
 #' @export
 print.fxlsemilog <- function(x, ...) {
   # Holders for phase coords
@@ -22,6 +25,9 @@ print.fxlsemilog <- function(x, ...) {
   n_cols <- 1
   lookup <- FALSE
   req_draw <- FALSE
+
+  opar <- par(no.readonly = TRUE)
+  on.exit(par(opar))
 
   if ("facet" %in% names(x$aes)) {
     facets <- unique(x$data[[as.character(x$aes["facet"])]])

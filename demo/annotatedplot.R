@@ -1,6 +1,8 @@
 library(fxl)
 
-if ("here" %in% installed.packages()) {
+oldwd <- getwd()
+
+if (require("here")) {
   setwd(paste(here::here("demo")))
 }
 
@@ -387,17 +389,19 @@ scr_plot(current_data,
         y0 = 0.1
       )
     )
-  ) |>
+  )
   # scr_save(
   #   name = "../man/figures/annotatedplot.svg",
   #   format = "svg",
   #   height = 6,
   #   width = 9
   # ) |>
-  scr_save(
-    name = "../man/figures/annotatedplot.png",
-    format = "png",
-    res = 300,
-    height = 6,
-    width = 9
-  )
+  # scr_save(
+  #   name = "../man/figures/annotatedplot.png",
+  #   format = "png",
+  #   res = 300,
+  #   height = 6,
+  #   width = 9
+  # )
+
+setwd(oldwd)

@@ -11,6 +11,9 @@ isValidAestheticMapping(object = NULL, name = NULL)
 
 \item{name}{name for object}
 }
+\value{
+no return value, run for side effects
+}
 \description{
 isValidAestheticMapping
 }

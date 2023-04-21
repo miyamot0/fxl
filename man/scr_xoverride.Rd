@@ -38,6 +38,9 @@ scr_xoverride(
 
 \item{xticksadj}{alignment for custom labels}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 Override the x axis limits
 }

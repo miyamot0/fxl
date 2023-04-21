@@ -13,6 +13,9 @@ assert_input_type(object, types = character(0), tag = "")
 
 \item{tag}{var to reference in error message}
 }
+\value{
+no return value, run for side effects
+}
 \description{
 assert_input_type
 }

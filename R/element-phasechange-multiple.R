@@ -6,6 +6,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns a layer to the core plotting object
+#'
 #' @export
 scr_plines_mbd <- function(core_frame,
                            lty = 1,

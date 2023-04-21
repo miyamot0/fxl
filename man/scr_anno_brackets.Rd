@@ -35,6 +35,9 @@ scr_anno_brackets(
 
 \item{lty}{from base}
 }
+\value{
+a layer to the core plotting object
+}
 \description{
 Add a layer with brackets on plot
 }

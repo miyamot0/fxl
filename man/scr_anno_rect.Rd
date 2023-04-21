@@ -15,6 +15,9 @@ scr_anno_rect(core_frame, rects = NULL, color = "black", fill = "black")
 
 \item{fill}{from base}
 }
+\value{
+a layer to the core plotting object
+}
 \description{
 scr_anno_rect
 }

@@ -17,6 +17,9 @@ scr_plines(core_frame, lines = NULL, lwd = 1, lty = 1, col = "black")
 
 \item{col}{from base}
 }
+\value{
+a layer to the core plotting object
+}
 \description{
 scr_plines
 }

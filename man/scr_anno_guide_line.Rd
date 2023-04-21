@@ -26,6 +26,9 @@ scr_anno_guide_line(
 
 \item{lwd}{line width}
 }
+\value{
+a layer to the core plotting object
+}
 \description{
 This is an annotation illustrating an aim/reduction line
 }

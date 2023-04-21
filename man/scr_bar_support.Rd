@@ -41,6 +41,9 @@ scr_bar_support(
 
 \item{width}{width of bar}
 }
+\value{
+a layer to the core plotting object
+}
 \description{
 Adds a supplemental bar to the figure, if relevant to the data
 }

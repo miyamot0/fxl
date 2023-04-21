@@ -3,14 +3,28 @@
 \docType{data}
 \name{Gilroyetal2019}
 \alias{Gilroyetal2019}
-\title{Plotting data from Gilroy et al. (2019a)}
+\title{Plotting data from Gilroy et al. (2019) - FA}
 \format{
-An object of class \code{data.frame} with 15 rows and 9 columns.
+A data frame with 15 rows and 9 variables:
+\describe{
+  \item{Session}{Session number}
+  \item{SIB}{Rates of self-injury}
+  \item{AGG}{Rates of aggression}
+  \item{DIS}{Rates of disruptive behavior}
+  \item{Prompt}{Rates of prompting}
+  \item{Comply}{Rates of compliance}
+  \item{SR}{Duration of reinforcement}
+  \item{CTB}{Rates of combined target behavior}
+  \item{Condition}{Functional analysis condition}
+}
+}
+\source{
+<doi:https://doi.org/10.1080/17518423.2019.1646342>
 }
 \usage{
 Gilroyetal2019
 }
 \description{
-Plotting data from Gilroy et al. (2019a)
+FA data from Gilroy et al. (2019)
 }
 \keyword{datasets}

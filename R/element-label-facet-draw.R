@@ -8,6 +8,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns nothing, run for side effects
+#'
 #' @export
 draw_label_facet <- function(core_frame, current_layer, facet_name) {
   if (is.na(facet_name) & length(names(current_layer$labels)) != 1) {

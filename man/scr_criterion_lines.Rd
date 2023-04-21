@@ -23,6 +23,9 @@ scr_criterion_lines(
 
 \item{lines}{lines to draw}
 }
+\value{
+a layer to the core plotting object
+}
 \description{
 scr_criterion_lines
 }

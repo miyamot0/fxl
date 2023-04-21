@@ -1,3 +1,5 @@
+oldwd <- getwd()
+
 detach_package <- function(pkg, character.only = FALSE) {
   if (!character.only) {
     pkg <- deparse(substitute(pkg))
@@ -10,11 +12,11 @@ detach_package <- function(pkg, character.only = FALSE) {
 
 detach_package(fxl)
 
-if ("here" %in% installed.packages()) {
+if (require("here")) {
   require(here)
   setwd(paste(here("coverage")))
 
-  if ("covr" %in% installed.packages()) {
+  if (require("covr")) {
     require(covr)
 
     report(
@@ -22,3 +24,5 @@ if ("here" %in% installed.packages()) {
     )
   }
 }
+
+setwd(oldwd)

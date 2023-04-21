@@ -5,12 +5,22 @@
 \alias{LozyEtAl2020}
 \title{Plotting data from Lozy et al. (2020)}
 \format{
-An object of class \code{data.frame} with 91 rows and 5 columns.
+A data frame with 91 rows and 5 variables:
+\describe{
+  \item{Session}{Session number}
+  \item{Participant}{Participant name}
+  \item{KM}{Kinesthetic movement choices}
+  \item{TD}{Traditional drill choices}
+  \item{Phase}{Sequenced phase number}
+}
+}
+\source{
+<doi:https://doi.org/10.1002/jaba.677>
 }
 \usage{
 LozyEtAl2020
 }
 \description{
-Plotting data from Lozy et al. (2020)
+Treatment data from Lozy et al. (2020)
 }
 \keyword{datasets}

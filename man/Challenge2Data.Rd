@@ -3,14 +3,21 @@
 \docType{data}
 \name{Challenge2Data}
 \alias{Challenge2Data}
-\title{Plotting data Challenge 2}
+\title{Twitter chart challenge data 2}
 \format{
-An object of class \code{data.frame} with 113 rows and 5 columns.
+A data frame with 113 rows and 5 variables:
+\describe{
+  \item{Participant}{Participant name}
+  \item{Session}{Session number}
+  \item{Condition}{Condition name}
+  \item{IWS}{Incorrect word sequences}
+  \item{CWS}{Correct word sounds}
+}
 }
 \usage{
 Challenge2Data
 }
 \description{
-Plotting data Challenge 2
+Twitter chart challenge data 2
 }
 \keyword{datasets}

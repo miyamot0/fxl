@@ -14,6 +14,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns no return, executed for side effects
+#'
 #' @export
 scr_save <- function(core_frame,
                      units = "in",

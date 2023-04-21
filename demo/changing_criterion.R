@@ -1,6 +1,8 @@
 library(fxl)
 
-if ("here" %in% installed.packages()) {
+oldwd <- getwd()
+
+if (require("here")) {
   setwd(paste(here::here("demo")))
 }
 
@@ -173,18 +175,19 @@ scr_plines(
       y2 = -2.5
     )
   )
-) |>
+)
 # scr_save(
 #   name = "../man/figures/changing_criterion.svg",
 #   format = "svg",
 #   height = 6,
 #   width = 9
 # ) |>
-scr_save(
-  name = "../man/figures/changing_criterion.png",
-  format = "png",
-  res = 600,
-  height = 6,
-  width = 9
-)
+# scr_save(
+#   name = "../man/figures/changing_criterion.png",
+#   format = "png",
+#   res = 600,
+#   height = 6,
+#   width = 9
+# )
 
+setwd(oldwd)

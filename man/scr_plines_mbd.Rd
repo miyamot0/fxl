@@ -13,6 +13,9 @@ scr_plines_mbd(core_frame, lty = 1, lines = NULL)
 
 \item{lines}{phase lines to be drawn}
 }
+\value{
+a layer to the core plotting object
+}
 \description{
 scr_plines_mbd
 }

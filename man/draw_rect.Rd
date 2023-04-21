@@ -15,6 +15,9 @@ draw_rect(core_frame, current_layer, facet_name, zero_axis = FALSE)
 
 \item{zero_axis}{filter out all but zeros}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 drawing function
 }

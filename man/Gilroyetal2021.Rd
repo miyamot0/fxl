@@ -3,14 +3,26 @@
 \docType{data}
 \name{Gilroyetal2021}
 \alias{Gilroyetal2021}
-\title{Plotting data from Gilroy et al. (2021)}
+\title{Plotting data from Gilroy et al. (2015) - Treatment}
 \format{
-An object of class \code{data.frame} with 69 rows and 7 columns.
+A data frame with 69 rows and 7 variables:
+\describe{
+  \item{Participant}{Participant name}
+  \item{Session}{Session number}
+  \item{Condition}{Functional analysis condition}
+  \item{Responding}{Rates of responding}
+  \item{Reinforcers}{Reinforcer deliveries}
+  \item{PhaseNum}{Sequenced phase number}
+  \item{LineOff}{Offset of phase line}
+}
+}
+\source{
+<doi:https://doi.org/10.1002/jaba.826>
 }
 \usage{
 Gilroyetal2021
 }
 \description{
-Plotting data from Gilroy et al. (2021)
+Treatment data from Gilroy et al. (2021)
 }
 \keyword{datasets}

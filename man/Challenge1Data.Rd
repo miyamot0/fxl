@@ -3,14 +3,27 @@
 \docType{data}
 \name{Challenge1Data}
 \alias{Challenge1Data}
-\title{Plotting data Challenge 1}
+\title{Twitter chart challenge data 1}
 \format{
-An object of class \code{data.frame} with 226 rows and 11 columns.
+A data frame with 226 rows and 11 variables:
+\describe{
+  \item{StudyID}{Extracted study ID}
+  \item{FigureNum}{Extracted study figure number}
+  \item{PanelNum}{Extracted study panel number}
+  \item{CaseName}{Extracted study case name}
+  \item{CaseNum}{Extracted study number}
+  \item{X}{Session}
+  \item{OutcomeName}{Extracted study outcome name}
+  \item{Direction}{Direction of trend}
+  \item{Y}{Outcome measure}
+  \item{CondName}{Extracted study condition}
+  \item{CondNum}{Extracted study number}
+}
 }
 \usage{
 Challenge1Data
 }
 \description{
-Plotting data Challenge 1
+Twitter chart challenge data 1
 }
 \keyword{datasets}

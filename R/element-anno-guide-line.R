@@ -11,6 +11,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns a layer to the core plotting object
+#'
 #' @export
 scr_anno_guide_line <- function(core_frame,
                            coords,

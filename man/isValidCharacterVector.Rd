@@ -13,6 +13,9 @@ isValidCharacterVector(object = NULL, length = -1, name = NULL)
 
 \item{name}{parameter name}
 }
+\value{
+no return value, run for side effects
+}
 \description{
 isValidCharacterVector
 }

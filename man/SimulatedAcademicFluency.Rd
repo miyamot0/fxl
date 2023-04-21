@@ -5,7 +5,16 @@
 \alias{SimulatedAcademicFluency}
 \title{Plotting data for Hypothetical Academic MTSS}
 \format{
-An object of class \code{data.frame} with 168 rows and 7 columns.
+A data frame with 168 rows and 7 variables:
+\describe{
+  \item{Rates}{Rates of change}
+  \item{Times}{Multiplier for model level}
+  \item{index}{Individual id}
+  \item{starts}{Modeled baseline start}
+  \item{jitter}{Jitter offset}
+  \item{pred}{Prediction from model}
+  \item{err}{Residual error}
+}
 }
 \usage{
 SimulatedAcademicFluency

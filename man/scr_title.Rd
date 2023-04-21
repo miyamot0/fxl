@@ -19,6 +19,9 @@ scr_title(core_frame, var, color = "black", cex = 1, adj = 0.5, face = 1)
 
 \item{face}{like 'font' from base}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 Override the title
 }

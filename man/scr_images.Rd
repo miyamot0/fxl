@@ -15,6 +15,9 @@ scr_images(core_frame, image, cex = 1, mapping)
 
 \item{mapping}{(optional) if overriding draw (i.e., different response)}
 }
+\value{
+a layer to the core plotting object
+}
 \description{
 scr_images
 }

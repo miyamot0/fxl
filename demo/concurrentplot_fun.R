@@ -1,6 +1,8 @@
 library(fxl)
 
-if ("here" %in% installed.packages()) {
+oldwd <- getwd()
+
+if (require("here")) {
   setwd(paste(here::here("demo")))
 }
 
@@ -243,7 +245,7 @@ scr_plot(
         y1 = 5
       )
     )
-  ) |>
+  )
   # scr_save(
   #   name = "../man/figures/concurrentfigure_fun.svg",
   #   format = "svg",
@@ -251,10 +253,12 @@ scr_plot(
   #   height = 6,
   #   width = 9
   # ) |>
-  scr_save(
-    name = "../man/figures/concurrentfigure_fun.png",
-    format = "png",
-    res = 300,
-    height = 6,
-    width = 9
-  )
+  # scr_save(
+  #   name = "../man/figures/concurrentfigure_fun.png",
+  #   format = "png",
+  #   res = 300,
+  #   height = 6,
+  #   width = 9
+  # )
+
+setwd(oldwd)
