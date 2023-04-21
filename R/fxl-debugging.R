@@ -3,6 +3,8 @@
 #' @param object dataframe (hopefully)
 #' @param name name for object
 #'
+#' @returns no return value, run for side effects
+#'
 #' @export
 isValidDataFrame <- function(object = NULL, name = NULL) {
   if (is.null(object)) {
@@ -26,6 +28,8 @@ isValidDataFrame <- function(object = NULL, name = NULL) {
 #'
 #' @param object dataframe (hopefully)
 #' @param name name for object
+#'
+#' @returns no return value, run for side effects
 #'
 #' @export
 isValidAestheticMapping <- function(object = NULL, name = NULL) {
@@ -65,6 +69,8 @@ isValidAestheticMapping <- function(object = NULL, name = NULL) {
 #' @param object some type of object
 #' @param length expected length
 #' @param name parameter name
+#'
+#' @returns no return value, run for side effects
 #'
 #' @export
 isValidNumericVector <- function(object = NULL, length = -1, name = NULL) {
@@ -112,6 +118,8 @@ isValidNumericVector <- function(object = NULL, length = -1, name = NULL) {
 #' @param length expected length
 #' @param name parameter name
 #'
+#' @returns no return value, run for side effects
+#'
 #' @export
 isValidCharacterVector <- function(object = NULL, length = -1, name = NULL) {
   if (is.null(object)) {
@@ -141,12 +149,13 @@ isValidCharacterVector <- function(object = NULL, length = -1, name = NULL) {
   # }
 }
 
-
 #' isValidLogicalVector
 #'
 #' @param object some type of object
 #' @param length expected length
 #' @param name parameter name
+#'
+#' @returns no return value, run for side effects
 #'
 #' @export
 isValidLogicalVector <- function(object = NULL, length = -1, name = NULL) {
@@ -184,6 +193,8 @@ isValidLogicalVector <- function(object = NULL, length = -1, name = NULL) {
 #' @param object some type of object
 #' @param name parameter name
 #'
+#' @returns no return value, run for side effects
+#'
 #' @export
 isValidAXSCharacter <- function(object = NULL, name = NULL) {
   if (!is.character(object)) {
@@ -208,6 +219,8 @@ isValidAXSCharacter <- function(object = NULL, name = NULL) {
 #' @param object some type of object
 #' @param types list of object types acceptable
 #' @param tag var to reference in error message
+#'
+#' @returns no return value, run for side effects
 assert_input_type <- function(object, types = character(0), tag = "") {
   if (is.null(object)) stop(paste(tag,
                                 "must not be NULL"))

@@ -59,6 +59,9 @@ scr_plot(
 
 \item{semilog}{determine if this is a semilog type of plot}
 }
+\value{
+class of 'fxl' that contains necessary plotting elements
+}
 \description{
 Core object for establishing fxl object and layers
 }

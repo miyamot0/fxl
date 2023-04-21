@@ -9,7 +9,11 @@
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
 #' @export print.fxl
+#'
 #' @importFrom graphics layout
+#'
+#' @returns no return, executed for side effects
+#'
 #' @export
 print.fxl <- function(x, ...) {
   # Holders for phase coords

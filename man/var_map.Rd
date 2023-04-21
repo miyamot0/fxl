@@ -10,7 +10,7 @@ var_map(...)
 \item{...}{map expressed relationships out}
 }
 \value{
-list of exprs
+list of exprs to map variables to plotting methods
 }
 \description{
 This helper function maps out relationships to be parsed later on

@@ -4,8 +4,10 @@
 #'
 #' @param ... map expressed relationships out
 #'
-#' @return list of exprs
 #' @importFrom rlang enexprs
+#'
+#' @returns list of exprs to map variables to plotting methods
+#'
 #' @export
 var_map <- function(...) {
   enexprs(...)

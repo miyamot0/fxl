@@ -29,6 +29,9 @@ scr_save(
 
 \item{res}{from base}
 }
+\value{
+no return, executed for side effects
+}
 \description{
 Function for outputting fxl object at preset size (certain journal are opinionated on size, format, and density)
 }

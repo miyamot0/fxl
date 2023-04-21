@@ -44,6 +44,7 @@ library(rlang)
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns class of 'fxl' that contains necessary plotting elements
 #' @export
 scr_plot <- function(data,
                      aesthetics = NULL,
