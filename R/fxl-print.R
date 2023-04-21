@@ -28,6 +28,9 @@ print.fxl <- function(x, ...) {
   lookup <- FALSE
   req_draw <- FALSE
 
+  opar <- par(no.readonly = TRUE)
+  on.exit(par(opar))
+
   if ("facet" %in% names(x$aes)) {
     facets <- unique(x$data[[as.character(x$aes["facet"])]])
     n_facets <- length(facets)
