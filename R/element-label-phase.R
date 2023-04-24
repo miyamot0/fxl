@@ -14,6 +14,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns nothing, run for side effects
+#'
 #' @export
 scr_label_phase <- function(core_frame,
                             color = "black",

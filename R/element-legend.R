@@ -22,6 +22,8 @@
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'
+#' @returns nothing, run for side effects
+#'
 #' @export
 scr_legend <- function(core_frame,
                        panel = NA,
