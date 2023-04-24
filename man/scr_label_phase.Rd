@@ -35,6 +35,9 @@ scr_label_phase(
 
 \item{labels}{as stated}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 labels to be drawn on plots (typically for phases/conditions, but not necessarily)
 }

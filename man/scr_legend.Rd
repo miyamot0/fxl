@@ -59,6 +59,9 @@ scr_legend(
 
 \item{border}{border status (from base)}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 Information for drawing legend onto plots
 }

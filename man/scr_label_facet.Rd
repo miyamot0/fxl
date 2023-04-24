@@ -32,6 +32,9 @@ scr_label_facet(
 
 \item{labels}{as stated}
 }
+\value{
+nothing, run for side effects
+}
 \description{
 scr_label_facet
 }

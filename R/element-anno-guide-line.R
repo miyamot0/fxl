@@ -4,10 +4,10 @@
 #'
 #' @param core_frame fxl object
 #' @param coords start and finish coords for aim line
+#' @param facet panel to draw upon
 #' @param color from base
 #' @param lty line type
 #' @param lwd line width
-#' @param facet panel to draw upon
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
 #'

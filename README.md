@@ -30,6 +30,8 @@ Some highlighted features of the *fxl* package include:
 
 ## Changelog
 
+-   0.6.3 - CRAN fixes
+
 -   0.6.0 - Initial build for CRAN
 
 -   0.5.2 - Introduction of *scr_rect*, added use case 2 to vignette (multiple baseline)
