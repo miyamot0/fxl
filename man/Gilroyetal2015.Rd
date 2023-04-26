@@ -22,6 +22,6 @@ A data frame with 40 rows and 6 variables:
 Gilroyetal2015
 }
 \description{
-Plotting data from Gilroy et al. (2015)
+This is data either extracted or included (with permission) to assist with illustrating and replicating the functionality of the package. Specifically, this data is used to illustrate conventions regarding a multiple probe design and how that may be constructed in this package.
 }
 \keyword{datasets}

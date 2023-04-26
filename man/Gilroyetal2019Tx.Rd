@@ -24,6 +24,6 @@ A data frame with 86 rows and 8 variables:
 Gilroyetal2019Tx
 }
 \description{
-Treatment data from Gilroy et al. (2019)
+This is data either extracted or included (with permission) to assist with illustrating and replicating the functionality of the package. Specifically, this data is used to illustrate conventions regarding combined design elements that include multiple baseline and reversal design elements.
 }
 \keyword{datasets}

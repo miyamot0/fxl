@@ -17,7 +17,7 @@
 
 #' @title Plotting data from Gilroy et al. (2015)
 #'
-#' @description Plotting data from Gilroy et al. (2015)
+#' @description This is data either extracted or included (with permission) to assist with illustrating and replicating the functionality of the package. Specifically, this data is used to illustrate conventions regarding a multiple probe design and how that may be constructed in this package.
 #'
 #' @format A data frame with 40 rows and 6 variables:
 #' \describe{
@@ -33,7 +33,7 @@
 
 #' @title Plotting data from Gilroy et al. (2019) - FA
 #'
-#' @description FA data from Gilroy et al. (2019)
+#' @description Data from this study (provided with permission) is used to illustrate how findings from a functional analysis can be drawn using the package. Generally, its the same type of functionality required in an alternating treatment design approach.
 #'
 #' @format A data frame with 15 rows and 9 variables:
 #' \describe{
@@ -52,7 +52,7 @@
 
 #' @title Plotting data from Gilroy et al. (2019) - Treatment
 #'
-#' @description Treatment data from Gilroy et al. (2019)
+#' @description This is data either extracted or included (with permission) to assist with illustrating and replicating the functionality of the package. Specifically, this data is used to illustrate conventions regarding combined design elements that include multiple baseline and reversal design elements.
 #'
 #' @format A data frame with 86 rows and 8 variables:
 #' \describe{
@@ -85,7 +85,7 @@
 #' @source <doi:https://doi.org/10.1002/jaba.826>
 "Gilroyetal2021"
 
-#' @title Plotting data from Lozy et al. (2020)
+#' @title (TODO) Plotting data from Lozy et al. (2020)
 #'
 #' @description Treatment data from Lozy et al. (2020)
 #'

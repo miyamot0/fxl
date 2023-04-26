@@ -3,7 +3,7 @@
 \docType{data}
 \name{LozyEtAl2020}
 \alias{LozyEtAl2020}
-\title{Plotting data from Lozy et al. (2020)}
+\title{(TODO) Plotting data from Lozy et al. (2020)}
 \format{
 A data frame with 91 rows and 5 variables:
 \describe{
