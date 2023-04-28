@@ -25,6 +25,6 @@ A data frame with 15 rows and 9 variables:
 Gilroyetal2019
 }
 \description{
-FA data from Gilroy et al. (2019)
+Data from this study (provided with permission) is used to illustrate how findings from a functional analysis can be drawn using the package. Generally, its the same type of functionality required in an alternating treatment design approach.
 }
 \keyword{datasets}
