@@ -13,15 +13,14 @@
 #' @param label description for bar
 #' @param styler a lambda function that returns dynamic styling parameters
 #' @param width width of bar
+#' @param adj adjustment for y label
 #'
 #' @returns a layer to the core plotting object
 #'
 #' @export
 #' @importFrom rlang enexprs
 scr_bar_support <- function(core_frame,
-                            color = rgb(.8, .8, .8,
-                              alpha = 0.25
-                            ),
+                            color = rgb(.8, .8, .8, alpha = 0.25),
                             alpha = 1,
                             guide_line = NULL,
                             guide_line_type = 1,
@@ -30,7 +29,8 @@ scr_bar_support <- function(core_frame,
                             mapping = NULL,
                             label = "",
                             styler = NA,
-                            width = 0.8) {
+                            width = 0.8,
+                            adj = 0.5) {
 
   newlayer <- list()
   newlayer[["type"]] <- "bar_support"
@@ -40,6 +40,9 @@ scr_bar_support <- function(core_frame,
 
   assert_input_type(alpha, "numeric", "alpha")
   newlayer[["alpha"]] <- alpha
+
+  assert_input_type(adj, "numeric", "adj")
+  newlayer[["adj"]] <- adj
 
   assert_input_type(color, "character", "color")
   newlayer[["color"]] <- color
