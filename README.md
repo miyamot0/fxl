@@ -26,9 +26,11 @@ Some highlighted features of the *fxl* package include:
 
 ## Current Version
 
-0.6.0 (beta)
+0.7.0 (beta)
 
 ## Changelog
+
+-   0.7.0 - Bump to add fix for *scr_arrows*
 
 -   0.6.3 - CRAN fixes
 
