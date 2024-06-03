@@ -24,10 +24,8 @@ scr_anno_guide_line <- function(core_frame,
   newlayer <- list()
   newlayer[["type"]] <- "guide_line"
 
-  # TODO: check for appropriate facet options
   newlayer[["facet"]] <- facet
 
-  # TODO: check for custom objects
   newlayer[["coords"]] <- coords
 
   assert_input_type(color, "character", "color")

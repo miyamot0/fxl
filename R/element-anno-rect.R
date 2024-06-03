@@ -22,7 +22,6 @@ scr_anno_rect <- function(core_frame,
   # TODO: check for appropriate facet options
   # newlayer[["facet"]] <- facet
 
-  # TODO: check for custom objects
   newlayer[["rects"]] <- rects
 
   assert_input_type(color, "character", "color")

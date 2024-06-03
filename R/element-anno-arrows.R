@@ -33,10 +33,8 @@ scr_anno_arrows <- function(core_frame,
   newlayer <- list()
   newlayer[["type"]] <- "arrows"
 
-  # TODO: check for appropriate facet options
   newlayer[["facet"]] <- facet
 
-  # TODO: check for custom objects
   newlayer[["arrows"]] <- arrows
 
   assert_input_type(color, "character", "color")

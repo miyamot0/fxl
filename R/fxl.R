@@ -30,16 +30,16 @@ library(rlang)
 #' @param omi outer margins in inches
 #' @param xaxs x axis formatting, relative to hanging space
 #' @param yaxs y axis formatting, relative to hanging space
-#' @param ncol TODO
+#' @param ncol number of colums in layout (default = 1)
 #' @param family font family
 #' @param bty TODO
-#' @param layout TODO
-#' @param layout_h TODO
-#' @param layout_v TODO
-#' @param semi_color_major_y TODO
-#' @param semi_color_midpoint_y TODO
-#' @param semi_color_minor_y TODO
-#' @param semi_color_major_x TODO
+#' @param layout layout grid
+#' @param layout_h layout heights
+#' @param layout_v layout widths
+#' @param semi_color_major_y colors for semilog lines (major)
+#' @param semi_color_midpoint_y colors for semilog lines (center bins)
+#' @param semi_color_minor_y colors for semilog lines (minor)
+#' @param semi_color_major_x colors for semilog lines (minor)
 #' @param semilog determine if this is a semilog type of plot
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>

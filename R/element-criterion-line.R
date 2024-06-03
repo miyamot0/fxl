@@ -29,7 +29,6 @@ scr_criterion_lines <- function(core_frame,
   assert_input_type(size, "numeric", "size")
   newlayer[["size"]] <- size
 
-  # TODO: error checking
   newlayer[["lines"]] <- lines
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer

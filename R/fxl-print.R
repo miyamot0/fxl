@@ -369,13 +369,13 @@ print.fxl <- function(x, ...) {
           )
         }
 
-        if (current_layer$type == "image") {
-          draw_images(
-            x,
-            current_layer,
-            current_facet
-          )
-        }
+        # if (current_layer$type == "image") {
+        #   draw_images(
+        #     x,
+        #     current_layer,
+        #     current_facet
+        #   )
+        # }
 
         if (current_layer$type == "rectangle") {
           draw_rect(
