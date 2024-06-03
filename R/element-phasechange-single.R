@@ -29,7 +29,6 @@ scr_plines <- function(core_frame,
   assert_input_type(col, "character", "col")
   newlayer[["col"]] <- col
 
-  # TODO: error checking
   newlayer[["lines"]] <- lines
 
   core_frame$layers[[(length(core_frame[["layers"]]) + 1)]] <- newlayer

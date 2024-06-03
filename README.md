@@ -26,27 +26,29 @@ Some highlighted features of the *fxl* package include:
 
 ## Current Version
 
-0.7.0 (beta)
+1.7.1
 
 ## Changelog
 
--   0.7.0 - Bump to add fix for *scr_arrows*
+-   1.7.1 - Clean up minor fixes, trim out unnecessary dep's
 
--   0.6.3 - CRAN fixes
+-   1.7.0 - Bump to add fix for *scr_arrows*
 
--   0.6.0 - Initial build for CRAN
+-   1.6.3 - CRAN fixes
 
--   0.5.2 - Introduction of *scr_rect*, added use case 2 to vignette (multiple baseline)
+-   1.6.0 - Initial build for CRAN
 
--   0.5.1 - Fixes for instances w/o facets, imagines. Added example to vignette
+-   1.5.2 - Introduction of *scr_rect*, added use case 2 to vignette (multiple baseline)
 
--   0.5.0 - Support for dynamic point/bar colors, sizes, etc. via lambda
+-   1.5.1 - Fixes for instances w/o facets, imagines. Added example to vignette
 
--   0.4.3 - Vignette and example figure expansion
+-   1.5.0 - Support for dynamic point/bar colors, sizes, etc. via lambda
 
--   0.4.2 - Add in support for custom images and markers
+-   1.4.3 - Vignette and example figure expansion
 
--   0.4.1 - Removing older dependencies out, building out vignettes
+-   1.4.2 - Add in support for custom images and markers
+
+-   1.4.1 - Removing older dependencies out, building out vignettes
 
 -   0.4.0 - Added testing, convenience wrappers
 
@@ -109,20 +111,6 @@ The source code necessary to re-create the figure is provided below (data includ
 [Code to Draw Figure](https://github.com/miyamot0/fxl/blob/main/demo/concurrentplot.R)
 
 ![Gilroy et al 2021](man/figures/concurrentfigure.png)
-
-### Fully Customizable Markers and Plot Elements
-
-The *fxl* package allows for custom images to be used as markers in research designs. Occasionally, a lighter and more friendly presentation may assist with communicating individual performance (e.g., performance feedback for younger learners). Specifically, an RGML file (i.e., an R [G]raphical [M]arkup [L]anguage file that uses the XML standard) is used to instruct R how to draw images. Images can be supplied by the user and can feature either vector-based or rasters.
-
-The two examples featured below demonstrate this functionality and the source code necessary to re-create them is provided as well (all data included in the package).
-
-[Code to Draw Figure](demo/concurrentplot_fun.R)
-
-![Customized figure with Hearts and Stars](man/figures/concurrentfigure_fun.png)
-
-[Code to Draw Figure](demo/atd_example_fun.R)
-
-![Customized figure with Black Scorpions and Green Dragons](man/figures/atd_example_fun.png)
 
 ### Multiple Probe/Multiple Baseline Design
 
@@ -225,30 +213,6 @@ The specific software referenced is provided credit below:
 -   ggplot2 - MIT Licensed. [Site](https://github.com/tidyverse/ggplot2)
 
 -   TeachingDemos - Artistic 2.0 Licensed. [Site](https://cran.r-project.org/package=TeachingDemos)
-
-## Referenced Works (Other Assets)
-
-The specific assets embedded in this work are credited below:
-
--   Scorpion SVG - CC0 Licensed. [Site](https://www.svgrepo.com/svg/404093/scorpion)
-
--   Skinner SVG - Public Domain Licensed. [Site](https://thenounproject.com/icon/bf-skinner-2029708/)
-
--   Star SVG - CC0 Licensed. [Site](https://www.svgrepo.com/svg/13695/star)
-
--   Like SVG - CC0 Licensed. [Site](https://www.svgrepo.com/svg/13653/like)
-
-## Installation
-
-At present, the *fxl* package is not yet featured as a part of CRAN. This is purely due to the rapid cycle of growth of features being added to the project. The package must be installed manually at this time using the *devtools* package.
-
-Example installation instructions using *devtools* are provided in source code form below.
-
-```         
-library(devtools)
-
-install_github("miyamot0/fxl")
-```
 
 ## Development
 

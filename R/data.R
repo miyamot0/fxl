@@ -85,7 +85,7 @@
 #' @source <doi:https://doi.org/10.1002/jaba.826>
 "Gilroyetal2021"
 
-#' @title (TODO) Plotting data from Lozy et al. (2020)
+#' @title Plotting data from Lozy et al. (2020)
 #'
 #' @description Treatment data from Lozy et al. (2020)
 #'

@@ -30,10 +30,8 @@ scr_anno_brackets <- function(core_frame,
   newlayer <- list()
   newlayer[["type"]] <- "brackets"
 
-  # TODO: check for appropriate facet options
   newlayer[["facet"]] <- facet
 
-  # TODO: check for custom objects
   newlayer[["brackets"]] <- brackets
 
   assert_input_type(color, "character", "color")

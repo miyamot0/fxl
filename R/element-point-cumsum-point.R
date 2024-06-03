@@ -35,7 +35,6 @@ scr_cumsum_points <- function(core_frame,
   assert_input_type(cex, "numeric", "cex")
   newlayer[["cex"]] <- cex
 
-  # TODO: error checking
   newlayer[["aesthetics"]] <- NA
 
   if (!missing(mapping)) newlayer[["aesthetics"]] <- enexpr(mapping)

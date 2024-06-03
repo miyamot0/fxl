@@ -130,6 +130,11 @@ draw_bar_support <- function(core_frame, current_layer, facet_name, max_y) {
 
   mtext(label_y,
     side = 4,
-    outer = TRUE
+    cex   = core_frame$labs[["ylab_cex"]],
+    col   = core_frame$labs[["ylab_color"]],
+    adj   = current_layer[["adj"]],
+    font  = core_frame$labs[["ylab_face"]],
+    outer = core_frame$labs[["outer"]],
+    line  = core_frame$labs[["outer.y.line"]]
   )
 }

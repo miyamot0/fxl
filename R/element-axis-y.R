@@ -40,7 +40,6 @@ scr_yoverride <- function(core_frame,
     core_frame$dims[["local.dims"]] <- var
   }
 
-  # TODO: Error check for named lists OR vector
   core_frame$dims[["yticks"]] <- yticks
 
   if (!is.null(ytickslabs)) {
