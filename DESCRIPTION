@@ -1,7 +1,7 @@
 Package: fxl
 Type: Package
 Title: 'fxl' Single Case Design Charting Package
-Version: 1.7.1
+Version: 1.7.2
 Authors@R: person(given = "Shawn",
            family = "Gilroy",
            role = c("aut", "cre", "cph"),

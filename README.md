@@ -26,9 +26,11 @@ Some highlighted features of the *fxl* package include:
 
 ## Current Version
 
-1.7.1
+1.7.2
 
 ## Changelog
+
+-   1.7.2 - Add in ability to customize size for axis labels (normal and semi-log)
 
 -   1.7.1 - Clean up minor fixes, trim out unnecessary dep's
 

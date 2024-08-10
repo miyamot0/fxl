@@ -9,6 +9,7 @@ scr_yoverride(
   var,
   ydelta = 1,
   yticks = NULL,
+  ytickscex = 1,
   ydraws = NULL,
   ytickslabs = NULL
 )
@@ -21,6 +22,8 @@ scr_yoverride(
 \item{ydelta}{skips between ticks (can override)}
 
 \item{yticks}{tick values (numerical)}
+
+\item{ytickscex}{expansion factor for labels}
 
 \item{ydraws}{specify axes manual}
 

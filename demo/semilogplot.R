@@ -31,22 +31,25 @@ scr_plot(
   ),
   omi = c(
     0.5,
-    0.25,
+    0.5,
     0.5,
     0.5
   ),
   mai = c(
     0.0,
-    0.5,
+    0.25,
     0.0,
     0.0
   ),
   semilog = TRUE
 ) |>
-  scr_yoverride(c(0.1, 1000)) |>
+  scr_yoverride(c(0.1, 1000),
+                ytickscex = 1.15) |>
+  scr_xoverride(c(1, 30),
+                xtickscex = 1.15) |>
   scr_title("Semi-log Chart: Hypothetical Case") |>
   scr_xlabel("Session") |>
-  scr_ylabel("Frequency") |>
+  scr_ylabel("Frequency", adj = 0.6) |>
   scr_lines() |>
   scr_points(
     pch = 21,
