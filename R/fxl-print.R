@@ -240,7 +240,8 @@ print.fxl <- function(x, ...) {
       axis(1,
         labels = FALSE,
         las = 2,
-        at = x_axis_ticks
+        at = x_axis_ticks,
+        cex.axis = x$dims[["xlab.cex"]]
       )
 
       ## Draw the x-axis labels.
@@ -257,15 +258,16 @@ print.fxl <- function(x, ...) {
     } else {
       axis(1,
         labels = x_axis_draw,
-        cex    = x_lab_cex,
-        at     = x_axis_ticks
+        at     = x_axis_ticks,
+        cex.axis = x$dims[["xlab.cex"]]
       )
     }
 
     axis(2,
       labels = y_axis_draw,
       las    = 1,
-      at     = y_axis_ticks
+      at     = y_axis_ticks,
+      cex.axis = x$dims[["ylab.cex"]]
     )
 
     if (length(x[["layers"]]) > 0) {

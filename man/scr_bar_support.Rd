@@ -15,7 +15,8 @@ scr_bar_support(
   mapping = NULL,
   label = "",
   styler = NA,
-  width = 0.8
+  width = 0.8,
+  adj = 0.5
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ scr_bar_support(
 \item{styler}{a lambda function that returns dynamic styling parameters}
 
 \item{width}{width of bar}
+
+\item{adj}{adjustment for y label}
 }
 \value{
 a layer to the core plotting object

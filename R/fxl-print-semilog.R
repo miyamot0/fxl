@@ -53,7 +53,6 @@ print.fxlsemilog <- function(x, ...) {
     xpd = FALSE
   )
 
-
   build_vector <- numeric(0)
   current_id <- 1
 
@@ -185,8 +184,9 @@ print.fxlsemilog <- function(x, ...) {
     labels <- gsub("^0$", "", labels)
 
     axis(1,
-      at     = x_axis_ticks,
-      labels = NA
+      at       = x_axis_ticks,
+      cex.axis = x$dims[["xlab.cex"]],
+      labels   = NA
     )
 
     local_y_ticks_major <-  c(
@@ -220,7 +220,8 @@ print.fxlsemilog <- function(x, ...) {
       at = local_y_ticks_major,
       las = 1,
       tcl = par("tcl"),
-      labels = local_y_ticks_major_labs
+      labels = local_y_ticks_major_labs,
+      cex.axis = x$dims[["ylab.cex"]]
     )
 
     abline(
@@ -434,7 +435,8 @@ print.fxlsemilog <- function(x, ...) {
 
     axis(1,
       labels = x_labels_holder,
-      at = x_axis_ticks,
+      at     = x_axis_ticks,
+      cex.axis = x$dims[["xlab.cex"]],
       pos = 0
     )
 
@@ -442,7 +444,8 @@ print.fxlsemilog <- function(x, ...) {
       labels = c(0),
       las    = 1,
       tcl    = 0,
-      at     = c(0)
+      at     = c(0),
+      cex.axis = x$dims[["ylab.cex"]]
     )
 
     abline(

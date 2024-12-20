@@ -37,25 +37,25 @@ scr_plot(
 
 \item{yaxs}{y axis formatting, relative to hanging space}
 
-\item{ncol}{TODO}
+\item{ncol}{number of colums in layout (default = 1)}
 
 \item{family}{font family}
 
 \item{bty}{TODO}
 
-\item{layout}{TODO}
+\item{layout}{layout grid}
 
-\item{layout_h}{TODO}
+\item{layout_h}{layout heights}
 
-\item{layout_v}{TODO}
+\item{layout_v}{layout widths}
 
-\item{semi_color_major_y}{TODO}
+\item{semi_color_major_y}{colors for semilog lines (major)}
 
-\item{semi_color_midpoint_y}{TODO}
+\item{semi_color_midpoint_y}{colors for semilog lines (center bins)}
 
-\item{semi_color_minor_y}{TODO}
+\item{semi_color_minor_y}{colors for semilog lines (minor)}
 
-\item{semi_color_major_x}{TODO}
+\item{semi_color_major_x}{colors for semilog lines (minor)}
 
 \item{semilog}{determine if this is a semilog type of plot}
 }

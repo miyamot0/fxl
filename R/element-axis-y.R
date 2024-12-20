@@ -7,6 +7,7 @@
 #' @param ydelta skips between ticks (can override)
 #' @param ydraws specify axes manual
 #' @param yticks tick values (numerical)
+#' @param ytickscex expansion factor for labels
 #' @param ytickslabs tick labels
 #'
 #' @author Shawn Gilroy <sgilroy1@@lsu.edu>
@@ -18,6 +19,7 @@ scr_yoverride <- function(core_frame,
                           var,
                           ydelta = 1,
                           yticks = NULL,
+                          ytickscex = 1,
                           ydraws = NULL,
                           ytickslabs = NULL) {
 
@@ -56,6 +58,9 @@ scr_yoverride <- function(core_frame,
       name = "ydraws"
     )
   }
+
+  if (!is.null(ytickscex))  assert_input_type(ytickscex, "numeric", "ytickscex")
+  core_frame$dims[["ylab.cex"]] <- ytickscex
 
   core_frame$dims[["ydraws"]] <- ydraws
 
