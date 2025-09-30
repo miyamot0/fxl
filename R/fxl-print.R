@@ -59,6 +59,7 @@ print.fxl <- function(x, ...) {
       mai = x[["dims"]][["mai"]],
       xaxs = x[["dims"]][["xaxs"]],
       yaxs = x[["dims"]][["yaxs"]],
+      bty = "n",
       xpd = NA
     )
 
@@ -70,6 +71,7 @@ print.fxl <- function(x, ...) {
       mai = x[["dims"]][["mai"]],
       xaxs = x[["dims"]][["xaxs"]],
       yaxs = x[["dims"]][["yaxs"]],
+      bty = "n",
       xpd = NA
     )
 
@@ -209,7 +211,7 @@ print.fxl <- function(x, ...) {
       yaxt = "n"
     )
 
-    box(bty = "l")
+    #box(bty = "l")
 
     if (!is.null(x$dims[["xticklabs"]]) &&
       !is.list(x$dims[["xticklabs"]]) &&
