@@ -232,46 +232,6 @@ print.fxl <- function(x, ...) {
 
     x_lab_cex <- x$dims[["xlab.cex"]]
 
-    if (!is.null(x$dims[["xlab.rotation"]]) &&
-      !is.null(x$dims[["xlab.offset"]]) &&
-      !is.null(x$dims[["xticklabs.offset"]])) {
-      x_lab_rotation <- x$dims[["xlab.rotation"]]
-      x_lab_offset <- x$dims[["xlab.offset"]]
-      x_lab_adj <- x$dims[["xticklabs.offset"]]
-
-      axis(1,
-        labels = FALSE,
-        las = 2,
-        at = x_axis_ticks,
-        cex.axis = x$dims[["xlab.cex"]]
-      )
-
-      ## Draw the x-axis labels.
-      text(
-        x = x_axis_ticks,
-        y = par("usr")[3] - x_lab_offset,
-        labels = x_axis_draw,
-        xpd = NA,
-        srt = x_lab_rotation,
-        family = font_family,
-        adj = x_lab_adj,
-        cex = x_lab_cex
-      )
-    } else {
-      axis(1,
-        labels = x_axis_draw,
-        at     = x_axis_ticks,
-        cex.axis = x$dims[["xlab.cex"]]
-      )
-    }
-
-    axis(2,
-      labels = y_axis_draw,
-      las    = 1,
-      at     = y_axis_ticks,
-      cex.axis = x$dims[["ylab.cex"]]
-    )
-
     if (length(x[["layers"]]) > 0) {
       for (i in seq_len(length(x[["layers"]]))) {
         current_layer <- x$layers[[i]]
@@ -487,6 +447,46 @@ print.fxl <- function(x, ...) {
         draw_legend(x)
       }
     }
+
+    if (!is.null(x$dims[["xlab.rotation"]]) &&
+        !is.null(x$dims[["xlab.offset"]]) &&
+        !is.null(x$dims[["xticklabs.offset"]])) {
+      x_lab_rotation <- x$dims[["xlab.rotation"]]
+      x_lab_offset <- x$dims[["xlab.offset"]]
+      x_lab_adj <- x$dims[["xticklabs.offset"]]
+
+      axis(1,
+           labels = FALSE,
+           las = 2,
+           at = x_axis_ticks,
+           cex.axis = x$dims[["xlab.cex"]]
+      )
+
+      ## Draw the x-axis labels.
+      text(
+        x = x_axis_ticks,
+        y = par("usr")[3] - x_lab_offset,
+        labels = x_axis_draw,
+        xpd = NA,
+        srt = x_lab_rotation,
+        family = font_family,
+        adj = x_lab_adj,
+        cex = x_lab_cex
+      )
+    } else {
+      axis(1,
+           labels = x_axis_draw,
+           at     = x_axis_ticks,
+           cex.axis = x$dims[["xlab.cex"]]
+      )
+    }
+
+    axis(2,
+         labels = y_axis_draw,
+         las    = 1,
+         at     = y_axis_ticks,
+         cex.axis = x$dims[["ylab.cex"]]
+    )
   }
 
   # Note: final overlays, once facets are drawn/coords cached
