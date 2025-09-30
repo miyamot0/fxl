@@ -533,14 +533,22 @@ print.fxl <- function(x, ...) {
 
   if (!lookup && !is.null(x[["legendpars"]])) draw_legend(x)
 
+  tf_x = cnvrt_coords(mean(par("usr")[1:2]), 0)
+
   mtext(x$labs[["title"]],
     side  = 3,
     cex   = x$labs[["title_cex"]],
     col   = x$labs[["title_color"]],
     adj   = x$labs[["title_adj"]],
     font  = x$labs[["title_face"]],
-    outer = x$labs[["outer"]]
+    outer = x$labs[["outer"]],
+    at    = tf_x$tdev$x
   )
+
+  margin_mag = sum(par("mai")[1], par("mai")[3])
+  total_height = par("din")[2]
+  relative_height = (total_height - margin_mag) * .5
+  height_from_b = (par("mai")[1] + relative_height) / total_height
 
   mtext(x$labs[["ylab"]],
     side  = 2,
@@ -549,7 +557,8 @@ print.fxl <- function(x, ...) {
     adj   = x$labs[["ylab_adj"]],
     font  = x$labs[["ylab_face"]],
     outer = x$labs[["outer"]],
-    line  = x$labs[["outer.y.line"]]
+    line  = x$labs[["outer.y.line"]],
+    at    = height_from_b
   )
 
   mtext(x$labs[["xlab"]],
@@ -559,6 +568,7 @@ print.fxl <- function(x, ...) {
     adj   = x$labs[["xlab_adj"]],
     font  = x$labs[["xlab_face"]],
     outer = x$labs[["outer"]],
-    line  = x$labs[["outer.x.line"]]
+    line  = x$labs[["outer.x.line"]],
+    at    = tf_x$tdev$x
   )
 }
