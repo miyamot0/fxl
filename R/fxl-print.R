@@ -59,6 +59,7 @@ print.fxl <- function(x, ...) {
       mai = x[["dims"]][["mai"]],
       xaxs = x[["dims"]][["xaxs"]],
       yaxs = x[["dims"]][["yaxs"]],
+      bty = "n",
       xpd = NA
     )
 
@@ -70,6 +71,7 @@ print.fxl <- function(x, ...) {
       mai = x[["dims"]][["mai"]],
       xaxs = x[["dims"]][["xaxs"]],
       yaxs = x[["dims"]][["yaxs"]],
+      bty = "n",
       xpd = NA
     )
 
@@ -209,7 +211,7 @@ print.fxl <- function(x, ...) {
       yaxt = "n"
     )
 
-    box(bty = "l")
+    #box(bty = "l")
 
     if (!is.null(x$dims[["xticklabs"]]) &&
       !is.list(x$dims[["xticklabs"]]) &&
@@ -229,46 +231,6 @@ print.fxl <- function(x, ...) {
     }
 
     x_lab_cex <- x$dims[["xlab.cex"]]
-
-    if (!is.null(x$dims[["xlab.rotation"]]) &&
-      !is.null(x$dims[["xlab.offset"]]) &&
-      !is.null(x$dims[["xticklabs.offset"]])) {
-      x_lab_rotation <- x$dims[["xlab.rotation"]]
-      x_lab_offset <- x$dims[["xlab.offset"]]
-      x_lab_adj <- x$dims[["xticklabs.offset"]]
-
-      axis(1,
-        labels = FALSE,
-        las = 2,
-        at = x_axis_ticks,
-        cex.axis = x$dims[["xlab.cex"]]
-      )
-
-      ## Draw the x-axis labels.
-      text(
-        x = x_axis_ticks,
-        y = par("usr")[3] - x_lab_offset,
-        labels = x_axis_draw,
-        xpd = NA,
-        srt = x_lab_rotation,
-        family = font_family,
-        adj = x_lab_adj,
-        cex = x_lab_cex
-      )
-    } else {
-      axis(1,
-        labels = x_axis_draw,
-        at     = x_axis_ticks,
-        cex.axis = x$dims[["xlab.cex"]]
-      )
-    }
-
-    axis(2,
-      labels = y_axis_draw,
-      las    = 1,
-      at     = y_axis_ticks,
-      cex.axis = x$dims[["ylab.cex"]]
-    )
 
     if (length(x[["layers"]]) > 0) {
       for (i in seq_len(length(x[["layers"]]))) {
@@ -485,6 +447,46 @@ print.fxl <- function(x, ...) {
         draw_legend(x)
       }
     }
+
+    if (!is.null(x$dims[["xlab.rotation"]]) &&
+        !is.null(x$dims[["xlab.offset"]]) &&
+        !is.null(x$dims[["xticklabs.offset"]])) {
+      x_lab_rotation <- x$dims[["xlab.rotation"]]
+      x_lab_offset <- x$dims[["xlab.offset"]]
+      x_lab_adj <- x$dims[["xticklabs.offset"]]
+
+      axis(1,
+           labels = FALSE,
+           las = 2,
+           at = x_axis_ticks,
+           cex.axis = x$dims[["xlab.cex"]]
+      )
+
+      ## Draw the x-axis labels.
+      text(
+        x = x_axis_ticks,
+        y = par("usr")[3] - x_lab_offset,
+        labels = x_axis_draw,
+        xpd = NA,
+        srt = x_lab_rotation,
+        family = font_family,
+        adj = x_lab_adj,
+        cex = x_lab_cex
+      )
+    } else {
+      axis(1,
+           labels = x_axis_draw,
+           at     = x_axis_ticks,
+           cex.axis = x$dims[["xlab.cex"]]
+      )
+    }
+
+    axis(2,
+         labels = y_axis_draw,
+         las    = 1,
+         at     = y_axis_ticks,
+         cex.axis = x$dims[["ylab.cex"]]
+    )
   }
 
   # Note: final overlays, once facets are drawn/coords cached
@@ -531,14 +533,22 @@ print.fxl <- function(x, ...) {
 
   if (!lookup && !is.null(x[["legendpars"]])) draw_legend(x)
 
+  tf_x = cnvrt_coords(mean(par("usr")[1:2]), 0)
+
   mtext(x$labs[["title"]],
     side  = 3,
     cex   = x$labs[["title_cex"]],
     col   = x$labs[["title_color"]],
     adj   = x$labs[["title_adj"]],
     font  = x$labs[["title_face"]],
-    outer = x$labs[["outer"]]
+    outer = x$labs[["outer"]],
+    at    = tf_x$tdev$x
   )
+
+  margin_mag = sum(par("mai")[1], par("mai")[3])
+  total_height = par("din")[2]
+  relative_height = (total_height - margin_mag) * .5
+  height_from_b = (par("mai")[1] + relative_height) / total_height
 
   mtext(x$labs[["ylab"]],
     side  = 2,
@@ -547,7 +557,8 @@ print.fxl <- function(x, ...) {
     adj   = x$labs[["ylab_adj"]],
     font  = x$labs[["ylab_face"]],
     outer = x$labs[["outer"]],
-    line  = x$labs[["outer.y.line"]]
+    line  = x$labs[["outer.y.line"]],
+    at    = height_from_b
   )
 
   mtext(x$labs[["xlab"]],
@@ -557,6 +568,7 @@ print.fxl <- function(x, ...) {
     adj   = x$labs[["xlab_adj"]],
     font  = x$labs[["xlab_face"]],
     outer = x$labs[["outer"]],
-    line  = x$labs[["outer.x.line"]]
+    line  = x$labs[["outer.x.line"]],
+    at    = tf_x$tdev$x
   )
 }
