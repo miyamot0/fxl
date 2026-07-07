@@ -60,7 +60,8 @@ print.fxl <- function(x, ...) {
       xaxs = x[["dims"]][["xaxs"]],
       yaxs = x[["dims"]][["yaxs"]],
       bty = "n",
-      xpd = NA
+      xpd = NA,
+      bg = "white"
     )
 
   } else {
@@ -72,7 +73,8 @@ print.fxl <- function(x, ...) {
       xaxs = x[["dims"]][["xaxs"]],
       yaxs = x[["dims"]][["yaxs"]],
       bty = "n",
-      xpd = NA
+      xpd = NA,
+      bg = "white"
     )
 
   }

@@ -50,7 +50,8 @@ print.fxlsemilog <- function(x, ...) {
     mai = x[["dims"]][["mai"]],
     xaxs = "r",
     yaxs = "r",
-    xpd = FALSE
+    xpd = FALSE,
+    bg = "white"
   )
 
   build_vector <- numeric(0)
@@ -425,7 +426,8 @@ print.fxlsemilog <- function(x, ...) {
       xaxt = "n",
       yaxt = "n",
       frame.plot = FALSE,
-      las = 1
+      las = 1,
+      bg = "white"
     )
 
     x_labels_holder <- x_axis_draw
