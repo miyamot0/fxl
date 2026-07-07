@@ -159,7 +159,8 @@ print.fxlsemilog <- function(x, ...) {
       yaxt = "n",
       frame.plot = FALSE,
       log = "y",
-      las = 1
+      las = 1,
+      bg = "white"
     )
 
     if (facetIndex == 1) {

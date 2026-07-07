@@ -208,7 +208,8 @@ print.fxl <- function(x, ...) {
       family = font_family,
       las = 1,
       xaxt = "n",
-      yaxt = "n"
+      yaxt = "n",
+      bg = "white"
     )
 
     #box(bty = "l")
